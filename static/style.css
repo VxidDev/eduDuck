@@ -46,7 +46,7 @@ body {
     text-align: center;
 }
 
-.apiKey {
+.slimmest {
     padding: 1rem 0 0 0;
 }
 
@@ -133,4 +133,8 @@ footer {
 .fileButton {
     padding: 15px;
     cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }

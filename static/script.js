@@ -4,6 +4,16 @@ const OutputDisplay = document.querySelector(".output");
 const TextInputs = document.querySelectorAll(".textInput")
 const ApiKeyInput = document.querySelector(".apiKey");
 const FileInputs = document.querySelectorAll(".file-upload-wrapper");
+const CustomModel = document.getElementById("customModel");
+const CustomModelInput = document.querySelector(".customModelInput");
+
+CustomModel.addEventListener('change' , () => {
+    if (CustomModel.checked) {
+        CustomModelInput.classList.remove("hidden");
+    } else {
+        CustomModelInput.classList.add("hidden");
+    }
+})
 
 TextInputs.forEach(textinput => {
     const MAXLINES = textinput.classList.contains("slim") ?
@@ -25,19 +35,32 @@ TextInputs.forEach(textinput => {
 Submit.addEventListener('click' , async () => {
     const notes = NoteInput.value.trim();
     const apiKey = ApiKeyInput.value.trim();
+    let model = null;
     
-    const msg = !apiKey ? "Enter API key." : 
+    let msg = !apiKey ? "Enter API key." : 
             !notes ? "Enter notes first." : 
             notes.split(' ').length > 2500 ? "Notes too long." : 
             "Generating...";
+
+    if (!CustomModelInput.classList.contains("hidden")) {
+        model = CustomModelInput.value.trim();
+        if (!model) {
+            msg = "Enter model.";
+        } 
+    } else {
+        model = false;
+    }
+
     OutputDisplay.textContent = msg; 
-    if (!notes || !apiKey || notes.split(' ').length > 2500) return;
+    if (!notes || !apiKey || notes.split(' ').length > 2500 || (!model && model !== false)) return;
 
     try {
+        let body = {notes: notes, apiKey: apiKey}
+        if (model) body["model"] = model
         const response = await fetch('/generate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ notes: notes , apiKey: apiKey})
+            body: JSON.stringify(body)
         });
         
         const data = await response.json();

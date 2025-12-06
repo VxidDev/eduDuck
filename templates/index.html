@@ -16,7 +16,12 @@
     </div>
     
     <div class="main">
-        <textarea class="apiKey textInput slim" placeholder="Enter your Hugging Face API key here!"></textarea>
+        <label>
+            <input type="checkbox" id="customModel">
+            Use custom model
+        </label>
+        <textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here!"></textarea>
+        <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!"></textarea>
         <div class="file-upload-wrapper">
             <input type="file" id="fileInput" class="file-input"/>
             <label for="fileInput" class="button fileButton">Upload file</label>

@@ -32,7 +32,7 @@ def uploadNotes():
     
 @app.route("/generate" , methods=['POST'])
 def generate():
-    data = flask.request.get_json()
+    data: dict = flask.request.get_json()
     NOTES = data["notes"]
 
     API_KEY = data["apiKey"]
@@ -46,8 +46,10 @@ def generate():
             "role": "user",
             "content": PROMPT
         }],
-        "model": "openai/gpt-oss-20b"
+        "model": data.get("model" , "openai/gpt-oss-20b")
     }
+
+    print(f"Model: {payload["model"]}")
 
     try:
         response = requests.post(API_URL, headers=headers, json=payload, timeout=15)
