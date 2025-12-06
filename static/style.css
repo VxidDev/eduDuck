@@ -55,21 +55,23 @@ body {
     outline: none;
 }
 
-.submit {
+.button {
     width: clamp(50px , 20vw , 200px);
     height: clamp(50px , 2vw , 75px);
     align-self: center;
+
+    background: rgb(217, 217, 217);
     
     border-radius: 25px;
     border: 1px solid #ccc;
     font-size: 20px;
 }
 
-.submit:hover {
+.button:hover {
     background: rgb(222, 222, 222);
 }
 
-.submit:active {
+.button:active {
     background: rgb(200 , 200 , 200);
 }
 
@@ -114,4 +116,21 @@ footer {
 
 .header-redirect:hover {
     transform: scale(1.05);
+}
+
+.file-upload-wrapper {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.file-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fileButton {
+    padding: 15px;
+    cursor: pointer;
 }

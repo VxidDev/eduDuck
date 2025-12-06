@@ -1,4 +1,4 @@
-import flask , requests
+import flask , requests , pypdf
 
 app = flask.Flask(__name__)
 
@@ -10,8 +10,27 @@ def root():
 def keyAccess():
     return flask.render_template("keyAccess.html")
 
-@app.route("/generate" , methods=['POST'])
+@app.route("/upload-notes" , methods=['POST'])
+def uploadNotes():
+    file = flask.request.files.get("notesFile")
 
+    if not file:
+        return flask.jsonify({"notes": "no file."})
+
+    ext: str = file.filename.split('.')[-1]
+    if ext == 'txt':
+        return flask.jsonify({"notes": file.read().decode("utf-8")})
+    elif ext == 'pdf':
+        reader = pypdf.PdfReader(file)
+        textChunks = []
+        for page in reader.pages:
+            textChunks.append(page.extract_text() or "")   
+        
+        return flask.jsonify({"notes": "\n".join(textChunks)})
+    else:
+        return flask.jsonify({"notes": "Unsupported file type."})
+    
+@app.route("/generate" , methods=['POST'])
 def generate():
     data = flask.request.get_json()
     NOTES = data["notes"]

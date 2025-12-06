@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduDuck - Main Page</title>
     <link rel="stylesheet" href="/static/style.css">
-    <script src="/static/script.js" defer></script>
+    <script src="/static/script.js" defer ></script>
 </head>
 <body>
 
@@ -17,8 +17,12 @@
     
     <div class="main">
         <textarea class="apiKey textInput slim" placeholder="Enter your Hugging Face API key here!"></textarea>
+        <div class="file-upload-wrapper">
+            <input type="file" id="fileInput" class="file-input"/>
+            <label for="fileInput" class="button fileButton">Upload file</label>
+        </div>
         <textarea class="notes textInput standard" placeholder="Notes go here :)"></textarea>
-        <button class="submit">Submit</button>
+        <button class="button submit">Submit</button>
         <textarea class="output textInput standard" placeholder="Your quiz will be here"></textarea>
     </div>
     <footer>

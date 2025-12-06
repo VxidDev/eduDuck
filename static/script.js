@@ -3,16 +3,22 @@ const Submit = document.querySelector(".submit");
 const OutputDisplay = document.querySelector(".output");
 const TextInputs = document.querySelectorAll(".textInput")
 const ApiKeyInput = document.querySelector(".apiKey");
+const FileInputs = document.querySelectorAll(".file-upload-wrapper");
 
 TextInputs.forEach(textinput => {
     const MAXLINES = textinput.classList.contains("slim") ?
     1 : textinput.classList.contains("standard") ?
     5 : textinput.classList.contains("large") ?
     20 : 1;
-    const LINEHEIGHT = 20;
+    const LINEHEIGHT = 25;
 
-    textinput.addEventListener('input', function() {        
-        this.style.height = Math.min(this.scrollHeight , (MAXLINES * LINEHEIGHT) + 60) + 'px';
+    textinput.addEventListener('input', function () {
+        this.style.height = 'auto';
+        const newHeight = Math.min(
+            this.scrollHeight,
+            (MAXLINES * LINEHEIGHT) + 35
+        );
+        this.style.height = newHeight + 'px';
     });
 });
 
@@ -22,10 +28,10 @@ Submit.addEventListener('click' , async () => {
     
     const msg = !apiKey ? "Enter API key." : 
             !notes ? "Enter notes first." : 
-            notes.split(' ').length > 1000 ? "Notes too long." : 
+            notes.split(' ').length > 2500 ? "Notes too long." : 
             "Generating...";
     OutputDisplay.textContent = msg; 
-    if (!notes || !apiKey || notes.split(' ').length > 1000) return;
+    if (!notes || !apiKey || notes.split(' ').length > 2500) return;
 
     try {
         const response = await fetch('/generate', {
@@ -46,3 +52,50 @@ Submit.addEventListener('click' , async () => {
         OutputDisplay.textContent = "Error while generating.";
     }
 })
+
+async function SendFile(file) {
+    const formData = new FormData();
+
+    formData.append("notesFile" , file);
+
+    const response = await fetch('/upload-notes' , {
+        method: 'POST',
+        body: formData,
+    });
+
+    if (!response.ok) {
+        NoteInput.textContent = "File upload failed.";
+        return;
+    }
+
+    const data = await response.json();
+    NoteInput.textContent = data.notes;
+     const MAXLINES = NoteInput.classList.contains("slim") ?
+        1 : NoteInput.classList.contains("standard") ?
+        5 : NoteInput.classList.contains("large") ?
+        20 : 1;
+        const LINEHEIGHT = 20;           
+        NoteInput.style.height = Math.min(NoteInput.scrollHeight , (MAXLINES * LINEHEIGHT) + 60) + 'px';
+}
+
+window.addEventListener('load', function() {
+    const fileInputs = document.querySelectorAll('.file-input');
+  
+    fileInputs.forEach(function(input) {
+        input.addEventListener('change', function() {
+            const wrapper = this.closest('.file-upload-wrapper');
+            displayElement = wrapper.querySelector('.fileButton');
+        
+            if (this.files.length > 0) {
+                const fileNames = Array.from(this.files).map(f => f.name).join(', ');
+                displayElement.textContent = fileNames.length > 30 ? 
+                `${fileNames.substring(0, 27)}...` : fileNames;
+                displayElement.classList.add('has-file');
+                SendFile(this.files[0])
+            } else {
+                displayElement.textContent = 'No file selected';
+                displayElement.classList.remove('has-file');
+            }
+        });
+    });
+});
