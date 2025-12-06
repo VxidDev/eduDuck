@@ -1,4 +1,4 @@
-# eduDuck
+# 🦆 eduDuck 🦆
 - Art by https://github.com/netkv , thank you for the contribution<3
 <p align="center">
   <img src="duck.jpg" alt="EduDuck banner" width="980" height="350">
