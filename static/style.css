@@ -1,0 +1,74 @@
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.header {
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    width: 100%;
+
+    background: rgb(0, 149, 255);
+    color: white;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    text-align: center;
+    gap: 15px;
+    padding-top: 25px;
+}
+
+.textInput {
+    width: clamp(25vw, 50vw, 75vw);
+    padding: 1.5rem;             
+    border: 1px solid #ccc;    
+    border-radius: 8px;         
+    font-family: inherit;       
+    display: block;             
+    
+    min-height: 40px;           
+    resize: none;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+.apiKey {
+    padding: 1rem 0 0 0;
+}
+
+.textInput:focus {
+    border: 3px solid blue;
+    outline: none;
+}
+
+.submit {
+    width: clamp(50px , 20vw , 200px);
+    height: clamp(50px , 2vw , 75px);
+    align-self: center;
+    
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    font-size: 20px;
+}
+
+.submit:hover {
+    background: rgb(222, 222, 222);
+}
+
+.submit:active {
+    background: rgb(200 , 200 , 200);
+}
+
+.output {
+    width: clamp(100px , 55vw , 500px);
+    align-self: center;
+}
