@@ -23,6 +23,9 @@ this hosting is not perfect but if i get enough donations or i will save up enou
 - [x] Make basic quiz generation
 - [x] Add support for uploading PDF/TXT files.
 - [ ] Add support for image files.
+- [ ] Add Quiz Visualization
+- [ ] Add Flashcard Visualization
+- [ ] Add "Note upgrader"
 - [ ] Let users choose between quizzes or flashcards.
 - [ ] Add difficulty levels (easy / medium / hard) for generated questions.
 - [ ] Add simple user accounts to save past quizzes.
