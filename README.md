@@ -7,6 +7,10 @@
 ### AI study app that transforms your notes into interactive quizzes and flashcards for fast, fun learning.
 ### Powered by a gpt-oss-20b, EduDuck helps students revise and study faster by generating questions directly from their notes.
 
+# Demo
+this hosting is not perfect but if i get enough donations or i will save up enough i will pay for normal hosting.
+- https://eduduck.onrender.com/
+
 ## Features
 
 - Paste or upload notes and get instant quizzes or flashcards.
@@ -21,7 +25,7 @@
 - [ ] Let users choose between quizzes or flashcards.
 - [ ] Add difficulty levels (easy / medium / hard) for generated questions.
 - [ ] Add simple user accounts to save past quizzes.
-- [ ] Deploy public demo (e.g. on Render/Vercel) and link from this README.
+- [x] Deploy public demo (e.g. on Render/Vercel) and link from this README.
 - [ ] Add dark mode and mobile-friendly layout.
 - [ ] Add custom model choice.
 
