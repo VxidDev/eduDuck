@@ -31,7 +31,7 @@ this hosting is not perfect but if i get enough donations or i will save up enou
 - [ ] Add simple user accounts to save past quizzes.
 - [x] Deploy public demo (e.g. on Render/Vercel) and link from this README.
 - [ ] Add dark mode and mobile-friendly layout.
-- [ ] Add custom model choice.
+- [x] Add custom model choice.
 
 ## License
 
