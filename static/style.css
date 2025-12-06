@@ -16,7 +16,7 @@ body {
     background: rgb(0, 149, 255);
     color: white;
 
-    background-image: url("/assets/duck.jpg");
+    background-image: url("/static/img/duck.jpg");
     background-size: cover;
     background-position: center;
 }

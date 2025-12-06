@@ -6,6 +6,10 @@ app = flask.Flask(__name__)
 def root():
     return flask.render_template("index.html")
 
+@app.route("/keyAccess")
+def keyAccess():
+    return flask.render_template("keyAccess.html")
+
 @app.route("/generate" , methods=['POST'])
 
 def generate():
