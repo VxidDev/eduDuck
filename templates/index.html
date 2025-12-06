@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI notes</title>
+    <title>EduDuck - Main Page</title>
     <link rel="stylesheet" href="/static/style.css">
     <script src="/static/script.js" defer></script>
 </head>
 <body>
+
     <div class="header">
-        <h1>AI STUDY HELPER</h1>
+        <a class="header-redirect" href="https://ko-fi.com/vxiddev" style="padding-left: 50px;">Donate</a>
+        <h1 class="header-text">EduDuck</h1>
+        <a class="header-redirect" href="/templates/keyAccess.html" style="padding-right: 50px;">How to get key?</a>
     </div>
     
     <div class="main">
         <textarea class="apiKey textInput" placeholder="Enter your Hugging Face API key here!"></textarea>
         <textarea class="notes textInput" placeholder="Notes go here :)"></textarea>
         <button class="submit">Submit</button>
-        <textarea class="output textInput" placeholder="Your answer will be here"></textarea>
+        <textarea class="output textInput" placeholder="Your quiz will be here"></textarea>
     </div>
+    <footer>
+            <span class="">By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2025</span>
+    </footer>
 </body>
 </html>

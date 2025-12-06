@@ -9,11 +9,16 @@ body {
 .header {
     display: flex;
     align-self: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
 
     background: rgb(0, 149, 255);
     color: white;
+
+    background-image: url("/assets/duck.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 .main {
@@ -22,7 +27,7 @@ body {
     align-self: center;
     text-align: center;
     gap: 15px;
-    padding-top: 25px;
+    padding-top: 65px;
 }
 
 .textInput {
@@ -71,4 +76,42 @@ body {
 .output {
     width: clamp(100px , 55vw , 500px);
     align-self: center;
+}
+
+footer {
+    padding-top: 50px;
+    align-self: center;
+}
+
+
+.repoLink {
+    text-decoration: none;
+    animation: repoEffect 5s infinite alternate-reverse;
+}
+
+@keyframes repoEffect {
+    from { color: aquamarine }
+    to { color: rgb(0, 162, 255) }
+}
+
+.header-text {
+    color: rgb(175, 248, 248);
+    font-size: 55px;
+    font-weight: bolder;
+    flex: 1;
+    text-align: center;
+}
+
+.header-redirect {
+    color: #d6fbfb;
+    font-size: 40px;
+    font-weight: bolder;
+    text-decoration: none;
+    white-space: nowrap;
+
+    transition: transform 0.2s ease-in;
+}
+
+.header-redirect:hover {
+    transform: scale(1.05);
 }
