@@ -21,7 +21,8 @@ this hosting is not perfect but if i get enough donations or i will save up enou
 ## Roadmap
 
 - [x] Make basic quiz generation
-- [ ] Add support for uploading PDF/TXT files.
+- [x] Add support for uploading PDF/TXT files.
+- [ ] Add support for image files.
 - [ ] Let users choose between quizzes or flashcards.
 - [ ] Add difficulty levels (easy / medium / hard) for generated questions.
 - [ ] Add simple user accounts to save past quizzes.
