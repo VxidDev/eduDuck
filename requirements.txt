@@ -2,3 +2,5 @@ flask
 gunicorn
 requests
 pypdf
+pillow
+pytesseract
