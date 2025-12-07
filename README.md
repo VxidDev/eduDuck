@@ -25,7 +25,7 @@ Parsing AI text is unpredictable so bugs or visual glitces may appear.
 
 - [x] Make basic quiz generation
 - [x] Add support for uploading PDF/TXT files.
-- [ ] Add support for image files.
+- [x] Add support for image files.
 - [x] Add Quiz Visualization
 - [ ] Add Flashcard Visualization
 - [ ] Add "Note upgrader"
