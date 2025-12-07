@@ -1,4 +1,4 @@
-# 🦆 eduDuck 🦆
+# 🦆 EduDuck 🦆
 - Art by https://github.com/netkv , thank you for the contribution<3
 <p align="center">
   <img src="duck.jpg" alt="EduDuck banner" width="980" height="350">
@@ -18,12 +18,15 @@ this hosting is not perfect but if i get enough donations or i will save up enou
 - Fast generation using a 20B model via an external AI API.
 - Clean web UI (Flask backend + HTML/CSS/JS frontend).
 
+## Limitations
+Parsing AI text is unpredictable so bugs or visual glitces may appear.
+
 ## Roadmap
 
 - [x] Make basic quiz generation
 - [x] Add support for uploading PDF/TXT files.
 - [ ] Add support for image files.
-- [ ] Add Quiz Visualization
+- [x] Add Quiz Visualization
 - [ ] Add Flashcard Visualization
 - [ ] Add "Note upgrader"
 - [ ] Let users choose between quizzes or flashcards.
