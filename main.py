@@ -117,13 +117,26 @@ def ParseQuiz(quiz: str):
 
         try:
             q_num = parts[0]
-            a_idx = parts.index('a')
+            
+            d_positions = [idx for idx, p in enumerate(parts) if p == 'd']
+            c_positions = [idx for idx, p in enumerate(parts) if p == 'c']
+            b_positions = [idx for idx, p in enumerate(parts) if p == 'b']
+            a_positions = [idx for idx, p in enumerate(parts) if p == 'a']
+            
+            if not (a_positions and b_positions and c_positions and d_positions):
+                i += 1
+                continue
+                
+            a_idx = a_positions[-1]
+            b_idx = b_positions[-1] 
+            c_idx = c_positions[-1]
+            d_idx = d_positions[-1]
+
+            if not (a_idx < b_idx < c_idx < d_idx):
+                i += 1
+                continue
 
             question = ' '.join(parts[1:a_idx]).strip(' ?.,:;-')
-
-            b_idx = parts.index('b', a_idx + 1)
-            c_idx = parts.index('c', b_idx + 1)
-            d_idx = parts.index('d', c_idx + 1)
 
             answers = {
                 'a': ' '.join(parts[a_idx + 1:b_idx]).strip(),
