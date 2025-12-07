@@ -55,8 +55,7 @@ Submit.addEventListener('click' , async () => {
     if (!notes || !apiKey || notes.split(' ').length > 2500 || (!model && model !== false)) return;
 
     try {
-        let body = {notes: notes, apiKey: apiKey}
-        if (model) body["model"] = model
+        const body = {notes: notes , apiKey: apiKey};
         const response = await fetch('/generate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -64,15 +63,10 @@ Submit.addEventListener('click' , async () => {
         });
         
         const data = await response.json();
-        OutputDisplay.innerHTML = data.quiz;
-        const MAXLINES = OutputDisplay.classList.contains("slim") ?
-        1 : OutputDisplay.classList.contains("standard") ?
-        5 : OutputDisplay.classList.contains("large") ?
-        20 : 1;
-        const LINEHEIGHT = 20;           
-        OutputDisplay.style.height = Math.min(OutputDisplay.scrollHeight , (MAXLINES * LINEHEIGHT) + 60) + 'px';
+        window.location.href = `/quiz?quiz=${encodeURIComponent(JSON.stringify(data))}`;
+        
     } catch (error) {
-        OutputDisplay.textContent = "Error while generating.";
+        OutputDisplay.textContent = "Error while generating quiz.";
     }
 })
 
@@ -95,12 +89,12 @@ async function SendFile(file) {
 
     const data = await response.json();
     NoteInput.textContent = data.notes;
-     const MAXLINES = NoteInput.classList.contains("slim") ?
+    const MAXLINES = NoteInput.classList.contains("slim") ?
         1 : NoteInput.classList.contains("standard") ?
         5 : NoteInput.classList.contains("large") ?
         20 : 1;
-        const LINEHEIGHT = 20;           
-        NoteInput.style.height = Math.min(NoteInput.scrollHeight , (MAXLINES * LINEHEIGHT) + 60) + 'px';
+    const LINEHEIGHT = 20;           
+    NoteInput.style.height = Math.min(NoteInput.scrollHeight , (MAXLINES * LINEHEIGHT) + 60) + 'px';
 }
 
 window.addEventListener('load', function() {
