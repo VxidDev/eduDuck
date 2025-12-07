@@ -6,32 +6,8 @@
     <title>EduDuck - Results</title>
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/QuizStyle.css">
-    <style>
-        .result-header { text-align: center; margin: 20px 0; }
-        .score-display { 
-            font-size: clamp(3em, 10vw, 6em); 
-            font-weight: bold; 
-            text-align: center; 
-            margin: 20px 0;
-            color: rgb(0, 149, 255);
-        }
-        .result-stats { 
-            display: flex; 
-            justify-content: center; 
-            gap: 30px; 
-            margin: 20px 0;
-            font-size: 1.2em;
-        }
-        .result-question {
-            margin: 15px 0;
-            padding: 15px;
-            border-left: 5px solid rgb(0, 149, 255);
-            background: rgba(255,255,255,0.8);
-        }
-        .correct { color: #28a745; font-weight: bold; }
-        .wrong { color: #dc3545; }
-        .result-actions { text-align: center; margin: 30px 0; }
-    </style>
+    <link rel="stylesheet" href="/static/result.css">
+    <script src="/static/result.js" defer></script>
 </head>
 <body>
     <div class="header">
@@ -49,45 +25,11 @@
         </div>
         
         <div id="resultsList">
-            <!-- Results render here -->
         </div>
         
         <div class="result-actions">
             <a class="button" href="/">← New Quiz</a>
         </div>
     </div>
-
-    <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const resultJson = urlParams.get('result');
-        
-        if (resultJson) {
-            try {
-                const result = JSON.parse(decodeURIComponent(resultJson));
-                renderResults(result);
-            } catch (e) {
-                document.getElementById('resultsList').innerHTML = '<p>Error loading results</p>';
-            }
-        }
-
-        function renderResults(result) {
-            document.getElementById('scoreDisplay').textContent = `${result.score}/${result.total}`;
-            document.getElementById('percentage').textContent = `${result.percentage}%`;
-            document.getElementById('totalQuestions').textContent = `${result.total} questions`;
-            
-            let html = '';
-            for (let num in result.results) {
-                const r = result.results[num];
-                const status = r.right ? 'correct' : 'wrong';
-                html += `
-                    <div class="result-question ${status}">
-                        <strong>Q${num}:</strong> You chose <span class="${status}">${r.user || 'nothing'}</span> 
-                        ${r.right ? '✅ Correct!' : `❌ Correct was ${r.correct}`}
-                    </div>
-                `;
-            }
-            document.getElementById('resultsList').innerHTML = html;
-        }
-    </script>
 </body>
 </html>

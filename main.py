@@ -14,7 +14,7 @@ def submit_result():
     if not quiz:
         return flask.jsonify({'error': 'No quiz data'}), 400
     
-    score = sum(1 for num in quiz if user_answers.get(num) == quiz[num].get('correct'))
+    score = sum(1 for num in quiz if (user_answers.get(num) or '').lower() == (quiz[num].get('correct') or '').lower())
     total = len(quiz)
     percentage = round((score / total) * 100, 1) if total > 0 else 0
     
@@ -25,7 +25,7 @@ def submit_result():
         'results': {num: {
             'correct': q.get('correct'), 
             'user': user_answers.get(num), 
-            'right': user_answers.get(num) == q.get('correct')
+            'right': (user_answers.get(num) or '').lower() == (q.get('correct') or '').lower()
         } for num, q in quiz.items()}
     }
     
@@ -85,64 +85,70 @@ def uploadNotes():
     else:
         return flask.jsonify({"notes": "Unsupported file type."})
 
-def ParseQuiz(quiz):
+def ParseQuiz(quiz: str):
     questions = {}
-    
-    quiz = (quiz
-        .replace('_', ' ')
-        .replace('\n', ' ')
-        .replace('  ', ' ')
-        .replace('question?', '')
-        .replace('a)', 'a ')
-        .replace('b)', 'b ')
-        .replace('c)', 'c ')
-        .replace('d)', 'd ')
-        .strip())
-    
-    blocks = quiz.split('|')
-    
+
+    quiz = (
+        quiz.replace('_', ' ')
+            .replace('\n', ' ')
+            .replace('  ', ' ')
+            .replace('question?', '')
+            .replace('a)', 'a ')
+            .replace('b)', 'b ')
+            .replace('c)', 'c ')
+            .replace('d)', 'd ')
+            .strip()
+    )
+
+    raw_blocks = [b.strip() for b in quiz.split('|') if b.strip()]
+
     i = 0
-    while i < len(blocks):
-        block = blocks[i].strip()
-        if not block or len(block.split()) < 9:
+    while i < len(raw_blocks):
+        block = raw_blocks[i]
+
+        if block.lower().startswith('correct:'):
             i += 1
             continue
-        
+
         parts = block.split()
+        if len(parts) < 9:
+            i += 1
+            continue
+
         try:
             q_num = parts[0]
-            a_idx = next(idx for idx, p in enumerate(parts) if p == 'a')
-            
+            a_idx = parts.index('a')
+
             question = ' '.join(parts[1:a_idx]).strip(' ?.,:;-')
-            
-            b_idx = next(idx for idx, p in enumerate(parts[a_idx+1:], a_idx+1) if p == 'b')
-            c_idx = next(idx for idx, p in enumerate(parts[b_idx+1:], b_idx+1) if p == 'c')
-            d_idx = next(idx for idx, p in enumerate(parts[c_idx+1:], c_idx+1) if p == 'd')
-            
+
+            b_idx = parts.index('b', a_idx + 1)
+            c_idx = parts.index('c', b_idx + 1)
+            d_idx = parts.index('d', c_idx + 1)
+
             answers = {
-                'a': ' '.join(parts[a_idx+1:b_idx]).strip(),
-                'b': ' '.join(parts[b_idx+1:c_idx]).strip(),
-                'c': ' '.join(parts[c_idx+1:d_idx]).strip(),
-                'd': ' '.join(parts[d_idx+1:]).strip()
+                'a': ' '.join(parts[a_idx + 1:b_idx]).strip(),
+                'b': ' '.join(parts[b_idx + 1:c_idx]).strip(),
+                'c': ' '.join(parts[c_idx + 1:d_idx]).strip(),
+                'd': ' '.join(parts[d_idx + 1:]).strip(),
             }
-            
+
             correct = None
-            if i+1 < len(blocks) and blocks[i+1].strip().upper().startswith('CORRECT:'):
-                correct = blocks[i+1].split(':')[1].strip().upper()
+            if i + 1 < len(raw_blocks) and raw_blocks[i + 1].lower().startswith('correct:'):
+                correct = raw_blocks[i + 1].split(':', 1)[1].strip().lower()
                 i += 2
             else:
                 i += 1
-            
+
             questions[q_num] = {
-                'question': question or f"Question {q_num}",  # Fallback
+                'question': question or f'Question {q_num}',
                 'answers': answers,
-                'correct': correct
+                'correct': correct,
             }
-            
-        except (ValueError, IndexError, StopIteration):
+
+        except (ValueError, IndexError):
             i += 1
             continue
-    
+
     return questions
 
 @app.route("/generate" , methods=['POST'])
@@ -154,20 +160,23 @@ def generate():
     API_URL = "https://router.huggingface.co/v1/chat/completions"
     headers = {"Authorization": f"Bearer {API_KEY}"}
 
-    PROMPT = f"""You are a quiz generator. FORMAT IS CRITICAL.
+    PROMPT = f"""Quiz generator ONLY. NO OTHER TEXT.
 
-Create EXACTLY 10 multiple-choice questions from these notes. INCLUDE CORRECT ANSWER FOR EACH.
+MANDATORY REQUIREMENTS (confirm each before output):
+1. Output EXACTLY 10 questions in ONE continuous line
+2. NO "Question", "Q", headers, markdown, bullets, newlines
+3. Format: 1 question? a opt b opt c opt d opt|CORRECT:x| NO spaces before |
+4. Replace "wrong"/"correct" with REAL notes content
+5. Vary correct answers across a/b/c/d
+6. Short, clear questions from {NOTES} ONLY
 
-OUTPUT THIS EXACT FORMAT BUT FILLED, DONT DO EXACTLY "WRONG" or "CORRECT" ONLY - NO EXCEPTIONS:
-1 question? a wrong b wrong c correct d wrong|CORRECT:c|2 question? a wrong b correct c wrong d wrong|CORRECT:b|3 question? a wrong b wrong c correct d wrong|CORRECT:c|4 question? a correct b wrong c wrong d wrong|CORRECT:a|5 question? a wrong b wrong c wrong d correct|CORRECT:d|6 question? a wrong b correct c wrong d wrong|CORRECT:b|7 question? a wrong b wrong c correct d wrong|CORRECT:c|8 question? a correct b wrong c wrong d wrong|CORRECT:a|9 question? a wrong b wrong c wrong d correct|CORRECT:d|10 question? a wrong b correct c wrong d wrong|CORRECT:b|
+Follow this EXACT sequence:
+1. Read notes
+2. Generate 10 questions 
+3. Output ONLY in specified format
 
-RULES - VIOLATE AND FAIL:
-- Single line per question. |CORRECT:x| after EACH question.
-- Space after EVERY token: number question a option b option c option d option|CORRECT:x|
-- END EVERY question block with |CORRECT:[a/b/c/d]|
-- NO markdown. NO bullets. NO *. NO underscores _
-- Questions MUST be short and clear.
-- Exactly ONE correct answer per question (a, b, c, or d).
+EXAMPLE (copy this structure exactly but use notes):
+1 What color grass? a blue b red c green d yellow|CORRECT:c|2 What 2+2? a 3 b 4 c 5 d 6|CORRECT:b|3 Sky color? a green b blue c red d yellow|CORRECT:b|4 Sun rises? a west b south c north d east|CORRECT:a|5 Moon phase? a full b new c half d quarter|CORRECT:d|6 Earth shape? a flat b round c square d triangle|CORRECT:b|7 Water state? a solid b liquid c gas d plasma|CORRECT:c|8 Fire needs? a water b oxygen c earth d air|CORRECT:b|9 Light speed? a slow b fast c medium d stop|CORRECT:b|10 Gravity pulls? a up b down c side d none|CORRECT:b|
 
 NOTES: {NOTES}"""
 
@@ -187,7 +196,10 @@ NOTES: {NOTES}"""
         if response.status_code == 200:
             result = response.json()
             quiz = result["choices"][0]['message']['content'] if result else "Quiz generated!"
-            return flask.jsonify(ParseQuiz(quiz))
+            print("RAW QUIZ >>>", repr(quiz))  # DEBUG
+            parsed = ParseQuiz(quiz)
+            print("PARSED >>>", parsed)
+            return flask.jsonify(parsed)
         else:
             return flask.jsonify({'quiz': f'API error {response.status_code}'}), 400
             
