@@ -1,6 +1,6 @@
 const NoteInput = document.querySelector(".notes");
 const Submit = document.querySelector(".submit");
-const OutputDisplay = document.querySelector(".output");
+const StatusLabel = document.querySelector(".status");
 const TextInputs = document.querySelectorAll(".textInput")
 const ApiKeyInput = document.querySelector(".apiKey");
 const FileInputs = document.querySelectorAll(".file-upload-wrapper");
@@ -51,7 +51,7 @@ Submit.addEventListener('click' , async () => {
         model = false;
     }
 
-    OutputDisplay.textContent = msg; 
+    StatusLabel.textContent = msg; 
     if (!notes || !apiKey || notes.split(' ').length > 2500 || (!model && model !== false)) return;
 
     try {
@@ -66,7 +66,7 @@ Submit.addEventListener('click' , async () => {
         window.location.href = `/quiz?quiz=${encodeURIComponent(JSON.stringify(data))}`;
         
     } catch (error) {
-        OutputDisplay.textContent = "Error while generating quiz.";
+        StatusLabel.textContent = "Error while generating quiz.";
     }
 })
 
