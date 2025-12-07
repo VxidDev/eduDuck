@@ -81,6 +81,8 @@ async function SendFile(file) {
 
     formData.append("notesFile" , file);
 
+    NoteInput.textContent = "Loading..."
+
     const response = await fetch('/upload-notes' , {
         method: 'POST',
         body: formData,

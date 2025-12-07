@@ -31,21 +31,18 @@ body {
 }
 
 .textInput {
-    width: clamp(25vw, 50vw, 75vw);
-    padding: 1.5rem;             
-    border: 1px solid #ccc;    
-    border-radius: 8px;         
-    font-family: inherit;       
-    display: block;             
-    
-    min-height: 40px;           
+    width: 90vw;
+    max-width: 500px;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: inherit;
+    min-height: 50px;
     resize: none;
-    overflow: hidden;
     box-sizing: border-box;
-
     text-align: center;
+    font-size: clamp(16px, 4vw, 18px);
 }
-
 .slimmest {
     padding: 1rem 0 0 0;
 }

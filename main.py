@@ -1,4 +1,7 @@
 import flask , requests , pypdf
+import pytesseract
+from PIL import Image, ImageFilter, ImageEnhance
+import os
 
 app = flask.Flask(__name__)
 
@@ -13,6 +16,8 @@ def keyAccess():
 @app.route("/upload-notes" , methods=['POST'])
 def uploadNotes():
     file = flask.request.files.get("notesFile")
+    supportedImageFormats = ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'tif', 
+    'webp', 'ppm', 'pbm', 'pgm', 'jp2', 'j2k']
 
     if not file:
         return flask.jsonify({"notes": "no file."})
@@ -27,6 +32,22 @@ def uploadNotes():
             textChunks.append(page.extract_text() or "")   
         
         return flask.jsonify({"notes": "\n".join(textChunks)})
+    elif ext in supportedImageFormats:
+        try:
+            image = Image.open(file.stream)
+            file.stream.seek(0)
+        
+            image = image.convert('L')
+            image = image.filter(ImageFilter.MedianFilter(size=3))
+            enhancer = ImageEnhance.Contrast(image)
+            image = enhancer.enhance(2.0)
+        
+            text = pytesseract.image_to_string(image, config='--psm 6')
+
+            return flask.jsonify({"notes": text.strip()})
+        except Exception as e:
+            print(str(e))
+            return flask.jsonify({"notes": "OCR error."})
     else:
         return flask.jsonify({"notes": "Unsupported file type."})
     
