@@ -3,6 +3,7 @@ import pytesseract
 from PIL import Image, ImageFilter, ImageEnhance
 import os
 from uuid import uuid4
+import re
 
 notes_store = {}
 
@@ -25,7 +26,7 @@ prompts = {
             3. Output ONLY in specified format
 
             EXAMPLE (copy this structure exactly but use notes):
-            1 What color grass? a blue b red c green d yellow|CORRECT:c|2 What 2+2? a 3 b 4 c 5 d 6|CORRECT:b|3 Sky color? a green b blue c red d yellow|CORRECT:b|4 Sun rises? a west b south c north d east|CORRECT:a|5 Moon phase? a full b new c half d quarter|CORRECT:d|6 Earth shape? a flat b round c square d triangle|CORRECT:b|7 Water state? a solid b liquid c gas d plasma|CORRECT:c|8 Fire needs? a water b oxygen c earth d air|CORRECT:b|9 Light speed? a slow b fast c medium d stop|CORRECT:b|10 Gravity pulls? a up b down c side d none|CORRECT:b|
+            1 What color grass? a) blue b) red c) green d) yellow|CORRECT:c|2 What 2+2? a) 3 b) 4 c) 5 d) 6|CORRECT:b|3 Sky color? a) green b) blue c) red d) yellow|CORRECT:b|4 Sun rises? a) west b) south c) north d) east|CORRECT:a|5 Moon phase? a) full b) new c) half d) quarter|CORRECT:d|6 Earth shape? a) flat b) round c) square d) triangle|CORRECT:b|7 Water state? a) solid b) liquid c) gas d) plasma|CORRECT:c|8 Fire needs? a) water b) oxygen c) earth d) air|CORRECT:b|9 Light speed? a) slow b) fast c) medium d) stop|CORRECT:b|10 Gravity pulls? a) up b) down c) side d) none|CORRECT:b|
 
             NOTES: {NOTES}""",
     "enhanceNotes": """Enhance these notes for optimal learning. Output ONLY the enhanced content.
@@ -155,81 +156,43 @@ def uploadNotes():
 
 def ParseQuiz(quiz: str):
     questions = {}
-
-    quiz = (
-        quiz.replace('_', ' ')
-            .replace('\n', ' ')
-            .replace('  ', ' ')
-            .replace('question?', '')
-            .replace('a)', 'a ')
-            .replace('b)', 'b ')
-            .replace('c)', 'c ')
-            .replace('d)', 'd ')
-            .strip()
-    )
-
-    raw_blocks = [b.strip() for b in quiz.split('|') if b.strip()]
-
-    i = 0
-    while i < len(raw_blocks):
-        block = raw_blocks[i]
-
-        if block.lower().startswith('correct:'):
-            i += 1
+    
+    text = re.sub(r'[\u2013\u2014\u2015\u2011‑–—]', '-', quiz)
+    text = re.sub(r'\s+', ' ', text).strip()
+    
+    pattern = r'(\d+)\s+([^|]+?a\)[^|]*?b\)[^|]*?c\)[^|]*?d\)[^|]*?)\|?CORRECT:([abcd])'
+    matches = re.finditer(pattern, text, re.IGNORECASE | re.DOTALL)
+    
+    for match in matches:
+        q_num, full_text, correct = match.groups()
+        correct = correct.lower()
+        
+        a_pos = re.search(r'a\)', full_text)
+        if not a_pos:
             continue
-
-        parts = block.split()
-        if len(parts) < 9:
-            i += 1
-            continue
-
-        try:
-            q_num = parts[0]
-            
-            d_positions = [idx for idx, p in enumerate(parts) if p == 'd']
-            c_positions = [idx for idx, p in enumerate(parts) if p == 'c']
-            b_positions = [idx for idx, p in enumerate(parts) if p == 'b']
-            a_positions = [idx for idx, p in enumerate(parts) if p == 'a']
-            
-            if not (a_positions and b_positions and c_positions and d_positions):
-                i += 1
-                continue
-                
-            a_idx = a_positions[-1]
-            b_idx = b_positions[-1] 
-            c_idx = c_positions[-1]
-            d_idx = d_positions[-1]
-
-            if not (a_idx < b_idx < c_idx < d_idx):
-                i += 1
-                continue
-
-            question = ' '.join(parts[1:a_idx]).strip(' ?.,:;-')
-
-            answers = {
-                'a': ' '.join(parts[a_idx + 1:b_idx]).strip(),
-                'b': ' '.join(parts[b_idx + 1:c_idx]).strip(),
-                'c': ' '.join(parts[c_idx + 1:d_idx]).strip(),
-                'd': ' '.join(parts[d_idx + 1:]).strip(),
-            }
-
-            correct = None
-            if i + 1 < len(raw_blocks) and raw_blocks[i + 1].lower().startswith('correct:'):
-                correct = raw_blocks[i + 1].split(':', 1)[1].strip().lower()
-                i += 2
-            else:
-                i += 1
-
+        question = full_text[:a_pos.start()].strip(' ?.,:;-?!0123456789')
+        options_text = full_text[a_pos.start():].strip()
+        
+        answers = {}
+        opt_patterns = [
+            (r'a\)\s*([^b][^.?!,]*?)(?=\s*b\)|$)', 'a'),
+            (r'b\)\s*([^c][^.?!,]*?)(?=\s*c\)|$)', 'b'),
+            (r'c\)\s*([^d][^.?!,]*?)(?=\s*d\)|$)', 'c'),
+            (r'd\)\s*([^.!?]+)', 'd')
+        ]
+        
+        for pat, key in opt_patterns:
+            m = re.search(pat, options_text, re.I)
+            if m:
+                answers[key] = m.group(1).strip()
+        
+        if len(answers) == 4:
             questions[q_num] = {
-                'question': question or f'Question {q_num}',
+                'question': question,
                 'answers': answers,
-                'correct': correct,
+                'correct': correct
             }
-
-        except (ValueError, IndexError):
-            i += 1
-            continue
-
+    
     return questions
 
 @app.route("/generate" , methods=['POST'])
