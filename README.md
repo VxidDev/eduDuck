@@ -28,7 +28,7 @@ Parsing AI text is unpredictable so bugs or visual glitces may appear.
 - [x] Add support for image files.
 - [x] Add Quiz Visualization
 - [ ] Add Flashcard Visualization
-- [ ] Add "Note upgrader"
+- [x] Add "Note upgrader"
 - [ ] Let users choose between quizzes or flashcards.
 - [ ] Add difficulty levels (easy / medium / hard) for generated questions.
 - [ ] Add simple user accounts to save past quizzes.
