@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduDuck - Main Page</title>
     <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="/static/script.js" defer ></script>
 </head>
 <body>
@@ -27,6 +28,12 @@
             <label for="fileInput" class="button fileButton">Upload file</label>
         </div>
         <textarea class="notes textInput standard" placeholder="Notes go here :)"></textarea>
+        <textarea class="studyPlan textInput standard hidden" placeholder="Study plan is gonna be here!"></textarea>
+        <label for="select">What do you want to generate?</label>
+        <select name="Content" class="select">
+            <option value="quiz">Quiz</option>
+            <option value="enhanceNotes">Enchance Notes</option>
+        </select>
         <button class="button submit">Submit</button>
         <span class="status"></span>
     </div>

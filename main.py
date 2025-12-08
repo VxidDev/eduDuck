@@ -5,6 +5,55 @@ import os
 
 app = flask.Flask(__name__)
 
+prompts = {
+    "quiz": """Quiz generator ONLY. NO OTHER TEXT.
+
+            MANDATORY REQUIREMENTS (confirm each before output):
+            1. Output EXACTLY 10 questions in ONE continuous line
+            2. NO "Question", "Q", headers, markdown, bullets, newlines
+            3. Format: 1 question? a opt b opt c opt d opt|CORRECT:x| NO spaces before |
+            4. Replace "wrong"/"correct" with REAL notes content
+            5. Vary correct answers across a/b/c/d
+            6. Short, clear questions from {NOTES} ONLY
+
+            Follow this EXACT sequence:
+            1. Read notes
+            2. Generate 10 questions 
+            3. Output ONLY in specified format
+
+            EXAMPLE (copy this structure exactly but use notes):
+            1 What color grass? a blue b red c green d yellow|CORRECT:c|2 What 2+2? a 3 b 4 c 5 d 6|CORRECT:b|3 Sky color? a green b blue c red d yellow|CORRECT:b|4 Sun rises? a west b south c north d east|CORRECT:a|5 Moon phase? a full b new c half d quarter|CORRECT:d|6 Earth shape? a flat b round c square d triangle|CORRECT:b|7 Water state? a solid b liquid c gas d plasma|CORRECT:c|8 Fire needs? a water b oxygen c earth d air|CORRECT:b|9 Light speed? a slow b fast c medium d stop|CORRECT:b|10 Gravity pulls? a up b down c side d none|CORRECT:b|
+
+            NOTES: {NOTES}""",
+    "enhanceNotes": """Enhance these notes for optimal learning. Output ONLY the enhanced content.
+
+            NOTES:
+            {NOTES}
+
+            REQUIREMENTS:
+            1. Use clean Markdown formatting:
+            - Headings with #, ##, ### etc.
+            - Bullet lists with - or *.
+            - Numbered lists with 1., 2., 3.
+            - Tables using standard Markdown table syntax.
+            2. Do NOT wrap the entire output in quotes or code blocks.
+            3. Do NOT use any HTML tags (no <p>, <strong>, <br>, etc.).
+            4. Organize into clear sections with headings.
+            5. Add explanations for complex concepts in simple terms.
+            6. Include examples where concepts would benefit.
+            7. Highlight key terms and definitions (with **bold**).
+            8. Add connections between related ideas.
+            9. Suggest mnemonics or memory aids.
+            10. Identify gaps and recommend what to learn next.
+
+            Use active voice. Prioritize clarity. No introductions, conclusions, or meta‑comments.
+            """
+}
+
+@app.route('/enhancedNotes')
+def EnhancedNotes():
+    return flask.render_template('enhancedNotes.html')
+
 @app.route('/result', methods=['POST'])
 def submit_result():
     data = flask.request.get_json()
@@ -30,6 +79,10 @@ def submit_result():
     }
     
     return flask.jsonify(result_data)
+
+@app.route('/flashcards')
+def flashCards():
+    return "Unsupported."
 
 @app.route('/result')
 def result_page():
@@ -167,31 +220,30 @@ def ParseQuiz(quiz: str):
 @app.route("/generate" , methods=['POST'])
 def generate():
     data: dict = flask.request.get_json()
+    supportedModes = ["quiz" , "enhanceNotes"]
     NOTES = data["notes"]
+    MODE = data["mode"]
 
     API_KEY = data["apiKey"]
     API_URL = "https://router.huggingface.co/v1/chat/completions"
     headers = {"Authorization": f"Bearer {API_KEY}"}
 
-    PROMPT = f"""Quiz generator ONLY. NO OTHER TEXT.
+    if MODE not in supportedModes:
+        return flask.jsonify({"notes": "Unsupported Mode.",
+        "quiz": "Unsupported Mode.",
+        "studyPlan": "Unsupported Mode.",
+        "flashCards": "Unsupported Mode."})
+        return
+    
+    PROMPT = prompts.get(MODE , None)
 
-MANDATORY REQUIREMENTS (confirm each before output):
-1. Output EXACTLY 10 questions in ONE continuous line
-2. NO "Question", "Q", headers, markdown, bullets, newlines
-3. Format: 1 question? a opt b opt c opt d opt|CORRECT:x| NO spaces before |
-4. Replace "wrong"/"correct" with REAL notes content
-5. Vary correct answers across a/b/c/d
-6. Short, clear questions from {NOTES} ONLY
-
-Follow this EXACT sequence:
-1. Read notes
-2. Generate 10 questions 
-3. Output ONLY in specified format
-
-EXAMPLE (copy this structure exactly but use notes):
-1 What color grass? a blue b red c green d yellow|CORRECT:c|2 What 2+2? a 3 b 4 c 5 d 6|CORRECT:b|3 Sky color? a green b blue c red d yellow|CORRECT:b|4 Sun rises? a west b south c north d east|CORRECT:a|5 Moon phase? a full b new c half d quarter|CORRECT:d|6 Earth shape? a flat b round c square d triangle|CORRECT:b|7 Water state? a solid b liquid c gas d plasma|CORRECT:c|8 Fire needs? a water b oxygen c earth d air|CORRECT:b|9 Light speed? a slow b fast c medium d stop|CORRECT:b|10 Gravity pulls? a up b down c side d none|CORRECT:b|
-
-NOTES: {NOTES}"""
+    if PROMPT == None:
+        return flask.jsonify({"notes": "Internal Error: Unknown prompt.",
+        "quiz": "Internal Error: Unknown prompt.",
+        "studyPlan": "Internal Error: Unknown prompt.",
+        "flashCards": "Internal Error: Unknown prompt."})
+    else:
+        PROMPT = PROMPT.format(NOTES=NOTES)
 
     payload = {
         "messages": [{
@@ -208,11 +260,16 @@ NOTES: {NOTES}"""
         
         if response.status_code == 200:
             result = response.json()
-            quiz = result["choices"][0]['message']['content'] if result else "Quiz generated!"
-            print("RAW QUIZ >>>", repr(quiz))  # DEBUG
-            parsed = ParseQuiz(quiz)
-            print("PARSED >>>", parsed)
-            return flask.jsonify(parsed)
+            data = result["choices"][0]['message']['content'] if result else "Content Generated!"
+            if MODE == "quiz":
+                print("RAW QUIZ >>>", repr(data))  # DEBUG
+                parsed = ParseQuiz(data)
+                print("PARSED >>>", parsed)
+                return flask.jsonify(parsed)
+            else:
+                return flask.jsonify({"notes": data,
+                "flashCards": data,
+                "studyPlan": data})
         else:
             return flask.jsonify({'quiz': f'API error {response.status_code}'}), 400
             

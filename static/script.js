@@ -6,6 +6,8 @@ const ApiKeyInput = document.querySelector(".apiKey");
 const FileInputs = document.querySelectorAll(".file-upload-wrapper");
 const CustomModel = document.getElementById("customModel");
 const CustomModelInput = document.querySelector(".customModelInput");
+const ModeSelector = document.querySelector('select[name="Content"]');
+const StudyPlan = document.querySelector('.studyPlan');
 
 CustomModel.addEventListener('change' , () => {
     if (CustomModel.checked) {
@@ -32,6 +34,16 @@ TextInputs.forEach(textinput => {
     });
 });
 
+function cleanHtmlForTextarea(html) {
+    return html
+        .replace(/ /g, ' ') 
+        .replace(/\u00A0/g, ' ')
+        .replace(/[\u2011\u2012\u2013\u2014\u2015‑]/g, '-')
+        .replace(/<[^>]*>/g, '')
+        .replace(/\n\s*\n\s*\n/g, '\n\n')
+        .trim();
+}
+
 Submit.addEventListener('click' , async () => {
     const notes = NoteInput.value.trim();
     const apiKey = ApiKeyInput.value.trim();
@@ -55,7 +67,7 @@ Submit.addEventListener('click' , async () => {
     if (!notes || !apiKey || notes.split(' ').length > 2500 || (!model && model !== false)) return;
 
     try {
-        const body = {notes: notes , apiKey: apiKey};
+        const body = {notes: notes , apiKey: apiKey , mode: ModeSelector.value};
         const response = await fetch('/generate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -63,7 +75,18 @@ Submit.addEventListener('click' , async () => {
         });
         
         const data = await response.json();
-        window.location.href = `/quiz?quiz=${encodeURIComponent(JSON.stringify(data))}`;
+
+        if (ModeSelector.value == "enhanceNotes") {
+            window.location.href = `/enhancedNotes?notes=${encodeURIComponent(JSON.stringify(data.notes))}`
+            return;
+        } else if (ModeSelector.value == "quiz") {
+            window.location.href = `/quiz?quiz=${encodeURIComponent(JSON.stringify(data))}`;   
+        } else if (ModeSelector.value == "flashCards") {
+            window.location.href = `/flashcards`;
+        } else if (ModeSelector.value == "studyPlan") {
+            StudyPlan.classList.remove("hidden");
+            StudyPlan.textContent = data.studyPlan;
+        }
         
     } catch (error) {
         StatusLabel.textContent = "Error while generating quiz.";

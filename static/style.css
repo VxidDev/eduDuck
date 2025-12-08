@@ -12,13 +12,19 @@ body {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-
-    background: rgb(0, 149, 255);
+    background: rgba(0, 149, 255, 0.9);
     color: white;
-
     background-image: url("/static/img/duck.jpg");
     background-size: cover;
     background-position: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 149, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.header:hover {
+    box-shadow: 0 12px 40px rgba(0, 149, 255, 0.5);
+    transform: translateY(-2px);
 }
 
 .main {
@@ -26,30 +32,54 @@ body {
     flex-direction: column;
     align-self: center;
     text-align: center;
-    gap: 15px;
+    gap: 35px;
     padding-top: 65px;
 }
 
 .textInput {
-    width: 90vw;
+    width: 145vw;
     max-width: 500px;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    padding: 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
     font-family: inherit;
-    min-height: 50px;
+    min-height: 60px;
     resize: none;
     box-sizing: border-box;
     text-align: center;
-    font-size: clamp(16px, 4vw, 18px);
+    font-size: clamp(16px, 4vw, 20px);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    color: #151515;
+    caret-color: #00bfff;
 }
 .slimmest {
     padding: 1rem 0 0 0;
 }
 
-.textInput:focus {
-    border: 3px solid blue;
+.textInput:focus  {
+    border: 2px solid rgba(131, 131, 131, 0.8);
     outline: none;
+    background: rgba(165, 165, 165, 0.2);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.6), 
+        0 0 30px rgba(131, 131, 131, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px) scale(1.03);
+}
+
+
+.textInput::placeholder {
+    color: rgba(117, 117, 117, 0.6);
+    transition: all 0.3s ease;
+}
+
+.textInput:focus::placeholder {
+    color: rgba(169, 168, 168, 0.4);
 }
 
 .button {
@@ -60,21 +90,29 @@ body {
     background: rgb(217, 217, 217);
     
     border-radius: 25px;
-    border: 1px solid #ccc;
     font-size: 20px;
+
+    border: none;
+
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .button:hover {
-    background: rgb(222, 222, 222);
+    background: rgba(165, 165, 165, 0.8);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.6), 
+        0 0 30px rgba(131, 131, 131, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px) scale(1.03);
 }
 
 .button:active {
-    background: rgb(200 , 200 , 200);
-}
-
-.output {
-    width: clamp(100px , 55vw , 500px);
-    align-self: center;
+    background: rgba(123, 123, 123, 0.95);
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.8), 
+        0 0 20px rgba(119, 119, 119, 0.3),
+        inset 0 1px 0 rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px) scale(1.0);
 }
 
 footer {
@@ -94,11 +132,13 @@ footer {
 }
 
 .header-text {
-    color: rgb(175, 248, 248);
+    color: #fff;
     font-size: 55px;
     font-weight: bolder;
     flex: 1;
     text-align: center;
+    text-shadow: 0 0 20px rgba(255,255,255,0.8);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
 .header-redirect {
@@ -107,12 +147,15 @@ footer {
     font-weight: bolder;
     text-decoration: none;
     white-space: nowrap;
-
-    transition: transform 0.2s ease-in;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 15px rgba(214, 251, 251, 0.8);
 }
+
 
 .header-redirect:hover {
     transform: scale(1.05);
+    text-shadow: 0 0 25px rgba(214, 251, 251, 1);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
 }
 
 .file-upload-wrapper {
@@ -134,4 +177,63 @@ footer {
 
 .hidden {
     display: none;
+}
+
+.select {
+    width: auto;
+    min-width: 180px;
+    padding: 10px 18px;
+    align-self: center;
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid #888;
+    border-radius: 12px;
+    background: rgba(217, 217, 217, 0.85);
+    color: #222;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23333' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px 8px;
+    outline: none;
+}
+
+.select:hover {
+    background: rgba(190, 190, 190, 0.95);
+    box-shadow: 
+        0 8px 35px rgba(0, 0, 0, 0.4), 
+        0 0 20px rgba(100, 100, 100, 0.25);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.select:focus {
+    border-color: #005bbb;
+    box-shadow: 
+        0 0 0 4px rgba(0, 91, 187, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.25);
+    background: rgba(230, 230, 230, 0.95);
+    color: #111;
+    transform: translateY(-3px) scale(1.03);
+}
+
+.select:active {
+    background: rgba(170, 170, 170, 0.85);
+    box-shadow: 
+        0 2px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px) scale(1);
+}
+
+label[for="select"] {
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(20, 20, 20, 0.85);
+    margin-bottom: 10px;
+    user-select: none;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    transition: color 0.3s ease;
 }
