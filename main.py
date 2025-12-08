@@ -101,7 +101,7 @@ def flashCards():
 
 @app.route('/result')
 def result_page():
-    return flask.render_template('result.html')
+    return flask.render_template('QuizResult.html')
 
 @app.route("/" , methods=['GET'])
 def root():
@@ -113,7 +113,7 @@ def keyAccess():
 
 @app.route("/quiz")
 def quiz():
-    return flask.render_template("quiz.html")
+    return flask.render_template("Quiz.html")
 
 @app.route("/upload-notes" , methods=['POST'])
 def uploadNotes():
