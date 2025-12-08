@@ -5,25 +5,15 @@ const md = window.markdownit({
     typographer: true
 });
 
-function normalizeParsed(text) {
-    return text
-        .replace(/^"/, '') 
-        .replace(/"$/, '')    
-        .trim();
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const notesJson = urlParams.get('notes');
-    
-    if (notesJson) {
-        try {
-            const decodedNotes = decodeURIComponent(notesJson);
-            const notes = decodedNotes.replace(/\\n/g, '\n');
-            const normalized = normalizeParsed(notes);
-            Display.innerHTML = md.render(normalized);
-        } catch (e) {
-            Display.innerHTML = '<p>Failed to load notes.</p>';
-        }
+    const rawJson = Display.dataset.notes || '""';
+    const raw = JSON.parse(rawJson);
+    const normalized = raw.trim().replace(/\\n/g, '\n');
+
+    if (!normalized) {
+        Display.innerHTML = '<p>Failed to load notes!</p>';
+        return;
     }
+
+    Display.innerHTML = md.render(normalized);
 });

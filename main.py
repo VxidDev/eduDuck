@@ -2,6 +2,9 @@ import flask , requests , pypdf
 import pytesseract
 from PIL import Image, ImageFilter, ImageEnhance
 import os
+from uuid import uuid4
+
+notes_store = {}
 
 app = flask.Flask(__name__)
 
@@ -50,9 +53,21 @@ prompts = {
             """
 }
 
+@app.route('/store-notes', methods=['POST'])
+def store_notes():
+    data = flask.request.get_json()
+    notes = data.get('notes', '')
+    note_id = str(uuid4())
+    notes_store[note_id] = notes
+    print("STORED", note_id, "len:", len(notes))
+    return flask.jsonify({'id': note_id})
+
 @app.route('/enhancedNotes')
 def EnhancedNotes():
-    return flask.render_template('enhancedNotes.html')
+    note_id = flask.request.args.get('id')
+    notes = notes_store.get(note_id, '') if note_id else ''
+    print("READ", note_id, "found:", bool(notes))
+    return flask.render_template('enhancedNotes.html', notes=notes)
 
 @app.route('/result', methods=['POST'])
 def submit_result():
@@ -252,6 +267,9 @@ def generate():
         }],
         "model": data.get("model" , "openai/gpt-oss-20b")
     }
+
+    if payload["model"] is None:
+        payload["model"] = "openai/gpt-oss-20b"
 
     print(f"Model: {payload["model"]}")
 
