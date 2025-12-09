@@ -14,11 +14,12 @@ prompts = {
 
             MANDATORY REQUIREMENTS (confirm each before output):
             1. Output EXACTLY 10 questions in ONE continuous line
-            2. NO "Question", "Q", headers, markdown, bullets, newlines
-            3. Format: 1 question? a opt b opt c opt d opt|CORRECT:x| NO spaces before |
-            4. Replace "wrong"/"correct" with REAL notes content
-            5. Vary correct answers across a/b/c/d
-            6. Short, clear questions from {NOTES} ONLY
+            2. ALL TEXT SHOULD BE IN {LANGUAGE}. (Questions, answers, EVERYTHING!)
+            3. NO "Question", "Q", headers, markdown, bullets, newlines
+            4. Format: 1 question? a opt b opt c opt d opt|CORRECT:x| NO spaces before |
+            5. Replace "wrong"/"correct" with REAL notes content
+            6. Vary correct answers across a/b/c/d
+            7. Short, clear questions from {NOTES} ONLY
 
             Follow this EXACT sequence:
             1. Read notes
@@ -40,15 +41,16 @@ prompts = {
             - Bullet lists with - or *.
             - Numbered lists with 1., 2., 3.
             - Tables using standard Markdown table syntax.
-            2. Do NOT wrap the entire output in quotes or code blocks.
-            3. Do NOT use any HTML tags (no <p>, <strong>, <br>, etc.).
-            4. Organize into clear sections with headings.
-            5. Add explanations for complex concepts in simple terms.
-            6. Include examples where concepts would benefit.
-            7. Highlight key terms and definitions (with **bold**).
-            8. Add connections between related ideas.
-            9. Suggest mnemonics or memory aids.
-            10. Identify gaps and recommend what to learn next.
+            2. ALL TEXT SHOULD BE IN {LANGUAGE}. (EVERYTHING!)
+            3. Do NOT wrap the entire output in quotes or code blocks.
+            4. Do NOT use any HTML tags (no <p>, <strong>, <br>, etc.).
+            5. Organize into clear sections with headings.
+            6. Add explanations for complex concepts in simple terms.
+            7. Include examples where concepts would benefit.
+            8. Highlight key terms and definitions (with **bold**).
+            9. Add connections between related ideas.
+            10. Suggest mnemonics or memory aids.
+            11. Identify gaps and recommend what to learn next.
 
             Use active voice. Prioritize clarity. No introductions, conclusions, or meta‑comments.
             """
@@ -201,6 +203,7 @@ def generate():
     supportedModes = ["quiz" , "enhanceNotes"]
     NOTES = data["notes"]
     MODE = data["mode"]
+    LANGUAGE = data["language"]
 
     API_KEY = data["apiKey"]
     API_URL = "https://router.huggingface.co/v1/chat/completions"
@@ -221,7 +224,7 @@ def generate():
         "studyPlan": "Internal Error: Unknown prompt.",
         "flashCards": "Internal Error: Unknown prompt."})
     else:
-        PROMPT = PROMPT.format(NOTES=NOTES)
+        PROMPT = PROMPT.format(NOTES=NOTES , LANGUAGE=LANGUAGE)
 
     payload = {
         "messages": [{
@@ -255,7 +258,10 @@ def generate():
             return flask.jsonify({'quiz': f'API error {response.status_code}'}), 400
             
     except Exception as e:
-        return flask.jsonify({'quiz': f'Request failed: {str(e)}'}), 500
+        print("WRONG API KEY.")
+        return flask.jsonify({
+            'quiz': f'Request failed: {str(e)}',
+            'notes': f'Request failed: {str(e)}'}), 500
 
 if __name__ == "__main__":
     app.run()

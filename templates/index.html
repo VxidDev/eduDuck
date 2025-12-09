@@ -30,10 +30,20 @@
         <textarea class="notes textInput standard" placeholder="Notes go here :)"></textarea>
         <textarea class="studyPlan textInput standard hidden" placeholder="Study plan is gonna be here!"></textarea>
         <label for="select">What do you want to generate?</label>
-        <select name="Content" class="select">
-            <option value="quiz">Quiz</option>
-            <option value="enhanceNotes">Enchance Notes</option>
-        </select>
+        <div class="selectors">
+            <select name="Content" class="select">
+                <option value="quiz">Quiz</option>
+                <option value="enhanceNotes">Enchance Notes</option>
+            </select>
+            <select name="Language" class="select">
+                <option value="ru">Russian</option>
+                <option value="pl">Polish</option>
+                <option value="eng">English</option>
+                <option value="de">German</option>
+                <option value="ua">Ukrainian</option>
+                <option value="fr">French</option>
+            </select>
+        </div>
         <button class="button submit">Submit</button>
         <span class="status"></span>
     </div>

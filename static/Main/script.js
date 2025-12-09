@@ -8,6 +8,7 @@ const CustomModel = document.getElementById("customModel");
 const CustomModelInput = document.querySelector(".customModelInput");
 const ModeSelector = document.querySelector('select[name="Content"]');
 const StudyPlan = document.querySelector('.studyPlan');
+const LanguageSelector = document.querySelector('select[name="Language"]');
 
 CustomModel.addEventListener('change', () => {
     if (CustomModel.checked) {
@@ -74,7 +75,8 @@ Submit.addEventListener('click', async () => {
             notes: notes,
             apiKey: apiKey,
             mode: ModeSelector.value,
-            model: model
+            model: model,
+            language: LanguageSelector.value
         };
 
         const response = await fetch('/generate', {
