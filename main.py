@@ -6,6 +6,7 @@ from uuid import uuid4
 import re
 
 notes_store = {}
+quiz_store = {}
 
 app = flask.Flask(__name__)
 
@@ -56,6 +57,61 @@ prompts = {
             """
 }
 
+def AiReq(API_URL, headers, payload, timeout=15):
+    try:
+        response = requests.post(API_URL, headers=headers, json=payload, timeout=timeout)
+        
+        if response.status_code == 200:
+            result = response.json()
+            data = result["choices"][0]['message']['content'] if result else "Content Generated!"
+            return data
+        else:
+            return f'API error {response.status_code}'
+            
+    except Exception as e:
+        print("WRONG API KEY.")
+
+    return None
+
+@app.route('/quiz-generator/gen-quiz' , methods=['POST'])
+def QuizGen():
+    data: dict = flask.request.get_json()
+    NOTES = data["notes"]
+    LANGUAGE = data["language"]
+
+    API_KEY = data["apiKey"]
+    API_URL = "https://router.huggingface.co/v1/chat/completions"
+    headers = {"Authorization": f"Bearer {API_KEY}"}
+    
+    PROMPT = prompts['quiz']
+
+    if PROMPT == None:
+        return flask.jsonify({'quiz': 'Internal Error: PROMPT NOT FOUND'})
+    else:
+        PROMPT = PROMPT.format(NOTES=NOTES , LANGUAGE=LANGUAGE)
+
+    payload = {
+        "messages": [{
+            "role": "user",
+            "content": PROMPT
+        }],
+        "model": data.get("model" , "openai/gpt-oss-20b")
+    }
+
+    if payload["model"] is None:
+        payload["model"] = "openai/gpt-oss-20b"
+
+    print(f"Model: {payload["model"]}")
+
+    output = AiReq(API_URL , headers , payload)
+
+    if (output is None):
+        return flask.jsonify({"quiz": "Internal Error."})
+
+    quiz = ParseQuiz(output)
+
+    return flask.jsonify({'quiz': quiz})
+
 @app.route('/store-notes', methods=['POST'])
 def store_notes():
     data = flask.request.get_json()
@@ -65,12 +121,62 @@ def store_notes():
     print("STORED", note_id, "len:", len(notes))
     return flask.jsonify({'id': note_id})
 
-@app.route('/enhancedNotes')
+@app.route('/quiz-generator/store-quiz', methods=['POST'])
+def store_quiz():
+    data = flask.request.get_json()
+    quiz = data.get('quiz', '')
+    quiz_id = str(uuid4())
+    quiz_store[quiz_id] = quiz
+    print("STORED", quiz_id, "len:", len(quiz))
+    return flask.jsonify({'id': quiz_id})
+
+@app.route('/note-enhancer/result')
 def EnhancedNotes():
-    note_id = flask.request.args.get('id')
+    note_id = flask.request.args.get('notes')
     notes = notes_store.get(note_id, '') if note_id else ''
     print("READ", note_id, "found:", bool(notes))
     return flask.render_template('enhancedNotes.html', notes=notes)
+
+@app.route('/note-enhancer')
+def NoteEnhance():
+    return flask.render_template('noteEnhancer.html')
+
+@app.route('/note-enhancer/enhance' , methods=['POST'])
+def NoteEnhancer():
+    data: dict = flask.request.get_json()
+    NOTES = data["notes"]
+    LANGUAGE = data["language"]
+
+    API_KEY = data["apiKey"]
+    API_URL = "https://router.huggingface.co/v1/chat/completions"
+    headers = {"Authorization": f"Bearer {API_KEY}"}
+    
+    PROMPT = prompts['enhanceNotes']
+
+    if PROMPT == None:
+        return flask.jsonify({'notes': 'Internal Error: PROMPT NOT FOUND'})
+    else:
+        PROMPT = PROMPT.format(NOTES=NOTES , LANGUAGE=LANGUAGE)
+
+    payload = {
+        "messages": [{
+            "role": "user",
+            "content": PROMPT
+        }],
+        "model": data.get("model" , "openai/gpt-oss-20b")
+    }
+
+    if payload["model"] is None:
+        payload["model"] = "openai/gpt-oss-20b"
+
+    print(f"Model: {payload["model"]}")
+
+    notes = AiReq(API_URL , headers , payload)
+
+    if (notes is None):
+        return flask.jsonify({"notes": "Internal Error."})
+
+    return flask.jsonify({'notes': notes})
 
 @app.route('/result', methods=['POST'])
 def submit_result():
@@ -102,7 +208,7 @@ def submit_result():
 def flashCards():
     return "Unsupported."
 
-@app.route('/result')
+@app.route('/quiz-generator/quiz/result')
 def result_page():
     return flask.render_template('QuizResult.html')
 
@@ -114,9 +220,12 @@ def root():
 def keyAccess():
     return flask.render_template("keyAccess.html")
 
-@app.route("/quiz")
+@app.route("/quiz-generator/quiz")
 def quiz():
-    return flask.render_template("Quiz.html")
+    quiz_id = flask.request.args.get('quiz')
+    quiz = quiz_store.get(quiz_id, '') if quiz_id else ''
+    print("READ", quiz_id, "found:", bool(quiz))
+    return flask.render_template("Quiz.html" , quiz=quiz)
 
 @app.route("/upload-notes" , methods=['POST'])
 def uploadNotes():
@@ -262,6 +371,10 @@ def generate():
         return flask.jsonify({
             'quiz': f'Request failed: {str(e)}',
             'notes': f'Request failed: {str(e)}'}), 500
+
+@app.route('/quiz-generator')
+def QuizGenerator():
+    return flask.render_template('QuizGenerator.html')
 
 if __name__ == "__main__":
     app.run()
