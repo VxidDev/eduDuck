@@ -178,7 +178,7 @@ def NoteEnhancer():
 
     return flask.jsonify({'notes': notes})
 
-@app.route('/result', methods=['POST'])
+@app.route('/quiz-generator/quiz/result', methods=['POST'])
 def submit_result():
     data = flask.request.get_json()
     quiz = data.get('quiz', {})
