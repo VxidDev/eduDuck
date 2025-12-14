@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduDuck - Note Enhancer</title>
+    <link rel="stylesheet" href="/static/body.css">
+    <link rel="stylesheet" href="/static/Main/style.css">
+    <link rel="stylesheet" href="/static/header.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/NoteEnhancer/script.js" defer></script>
+</head>
+<body>
+    <div class="header">
+        <a class="header-redirect" href="/" style="padding-left: 50px;">← Back to Home</a>
+        <h1 class="header-text">Note Enhancer</h1>
+        <a class="header-redirect" href="/keyAccess" style="padding-right: 50px;">How to get key?</a>
+    </div>
+    
+    <div class="main">
+        <label>
+            <input type="checkbox" id="customModel">
+            Use custom model
+        </label>
+        <textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here! (e.g., mistralai/Mistral-7B-Instruct)"></textarea>
+        
+        <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!"></textarea>
+        
+        <div class="file-upload-wrapper">
+            <input type="file" id="fileInput" class="file-input" accept=".txt,.md,.png,.jpg,.jpeg,.pdf"/>
+            <label for="fileInput" class="button fileButton">📄 Upload notes file</label>
+        </div>
+        
+        <textarea class="notes textInput standard" placeholder="Notes go here :]"></textarea>
+        
+        <label for="language">Output Language:</label>
+        <select id="language" class="select">
+            <option value="eng">English</option>
+            <option value="pl">Polish</option>
+            <option value="ru">Russian</option>
+            <option value="de">German</option>
+            <option value="ua">Ukrainian</option>
+            <option value="fr">French</option>
+        </select>
+        
+        <button class="button submit">✨ Enhance Notes</button>
+        <span class="status"></span>
+    </div>
+    
+    <footer>
+        <span class="">Note Enhancer by <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2025</span>
+    </footer>
+</body>
+</html>

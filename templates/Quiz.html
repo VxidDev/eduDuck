@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="/static/Quiz/QuizStyle.css">
 </head>
 <body>
+    <div></div>
+
     <div class="header">
         <a class="header-redirect" href="/">← Home</a>
         <h1 class="header-text">EduDuck Quiz</h1>
     </div>
     
     <div class="main">
-        <div id="quizContainer">
+        <div id="quizContainer" data-notes='{{ quiz|tojson|safe }}'>
         </div>
         
         <button class="button submit-quiz" id="submitQuiz" style="display: none;">
