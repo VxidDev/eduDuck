@@ -60,10 +60,10 @@ def uploadNotes():
 
 def storeNotes(notes: dict):
     data = request.get_json()
-    notes = data.get('notes', '')
+    Notes = data.get('notes', '')
     noteID = str(uuid4())
-    notes[noteID] = notes
-    print("STORED", noteID, "len:", len(notes))
+    notes[noteID] = Notes
+    print("STORED", noteID, "len:", len(Notes))
     return jsonify({'id': noteID})
 
 def storeQuiz(quizzes: dict):
