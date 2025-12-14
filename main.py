@@ -97,5 +97,9 @@ def flashCards():
 def keyAccess():
     return render_template("keyAccess.html")
 
+@app.route('/quiz-generator')
+def QuizGenerator():
+    return flask.render_template('QuizGenerator.html')
+
 if __name__ == "__main__":
     app.run()
