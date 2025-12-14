@@ -1,7 +1,6 @@
 from flask import Flask , render_template
 from json import load , JSONDecodeError
 
-from routes.utils import AiReq as _AiReq_
 from routes.utils import uploadNotes as _uploadNotes_
 from routes.utils import storeNotes as _storeNotes_
 from routes.utils import storeQuiz as _storeQuiz_
@@ -37,53 +36,49 @@ def root():
     return render_template("index.html")
 
 # ---------------- Utils ----------------------------------
-@app.route("/upload-notes" , methods=['POST'])
+@app.route("/upload-notes", methods=['POST'], endpoint='uploadNotes')
 def uploadNotes():
     return _uploadNotes_()
 
-@app.route('/store-notes', methods=['POST'])
+@app.route('/store-notes', methods=['POST'], endpoint='storeNotes')
 def storeNotes():
     return _storeNotes_(notes)
 
-@app.route("/upload-notes" , methods=['POST'])
-def aiReq(API_URL , headers , payload , timeout=15):
-    return _AiReq_(API_URL , headers , payload , timeout)
-
 # ---------------- Quiz Generator ------------------------
-@app.route('/quiz-generator/store-quiz', methods=['POST'])
+@app.route('/quiz-generator/store-quiz', methods=['POST'], endpoint='storeQuiz')
 def storeQuiz():
     return _storeQuiz_(quizzes)
 
-@app.route('/quiz-generator/quiz/result', methods=['POST'])
+@app.route('/quiz-generator/quiz/result', methods=['POST'], endpoint='submitQuizResult')
 def submitResult():
     return _submitResult_()
 
-@app.route('/quiz-generator/gen-quiz' , methods=['POST'])
+@app.route('/quiz-generator/gen-quiz', methods=['POST'], endpoint='generateQuiz')
 def QuizGen():
     return _QuizGen_(prompts)
 
-@app.route('/quiz-generator/quiz/result')
+@app.route('/quiz-generator/quiz/result', endpoint='quizResultPage')
 def result_page():
     return render_template('QuizResult.html')
 
-@app.route("/quiz-generator/quiz")
+@app.route("/quiz-generator/quiz", endpoint='showQuiz')
 def quiz():
     return _quiz_(quizzes)
 
-@app.route('/quiz-generator')
+@app.route('/quiz-generator', endpoint='quizGeneratorPage')
 def QuizGenerator():
     return _QuizGenerator_()
 
 # ---------------- Note Enhancer ------------------------
-@app.route('/note-enhancer/result')
+@app.route('/note-enhancer/result', endpoint='enhancedNotes')
 def EnhancedNotes():
     return _EnhancedNotes_(notes)
 
-@app.route('/note-enhancer')
+@app.route('/note-enhancer', endpoint='noteEnhancer')
 def NoteEnhance():
     return _NoteEnhancer_()
 
-@app.route('/note-enhancer/enhance' , methods=['POST'])
+@app.route('/note-enhancer/enhance', methods=['POST'], endpoint='enhanceNotes')
 def EnhanceNotes():
     return _EnhanceNotes_(prompts)
 
@@ -96,10 +91,6 @@ def flashCards():
 @app.route("/keyAccess")
 def keyAccess():
     return render_template("keyAccess.html")
-
-@app.route('/quiz-generator')
-def QuizGenerator():
-    return flask.render_template('QuizGenerator.html')
 
 if __name__ == "__main__":
     app.run()
