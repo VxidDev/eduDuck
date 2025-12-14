@@ -6,7 +6,8 @@ const ApiKeyInput = document.querySelector(".apiKey");
 const FileInputs = document.querySelectorAll(".file-upload-wrapper");
 const CustomModel = document.getElementById("customModel");
 const CustomModelInput = document.querySelector(".customModelInput");
-const LanguageSelector = document.getElementById('language')
+const LanguageSelector = document.getElementById('language');
+const QuestionSelector = document.getElementById('questionCount');
 
 CustomModel.addEventListener('change', () => {
     if (CustomModel.checked) {
@@ -63,7 +64,8 @@ Submit.addEventListener('click', async () => {
             notes: notes,
             apiKey: apiKey,
             model: model,
-            language: LanguageSelector.value
+            language: LanguageSelector.value.trim(),
+            questionCount: QuestionSelector.value.trim()
         };
 
         const response = await fetch('/quiz-generator/gen-quiz', {

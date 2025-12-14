@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const quizContainer = document.getElementById('quizContainer');
     const rawJson = quizContainer.dataset.notes || '""';
+    console.log(`Raw JSON: ${rawJson}`)
     
     try {
         const quizData = JSON.parse(rawJson);
@@ -20,6 +21,7 @@ function renderQuiz(quizData) {
     let html = '';
     for (let num in quizData) {
         const q = quizData[num];
+        console.log(`Question: ${q}`)
         html += `
             <div class="quiz-question" data-num="${num}">
                 <h3>${num}. ${q.question}</h3>
