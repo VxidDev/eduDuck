@@ -41,7 +41,7 @@ def EnhanceNotes(prompts: dict):
     return jsonify({'notes': notes})
 
 def EnhancedNotes(notes: dict):
-    noteID = flask.request.args.get('notes')
+    noteID = request.args.get('notes')
     notes = notes.get(noteID, '') if noteID else ''
     print("READ", noteID, "found:", bool(notes))
     return render_template('enhancedNotes.html', notes=notes)
