@@ -85,7 +85,8 @@ Submit.addEventListener('click', async () => {
             apiKey: apiKey,
             model: model,
             language: LanguageSelector.value.trim(),
-            questionCount: QuestionSelector.value.trim()
+            questionCount: QuestionSelector.value.trim(),
+            apiMode: APIModeSelector.value.trim()
         };
 
         const response = await fetch('/quiz-generator/gen-quiz', {
