@@ -96,10 +96,14 @@ def QuizGen(prompts: dict):
     NOTES = data["notes"]
     LANGUAGE = data["language"]
     AMOUNT = data["questionCount"]
+    API_MODE = data["apiMode"]
 
     API_KEY = data["apiKey"]
-    API_URL = "https://router.huggingface.co/v1/chat/completions"
-    headers = {"Authorization": f"Bearer {API_KEY}"}
+    API_URL = "https://router.huggingface.co/v1/chat/completions" if API_MODE == "Hugging Face" else f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
+    headers = {"Authorization": f"Bearer {API_KEY}"} if API_MODE == "Hugging Face" else  {
+        "Content-Type": "application/json",
+        "x-goog-api-key": API_KEY,
+    }
     
     PROMPT = prompts['quiz']
 
@@ -114,14 +118,23 @@ def QuizGen(prompts: dict):
             "content": PROMPT
         }],
         "model": data.get("model" , "openai/gpt-oss-20b")
+    } if API_MODE == "Hugging Face" else {
+        "contents": [
+            {
+                "role": "user",
+                "parts": [
+                    {"text": PROMPT}
+                ],
+            }
+        ]
     }
 
-    if payload["model"] is None:
+    if API_MODE != "Gemini" and payload.get("model" , None) is None:
         payload["model"] = "openai/gpt-oss-20b"
 
-    print(f"Model: {payload['model']}")
+    if payload and API_MODE == "Hugging Face": print(f"Model: {payload["model"]}") 
 
-    output = AiReq(API_URL , headers , payload)
+    output = AiReq(API_URL , headers , payload , API_MODE)
 
     if (output is None):
         return jsonify({"quiz": "Internal Error."})

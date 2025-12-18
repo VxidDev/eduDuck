@@ -18,11 +18,16 @@
     </div>
     
     <div class="main">
-        <label>
+        <label id="customModelLabel">
             <input type="checkbox" id="customModel">
             Use custom model
         </label>
         <textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here! (e.g., mistralai/Mistral-7B-Instruct)"></textarea>
+
+        <select id="apiMode" class="select">
+            <option value="Hugging Face">Hugging Face</option>
+            <option value="Gemini">Gemini</option>
+        </select>
         
         <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!"></textarea>
         

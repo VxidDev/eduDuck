@@ -5,9 +5,13 @@ const TextInputs = document.querySelectorAll(".textInput");
 const ApiKeyInput = document.querySelector(".apiKey");
 const FileInputs = document.querySelectorAll(".file-upload-wrapper");
 const CustomModel = document.getElementById("customModel");
+const CustomModelLabel = document.getElementById("customModelLabel");
 const CustomModelInput = document.querySelector(".customModelInput");
 const LanguageSelector = document.getElementById('language');
 const QuestionSelector = document.getElementById('questionCount');
+const APIModeSelector = document.getElementById("apiMode");
+
+let IsHuggingFace = true;
 
 CustomModel.addEventListener('change', () => {
     if (CustomModel.checked) {
@@ -16,6 +20,22 @@ CustomModel.addEventListener('change', () => {
         CustomModelInput.classList.add("hidden");
     }
 });
+
+APIModeSelector.addEventListener('change' , () => {
+    ApiKeyInput.placeholder = `Enter your ${APIModeSelector.value} API key here!`;
+    IsHuggingFace = APIModeSelector.value == "Hugging Face" ? true : false;
+    if (!IsHuggingFace) {
+        if (CustomModel.checked) {
+            CustomModel.checked = false;
+            CustomModelInput.classList.add("hidden");
+        }
+        CustomModel.classList.add("hidden");
+        CustomModelLabel.classList.add("hidden");
+    } else {
+        CustomModel.classList.remove("hidden");
+        CustomModelLabel.classList.remove("hidden");
+    };
+})
 
 TextInputs.forEach(textinput => {
     const MAXLINES = textinput.classList.contains("slim")

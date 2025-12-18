@@ -6,13 +6,13 @@ from PIL import Image, ImageFilter, ImageEnhance
 
 from uuid import uuid4
 
-def AiReq(API_URL, headers, payload, timeout=15):
+def AiReq(API_URL, headers, payload, mode, timeout=60):
     try:
         response = post(API_URL, headers=headers, json=payload, timeout=timeout)
         
         if response.status_code == 200:
             result = response.json()
-            data = result["choices"][0]['message']['content'] if result else "API error: Failed to extract JSON."
+            data = (result["choices"][0]['message']['content'] if result else "API error: Failed to extract JSON.") if mode == "Hugging Face" else "".join([part["text"] for part in result["candidates"][0]["content"]["parts"]])
             return data
         else:
             return f'API error {response.status_code}'
