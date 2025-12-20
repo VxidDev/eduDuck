@@ -27,9 +27,9 @@ Parsing AI text is unpredictable so bugs or visual glitces may appear.
 - [x] Add support for uploading PDF/TXT files.
 - [x] Add support for image files.
 - [x] Add Quiz Visualization
-- [ ] Add Flashcard Visualization
+- [x] Add Flashcard Visualization
 - [x] Add "Note upgrader"
-- [ ] Let users choose between quizzes or flashcards.
+- [x] Let users choose between quizzes or flashcards.
 - [ ] Add difficulty levels (easy / medium / hard) for generated questions.
 - [ ] Add simple user accounts to save past quizzes.
 - [x] Deploy public demo (e.g. on Render/Vercel) and link from this README.
