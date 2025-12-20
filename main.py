@@ -4,6 +4,7 @@ from json import load , JSONDecodeError
 from routes.utils import uploadNotes as _uploadNotes_
 from routes.utils import storeNotes as _storeNotes_
 from routes.utils import storeQuiz as _storeQuiz_
+from routes.utils import storeFlashcards as _storeFlashcards_
 
 from routes.quiz import ParseQuiz
 from routes.quiz import QuizGenerator as _QuizGenerator_
@@ -15,8 +16,13 @@ from routes.noteEnhancer import EnhanceNotes as _EnhanceNotes_
 from routes.noteEnhancer import NoteEnhancer as _NoteEnhancer_
 from routes.noteEnhancer import EnhancedNotes as _EnhancedNotes_
 
+from routes.flashcardGenerator import FlashCardGenerator as _FlashCardGenerator_
+from routes.flashcardGenerator import FlashcardGenerator as _FlashcardGenerator_
+from routes.flashcardGenerator import FlashCardResult as _FlashCardResult_
+
 notes = {}
 quizzes = {}
+flashcards = {}
 
 app = Flask(__name__)
 
@@ -83,9 +89,21 @@ def EnhanceNotes():
     return _EnhanceNotes_(prompts)
 
 # ---------------- FlashCard Generator ------------------
-@app.route('/flashcards')
+@app.route('/flashcard-generator' , endpoint='flashCardGenerator')
 def flashCards():
-    return "Unsupported."
+    return _FlashCardGenerator_()
+
+@app.route('/flashcard-generator/generate' , endpoint='flashcardGenerator' , methods=['POST'])
+def flashCards():
+    return _FlashcardGenerator_(prompts)
+
+@app.route('/store-flashcards' , methods=['POST'], endpoint='storeflashCards')
+def storeFlashcards():
+    return _storeFlashcards_(flashcards)
+
+@app.route('/flashcard-generator/result' , endpoint='flashCardResult')
+def flashCardResult():
+    return _FlashCardResult_(flashcards)
 
 # ---------------- Miscellanious ------------------------
 @app.route("/keyAccess")

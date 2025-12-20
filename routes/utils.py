@@ -73,3 +73,11 @@ def storeQuiz(quizzes: dict):
     quizzes[quizID] = quiz
     print("STORED", quizID, "len:", len(quiz))
     return jsonify({'id': quizID})
+
+def storeFlashcards(flashcards: dict):
+    data = request.get_json()
+    Flashcards = data.get('flashcards' , '')
+    flashcardID = str(uuid4())
+    flashcards[flashcardID] = Flashcards
+    print("STORED", flashcardID, "len:", len(Flashcards))
+    return jsonify({'id': flashcardID})

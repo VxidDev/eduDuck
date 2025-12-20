@@ -1,0 +1,178 @@
+.md-content {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 24px 28px;
+    background: #f7f7f7;
+    border-radius: 16px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.6;
+    color: rgb(50, 50, 50);
+}
+
+.flashcards-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.flashcard {
+    background: linear-gradient(145deg, #ffffff, #f0f8ff);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 24px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+
+.flashcard:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15), 0 8px 20px rgba(0,0,0,0.08);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.flashcard:focus {
+    outline: 3px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 2px;
+}
+
+.question {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 28px 32px 28px 64px;
+    font-size: 1.3em;
+    font-weight: 600;
+    line-height: 1.5;
+    position: relative;
+    user-select: none;
+}
+
+.question::before {
+    content: '❓';
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.8em;
+    opacity: 0.9;
+}
+
+.question:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.answer {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    background: white;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.flashcard.flipped .answer {
+    max-height: 500px;
+    padding: 32px;
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+.answer::before {
+    content: '💡';
+    display: block;
+    font-size: 2em;
+    margin-bottom: 12px;
+    opacity: 0.8;
+}
+
+.no-flashcards {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6b7280;
+    font-size: 1.2em;
+}
+
+.no-flashcards a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.no-flashcards a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .flashcards-container {
+        padding: 16px;
+    }
+    
+    .flashcard {
+        margin-bottom: 20px;
+        border-radius: 16px;
+    }
+    
+    .question {
+        padding: 24px 28px 24px 56px;
+        font-size: 1.2em;
+    }
+    
+    .question::before {
+        left: 20px;
+        font-size: 1.6em;
+    }
+    
+    .flashcard.flipped .answer {
+        padding: 24px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .question {
+        padding: 20px 24px 20px 48px;
+        font-size: 1.1em;
+    }
+    
+    .flashcard.flipped .answer {
+        padding: 20px;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .flashcard {
+        border-width: 2px;
+    }
+    
+    .question {
+        border-bottom: 2px solid rgba(255,255,255,0.3);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .flashcard,
+    .answer {
+        transition: none;
+    }
+    
+    .flashcard:hover {
+        transform: none;
+    }
+}
+
+@media print {
+    .flashcard {
+        break-inside: avoid;
+        box-shadow: none;
+        margin-bottom: 1in;
+        page-break-inside: avoid;
+    }
+    
+    .flashcard.flipped .answer {
+        max-height: none;
+    }
+}

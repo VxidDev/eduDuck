@@ -145,10 +145,10 @@ def QuizGen(prompts: dict):
         output = standardApiErrors[output]
     elif output in moreApiErrors:
         output = moreApiErrors[output]
-    
+    else:
+        print("Successfully generated quiz. Parsing...")
+        
     print(output)
-
-    print("Successfully generated quiz. Parsing...")
 
     quiz = ParseQuiz(output)
 
