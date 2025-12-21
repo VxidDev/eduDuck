@@ -19,7 +19,7 @@ this hosting is not perfect but if i get enough donations or i will save up enou
 - Clean web UI (Flask backend + HTML/CSS/JS frontend).
 
 ## Limitations
-Parsing AI text is unpredictable so bugs or visual glitces may appear.
+Parsing AI text is unpredictable so bugs or visual glitches may appear.
 
 ## Roadmap
 
