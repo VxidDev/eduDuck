@@ -58,6 +58,8 @@ TextInputs.forEach(textinput => {
 });
 
 Submit.addEventListener('click', async () => {
+    StatusLabel.textContent = "";
+    
     const notes = NoteInput.value.trim();
     const apiKey = ApiKeyInput.value.trim();
     let model = null;

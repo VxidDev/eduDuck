@@ -57,6 +57,8 @@ TextInputs.forEach(textinput => {
 });
 
 Submit.addEventListener('click', async () => {
+    StatusLabel.textContent = "";
+    
     const notes = NoteInput.value.trim();
     const apiKey = ApiKeyInput.value.trim();
     let model = null;
@@ -105,7 +107,7 @@ Submit.addEventListener('click', async () => {
 
         window.location.href = `/note-enhancer/result?notes=${encodeURIComponent(payload.id)}`;
     } catch (error) {
-        StatusLabel.textContent = "Error while generating quiz.";
+        StatusLabel.textContent = "Error while generating flashcards.";
     }
 });
 

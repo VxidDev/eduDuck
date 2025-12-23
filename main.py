@@ -20,6 +20,9 @@ from routes.flashcardGenerator import FlashCardGenerator as _FlashCardGenerator_
 from routes.flashcardGenerator import FlashcardGenerator as _FlashcardGenerator_
 from routes.flashcardGenerator import FlashCardResult as _FlashCardResult_
 
+from routes.duckAI import DuckAI as _DuckAI_
+from routes.duckAI import GenerateResponse as _GenerateResponse_
+
 notes = {}
 quizzes = {}
 flashcards = {}
@@ -104,6 +107,15 @@ def storeFlashcards():
 @app.route('/flashcard-generator/result' , endpoint='flashCardResult')
 def flashCardResult():
     return _FlashCardResult_(flashcards)
+
+# -------------- DuckAI -----------------------------------
+@app.route('/duck-ai' , endpoint='DuckAI')
+def DuckAI():
+    return _DuckAI_()
+
+@app.route('/duck-ai/generate' , endpoint='DuckAIResponse' , methods=['POST'])
+def GenerateResponse():
+    return _GenerateResponse_(prompts)
 
 # ---------------- Miscellanious ------------------------
 @app.route("/keyAccess")
