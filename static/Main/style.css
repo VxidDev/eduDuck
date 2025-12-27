@@ -367,3 +367,44 @@ label#customModelLabel {
         padding: 26px 14px 34px;
     }
 }
+
+.tutorial-steps {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.tutorial-steps li {
+    padding: 1rem 0;
+    border-left: 3px solid var(--accent);
+    padding-left: 1.5rem;
+    margin: 0.5rem 0;
+    background: var(--bg-card-soft);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.tutorial-steps li:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-card);
+}
+
+.tutorial-note {
+    background: linear-gradient(135deg, rgba(52, 168, 255, 0.1), rgba(74, 168, 255, 0.05));
+    border: 1px solid rgba(52, 168, 255, 0.2);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+body.dark .tutorial-note {
+    background: linear-gradient(135deg, rgba(74, 168, 255, 0.15), rgba(74, 168, 255, 0.08));
+    border-color: rgba(74, 168, 255, 0.3);
+}
+
+.tutorial-steps li strong {
+    color: var(--accent);
+    font-weight: 700;
+}
