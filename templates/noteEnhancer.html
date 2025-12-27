@@ -14,46 +14,68 @@
     <div class="header">
         <a class="header-redirect" href="/" style="padding-left: 50px;">← Back to Home</a>
         <h1 class="header-text">Note Enhancer</h1>
-        <a class="header-redirect" href="/keyAccess" style="padding-right: 50px;">How to get key?</a>
+
+        <div style="display:flex; align-items:center; gap:10px; padding-right:50px;">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            <a class="header-redirect" href="/keyAccess">How to get key?</a>
+        </div>
     </div>
     
-    <div class="main">
-        <label id="customModelLabel">
-            <input type="checkbox" id="customModel">
-            Use custom model
-        </label>
-        <textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here! (e.g., mistralai/Mistral-7B-Instruct)"></textarea>
+    <div class="main-content">
+        <div class="main">
+            <div class="customModelSelector">
+                <label id="customModelLabel">
+                    <input type="checkbox" id="customModel">
+                    Use custom model
+                </label>
+            </div>
+            <textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here! (e.g., mistralai/Mistral-7B-Instruct)"></textarea>
 
-        <select id="apiMode" class="select">
-            <option value="Hugging Face">Hugging Face</option>
-            <option value="Gemini">Gemini</option>
-        </select>
-        
-        <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!"></textarea>
-        
-        <div class="file-upload-wrapper">
-            <input type="file" id="fileInput" class="file-input" accept=".txt,.md,.png,.jpg,.jpeg,.pdf"/>
-            <label for="fileInput" class="button fileButton">📄 Upload notes file</label>
+            <select id="apiMode" class="select">
+                <option value="Hugging Face">Hugging Face</option>
+                <option value="Gemini">Gemini</option>
+            </select>
+            
+            <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!"></textarea>
+            
+            <div class="file-upload-wrapper">
+                <input type="file" id="fileInput" class="file-input" accept=".txt,.md,.png,.jpg,.jpeg,.pdf"/>
+                <label for="fileInput" class="button fileButton">📄 Upload notes file</label>
+            </div>
+            
+            <textarea class="notes textInput standard" placeholder="Notes go here :]"></textarea>
+            
+            <label for="language">Output Language:</label>
+            <select id="language" class="select">
+                <option value="eng">English</option>
+                <option value="pl">Polish</option>
+                <option value="ru">Russian</option>
+                <option value="de">German</option>
+                <option value="ua">Ukrainian</option>
+                <option value="fr">French</option>
+            </select>
+            
+            <button class="button submit">✨ Enhance Notes</button>
+            <span class="status"></span>
         </div>
-        
-        <textarea class="notes textInput standard" placeholder="Notes go here :]"></textarea>
-        
-        <label for="language">Output Language:</label>
-        <select id="language" class="select">
-            <option value="eng">English</option>
-            <option value="pl">Polish</option>
-            <option value="ru">Russian</option>
-            <option value="de">German</option>
-            <option value="ua">Ukrainian</option>
-            <option value="fr">French</option>
-        </select>
-        
-        <button class="button submit">✨ Enhance Notes</button>
-        <span class="status"></span>
     </div>
     
     <footer>
         <span class="">Note Enhancer by <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2025</span>
     </footer>
+
+    <script>
+        const body = document.body;
+        const toggle = document.getElementById('theme-toggle');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark');
+        }
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+        });
+    </script>
 </body>
 </html>

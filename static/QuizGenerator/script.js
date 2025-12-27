@@ -10,8 +10,7 @@ const CustomModelInput = document.querySelector(".customModelInput");
 const LanguageSelector = document.getElementById('language');
 const QuestionSelector = document.getElementById('questionCount');
 const APIModeSelector = document.getElementById("apiMode");
-
-let IsHuggingFace = true;
+const CustomModelSelector = document.querySelector(".customModelSelector")
 
 CustomModel.addEventListener('change', () => {
     if (CustomModel.checked) {
@@ -21,21 +20,35 @@ CustomModel.addEventListener('change', () => {
     }
 });
 
-APIModeSelector.addEventListener('change' , () => {
+APIModeSelector.addEventListener('change', () => {
     ApiKeyInput.placeholder = `Enter your ${APIModeSelector.value} API key here!`;
-    IsHuggingFace = APIModeSelector.value == "Hugging Face" ? true : false;
-    if (!IsHuggingFace) {
-        if (CustomModel.checked) {
-            CustomModel.checked = false;
-            CustomModelInput.classList.add("hidden");
-        }
-        CustomModel.classList.add("hidden");
-        CustomModelLabel.classList.add("hidden");
+    if (APIModeSelector.value !== 'Hugging Face') {
+        CustomModelSelector.classList.add('hidden');
+        CustomModelInput.classList.add('hidden');
     } else {
-        CustomModel.classList.remove("hidden");
-        CustomModelLabel.classList.remove("hidden");
-    };
-})
+        if (CustomModel.checked) CustomModelInput.classList.remove('hidden')
+        CustomModelSelector.classList.remove('hidden')
+    }
+});
+
+CustomModel.addEventListener('change', () => {
+    if (CustomModel.checked) {
+        CustomModelInput.classList.remove("hidden");
+    } else {
+        CustomModelInput.classList.add("hidden");
+    }
+});
+
+APIModeSelector.addEventListener('change', () => {
+    ApiKeyInput.placeholder = `Enter your ${APIModeSelector.value} API key here!`;
+    const isHuggingFace = APIModeSelector.value === 'Hugging Face';
+
+    if (!isHuggingFace) {
+      CustomModelLabel.classList.add('hidden');  
+    } else {
+      CustomModelLabel.classList.remove('hidden');
+    }
+  });
 
 TextInputs.forEach(textinput => {
     const MAXLINES = textinput.classList.contains("slim")

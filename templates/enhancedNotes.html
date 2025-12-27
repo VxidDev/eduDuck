@@ -12,8 +12,12 @@
 <body>
     <div class="header">
         <a class="header-redirect" href="https://ko-fi.com/vxiddev" style="padding-left: 50px;">Donate</a>
-        <h1 class="header-text">EduDuck</h1>
-        <a class="header-redirect" href="/keyAccess" style="padding-right: 50px;">How to get key?</a>
+        <h1 class="header-text">DuckAI</h1>
+
+        <div style="display:flex; align-items:center; gap:10px; padding-right:50px;">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            <a class="header-redirect" href="/keyAccess">How to get key?</a>
+        </div>
     </div>
 
     <div class="Enhanced md-content" data-notes='{{ notes|tojson|safe }}'></div>
@@ -21,5 +25,19 @@
     <footer>
             <span class="">By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2025</span>
     </footer>
+
+    <script>
+        const body = document.body;
+        const toggle = document.getElementById('theme-toggle');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark');
+        }
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+        });
+    </script>
 </body>
 </html>

@@ -15,14 +15,22 @@
     <div class="header">
         <a class="header-redirect" href="/" style="padding-left: 50px;">← Back to Home</a>
         <h1 class="header-text">DuckAI</h1>
-        <a class="header-redirect" href="/keyAccess" style="padding-right: 50px;">How to get key?</a>
+
+        <div style="display:flex; align-items:center; gap:10px; padding-right:50px;">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
+            <a class="header-redirect" href="/keyAccess">How to get key?</a>
+        </div>
     </div>
 
+    <span style="margin-bottom: 100px;"></span>
+
     <div style="display: flex; justify-content: center; flex-direction: column; align-items: center; gap: 45px;">
-        <label id="customModelLabel" style="margin-top: 50px;">
-            <input type="checkbox" id="customModel">
-            Use custom model
-        </label>
+        <div class="customModelSelector">
+            <label id="customModelLabel">
+                <input type="checkbox" id="customModel">
+                Use custom model
+            </label>
+        </div>
         <textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here! (e.g., mistralai/Mistral-7B-Instruct)"></textarea>
 
         <select id="apiMode" class="select">
@@ -58,5 +66,19 @@
     <footer>
         <span class="">DuckAI by <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2025</span>
     </footer>
+
+    <script>
+        const body = document.body;
+        const toggle = document.getElementById('theme-toggle');
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark');
+        }
+
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+        });
+    </script>
 </body>
 </html>

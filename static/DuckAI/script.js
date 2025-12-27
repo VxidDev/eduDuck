@@ -14,14 +14,19 @@ let IsHuggingFace = true;
 
 let Messages = [];
 
+sendButton.disabled = true;
+
 function autoResize(input) {
     input.style.height = 'auto';
     input.style.height = Math.min(input.scrollHeight, 150) + 'px';
 }
 
 UserInput.addEventListener('input', function() {
+    sendButton.disabled = userInput.value.trim().length === 0;
     autoResize(this);
 });
+
+const CustomModelSelector = document.querySelector(".customModelSelector")
 
 CustomModel.addEventListener('change', () => {
     if (CustomModel.checked) {
@@ -31,60 +36,61 @@ CustomModel.addEventListener('change', () => {
     }
 });
 
-APIModeSelector.addEventListener('change' , () => {
+APIModeSelector.addEventListener('change', () => {
     ApiKeyInput.placeholder = `Enter your ${APIModeSelector.value} API key here!`;
-    IsHuggingFace = APIModeSelector.value == "Hugging Face" ? true : false;
-    if (!IsHuggingFace) {
-        if (CustomModel.checked) {
-            CustomModel.checked = false;
-            CustomModelInput.classList.add("hidden");
-        }
-        CustomModel.classList.add("hidden");
-        CustomModelLabel.classList.add("hidden");
-        APIModeSelector.style.marginTop = "50px";
+    if (APIModeSelector.value !== 'Hugging Face') {
+        CustomModelSelector.classList.add('hidden');
+        CustomModelInput.classList.add('hidden');
     } else {
-        APIModeSelector.style.marginTop = null;
-        CustomModel.classList.remove("hidden");
-        CustomModelLabel.classList.remove("hidden");
-    };
-})
+        if (CustomModel.checked) CustomModelInput.classList.remove('hidden')
+        CustomModelSelector.classList.remove('hidden')
+    }
+});
 
 sendButton.addEventListener('click', async () => {
     StatusLabel.textContent = "";
+    sendButton.disabled = true;
 
-    Messages.push({
-        "role": "user",
-        "content": userInput.value.trim()
-    });
-
-    ChatMessages.innerHTML += `<div class="message user-message"><div class="message-bubble">${UserInput.value.trim()}</div></div>`;
-
-    const message = Messages.slice(-10).map(m => `${m.role}: ${m.content}`).join('\n');
+    const text = userInput.value.trim();
     const apiKey = ApiKeyInput.value.trim();
-    let model = null;
-
-    UserInput.value = "";
+    const customModelVisible = !CustomModelInput.classList.contains("hidden");
+    const modelValue = CustomModelInput.value.trim();
+    const wordsCount = text.split(/\s+/).filter(Boolean).length;
 
     let msg = !apiKey ? "Enter API key."
-        : !message ? "Enter message first."
-        : message.split(' ').length > 2500 ? "Message is too long."
+        : !text ? "Enter message first."
+        : wordsCount > 2500 ? "Message is too long."
         : "Generating...";
 
-    if (!CustomModelInput.classList.contains("hidden")) {
-        model = CustomModelInput.value.trim();
-        if (!model) {
-            msg = "Enter model.";
-        }
-    } else {
-        model = null;
+    if (customModelVisible && CustomModel.checked && !modelValue) {
+        msg = "Enter model.";
     }
 
     StatusLabel.textContent = msg;
-    if (!message || !apiKey || message.split(' ').length > 2500 || (!model && CustomModel.checked)) return;
+
+    if (!apiKey || !text || wordsCount > 2500 || (customModelVisible && CustomModel.checked && !modelValue)) {
+        sendButton.disabled = false;
+        return;
+    }
+
+    Messages.push({
+        role: "user",
+        content: text
+    });
+
+    ChatMessages.innerHTML += `
+        <div class="message user-message">
+            <div class="message-bubble">${text}</div>
+        </div>`;
+
+    userInput.value = "";
+
+    const history = Messages.slice(-10).map(m => `${m.role}: ${m.content}`).join('\n');
+    const model = customModelVisible && CustomModel.checked ? modelValue : null;
 
     try {
         const body = {
-            message: message,
+            message: history,
             apiKey: apiKey,
             model: model,
             apiMode: APIModeSelector.value.trim()
@@ -97,20 +103,25 @@ sendButton.addEventListener('click', async () => {
         });
 
         const data = await response.json();
-        
-        ChatMessages.innerHTML += `<div class="message ai-message"><div class="message-bubble">${data.response}</div></div>`;
+
+        ChatMessages.innerHTML += `
+            <div class="message ai-message">
+                <div class="message-bubble">${data.response}</div>
+            </div>`;
 
         Messages.push({
-            "role": "assistant",
-            "content": data.response.trim()
-        }); 
+            role: "assistant",
+            content: data.response.trim()
+        });
 
         StatusLabel.textContent = "";
-
     } catch (error) {
         StatusLabel.textContent = "Error while generating response.";
+    } finally {
+        sendButton.disabled = false;
     }
 });
+
 
 NewChat.addEventListener('click', () => {
     window.location = `/duck-ai`
