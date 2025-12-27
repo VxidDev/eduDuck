@@ -19,7 +19,8 @@ this hosting is not perfect but if i get enough donations or i will save up enou
 - Clean web UI (Flask backend + HTML/CSS/JS frontend).
 
 ## Limitations
-Parsing AI text is unpredictable so bugs or visual glitches may appear.
+- Parsing AI text is unpredictable so bugs or visual glitches may appear.
+- Quiz generation may sometimes miss questions.
 
 ## Roadmap
 
@@ -33,7 +34,7 @@ Parsing AI text is unpredictable so bugs or visual glitches may appear.
 - [ ] Add difficulty levels (easy / medium / hard) for generated questions.
 - [ ] Add simple user accounts to save past quizzes.
 - [x] Deploy public demo (e.g. on Render/Vercel) and link from this README.
-- [ ] Add dark mode and mobile-friendly layout.
+- [x] Add dark mode and mobile-friendly layout.
 - [x] Add custom model choice.
 
 ## License
