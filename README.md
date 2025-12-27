@@ -1,42 +1,80 @@
 # 🦆 EduDuck 🦆
-- Art by https://github.com/netkv , thank you for the contribution<3
-<p align="center">
-  <img src="duck.jpg" alt="EduDuck banner" width="980" height="350">
-</p>
+<div align="center">
+  <img src="duck.jpg" alt="EduDuck" width="980" height="350"/>
+  <br><br>
+  <a href="https://eduduck.onrender.com/"><img src="https://img.shields.io/badge/Live%20Demo-EduDuck-brightgreen?style=for-the-badge&logo=render&logoColor=white" alt="Live Demo"></a>
+  <a href="https://github.com/VxidDev/eduDuck/stargazers"><img src="https://img.shields.io/github/stars/VxidDev/eduDuck?style=for-the-badge&logo=github&logoColor=white" alt="Stars"></a>
+  <a href="https://ko-fi.com/vxiddev"><img src="https://img.shields.io/badge/Support%20Me-Ko--fi-ff5f5f?style=for-the-badge&logo=kofi&logoColor=white" alt="Support"></a>
+</div>
 
-### AI study app that transforms your notes into interactive quizzes and flashcards for fast, fun learning.
-### Powered by a gpt-oss-20b, EduDuck helps students revise and study faster by generating questions directly from their notes.
+**AI-powered study companion** that transforms your notes into interactive quizzes, flashcards, and enhanced study materials.
 
-# Demo
-this hosting is not perfect but if i get enough donations or i will save up enough i will pay for normal hosting.
-- https://eduduck.onrender.com/
+## ✨ Features
 
-## Features
+| Feature | Description |
+|---------|-------------|
+| **📝 Quiz Generator** | Upload notes → instant quizzes |
+| **🗂️ Flashcard Generator** | Spaced repetition flashcards from any subject |
+| **✨ Note Enhancer** | AI-powered summaries, diagrams, key concepts |
+| **🦆 DuckAI** | Chat with your notes, get explanations & study tips |
+| **📱 Multi-format** | TXT, PDF, PNG/JPG, handwritten notes via OCR |
+| **🌍 Multi-language** | English, Polish, German, French, Ukrainian, Russian |
+| **🎨 Modern UI** | Dark/light mode, mobile-first, glassmorphism design |
 
-- Paste or upload notes and get instant quizzes or flashcards.
-- Supports multiple subjects (Math, chemistry, etc.).
-- Fast generation using a 20B model via an external AI API.
-- Clean web UI (Flask backend + HTML/CSS/JS frontend).
+## 🚀 Quick Start
 
-## Limitations
-- Parsing AI text is unpredictable so bugs or visual glitches may appear.
-- Quiz generation may sometimes miss questions.
+1. **Get Free API Key** (Hugging Face or Google Gemini)
+   - [Hugging Face](https://huggingface.co/settings/tokens) (1M tokens/month free)
+   - [Google AI Studio](https://aistudio.google.com/app/apikey) (15 RPM free)
 
-## Roadmap
+2. **Try Live Demo**: [eduduck.onrender.com](https://eduduck.onrender.com/quiz-generator)
 
-- [x] Make basic quiz generation
-- [x] Add support for uploading PDF/TXT files.
-- [x] Add support for image files.
-- [x] Add Quiz Visualization
-- [x] Add Flashcard Visualization
-- [x] Add "Note upgrader"
-- [x] Let users choose between quizzes or flashcards.
-- [ ] Add difficulty levels (easy / medium / hard) for generated questions.
-- [ ] Add simple user accounts to save past quizzes.
-- [x] Deploy public demo (e.g. on Render/Vercel) and link from this README.
-- [x] Add dark mode and mobile-friendly layout.
-- [x] Add custom model choice.
+3. **Paste your notes** → Generate → Learn!
 
-## License
+## 🛠️ Tech Stack
 
-MIT License — with required attribution to this repository in all deployments.
+- Frontend: HTML5 - CSS3 (CSS Variables) - Vanilla JS
+- Backend: Python Flask - Render Deployment
+- AI: Hugging Face Inference API - Google Gemini
+- OCR: Tesseract - Custom preprocessing
+
+## 🎯 Roadmap
+
+| Status | Feature |
+|--------|---------|
+| ✅ Done | Basic quiz generation |
+| ✅ Done | PDF/TXT/image upload + OCR |
+| ✅ Done | Quiz & Flashcard visualization |
+| ✅ Done | Note Enhancer |
+| ✅ Done | DuckAI chat |
+| ✅ Done | Multi-language support |
+| ✅ Done | Dark mode + mobile UI |
+| 🔄 In Progress | Difficulty levels |
+| ⏳ Planned | Export generated material (.eduqz , .edufc , .edunt , .educht) |
+| ⏳ Planned | User accounts & quiz history |
+| ⏳ Planned | Study progress tracking |
+
+## 🤝 Contributions
+
+**Art**: [netkv](https://github.com/netkv) ❤️  
+**Code**: [VxidDev](https://github.com/VxidDev)  
+**Testing**: [VxidDev](https://github.com/VxidDev)
+
+## 💰 Support the Project
+
+<div align="center">
+  <a href="https://ko-fi.com/vxiddev">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Ko-fi" width="200"/>
+  </a>
+  <p>Your support helps upgrade hosting and add premium features! 🦆</p>
+</div>
+
+## 📄 License
+
+MIT License — **required attribution** to this repository in all deployments.
+
+Made with ❤️ by VxidDev - Self-taught since June 2025
+
+<div align="center">
+  <img src="https://img.shields.io/badge/version-2.0-blue?style=for-the-badge&logo=eduDuck&logoColor=white" alt="Version">
+</div>
