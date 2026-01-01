@@ -1,5 +1,8 @@
+import { ValidateInput } from "../Components/ValidateInput.js";
+import { autoResize } from "../Components/AutoResize.js";
+import { CustomModelListeners } from "../Components/ModelSelector.js";
+
 const CustomModel = document.getElementById("customModel");
-const CustomModelLabel = document.getElementById("customModelLabel");
 const CustomModelInput = document.querySelector(".customModelInput");
 const APIModeSelector = document.getElementById("apiMode");
 const UserInput = document.getElementById('user-input');
@@ -14,6 +17,8 @@ let Messages = [];
 
 sendButton.disabled = true;
 
+CustomModelListeners();
+
 UserInput.addEventListener('input', function() {
     sendButton.disabled = userInput.value.trim().length === 0;
     autoResize(this);
@@ -24,21 +29,12 @@ sendButton.addEventListener('click', async () => {
     sendButton.disabled = true;
 
     const text = userInput.value.trim();
+    const wordsCount = text.split(' ');
     const apiKey = ApiKeyInput.value.trim();
     const customModelVisible = !CustomModelInput.classList.contains("hidden");
-    const modelValue = CustomModelInput.value.trim();
-    const wordsCount = text.split(/\s+/).filter(Boolean).length;
+    const modelValue = CustomModelInput.value.trim()
 
-    let msg = !apiKey ? "Enter API key."
-        : !text ? "Enter message first."
-        : wordsCount > 2500 ? "Message is too long."
-        : "Generating...";
-
-    if (customModelVisible && CustomModel.checked && !modelValue) {
-        msg = "Enter model.";
-    }
-
-    StatusLabel.textContent = msg;
+    ValidateInput(text, apiKey, customModelVisible, modelValue, StatusLabel, wordsCount)
 
     if (!apiKey || !text || wordsCount > 2500 || (customModelVisible && CustomModel.checked && !modelValue)) {
         sendButton.disabled = false;

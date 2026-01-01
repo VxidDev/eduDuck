@@ -1,3 +1,5 @@
+import { ValidateInput } from "../Components/ValidateInput.js";
+
 const NoteInput = document.querySelector(".notes");
 const Submit = document.querySelector(".submit");
 const StatusLabel = document.querySelector(".status");
@@ -40,10 +42,10 @@ Submit.addEventListener('click', async () => {
     const apiKey = ApiKeyInput.value.trim();
     let model = null;
 
-    let msg = !apiKey ? "Enter API key."
-        : !notes ? "Enter notes first."
-        : notes.split(' ').length > 2500 ? "Notes too long."
-        : "Generating...";
+    ValidateInput(userInput.value.trim(),
+                 ApiKeyInput.value.trim(),
+                 !CustomModelInput.classList.contains("hidden"),
+                 CustomModelInput.value.trim())
 
     if (!CustomModelInput.classList.contains("hidden")) {
         model = CustomModelInput.value.trim();

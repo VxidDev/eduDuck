@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="/static/body.css">
     <link rel="stylesheet" href="/static/Main/style.css">
     <link rel="stylesheet" href="/static/DuckAI/style.css">
-    <script src="/static/DuckAI/script.js" defer></script>
-    <script src="/static/Components/ModelSelector.js" defer></script>
-    <script src="/static/Components/AutoResize.js" defer></script>
+    <script src="{{ url_for('static', filename='DuckAI/script.js') }}" type="module" defer></script>
 </head>
 <body>
     <div class="header">
@@ -40,7 +38,7 @@
             <option value="Gemini">Gemini</option>
         </select>
         
-        <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!"></textarea>
+        <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!" style="align-items: center; text-align: center;"></textarea>
     </div>
 
     
