@@ -1,52 +1,48 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const display = document.getElementById("display");
-    if (!display) return console.error("No display element");
+document.addEventListener("DOMContentLoaded", () => {
+	const display = document.getElementById("display");
+	if (!display) return console.error("No display element");
 
-    try {
-        const flashcardsObj = JSON.parse(display.dataset.notes || '{}');
-        const flashcards = Object.values(flashcardsObj);
-        
-        if (flashcards.length === 0) {
-            display.innerHTML = '<div class="no-flashcards">No flashcards generated 😔<br><a href="/flashcardGenerator">Generate some now!</a></div>';
-            return;
-        }
-        
-        display.innerHTML = flashcards.map((card, i) => `
-            <div class="flashcard" tabindex="0" role="button" aria-expanded="false">
-                <div class="question">${card.question}</div>
-                <div class="answer">${card.answer}</div>
-            </div>
-        `).join('');
+	try {
+		const flashcards = Object.values(JSON.parse(display.dataset.notes || "{}"));
 
-        display.addEventListener('click', (e) => {
-            const flashcard = e.target.closest('.flashcard');
-            if (flashcard) flipCard(flashcard);
-        });
+		if (!flashcards.length) {
+			display.innerHTML =
+				'<div class="no-flashcards">No flashcards generated 😔<br><a href="/flashcardGenerator">Generate some now!</a></div>';
+			return;
+		}
 
-        display.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                const flashcard = e.target.closest('.flashcard');
-                if (flashcard) flipCard(flashcard);
-            }
-        });
+		display.innerHTML = flashcards
+			.map(
+				card => `
+			<div class="flashcard" tabindex="0" role="button" aria-expanded="false">
+				<div class="question">${card.question}</div>
+				<div class="answer">${card.answer}</div>
+			</div>`
+			)
+			.join("");
 
-    } catch (e) {
-        console.error('Flashcard parse error:', e);
-        display.textContent = 'Error loading flashcards';
-    }
+		const handleFlip = e => {
+			const card = e.target.closest(".flashcard");
+			if (!card) return;
+			if (e.type === "click" || e.key === "Enter" || e.key === " ") {
+				e.preventDefault?.();
+				flipCard(card);
+			}
+		};
+
+		display.addEventListener("click", handleFlip);
+		display.addEventListener("keydown", handleFlip);
+	} catch (e) {
+		console.error("Flashcard parse error:", e);
+		display.textContent = "Error loading flashcards";
+	}
 });
 
 function flipCard(card) {
-    const isFlipped = card.classList.contains('flipped');
-    const question = card.querySelector('.question');
-    
-    card.classList.toggle('flipped');
-    card.setAttribute('aria-expanded', !isFlipped);
-    
-    if (!isFlipped) {
-        question.setAttribute('aria-label', 'Hide answer');
-    } else {
-        question.setAttribute('aria-label', 'Show answer');
-    }
+	const isFlipped = card.classList.contains("flipped");
+	const question = card.querySelector(".question");
+
+	card.classList.toggle("flipped");
+	card.setAttribute("aria-expanded", !isFlipped);
+	question.setAttribute("aria-label", isFlipped ? "Show answer" : "Hide answer");
 }

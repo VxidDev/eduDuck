@@ -1,167 +1,134 @@
-const NoteInput = document.querySelector(".notes");
-const Submit = document.querySelector(".submit");
-const StatusLabel = document.querySelector(".status");
-const TextInputs = document.querySelectorAll(".textInput");
-const ApiKeyInput = document.querySelector(".apiKey");
-const FileInputs = document.querySelectorAll(".file-upload-wrapper");
-const CustomModel = document.getElementById("customModel");
+const NoteInput        = document.querySelector(".notes");
+const Submit           = document.querySelector(".submit");
+const StatusLabel      = document.querySelector(".status");
+const TextInputs       = document.querySelectorAll(".textInput");
+const ApiKeyInput      = document.querySelector(".apiKey");
+const CustomModel      = document.getElementById("customModel");
 const CustomModelInput = document.querySelector(".customModelInput");
-const ModeSelector = document.querySelector('select[name="Content"]');
-const StudyPlan = document.querySelector('.studyPlan');
+const ModeSelector     = document.querySelector('select[name="Content"]');
+const StudyPlan        = document.querySelector(".studyPlan");
 const LanguageSelector = document.querySelector('select[name="Language"]');
 
-CustomModel.addEventListener('change', () => {
-    if (CustomModel.checked) {
-        CustomModelInput.classList.remove("hidden");
-    } else {
-        CustomModelInput.classList.add("hidden");
-    }
+const getMaxLines = el =>
+	el.classList.contains("slim")
+		? 1
+		: el.classList.contains("standard")
+		? 5
+		: el.classList.contains("large")
+		? 20
+		: 1;
+
+CustomModel.addEventListener("change", () => {
+	CustomModelInput.classList.toggle("hidden", !CustomModel.checked);
 });
 
-TextInputs.forEach(textinput => {
-    const MAXLINES = textinput.classList.contains("slim")
-        ? 1
-        : textinput.classList.contains("standard")
-        ? 5
-        : textinput.classList.contains("large")
-        ? 20
-        : 1;
-    const LINEHEIGHT = 25;
+TextInputs.forEach(ti => {
+	const MAXLINES = getMaxLines(ti);
+	const LINEHEIGHT = 25;
 
-    textinput.addEventListener('input', function () {
-        this.style.height = 'auto';
-        const newHeight = Math.min(
-            this.scrollHeight,
-            (MAXLINES * LINEHEIGHT) + 35
-        );
-        this.style.height = newHeight + 'px';
-    });
+	ti.addEventListener("input", function () {
+		this.style.height = "auto";
+		this.style.height = Math.min(this.scrollHeight, MAXLINES * LINEHEIGHT + 35) + "px";
+	});
 });
 
-function cleanHtmlForTextarea(html) {
-    return html
-        .replace(/ /g, ' ')
-        .replace(/\u00A0/g, ' ')
-        .replace(/[\u2011\u2012\u2013\u2014\u2015‑]/g, '-')
-        .replace(/<[^>]*>/g, '')
-        .replace(/\n\s*\n\s*\n/g, '\n\n')
-        .trim();
-}
+Submit.addEventListener("click", async () => {
+	const notes  = NoteInput.value.trim();
+	const apiKey = ApiKeyInput.value.trim();
+	const modelVisible = !CustomModelInput.classList.contains("hidden");
+	const model  = modelVisible ? CustomModelInput.value.trim() : null;
+	const words  = notes.split(" ");
 
-Submit.addEventListener('click', async () => {
-    const notes = NoteInput.value.trim();
-    const apiKey = ApiKeyInput.value.trim();
-    let model = null;
+	let msg =
+		!apiKey
+			? "Enter API key."
+			: !notes
+			? "Enter notes first."
+			: words.length > 2500
+			? "Notes too long."
+			: modelVisible && !model
+			? "Enter model."
+			: "Generating...";
 
-    let msg = !apiKey ? "Enter API key."
-        : !notes ? "Enter notes first."
-        : notes.split(' ').length > 2500 ? "Notes too long."
-        : "Generating...";
+	StatusLabel.textContent = msg;
+	if (!notes || !apiKey || words.length > 2500 || (!model && CustomModel.checked)) return;
 
-    if (!CustomModelInput.classList.contains("hidden")) {
-        model = CustomModelInput.value.trim();
-        if (!model) {
-            msg = "Enter model.";
-        }
-    } else {
-        model = null;
-    }
+	try {
+		const body = {
+			notes,
+			apiKey,
+			mode: ModeSelector.value,
+			model,
+			language: LanguageSelector.value
+		};
 
-    StatusLabel.textContent = msg;
-    if (!notes || !apiKey || notes.split(' ').length > 2500 || (!model && CustomModel.checked)) return;
+		const res = await fetch("/generate", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(body)
+		});
+		const data = await res.json();
 
-    try {
-        const body = {
-            notes: notes,
-            apiKey: apiKey,
-            mode: ModeSelector.value,
-            model: model,
-            language: LanguageSelector.value
-        };
-
-        const response = await fetch('/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-        });
-
-        const data = await response.json();
-
-        if (ModeSelector.value === "enhanceNotes") {
-            const res = await fetch('/store-notes', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ notes: data.notes })
-            });
-
-            const payload = await res.json();
-            window.location.href = `/enhancedNotes?id=${encodeURIComponent(payload.id)}`;
-            return;
-        } else if (ModeSelector.value === "quiz") {
-            window.location.href = `/quiz?quiz=${encodeURIComponent(JSON.stringify(data))}`;
-        } else if (ModeSelector.value === "flashCards") {
-            window.location.href = `/flashcards`;
-        } else if (ModeSelector.value === "studyPlan") {
-            StudyPlan.classList.remove("hidden");
-            StudyPlan.textContent = data.studyPlan;
-        }
-    } catch (error) {
-        StatusLabel.textContent = "Error while generating quiz.";
-    }
+		if (ModeSelector.value === "enhanceNotes") {
+			const storeRes = await fetch("/store-notes", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ notes: data.notes })
+			});
+			const payload = await storeRes.json();
+			window.location.href = `/enhancedNotes?id=${encodeURIComponent(payload.id)}`;
+		} else if (ModeSelector.value === "quiz") {
+			window.location.href = `/quiz?quiz=${encodeURIComponent(JSON.stringify(data))}`;
+		} else if (ModeSelector.value === "flashCards") {
+			window.location.href = "/flashcards";
+		} else if (ModeSelector.value === "studyPlan") {
+			StudyPlan.classList.remove("hidden");
+			StudyPlan.textContent = data.studyPlan;
+		}
+	} catch {
+		StatusLabel.textContent = "Error while generating quiz.";
+	}
 });
 
 async function SendFile(file) {
-    const formData = new FormData();
-    formData.append("notesFile", file);
+	const formData = new FormData();
+	formData.append("notesFile", file);
 
-    NoteInput.textContent = "Loading...";
+	NoteInput.textContent = "Loading...";
 
-    const response = await fetch('/upload-notes', {
-        method: 'POST',
-        body: formData,
-    });
+	const res = await fetch("/upload-notes", { method: "POST", body: formData });
 
-    if (!response.ok) {
-        NoteInput.textContent = "File upload failed.";
-        return;
-    }
+	if (!res.ok) {
+		NoteInput.textContent = "File upload failed.";
+		return;
+	}
 
-    const data = await response.json();
-    NoteInput.textContent = data.notes;
+	const data = await res.json();
+	NoteInput.textContent = data.notes;
 
-    const MAXLINES = NoteInput.classList.contains("slim")
-        ? 1
-        : NoteInput.classList.contains("standard")
-        ? 5
-        : NoteInput.classList.contains("large")
-        ? 20
-        : 1;
-    const LINEHEIGHT = 20;
-    NoteInput.style.height = Math.min(
-        NoteInput.scrollHeight,
-        (MAXLINES * LINEHEIGHT) + 60
-    ) + 'px';
+	const MAXLINES = getMaxLines(NoteInput);
+	const LINEHEIGHT = 20;
+	NoteInput.style.height = Math.min(
+		NoteInput.scrollHeight,
+		MAXLINES * LINEHEIGHT + 60
+	) + "px";
 }
 
-window.addEventListener('load', function () {
-    const fileInputs = document.querySelectorAll('.file-input');
+window.addEventListener("load", () => {
+	document.querySelectorAll(".file-input").forEach(input => {
+		input.addEventListener("change", function () {
+			const wrapper  = this.closest(".file-upload-wrapper");
+			const display  = wrapper.querySelector(".fileButton");
 
-    fileInputs.forEach(function (input) {
-        input.addEventListener('change', function () {
-            const wrapper = this.closest('.file-upload-wrapper');
-            const displayElement = wrapper.querySelector('.fileButton');
-
-            if (this.files.length > 0) {
-                const fileNames = Array.from(this.files).map(f => f.name).join(', ');
-                displayElement.textContent = fileNames.length > 30
-                    ? `${fileNames.substring(0, 27)}...`
-                    : fileNames;
-                displayElement.classList.add('has-file');
-                SendFile(this.files[0]);
-            } else {
-                displayElement.textContent = 'No file selected';
-                displayElement.classList.remove('has-file');
-            }
-        });
-    });
+			if (this.files.length) {
+				const names = Array.from(this.files).map(f => f.name).join(", ");
+				display.textContent = names.length > 30 ? `${names.slice(0, 27)}...` : names;
+				display.classList.add("has-file");
+				SendFile(this.files[0]);
+			} else {
+				display.textContent = "No file selected";
+				display.classList.remove("has-file");
+			}
+		});
+	});
 });
