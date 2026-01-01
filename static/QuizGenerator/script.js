@@ -12,44 +12,6 @@ const QuestionSelector = document.getElementById('questionCount');
 const APIModeSelector = document.getElementById("apiMode");
 const CustomModelSelector = document.querySelector(".customModelSelector")
 
-CustomModel.addEventListener('change', () => {
-    if (CustomModel.checked) {
-        CustomModelInput.classList.remove("hidden");
-    } else {
-        CustomModelInput.classList.add("hidden");
-    }
-});
-
-APIModeSelector.addEventListener('change', () => {
-    ApiKeyInput.placeholder = `Enter your ${APIModeSelector.value} API key here!`;
-    if (APIModeSelector.value !== 'Hugging Face') {
-        CustomModelSelector.classList.add('hidden');
-        CustomModelInput.classList.add('hidden');
-    } else {
-        if (CustomModel.checked) CustomModelInput.classList.remove('hidden')
-        CustomModelSelector.classList.remove('hidden')
-    }
-});
-
-CustomModel.addEventListener('change', () => {
-    if (CustomModel.checked) {
-        CustomModelInput.classList.remove("hidden");
-    } else {
-        CustomModelInput.classList.add("hidden");
-    }
-});
-
-APIModeSelector.addEventListener('change', () => {
-    ApiKeyInput.placeholder = `Enter your ${APIModeSelector.value} API key here!`;
-    const isHuggingFace = APIModeSelector.value === 'Hugging Face';
-
-    if (!isHuggingFace) {
-      CustomModelLabel.classList.add('hidden');  
-    } else {
-      CustomModelLabel.classList.remove('hidden');
-    }
-  });
-
 TextInputs.forEach(textinput => {
     const MAXLINES = textinput.classList.contains("slim")
         ? 1

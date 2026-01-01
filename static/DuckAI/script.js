@@ -10,41 +10,13 @@ const ChatMessages = document.getElementById("chat-messages");
 const StatusLabel = document.querySelector(".status");
 const NewChat = document.getElementById("new-chat");
 
-let IsHuggingFace = true;
-
 let Messages = [];
 
 sendButton.disabled = true;
 
-function autoResize(input) {
-    input.style.height = 'auto';
-    input.style.height = Math.min(input.scrollHeight, 150) + 'px';
-}
-
 UserInput.addEventListener('input', function() {
     sendButton.disabled = userInput.value.trim().length === 0;
     autoResize(this);
-});
-
-const CustomModelSelector = document.querySelector(".customModelSelector")
-
-CustomModel.addEventListener('change', () => {
-    if (CustomModel.checked) {
-        CustomModelInput.classList.remove("hidden");
-    } else {
-        CustomModelInput.classList.add("hidden");
-    }
-});
-
-APIModeSelector.addEventListener('change', () => {
-    ApiKeyInput.placeholder = `Enter your ${APIModeSelector.value} API key here!`;
-    if (APIModeSelector.value !== 'Hugging Face') {
-        CustomModelSelector.classList.add('hidden');
-        CustomModelInput.classList.add('hidden');
-    } else {
-        if (CustomModel.checked) CustomModelInput.classList.remove('hidden')
-        CustomModelSelector.classList.remove('hidden')
-    }
 });
 
 sendButton.addEventListener('click', async () => {
