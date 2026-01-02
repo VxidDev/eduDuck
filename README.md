@@ -49,7 +49,7 @@
 | ✅ Done | DuckAI chat |
 | ✅ Done | Multi-language support |
 | ✅ Done | Dark mode + mobile UI |
-| 🔄 In Progress | Difficulty levels |
+| 🔄 In Progress | Quiz Difficulty levels |
 | ⏳ Planned | Export generated material (.eduqz , .edufc , .edunt , .educht) |
 | ⏳ Planned | User accounts & quiz history |
 | ⏳ Planned | Study progress tracking |
