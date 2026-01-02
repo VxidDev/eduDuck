@@ -10,6 +10,7 @@ const CustomModelInput = document.querySelector(".customModelInput");
 const LanguageSelector = document.getElementById("language");
 const QuestionSelector = document.getElementById("questionCount");
 const APIModeSelector  = document.getElementById("apiMode");
+const QuizDifficulty   = document.getElementById("difficulty");
 
 CustomModelListeners();
 
@@ -40,6 +41,7 @@ Submit.addEventListener("click", async () => {
 	const modelVisible = !CustomModelInput.classList.contains("hidden");
 	const model  = modelVisible ? CustomModelInput.value.trim() : null;
 	const words  = notes.split(" ");
+	const difficulty = QuizDifficulty.value.trim();
 
 	let msg =
 		!apiKey
@@ -62,7 +64,8 @@ Submit.addEventListener("click", async () => {
 			model,
 			language: LanguageSelector.value.trim(),
 			questionCount: QuestionSelector.value.trim(),
-			apiMode: APIModeSelector.value.trim()
+			apiMode: APIModeSelector.value.trim(),
+			difficulty
 		};
 
 		const res1 = await fetch("/quiz-generator/gen-quiz", {

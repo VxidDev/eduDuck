@@ -22,38 +22,69 @@ def ParseQuiz(quiz: str):
     text = re.sub(r'[\u2013\u2014\u2015\u2011‑–—]', '-', quiz)
     text = re.sub(r'\s+', ' ', text).strip()
     
-    pattern = r'(\d+)\s+([^|]+?a\)[^|]*?b\)[^|]*?c\)[^|]*?d\)[^|]*?)\|?CORRECT:([abcd])'
-    matches = re.finditer(pattern, text, re.IGNORECASE | re.DOTALL)
+    blocks = re.split(r'(\|\s*CORRECT\s*:\s*[a-dA-D]\|)', text)
     
-    for match in matches:
-        q_num, full_text, correct = match.groups()
-        correct = correct.lower()
+    i = 0
+    while i < len(blocks):
+        if re.match(r'^\d+\s', blocks[i].strip()):
+            q_num_match = re.match(r'(\d+)\s', blocks[i])
+            if not q_num_match:
+                i += 1
+                continue
+            q_num = q_num_match.group(1)
+            
+            j = i + 1
+            question_end = len(blocks)
+            while j < len(blocks):
+                if re.match(r'^\|\s*CORRECT\s*:', blocks[j]):
+                    question_end = j
+                    break
+                j += 1
+            
+            full_text = ''.join(blocks[i:question_end]).strip()
+            
+            correct_match = re.search(r'\|\s*CORRECT\s*:\s*([a-dA-D])', ''.join(blocks[question_end-1:question_end+1]))
+            if not correct_match:
+                i = question_end
+                continue
+            correct = correct_match.group(1).lower()
+            
+            a_pos = re.search(r'\ba\)\s', full_text, re.I)
+            if not a_pos:
+                i = question_end
+                continue
+            
+            question = full_text[:a_pos.start()].strip(' ?.,:;-?!0123456789 \t')
+            options_text = full_text[a_pos.start():].strip()
+            
+            label_pattern = r'(?i)\b([a-d])\)\s*'
+            opt_splits = re.split(label_pattern, options_text)
+            
+            answers = {}
+            current_label = None
+            current_opt = ''
+            
+            for part in opt_splits:
+                label_match = re.match(r'(?i)^([a-d])$', part)
+                if label_match:
+                    if current_label:
+                        answers[current_label.lower()] = current_opt.strip(' .,!?;:')
+                    current_label = label_match.group(1).lower()
+                    current_opt = ''
+                else:
+                    current_opt += part
+            
+            if current_label:
+                answers[current_label.lower()] = current_opt.strip(' .,!?;:')
+            
+            if set('abcd') <= set(answers.keys()):
+                questions[q_num] = {
+                    'question': question,
+                    'answers': answers,
+                    'correct': correct
+                }
         
-        a_pos = re.search(r'a\)', full_text)
-        if not a_pos:
-            continue
-        question = full_text[:a_pos.start()].strip(' ?.,:;-?!0123456789')
-        options_text = full_text[a_pos.start():].strip()
-        
-        answers = {}
-        opt_patterns = [
-            (r'a\)\s*([^b][^.?!,]*?)(?=\s*b\)|$)', 'a'),
-            (r'b\)\s*([^c][^.?!,]*?)(?=\s*c\)|$)', 'b'),
-            (r'c\)\s*([^d][^.?!,]*?)(?=\s*d\)|$)', 'c'),
-            (r'd\)\s*([^.!?]+)', 'd')
-        ]
-        
-        for pat, key in opt_patterns:
-            m = re.search(pat, options_text, re.I)
-            if m:
-                answers[key] = m.group(1).strip()
-        
-        if len(answers) == 4:
-            questions[q_num] = {
-                'question': question,
-                'answers': answers,
-                'correct': correct
-            }
+        i += 2
     
     return questions
 
@@ -97,6 +128,7 @@ def QuizGen(prompts: dict):
     LANGUAGE = data["language"]
     AMOUNT = data["questionCount"]
     API_MODE = data["apiMode"]
+    DIFFICULTY = data["difficulty"]
 
     API_KEY = data["apiKey"]
     API_URL = "https://router.huggingface.co/v1/chat/completions" if API_MODE == "Hugging Face" else f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
@@ -110,7 +142,7 @@ def QuizGen(prompts: dict):
     if PROMPT == None:
         return jsonify({'quiz': 'Internal Error: PROMPT NOT FOUND'})
     else:
-        PROMPT = PROMPT.format(NOTES=NOTES , LANGUAGE=LANGUAGE, AMOUNT=AMOUNT)
+        PROMPT = PROMPT.format(NOTES=NOTES , LANGUAGE=LANGUAGE, AMOUNT=AMOUNT , DIFFICULTY=DIFFICULTY)
 
     payload = {
         "messages": [{

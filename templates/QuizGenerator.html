@@ -44,13 +44,23 @@
         
         <textarea class="notes textInput standard" placeholder="Notes go here :]"></textarea>
         
-        <div class="options-section">
-            <select id="questionCount" class="select">
-                <option value="5">5 Questions</option>
-                <option value="10">10 Questions</option>
-                <option value="15">15 Questions</option>
-                <option value="20">20 Questions</option>
-            </select>
+        <div class="selectors" style="display: flex; gap: 25px; justify-content: center;">
+            <div class="options-section">
+                <select id="questionCount" class="select">
+                    <option value="5">5 Questions</option>
+                    <option value="10">10 Questions</option>
+                    <option value="15">15 Questions</option>
+                    <option value="20">20 Questions</option>
+                </select>
+            </div>
+            <div class="difficulty-section">
+                <select id="difficulty" class="select"> 
+                    <option value="easy">🟢 Easy - Quick Recall</option>
+                    <option value="medium">🟡 Medium - Apply It</option>
+                    <option value="hard">🟠 Hard - Deep Think</option>
+                    <option value="challenging">🔴 Challenging - Master Mode</option>
+                </select>
+            </div>
         </div>
         
         <label for="language">Output Language:</label>

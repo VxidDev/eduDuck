@@ -1,15 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     const quizContainer = document.getElementById('quizContainer');
     const rawJson = quizContainer.dataset.notes || '""';
-    console.log(`Raw JSON: ${rawJson}`)
     
     try {
-        const quizData = JSON.parse(rawJson);
-        if (!quizData || Object.keys(quizData).length === 0) {
+        const parsedData = JSON.parse(rawJson);
+        window.quizData = parsedData;
+        
+        if (!parsedData || Object.keys(parsedData).length === 0) {
             quizContainer.innerHTML = '<p>Failed to load quiz!</p>';
             return;
         }
-        renderQuiz(quizData);
+        renderQuiz(parsedData);
+        quizContainer.removeAttribute('data-notes');
         document.getElementById('submitQuiz').style.display = 'block';
     } catch (e) {
         quizContainer.innerHTML = '<p>Invalid quiz data!</p>';
@@ -21,7 +23,6 @@ function renderQuiz(quizData) {
     let html = '';
     for (let num in quizData) {
         const q = quizData[num];
-        console.log(`Question: ${q}`)
         html += `
             <div class="quiz-question" data-num="${num}">
                 <h3>${num}. ${q.question}</h3>
@@ -36,9 +37,7 @@ function renderQuiz(quizData) {
 }
 
 document.getElementById('submitQuiz').addEventListener('click', async () => {
-    const quizContainer = document.getElementById('quizContainer');
-    const quizData = JSON.parse(quizContainer.dataset.notes);
-    await submitQuiz(quizData);
+    await submitQuiz(window.quizData);
 });
 
 async function submitQuiz(quizData) {
