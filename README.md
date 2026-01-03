@@ -60,6 +60,10 @@
 **Code**: [VxidDev](https://github.com/VxidDev)  
 **Testing**: [VxidDev](https://github.com/VxidDev)
 
+**Sponsors**: 
+---
+### Deathtyr - 20$ | "Invest in this guy, makes life easier (I really said that!)"
+
 ## 💰 Support the Project
 
 <div align="center">
