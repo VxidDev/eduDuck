@@ -12,6 +12,7 @@ from routes.quiz import quiz as _quiz_
 from routes.quiz import submitResult as _submitResult_
 from routes.quiz import QuizGen as _QuizGen_
 from routes.quiz import ImportQuiz as _ImportQuiz_
+from routes.quiz import ExportQuiz as _ExportQuiz_
 
 from routes.noteEnhancer import EnhanceNotes as _EnhanceNotes_
 from routes.noteEnhancer import NoteEnhancer as _NoteEnhancer_
@@ -70,6 +71,10 @@ def QuizGen():
 @app.route('/quiz-generator/import-quiz' , methods=['POST'] , endpoint='importQuiz')
 def ImportQuiz():
     return _ImportQuiz_(quizzes)
+
+@app.route('/quiz-generator/export-quiz' , endpoint='exportQuiz')
+def ExportQuiz():
+    return _ExportQuiz_(quizzes)
 
 @app.route('/quiz-generator/quiz/result', endpoint='quizResultPage')
 def result_page():

@@ -62,3 +62,12 @@ async function submitQuiz(quizData) {
         console.error('Submit error:', error);
     }
 }
+
+document.querySelector(".export").addEventListener("click", async () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("quiz");
+    if (!id) return;
+
+    window.open(`/quiz-generator/export-quiz?quiz=${encodeURIComponent(id)}`)
+});
+
