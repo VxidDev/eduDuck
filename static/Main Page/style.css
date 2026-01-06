@@ -250,14 +250,14 @@ body {
     line-height: 1.75;
 }
 
-.feature-card:last-of-type {
+.feature-card-duckai {
     border-top-color: var(--accent-danger);
-    max-width: 500px;
 }
 
-.feature-card:last-of-type::before {
+.feature-card-duckai::before {
     background: linear-gradient(90deg, var(--accent-danger), var(--accent-danger-dark), var(--accent-danger));
 }
+
 
 footer {
     text-align: center;
