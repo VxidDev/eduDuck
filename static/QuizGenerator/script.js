@@ -115,6 +115,32 @@ async function SendFile(file) {
 	) + "px";
 }
 
+async function LoadQuiz(file) {
+	const formData = new FormData();
+	formData.append("quizFile", file);
+
+	StatusLabel.textContent = "Loading...";
+
+	const res = await fetch("/quiz-generator/import-quiz", {
+		method: "POST",
+		body: formData
+	});
+
+	if (!res.ok) {
+		StatusLabel.textContent = "File upload failed.";
+		return;
+	}
+
+	const data = await res.json();
+
+	if (!data.err) {
+		window.location.href = `/quiz-generator/quiz?quiz=${encodeURIComponent(data.id)}`;
+    } else {
+		StatusLabel.textContent = data.err
+	}
+
+}
+
 window.addEventListener("load", () => {
 	document.querySelectorAll(".file-input").forEach(input => {
 		input.addEventListener("change", function () {
@@ -125,7 +151,11 @@ window.addEventListener("load", () => {
 				const names = Array.from(this.files).map(f => f.name).join(", ");
 				display.textContent = names.length > 30 ? `${names.slice(0, 27)}...` : names;
 				display.classList.add("has-file");
-				SendFile(this.files[0]);
+				if (!this.classList.contains("import")) {
+					SendFile(this.files[0])
+				} else {
+					LoadQuiz(this.files[0])
+				}
 			} else {
 				display.textContent = "No file selected";
 				display.classList.remove("has-file");
