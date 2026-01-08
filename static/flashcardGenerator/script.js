@@ -13,6 +13,8 @@ const APIModeSelector    = document.getElementById("apiMode");
 const AmountSelector     = document.getElementById("questionCount");
 const CustomModelSelector= document.querySelector(".customModelSelector");
 
+StatusLabel.textContent = '';
+
 CustomModelListeners();
 
 function getMaxLines(el) {

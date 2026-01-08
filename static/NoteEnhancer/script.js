@@ -1,3 +1,6 @@
+import { InitFileUploads } from "../Components/FileUploadHandler.js";
+import { CustomModelListeners } from "../Components/ModelSelector.js";
+
 const NoteInput        = document.querySelector(".notes");
 const Submit           = document.querySelector(".submit");
 const StatusLabel      = document.querySelector(".status");
@@ -7,6 +10,10 @@ const CustomModel      = document.getElementById("customModel");
 const CustomModelInput = document.querySelector(".customModelInput");
 const LanguageSelector = document.getElementById("language");
 const APIModeSelector  = document.getElementById("apiMode");
+
+StatusLabel.textContent = '';
+
+CustomModelListeners();
 
 const getMaxLines = el =>
 	el.classList.contains("slim")
@@ -106,21 +113,32 @@ async function SendFile(file) {
 	) + "px";
 }
 
-window.addEventListener("load", () => {
-	document.querySelectorAll(".file-input").forEach(input => {
-		input.addEventListener("change", function () {
-			const wrapper = this.closest(".file-upload-wrapper");
-			const display = wrapper.querySelector(".fileButton");
+async function ImportData(file) {
+	const formData = new FormData();
+	formData.append("noteFile", file);
 
-			if (this.files.length) {
-				const names = Array.from(this.files).map(f => f.name).join(", ");
-				display.textContent = names.length > 30 ? `${names.slice(0, 27)}...` : names;
-				display.classList.add("has-file");
-				SendFile(this.files[0]);
-			} else {
-				display.textContent = "No file selected";
-				display.classList.remove("has-file");
-			}
-		});
+	StatusLabel.textContent = "Loading...";
+
+	const res = await fetch("/note-enhancer/import-notes", {
+		method: "POST",
+		body: formData
 	});
-});
+
+	if (!res.ok) {
+		StatusLabel.textContent = "File upload failed.";
+		return;
+	}
+
+	const data = await res.json();
+
+	if (!data.err) {
+		window.location.href = `/note-enhancer/result?notes=${encodeURIComponent(data.id)}`;
+    } else {
+		StatusLabel.textContent = data.err
+	}
+}
+
+InitFileUploads({
+	onRegularFile: SendFile,
+	onImportFile: ImportData
+})

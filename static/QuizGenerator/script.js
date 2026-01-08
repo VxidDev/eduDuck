@@ -1,4 +1,5 @@
 import { CustomModelListeners } from "../Components/ModelSelector.js";
+import { InitFileUploads } from "../Components/FileUploadHandler.js"
 
 const NoteInput        = document.querySelector(".notes");
 const Submit           = document.querySelector(".submit");
@@ -11,6 +12,8 @@ const LanguageSelector = document.getElementById("language");
 const QuestionSelector = document.getElementById("questionCount");
 const APIModeSelector  = document.getElementById("apiMode");
 const QuizDifficulty   = document.getElementById("difficulty");
+
+StatusLabel.textContent = '';
 
 CustomModelListeners();
 
@@ -115,7 +118,7 @@ async function SendFile(file) {
 	) + "px";
 }
 
-async function LoadQuiz(file) {
+async function ImportData(file) {
 	const formData = new FormData();
 	formData.append("quizFile", file);
 
@@ -138,28 +141,9 @@ async function LoadQuiz(file) {
     } else {
 		StatusLabel.textContent = data.err
 	}
-
 }
 
-window.addEventListener("load", () => {
-	document.querySelectorAll(".file-input").forEach(input => {
-		input.addEventListener("change", function () {
-			const wrapper = this.closest(".file-upload-wrapper");
-			const display = wrapper.querySelector(".fileButton");
-
-			if (this.files.length) {
-				const names = Array.from(this.files).map(f => f.name).join(", ");
-				display.textContent = names.length > 30 ? `${names.slice(0, 27)}...` : names;
-				display.classList.add("has-file");
-				if (!this.classList.contains("import")) {
-					SendFile(this.files[0])
-				} else {
-					LoadQuiz(this.files[0])
-				}
-			} else {
-				display.textContent = "No file selected";
-				display.classList.remove("has-file");
-			}
-		});
-	});
-});
+InitFileUploads({
+	onRegularFile: SendFile,
+	onImportFile: ImportData
+})

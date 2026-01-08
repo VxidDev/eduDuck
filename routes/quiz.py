@@ -219,7 +219,7 @@ def ExportQuiz(quizzes: dict) -> None:
         
     return send_file(
         buffer, as_attachment=True,
-        download_name="quiz.json",
+        download_name=f"EduDuck-Quiz_{quizID}.json",
         mimetype="application/json"
     )
 

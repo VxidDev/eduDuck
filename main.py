@@ -17,6 +17,8 @@ from routes.quiz import ExportQuiz as _ExportQuiz_
 from routes.noteEnhancer import EnhanceNotes as _EnhanceNotes_
 from routes.noteEnhancer import NoteEnhancer as _NoteEnhancer_
 from routes.noteEnhancer import EnhancedNotes as _EnhancedNotes_
+from routes.noteEnhancer import ImportNotes as _ImportEnhancedNotes_
+from routes.noteEnhancer import ExportNotes as _ExportEnhancedNotes_
 
 from routes.flashcardGenerator import FlashCardGenerator as _FlashCardGenerator_
 from routes.flashcardGenerator import FlashcardGenerator as _FlashcardGenerator_
@@ -96,6 +98,14 @@ def EnhancedNotes():
 @app.route('/note-enhancer', endpoint='noteEnhancer')
 def NoteEnhance():
     return _NoteEnhancer_()
+
+@app.route('/note-enhancer/import-notes' , methods=['POST'] , endpoint='importEnhancedNotes')
+def ImportEnhancedNotes():
+    return _ImportEnhancedNotes_(notes)
+
+@app.route('/note-enhancer/export-notes' , endpoint='exportEnhancedNotes')
+def ExportEnhancedNotes():
+    return _ExportEnhancedNotes_(notes)
 
 @app.route('/note-enhancer/enhance', methods=['POST'], endpoint='enhanceNotes')
 def EnhanceNotes():
