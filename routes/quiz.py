@@ -1,6 +1,9 @@
 import re
-from flask import render_template , request , jsonify
+from flask import render_template , request , jsonify , send_file
 from routes.utils import AiReq
+from json import load , JSONDecodeError , dumps
+from uuid import uuid4
+from io import BytesIO
 
 standardApiErrors = {
     "API error 402": "1 What does API error 402 mean? a) Payment error b) Deposit needed c) Free credits exhausted d) Invalid API key |CORRECT:c",
@@ -190,3 +193,34 @@ def QuizGen(prompts: dict):
     print(quiz)
 
     return jsonify({'quiz': quiz})
+
+def ImportQuiz(quizzes: dict) -> None:
+    file = request.files.get("quizFile")      
+    file.stream.seek(0)
+
+    try:                
+        data = load(file.stream)
+    except JSONDecodeError:
+        return jsonify({"err": "Invalid Quiz!"})
+
+    quizID = str(uuid4())
+    quizzes[quizID] = data
+    print("STORED", quizID, "len:", len(data))
+
+    return jsonify({'id': quizID , "err": None})
+
+def ExportQuiz(quizzes: dict) -> None:
+    quizID = request.args.get("quiz")
+
+    quiz = quizzes.get(quizID)
+
+    buffer = BytesIO(dumps(quiz, indent=2).encode("utf-8"))
+    buffer.seek(0)
+        
+    return send_file(
+        buffer, as_attachment=True,
+        download_name=f"EduDuck-Quiz_{quizID}.json",
+        mimetype="application/json"
+    )
+
+    

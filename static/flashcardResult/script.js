@@ -46,3 +46,11 @@ function flipCard(card) {
 	card.setAttribute("aria-expanded", !isFlipped);
 	question.setAttribute("aria-label", isFlipped ? "Show answer" : "Hide answer");
 }
+
+document.querySelector(".export").addEventListener("click", async () => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    if (!id) return;
+
+    window.open(`/flashcard-generator/export-flashcards?id=${encodeURIComponent(id)}`)
+});

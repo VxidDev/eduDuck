@@ -43,7 +43,7 @@
         </p>
 
         <div class="features">
-            <div class="feature-card" style="max-width: 500px; margin: 0 auto;">
+            <div class="feature-card feature-card-duckai" style="max-width: 500px; margin: 0 auto;">
                 <h3><a href="/duck-ai">🦆 DuckAI</a></h3>
                 <p>Your smart study companion—explain concepts, quiz help, remembers your notes! 🚀</p>
             </div>
@@ -54,19 +54,6 @@
             <span class="">By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2025</span>
     </footer>
 
-    <script>
-        const body = document.body;
-        const toggle = document.getElementById('theme-toggle');
-
-        if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark');
-        }
-
-        toggle.addEventListener('click', () => {
-        body.classList.toggle('dark');
-        localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-        });
-    </script>
-
+    <script src="/static/Components/DarkModeToggle.js"></script>
 </body>
 </html>

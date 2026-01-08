@@ -63,6 +63,10 @@
         </select>
         
         <button class="button submit" style="width: auto;">✨ Generate Flashcards</button>
+        <div class="file-upload-wrapper">
+            <input type="file" id="quizfileInput" class="file-input import" accept=".json"/>
+            <label for="quizfileInput" class="button fileButton">📄 Import Flashcards</label>
+        </div>
         <span class="status"></span>
     </div>
     </div>
@@ -71,18 +75,6 @@
         <span class="">Flashcard generator by <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2025</span>
     </footer>
 
-    <script>
-        const body = document.body;
-        const toggle = document.getElementById('theme-toggle');
-
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark');
-        }
-
-        toggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-        });
-    </script>
+    <script src="/static/Components/DarkModeToggle.js"></script>
 </body>
 </html>

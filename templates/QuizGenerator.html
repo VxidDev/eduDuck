@@ -38,8 +38,8 @@
         <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!"></textarea>
         
         <div class="file-upload-wrapper">
-            <input type="file" id="fileInput" class="file-input" accept=".txt,.png,.jpg,.jpeg,.pdf"/>
-            <label for="fileInput" class="button fileButton">📄 Upload notes file</label>
+            <input type="file" id="notesfileInput" class="file-input" accept=".txt,.png,.jpg,.jpeg,.pdf"/>
+            <label for="notesfileInput" class="button fileButton">📄 Upload notes file</label>
         </div>
         
         <textarea class="notes textInput standard" placeholder="Notes go here :]"></textarea>
@@ -74,6 +74,10 @@
         </select>
         
         <button class="button submit">🚀 Generate Quiz</button>
+        <div class="file-upload-wrapper">
+            <input type="file" id="quizfileInput" class="file-input import" accept=".json"/>
+            <label for="quizfileInput" class="button fileButton">📄 Import Quiz</label>
+        </div>
         <span class="status"></span>
     </div>
     </div>
@@ -82,18 +86,6 @@
         <span class="">Quiz Generator by <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2025</span>
     </footer>
 
-    <script>
-        const body = document.body;
-        const toggle = document.getElementById('theme-toggle');
-
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark');
-        }
-
-        toggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-        });
-    </script>
+    <script src="/static/Components/DarkModeToggle.js"></script>
 </body>
 </html>

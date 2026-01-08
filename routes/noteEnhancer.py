@@ -1,4 +1,6 @@
-from flask import render_template , request , jsonify
+from flask import render_template , request , jsonify , send_file
+from io import BytesIO
+from uuid import uuid4
 from routes.utils import AiReq
 
 def NoteEnhancer():
@@ -58,3 +60,29 @@ def EnhancedNotes(notes: dict):
     notes = notes.get(noteID, '') if noteID else ''
     print("READ", noteID, "found:", bool(notes))
     return render_template('enhancedNotes.html', notes=notes)
+
+def ImportNotes(notes: dict) -> None:
+    file = request.files.get("noteFile")      
+    file.stream.seek(0)
+
+    data = file.read().decode("utf-8")
+
+    noteID = str(uuid4())
+    notes[noteID] = data
+    print("STORED", noteID, "len:", len(data))
+
+    return jsonify({"id": noteID})
+
+def ExportNotes(notes: dict) -> None:
+    notesID = request.args.get("notes")
+
+    Notes = notes.get(notesID)
+
+    buffer = BytesIO(Notes.encode("utf-8"))
+    buffer.seek(0)
+        
+    return send_file(
+        buffer, as_attachment=True,
+        download_name=f"EduDuck-EnhancedNotes_{notesID}.txt",
+        mimetype="text/plain"
+    )

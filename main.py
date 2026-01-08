@@ -11,14 +11,20 @@ from routes.quiz import QuizGenerator as _QuizGenerator_
 from routes.quiz import quiz as _quiz_
 from routes.quiz import submitResult as _submitResult_
 from routes.quiz import QuizGen as _QuizGen_
+from routes.quiz import ImportQuiz as _ImportQuiz_
+from routes.quiz import ExportQuiz as _ExportQuiz_
 
 from routes.noteEnhancer import EnhanceNotes as _EnhanceNotes_
 from routes.noteEnhancer import NoteEnhancer as _NoteEnhancer_
 from routes.noteEnhancer import EnhancedNotes as _EnhancedNotes_
+from routes.noteEnhancer import ImportNotes as _ImportEnhancedNotes_
+from routes.noteEnhancer import ExportNotes as _ExportEnhancedNotes_
 
 from routes.flashcardGenerator import FlashCardGenerator as _FlashCardGenerator_
 from routes.flashcardGenerator import FlashcardGenerator as _FlashcardGenerator_
 from routes.flashcardGenerator import FlashCardResult as _FlashCardResult_
+from routes.flashcardGenerator import ImportFlashcards as _ImportFlashcards_
+from routes.flashcardGenerator import ExportFlashcards as _ExportFlashcards_
 
 from routes.duckAI import DuckAI as _DuckAI_
 from routes.duckAI import GenerateResponse as _GenerateResponse_
@@ -66,6 +72,14 @@ def submitResult():
 def QuizGen():
     return _QuizGen_(prompts)
 
+@app.route('/quiz-generator/import-quiz' , methods=['POST'] , endpoint='importQuiz')
+def ImportQuiz():
+    return _ImportQuiz_(quizzes)
+
+@app.route('/quiz-generator/export-quiz' , endpoint='exportQuiz')
+def ExportQuiz():
+    return _ExportQuiz_(quizzes)
+
 @app.route('/quiz-generator/quiz/result', endpoint='quizResultPage')
 def result_page():
     return render_template('QuizResult.html')
@@ -87,6 +101,14 @@ def EnhancedNotes():
 def NoteEnhance():
     return _NoteEnhancer_()
 
+@app.route('/note-enhancer/import-notes' , methods=['POST'] , endpoint='importEnhancedNotes')
+def ImportEnhancedNotes():
+    return _ImportEnhancedNotes_(notes)
+
+@app.route('/note-enhancer/export-notes' , endpoint='exportEnhancedNotes')
+def ExportEnhancedNotes():
+    return _ExportEnhancedNotes_(notes)
+
 @app.route('/note-enhancer/enhance', methods=['POST'], endpoint='enhanceNotes')
 def EnhanceNotes():
     return _EnhanceNotes_(prompts)
@@ -107,6 +129,14 @@ def storeFlashcards():
 @app.route('/flashcard-generator/result' , endpoint='flashCardResult')
 def flashCardResult():
     return _FlashCardResult_(flashcards)
+
+@app.route('/flashcard-generator/import-flashcards' , methods=['POST'] , endpoint='flashCardImport')
+def ImportFlashcards():
+    return _ImportFlashcards_(flashcards)
+
+@app.route('/flashcard-generator/export-flashcards' , endpoint='flashCardExport')
+def ExportFlashcards():
+    return _ExportFlashcards_(flashcards)
 
 # -------------- DuckAI -----------------------------------
 @app.route('/duck-ai' , endpoint='DuckAI')

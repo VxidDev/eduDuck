@@ -12,4 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	Display.innerHTML = md.render(raw);
+	Display.innerHTML += '<button class="button export" style="margin-bottom: 25px;">📄 Export Quiz</button>';
+
+	document.querySelector(".export").addEventListener("click", async () => {
+		const params = new URLSearchParams(window.location.search);
+		const id = params.get("notes");
+		if (!id) return;
+
+		window.open(`/note-enhancer/export-notes?notes=${encodeURIComponent(id)}`)
+	});
 });

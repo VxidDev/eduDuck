@@ -50,7 +50,8 @@
 | ✅ Done | Multi-language support |
 | ✅ Done | Dark mode + mobile UI |
 | ✅ Done | Quiz Difficulty levels |
-| 🔄 In Progress | Export generated material (.eduqz , .edufc , .edunt , .educht) |
+| ✅ Done | Export generated material (.json) |
+| 🔄 In Progress | UI/UX improvements. |
 | ⏳ Planned | User accounts & quiz history |
 | ⏳ Planned | Study progress tracking |
 

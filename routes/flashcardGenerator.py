@@ -1,5 +1,8 @@
 from routes.utils import AiReq
-from flask import render_template , request , jsonify
+from flask import render_template , request , jsonify , send_file
+from json import load , JSONDecodeError , dumps
+from uuid import uuid4
+from io import BytesIO
 
 standardApiErrors = {
     "API error 402": "What does API error 402 mean? | Free credits exhausted ~",
@@ -107,3 +110,32 @@ def FlashCardResult(flashcards: dict) -> None:
     Flashcards = flashcards.get(flashcardId)
     print("READ", flashcardId, "found:", bool(Flashcards))
     return render_template("flashcards.html", flashcards=Flashcards)
+
+def ImportFlashcards(flashcards: dict) -> None:
+    file = request.files.get("flashcardFile")      
+    file.stream.seek(0)
+
+    try:                
+        data = load(file.stream)
+    except JSONDecodeError:
+        return jsonify({"err": "Invalid Flashcards!"})
+
+    flashcardID = str(uuid4())
+    flashcards[flashcardID] = data
+    print("STORED", flashcardID, "len:", len(data))
+
+    return jsonify({'id': flashcardID , "err": None})
+
+def ExportFlashcards(flashcards: dict) -> None:
+    flashcardID = request.args.get("id")
+    Flashcards = flashcards.get(flashcardID)
+
+    buffer = BytesIO(dumps(Flashcards, indent=2).encode("utf-8"))
+    buffer.seek(0)
+        
+    return send_file(
+        buffer, as_attachment=True,
+        download_name=f"EduDuck-Flashcards_{flashcardID}.json",
+        mimetype="application/json"
+    )
+
