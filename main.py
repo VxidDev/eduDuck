@@ -23,6 +23,8 @@ from routes.noteEnhancer import ExportNotes as _ExportEnhancedNotes_
 from routes.flashcardGenerator import FlashCardGenerator as _FlashCardGenerator_
 from routes.flashcardGenerator import FlashcardGenerator as _FlashcardGenerator_
 from routes.flashcardGenerator import FlashCardResult as _FlashCardResult_
+from routes.flashcardGenerator import ImportFlashcards as _ImportFlashcards_
+from routes.flashcardGenerator import ExportFlashcards as _ExportFlashcards_
 
 from routes.duckAI import DuckAI as _DuckAI_
 from routes.duckAI import GenerateResponse as _GenerateResponse_
@@ -127,6 +129,14 @@ def storeFlashcards():
 @app.route('/flashcard-generator/result' , endpoint='flashCardResult')
 def flashCardResult():
     return _FlashCardResult_(flashcards)
+
+@app.route('/flashcard-generator/import-flashcards' , methods=['POST'] , endpoint='flashCardImport')
+def ImportFlashcards():
+    return _ImportFlashcards_(flashcards)
+
+@app.route('/flashcard-generator/export-flashcards' , endpoint='flashCardExport')
+def ExportFlashcards():
+    return _ExportFlashcards_(flashcards)
 
 # -------------- DuckAI -----------------------------------
 @app.route('/duck-ai' , endpoint='DuckAI')

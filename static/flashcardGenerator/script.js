@@ -1,5 +1,6 @@
 import { ValidateInput } from "../Components/ValidateInput.js";
 import { CustomModelListeners } from "../Components/ModelSelector.js"
+import { InitFileUploads } from "../Components/FileUploadHandler.js";
 
 const NoteInput          = document.querySelector(".notes");
 const Submit             = document.querySelector(".submit");
@@ -104,21 +105,33 @@ async function SendFile(file) {
 	) + "px";
 }
 
-window.addEventListener("load", () => {
-	document.querySelectorAll(".file-input").forEach(input => {
-		input.addEventListener("change", function () {
-			const wrapper = this.closest(".file-upload-wrapper");
-			const display = wrapper.querySelector(".fileButton");
+async function ImportData(file) {
+	const formData = new FormData();
+	formData.append("flashcardFile", file);
 
-			if (this.files.length) {
-				const names = Array.from(this.files).map(f => f.name).join(", ");
-				display.textContent = names.length > 30 ? `${names.slice(0, 27)}...` : names;
-				display.classList.add("has-file");
-				SendFile(this.files[0]);
-			} else {
-				display.textContent = "No file selected";
-				display.classList.remove("has-file");
-			}
-		});
+	StatusLabel.textContent = "Loading...";
+
+	const res = await fetch("/flashcard-generator/import-flashcards", {
+		method: "POST",
+		body: formData
 	});
+
+	if (!res.ok) {
+		StatusLabel.textContent = "File upload failed.";
+		return;
+	}
+
+	const data = await res.json();
+
+	if (!data.err) {
+		window.location.href = `/flashcard-generator/result?id=${encodeURIComponent(data.id)}`;
+    } else {
+		StatusLabel.textContent = data.err;
+	}
+}
+
+
+InitFileUploads({
+	onRegularFile: SendFile,
+	onImportFile: ImportData
 });
