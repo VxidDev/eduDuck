@@ -12,9 +12,23 @@ def AiReq(API_URL, headers, payload, mode, timeout=60):
         
         if response.status_code == 200:
             result = response.json()
-            data = (result["choices"][0]['message']['content'] if result else "API error: Failed to extract JSON.") if mode == "Hugging Face" else "".join([part["text"] for part in result["candidates"][0]["content"]["parts"]])
+            if not result:
+                data = "API error: Failed to extract JSON."
+
+            elif mode == "OpenAI":
+                data = result["choices"][0]["message"]["content"]
+
+            elif mode == "Hugging Face":
+                data = result["choices"][0]["message"]["content"]
+
+            else: 
+                data = "".join(
+                    part["text"]
+                    for part in result["candidates"][0]["content"]["parts"]
+                )
             return data
         else:
+            print(response.json())
             return f'API error {response.status_code}'
             
     except Exception as err:

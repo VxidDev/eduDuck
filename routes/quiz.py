@@ -132,14 +132,30 @@ def QuizGen(prompts: dict):
     AMOUNT = data["questionCount"]
     API_MODE = data["apiMode"]
     DIFFICULTY = data["difficulty"]
+    MODEL = data.get("model")
 
     API_KEY = data["apiKey"]
-    API_URL = "https://router.huggingface.co/v1/chat/completions" if API_MODE == "Hugging Face" else f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
-    headers = {"Authorization": f"Bearer {API_KEY}"} if API_MODE == "Hugging Face" else  {
-        "Content-Type": "application/json",
-        "x-goog-api-key": API_KEY,
-    }
     
+    if API_MODE == "Hugging Face": 
+        API_URL = "https://router.huggingface.co/v1/chat/completions" 
+    elif API_MODE == "Gemini":
+        API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={API_KEY}"
+    else:
+        API_URL = "https://api.openai.com/v1/chat/completions"
+
+    if API_MODE == "Hugging Face":
+        headers = {"Authorization": f"Bearer {API_KEY}"}
+    elif API_MODE == "OpenAI":
+        headers = {
+            "Authorization": f"Bearer {API_KEY}",
+            "Content-Type": "application/json"
+        }
+    else: 
+        headers = {
+            "Content-Type": "application/json",
+            "x-goog-api-key": API_KEY
+        }
+
     PROMPT = prompts['quiz']
 
     if PROMPT == None:
@@ -147,25 +163,26 @@ def QuizGen(prompts: dict):
     else:
         PROMPT = PROMPT.format(NOTES=NOTES , LANGUAGE=LANGUAGE, AMOUNT=AMOUNT , DIFFICULTY=DIFFICULTY)
 
-    payload = {
-        "messages": [{
-            "role": "user",
-            "content": PROMPT
-        }],
-        "model": data.get("model" , "openai/gpt-oss-20b")
-    } if API_MODE == "Hugging Face" else {
-        "contents": [
-            {
+    if API_MODE == "Hugging Face":
+        payload = {
+            "messages": [{"role": "user", "content": PROMPT}],
+            "model": data.get("model") or "openai/gpt-oss-20b"
+        }
+    elif API_MODE == "OpenAI":
+        payload = {
+            "model": MODEL if MODEL else "gpt-4.1-nano",
+            "messages": [{"role": "user", "content": PROMPT}],
+            "temperature": 0.3,
+            "max_tokens": 4000,  
+            "top_p": 0.9
+        }
+    elif API_MODE == "Gemini":
+        payload = {
+            "contents": [{
                 "role": "user",
-                "parts": [
-                    {"text": PROMPT}
-                ],
-            }
-        ]
-    }
-
-    if API_MODE != "Gemini" and payload.get("model" , None) is None:
-        payload["model"] = "openai/gpt-oss-20b"
+                "parts": [{"text": PROMPT}]
+            }]
+        }
 
     if payload and API_MODE == "Hugging Face": print(f"Model: {payload["model"]}") 
 

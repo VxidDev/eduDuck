@@ -50,8 +50,7 @@
 | ✅ Done | Multi-language support |
 | ✅ Done | Dark mode + mobile UI |
 | ✅ Done | Quiz Difficulty levels |
-| ✅ Done | Export generated material (.json) |
-| 🔄 In Progress | UI/UX improvements. |
+| 🔄 In Progress | Export generated material (.json) |
 | ⏳ Planned | User accounts & quiz history |
 | ⏳ Planned | Study progress tracking |
 
