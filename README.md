@@ -51,7 +51,8 @@
 | ✅ Done | Dark mode + mobile UI |
 | ✅ Done | Quiz Difficulty levels |
 | ✅ Done | Export generated material (.json) |
-| 🔄 In Progress | UI/UX improvements. |
+| 🔄 In Progress | OpenAI API support |
+| ⏳ Planned | UI/UX improvements. |
 | ⏳ Planned | User accounts & quiz history |
 | ⏳ Planned | Study progress tracking |
 
