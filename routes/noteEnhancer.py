@@ -13,6 +13,11 @@ def EnhanceNotes(prompts: dict):
     API_MODE = data["apiMode"]
     MODEL = data.get("model")
 
+    IsReasoning = False
+    if MODEL:
+        MODEL = MODEL.strip()
+        IsReasoning = any(x in MODEL.lower() for x in ["gpt-5", "o1"])
+
     API_KEY = data["apiKey"]
 
     if API_MODE == "Hugging Face": 
@@ -60,12 +65,10 @@ def EnhanceNotes(prompts: dict):
             }]
         }
 
-    if "gpt-5" in MODEL.lower() or "o1" in MODEL.lower():
+    if IsReasoning:
         payload["max_completion_tokens"] = 4096  
     else:
         payload["max_tokens"] = 4096
-
-    if not any(x in MODEL.lower() for x in ["gpt-5", "o1"]):
         payload["temperature"] = data.get("temperature", 0.3)
         payload["top_p"] = data.get("top_p", 0.9)
 
