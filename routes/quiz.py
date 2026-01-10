@@ -172,9 +172,6 @@ def QuizGen(prompts: dict):
         payload = {
             "model": MODEL if MODEL else "gpt-4.1-nano",
             "messages": [{"role": "user", "content": PROMPT}],
-            "temperature": 0.3,
-            "max_tokens": 4000,  
-            "top_p": 0.9
         }
     elif API_MODE == "Gemini":
         payload = {
@@ -183,6 +180,15 @@ def QuizGen(prompts: dict):
                 "parts": [{"text": PROMPT}]
             }]
         }
+
+    if "gpt-5" in MODEL.lower() or "o1" in MODEL.lower():
+        payload["max_completion_tokens"] = 4096  
+    else:
+        payload["max_tokens"] = 4096
+
+    if not any(x in MODEL.lower() for x in ["gpt-5", "o1"]):
+        payload["temperature"] = data.get("temperature", 0.3)
+        payload["top_p"] = data.get("top_p", 0.9)
 
     if payload and API_MODE == "Hugging Face": print(f"Model: {payload["model"]}") 
 
