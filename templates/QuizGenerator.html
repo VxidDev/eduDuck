@@ -19,14 +19,24 @@
             <a class="header-redirect" href="/keyAccess">How to get key?</a>
         </div>
     </div>
+
+    <span class="FreeLimit">Loading usage...</span>
     
     <div class="main-content">
         <div class="main">
-        <div class="customModelSelector">
-            <label for="customModel" id="customModelLabel">
-                <input type="checkbox" id="customModel">
-                Use custom model
-            </label>
+        <div style="display: flex; justify-content: center; gap: 25px">
+            <div class="customModelSelector checkbox">
+                <label for="customModel" id="customModelLabel">
+                    <input type="checkbox" id="customModel">
+                    Use custom model
+                </label>
+            </div>
+            <div class="FreeUsage checkbox">
+                <label for="FreeUsage" id="FreeUsageLabel">
+                    <input type="checkbox" id="FreeUsage">
+                    Free Daily (No API Key)
+                </label>
+            </div>
         </div>
         <textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here! (e.g., microsoft/DialoGPT-medium)"></textarea>
 

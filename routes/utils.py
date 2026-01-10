@@ -3,8 +3,50 @@ from pypdf import PdfReader
 from flask import request , jsonify
 from pytesseract import image_to_string
 from PIL import Image, ImageFilter, ImageEnhance
+from pymongo import MongoClient
+import os
+import urllib.parse
+from datetime import date
 
 from uuid import uuid4
+
+_client = None
+
+def GetMongoURI() -> str:
+    RawUri = os.getenv("MONGODB_URI")
+    if not RawUri: raise ValueError("No MONGODB_URI found.")
+    
+    Parts = urllib.parse.urlparse(RawUri)
+    SafePass = urllib.parse.quote_plus(Parts.password)
+    SafeUri = RawUri.replace(Parts.password, SafePass, 1)
+    return SafeUri
+
+def GetMongoClient() -> MongoClient:
+    global _client
+    if _client is None:
+        _client = MongoClient(GetMongoURI())
+    return _client
+
+def IncrementUsage():
+    today = date.today().isoformat()
+    ip = request.remote_addr
+
+    usage = GetMongoClient()["EduDuck"]["daily_usage"].find_one_and_update(
+        {"ip": ip, "date": today},  
+        {"$inc": {"timesUsed": 1}},                    
+        upsert=True,                                   
+        return_document=True                           
+    )
+
+    return usage
+
+def GetUsage():
+    today = date.today().isoformat()
+    ip = request.remote_addr
+
+    usage = GetMongoClient()["EduDuck"]["daily_usage"].find_one({"ip": ip , "date": today})
+
+    return jsonify({"timesUsed": usage["timesUsed"] if usage else 0})
 
 def AiReq(API_URL, headers, payload, mode, timeout=60):
     try:

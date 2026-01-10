@@ -300,19 +300,6 @@ footer {
     transform: translateY(-1px) scale(1);
 }
 
-label[for="language"],
-label#customModelLabel {
-    display: block;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    font-size: 18px;
-    color: var(--label-color);
-    margin-bottom: 6px;
-    user-select: none;
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-    transition: color 0.3s ease;
-}
-
 #theme-toggle {
     position: fixed;
     right: 1.2rem;
@@ -407,4 +394,37 @@ body.dark .tutorial-note {
 .tutorial-steps li strong {
     color: var(--accent);
     font-weight: 700;
+}
+
+.FreeLimit {
+    display: flex;
+    height: auto;
+    justify-content: center;
+    background: var(--bg-main-card);
+    z-index: 100;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px var(--bg-card-soft);
+}
+
+.checkbox {
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--label-color);
+    margin-bottom: 6px;
+    user-select: none;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.checkbox:hover {
+    color: var(--accent);
+    text-shadow: 0 0 6px rgba(52, 152, 219, 0.3);
+}
+
+.dark .checkbox:hover {
+    text-shadow: 0 0 6px rgba(74, 168, 255, 0.4);
 }

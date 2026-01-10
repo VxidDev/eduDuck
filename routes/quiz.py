@@ -1,9 +1,10 @@
 import re
 from flask import render_template , request , jsonify , send_file
-from routes.utils import AiReq
+from routes.utils import AiReq , IncrementUsage
 from json import load , JSONDecodeError , dumps
 from uuid import uuid4
 from io import BytesIO
+import os
 
 standardApiErrors = {
     "API error 402": "1 What does API error 402 mean? a) Payment error b) Deposit needed c) Free credits exhausted d) Invalid API key |CORRECT:c",
@@ -127,6 +128,7 @@ def submitResult():
 
 def QuizGen(prompts: dict):
     data: dict = request.get_json()
+    IS_FREE = data["isFree"]
     NOTES = data["notes"]
     LANGUAGE = data["language"]
     AMOUNT = data["questionCount"]
@@ -135,11 +137,14 @@ def QuizGen(prompts: dict):
     MODEL = data.get("model" , False)
 
     IsReasoning = False
+
+    if IS_FREE: IncrementUsage()
+
     if MODEL:
         MODEL = MODEL.strip()
         IsReasoning = any(x in MODEL.lower() for x in ["gpt-5", "o1"])
 
-    API_KEY = data["apiKey"]
+    API_KEY = data["apiKey"] if not IS_FREE else os.getenv("GEMINI_API_KEY")
     
     if API_MODE == "Hugging Face": 
         API_URL = "https://router.huggingface.co/v1/chat/completions" 
@@ -187,7 +192,9 @@ def QuizGen(prompts: dict):
         }
 
     if IsReasoning:
-        payload["max_completion_tokens"] = 4096  
+        payload["max_completion_tokens"] = 4096
+    elif API_MODE == "Gemini":
+        pass  
     else:
         payload["max_tokens"] = 4096
         payload["temperature"] = data.get("temperature", 0.3)

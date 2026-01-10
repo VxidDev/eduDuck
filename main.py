@@ -5,6 +5,8 @@ from routes.utils import uploadNotes as _uploadNotes_
 from routes.utils import storeNotes as _storeNotes_
 from routes.utils import storeQuiz as _storeQuiz_
 from routes.utils import storeFlashcards as _storeFlashcards_
+from routes.utils import GetUsage as _GetUsage_
+from routes.utils import IncrementUsage as _IncrementUsage_
 
 from routes.quiz import ParseQuiz
 from routes.quiz import QuizGenerator as _QuizGenerator_
@@ -151,6 +153,14 @@ def GenerateResponse():
 @app.route("/keyAccess")
 def keyAccess():
     return render_template("keyAccess.html")
+
+@app.route("/get-usage")
+def GetUsage():
+    return _GetUsage_()
+
+@app.route("/increment-usage")
+def IncrementUsage():
+    return _IncrementUsage_()
 
 if __name__ == "__main__":
     app.run()

@@ -1,5 +1,6 @@
 import { CustomModelListeners } from "../Components/ModelSelector.js";
 import { InitFileUploads } from "../Components/FileUploadHandler.js"
+import { GetFreeLimitUsage } from "../Components/GetFreeLimitUsage.js";
 
 const NoteInput        = document.querySelector(".notes");
 const Submit           = document.querySelector(".submit");
@@ -12,10 +13,13 @@ const LanguageSelector = document.getElementById("language");
 const QuestionSelector = document.getElementById("questionCount");
 const APIModeSelector  = document.getElementById("apiMode");
 const QuizDifficulty   = document.getElementById("difficulty");
+const FreeLimitBar     = document.querySelector(".FreeLimit");
+const FreeUsage        = document.getElementById("FreeUsage");
 
 StatusLabel.textContent = '';
 
 CustomModelListeners();
+GetFreeLimitUsage(FreeLimitBar , Submit);
 
 const getMaxLines = el =>
 	el.classList.contains("slim")
@@ -47,7 +51,7 @@ Submit.addEventListener("click", async () => {
 	const difficulty = QuizDifficulty.value.trim();
 
 	let msg =
-		!apiKey
+		!apiKey && !FreeUsage.checked
 			? "Enter API key."
 			: !notes
 			? "Enter notes first."
@@ -58,17 +62,18 @@ Submit.addEventListener("click", async () => {
 			: "Generating...";
 
 	StatusLabel.textContent = msg;
-	if (!notes || !apiKey || words.length > 2500 || (!model && CustomModel.checked)) return;
+	if (!notes || !apiKey && !FreeUsage.checked || words.length > 2500 || (!model && CustomModel.checked)) return;
 
 	try {
 		const body = {
 			notes,
-			apiKey,
-			model,
+			apiKey: FreeUsage.checked ? null : apiKey,
+			model: FreeUsage.checked ? null : model,
 			language: LanguageSelector.value.trim(),
 			questionCount: QuestionSelector.value.trim(),
-			apiMode: APIModeSelector.value.trim(),
-			difficulty
+			apiMode: FreeUsage.checked ? "Gemini" : APIModeSelector.value.trim(),
+			difficulty,
+			isFree: FreeUsage.checked
 		};
 
 		const res1 = await fetch("/quiz-generator/gen-quiz", {
