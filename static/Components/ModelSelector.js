@@ -10,9 +10,12 @@ export function CustomModelListeners() {
     const SubmitBtn = document.querySelector(".submit");
 
     if (!CustomModel || !CustomModelInput || !APIModeSelector || !CustomModelSelector || !ApiKeyInput || !FreeUsageSelector) {
-        console.warn('UI elements not found');
+        console.warn('Core UI elements not found');
         return;
     }
+
+    const hasQuestionSelector = !!QuestionSelector;
+    const hasFreeLimitBar = !!FreeLimitBar;
 
     CustomModel.addEventListener('change', () => {
         if (CustomModel.checked) {
@@ -34,23 +37,31 @@ export function CustomModelListeners() {
         }
     });
 
-    FreeUsageSelector.addEventListener('change' , () => {
+    FreeUsageSelector.addEventListener('change', () => {
         if (FreeUsageSelector.checked) {
             CustomModelSelector.style.display = "none";
             CustomModelInput.classList.add('hidden');
             ApiKeyInput.classList.add('hidden');
             APIModeSelector.classList.add('hidden');
-
-            QuestionSelector.value = "5";
-            QuestionSelector.disabled = "true";
-            if (parseInt(FreeLimitBar.textContent[0]) >= 3) SubmitBtn.disabled = true; 
+            
+            if (hasQuestionSelector) {
+                QuestionSelector.value = "5";
+                QuestionSelector.disabled = true;
+            }
+            if (hasFreeLimitBar && parseInt(FreeLimitBar.textContent[0]) >= 3) {
+                SubmitBtn.disabled = true;
+            }
         } else {
             if (CustomModel.checked) CustomModelInput.classList.remove('hidden');
-            if (APIModeSelector.value === 'Hugging Face' || APIModeSelector.value === "OpenAI") CustomModelSelector.style.display = null;
+            if (APIModeSelector.value === 'Hugging Face' || APIModeSelector.value === "OpenAI") {
+                CustomModelSelector.style.display = null;
+            }
             ApiKeyInput.classList.remove('hidden');
             APIModeSelector.classList.remove('hidden');
-            QuestionSelector.disabled = "false";
-            SubmitBtn.disabled = false; 
+            if (hasQuestionSelector) {
+                QuestionSelector.disabled = false;
+            }
+            SubmitBtn.disabled = false;
         }
     });
 }
