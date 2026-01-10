@@ -23,9 +23,13 @@
 
 ## 🚀 Quick Start
 
-1. **Get Free API Key** (Hugging Face or Google Gemini)
-   - [Hugging Face](https://huggingface.co/settings/tokens) (1M tokens/month free)
-   - [Google AI Studio](https://aistudio.google.com/app/apikey) (15 RPM free)
+### 1. **Get Free API Key** (Hugging Face, Google Gemini, or OpenAI)
+
+| Provider | Link | Free Tier |
+|----------|------|-----------|
+| 🤗 **Hugging Face** | [![Hugging Face](https://huggingface.co/settings/tokens)](https://huggingface.co/settings/tokens) | 1M tokens/month |
+| ⭐ **Google Gemini** | [![Google AI Studio](https://aistudio.google.com/app/apikey)](https://aistudio.google.com/app/apikey) | 15 RPM |
+| 🔥 **OpenAI** | [![OpenAI](https://platform.openai.com/api-keys)](https://platform.openai.com/api-keys) | ~$0.001/quiz |
 
 2. **Try Live Demo**: [eduduck.onrender.com](https://eduduck.onrender.com/quiz-generator)
 
@@ -50,10 +54,7 @@
 | ✅ Done | Multi-language support |
 | ✅ Done | Dark mode + mobile UI |
 | ✅ Done | Quiz Difficulty levels |
-| ✅ Done | Export generated material (.json) |
-| ✅ Done | OpenAI API support |
-| 🔄 In Progress | Free Daily Usage (3/day) |
-| ⏳ Planned | UI/UX improvements. |
+| 🔄 In Progress | Export generated material (.json) |
 | ⏳ Planned | User accounts & quiz history |
 | ⏳ Planned | Study progress tracking |
 
