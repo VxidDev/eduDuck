@@ -1,0 +1,13 @@
+User-agent: Googlebot
+Allow: /
+Sitemap: https://eduduck.app/sitemap.xml
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: *Bot
+Disallow: /static/
+Allow: /
