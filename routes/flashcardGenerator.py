@@ -3,6 +3,7 @@ from flask import render_template , request , jsonify , send_file
 from json import load , JSONDecodeError , dumps
 from uuid import uuid4
 from io import BytesIO
+import os
 
 standardApiErrors = {
     "API error 402": "What does API error 402 mean? | Free credits exhausted ~",
