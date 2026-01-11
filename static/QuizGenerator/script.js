@@ -71,7 +71,7 @@ Submit.addEventListener("click", async () => {
 			model: FreeUsage.checked ? null : model,
 			language: LanguageSelector.value.trim(),
 			questionCount: QuestionSelector.value.trim(),
-			apiMode: FreeUsage.checked ? "Gemini" : APIModeSelector.value.trim(),
+			apiMode: FreeUsage.checked ? "OpenAI" : APIModeSelector.value.trim(),
 			difficulty,
 			isFree: FreeUsage.checked
 		};

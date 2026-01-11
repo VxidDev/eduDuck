@@ -69,7 +69,7 @@ sendButton.addEventListener("click", async () => {
 				message: history,
 				apiKey: FreeUsage.checked ? null : apiKey,
 				model: FreeUsage.checked ? null : model,
-				apiMode: FreeUsage.checked ? "Gemini" : APIModeSelector.value.trim(),
+				apiMode: FreeUsage.checked ? "OpenAI" : APIModeSelector.value.trim(),
 				isFree: FreeUsage.checked
 			})
 		});

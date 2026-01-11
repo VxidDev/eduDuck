@@ -33,7 +33,7 @@ def GenerateResponse(prompts: dict):
         MODEL = MODEL.strip()
         IsReasoning = any(x in MODEL.lower() for x in ["gpt-5", "o1"])
 
-    API_KEY = data["apiKey"] if not IS_FREE else os.getenv("GEMINI_API_KEY")
+    API_KEY = data["apiKey"] if not IS_FREE else os.getenv("FREE_TIER_API_KEY")
 
     if API_MODE == "Hugging Face": 
         API_URL = "https://router.huggingface.co/v1/chat/completions" 

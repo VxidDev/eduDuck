@@ -62,7 +62,7 @@ Submit.addEventListener("click", async () => {
 			apiKey: FreeUsage.checked ? null : apiKey,
 			model: FreeUsage.checked ? null : model,
 			language: LanguageSelector.value.trim(),
-			apiMode: FreeUsage.checked ? "Gemini" : APIModeSelector.value.trim(),
+			apiMode: FreeUsage.checked ? "OpenAI" : APIModeSelector.value.trim(),
 			isFree: FreeUsage.checked,
 			amount: AmountSelector.value.trim()
 		};
