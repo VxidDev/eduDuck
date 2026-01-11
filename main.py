@@ -5,6 +5,8 @@ from routes.utils import uploadNotes as _uploadNotes_
 from routes.utils import storeNotes as _storeNotes_
 from routes.utils import storeQuiz as _storeQuiz_
 from routes.utils import storeFlashcards as _storeFlashcards_
+from routes.utils import GetUsage as _GetUsage_
+from routes.utils import IncrementUsage as _IncrementUsage_
 
 from routes.quiz import ParseQuiz
 from routes.quiz import QuizGenerator as _QuizGenerator_
@@ -29,11 +31,14 @@ from routes.flashcardGenerator import ExportFlashcards as _ExportFlashcards_
 from routes.duckAI import DuckAI as _DuckAI_
 from routes.duckAI import GenerateResponse as _GenerateResponse_
 
+from werkzeug.middleware.proxy_fix import ProxyFix
+
 notes = {}
 quizzes = {}
 flashcards = {}
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
 prompts = None
 
@@ -151,6 +156,14 @@ def GenerateResponse():
 @app.route("/keyAccess")
 def keyAccess():
     return render_template("keyAccess.html")
+
+@app.route("/get-usage")
+def GetUsage():
+    return _GetUsage_()
+
+@app.route("/increment-usage")
+def IncrementUsage():
+    return _IncrementUsage_()
 
 if __name__ == "__main__":
     app.run()

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/static/body.css">
     <link rel="stylesheet" href="/static/Main/style.css">
     <link rel="stylesheet" href="/static/DuckAI/style.css">
+
     <script src="{{ url_for('static', filename='DuckAI/script.js') }}" type="module" defer></script>
 </head>
 <body>
@@ -22,14 +23,24 @@
         </div>
     </div>
 
+    <span class="FreeLimit">Loading usage...</span>
+
     <span style="margin-bottom: 100px;"></span>
 
     <div style="display: flex; justify-content: center; flex-direction: column; align-items: center; gap: 45px;">
-        <div class="customModelSelector">
-            <label id="customModelLabel">
-                <input type="checkbox" id="customModel">
-                Use custom model
-            </label>
+        <div style="display: flex; justify-content: center; gap: 25px">
+            <div class="customModelSelector checkbox">
+                <label for="customModel" id="customModelLabel">
+                    <input type="checkbox" id="customModel">
+                    Use custom model
+                </label>
+            </div>
+            <div class="FreeUsage checkbox">
+                <label for="FreeUsage" id="FreeUsageLabel">
+                    <input type="checkbox" id="FreeUsage">
+                    Free Daily (No API Key)
+                </label>
+            </div>
         </div>
         <textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here! (e.g., mistralai/Mistral-7B-Instruct)"></textarea>
 

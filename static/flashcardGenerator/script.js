@@ -1,6 +1,7 @@
 import { ValidateInput } from "../Components/ValidateInput.js";
 import { CustomModelListeners } from "../Components/ModelSelector.js"
 import { InitFileUploads } from "../Components/FileUploadHandler.js";
+import { GetFreeLimitUsage } from "../Components/GetFreeLimitUsage.js";
 
 const NoteInput          = document.querySelector(".notes");
 const Submit             = document.querySelector(".submit");
@@ -13,10 +14,13 @@ const LanguageSelector   = document.getElementById("language");
 const APIModeSelector    = document.getElementById("apiMode");
 const AmountSelector     = document.getElementById("questionCount");
 const CustomModelSelector= document.querySelector(".customModelSelector");
+const FreeLimitBar     = document.querySelector(".FreeLimit");
+const FreeUsage        = document.getElementById("FreeUsage");
 
 StatusLabel.textContent = '';
 
 CustomModelListeners();
+GetFreeLimitUsage(FreeLimitBar , Submit);
 
 function getMaxLines(el) {
 	const b = el.classList;
@@ -46,18 +50,20 @@ Submit.addEventListener("click", async () => {
 		modelVisible,
 		model,
 		StatusLabel,
-		notes.split(" ")
+		notes.split(" "),
+		FreeUsage
 	);
 
-	if (!notes || !apiKey || notes.split(" ").length > 2500 || (!model && CustomModel.checked)) return;
+	if (!notes || !apiKey && !FreeUsage.checked || notes.split(" ").length > 2500 || (!model && CustomModel.checked)) return;
 
 	try {
 		const body = {
 			notes,
-			apiKey,
-			model,
+			apiKey: FreeUsage.checked ? null : apiKey,
+			model: FreeUsage.checked ? null : model,
 			language: LanguageSelector.value.trim(),
-			apiMode: APIModeSelector.value.trim(),
+			apiMode: FreeUsage.checked ? "Gemini" : APIModeSelector.value.trim(),
+			isFree: FreeUsage.checked,
 			amount: AmountSelector.value.trim()
 		};
 

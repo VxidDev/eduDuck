@@ -4,11 +4,18 @@ export function CustomModelListeners() {
     const APIModeSelector = document.getElementById('apiMode');
     const ApiKeyInput = document.querySelector('.apiKey');
     const CustomModelSelector = document.querySelector('.customModelSelector');
+    const FreeUsageSelector = document.getElementById("FreeUsage")
+    const QuestionSelector = document.getElementById("questionCount");
+    const FreeLimitBar = document.querySelector(".FreeLimit");
+    const SubmitBtn = document.querySelector(".submit");
 
-    if (!CustomModel || !CustomModelInput || !APIModeSelector || !CustomModelSelector || !ApiKeyInput) {
-        console.warn('UI elements not found');
+    if (!CustomModel || !CustomModelInput || !APIModeSelector || !CustomModelSelector || !ApiKeyInput || !FreeUsageSelector) {
+        console.warn('Core UI elements not found');
         return;
     }
+
+    const hasQuestionSelector = !!QuestionSelector;
+    const hasFreeLimitBar = !!FreeLimitBar;
 
     CustomModel.addEventListener('change', () => {
         if (CustomModel.checked) {
@@ -21,12 +28,40 @@ export function CustomModelListeners() {
     APIModeSelector.addEventListener('change', () => {
         ApiKeyInput.placeholder = `Enter your ${APIModeSelector.value} API key here!`;
         if (APIModeSelector.value !== 'Hugging Face' && APIModeSelector.value !== "OpenAI") {
-            CustomModelSelector.classList.add('hidden');
+            CustomModelSelector.style.display = "none";
             CustomModelInput.classList.add('hidden');
         } else {
             if (CustomModel.checked) CustomModelInput.classList.remove('hidden');
             CustomModelInput.placeholder = APIModeSelector.value === 'Hugging Face' ? "Enter custom model here! (e.g., microsoft/DialoGPT-medium)" : "Enter custom OpenAI model here! (e.g., gpt-4o-mini, gpt-4.1-nano)";
-            CustomModelSelector.classList.remove('hidden');
+            CustomModelSelector.style.display = null;
+        }
+    });
+
+    FreeUsageSelector.addEventListener('change', () => {
+        if (FreeUsageSelector.checked) {
+            CustomModelSelector.style.display = "none";
+            CustomModelInput.classList.add('hidden');
+            ApiKeyInput.classList.add('hidden');
+            APIModeSelector.classList.add('hidden');
+            
+            if (hasQuestionSelector) {
+                QuestionSelector.value = "5";
+                QuestionSelector.disabled = true;
+            }
+            if (hasFreeLimitBar && parseInt(FreeLimitBar.textContent[0]) >= 3) {
+                SubmitBtn.disabled = true;
+            }
+        } else {
+            if (CustomModel.checked) CustomModelInput.classList.remove('hidden');
+            if (APIModeSelector.value === 'Hugging Face' || APIModeSelector.value === "OpenAI") {
+                CustomModelSelector.style.display = null;
+            }
+            ApiKeyInput.classList.remove('hidden');
+            APIModeSelector.classList.remove('hidden');
+            if (hasQuestionSelector) {
+                QuestionSelector.disabled = false;
+            }
+            SubmitBtn.disabled = false;
         }
     });
 }
