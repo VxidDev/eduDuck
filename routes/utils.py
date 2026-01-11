@@ -24,21 +24,24 @@ def GetMongoURI() -> str:
 def GetMongoClient() -> MongoClient:
     global _client
     if _client is None:
-        _client = MongoClient(GetMongoURI())
+        _client = MongoClient(
+            GetMongoURI(),
+            serverSelectionTimeoutMS=5000,  
+            connectTimeoutMS=5000,        
+            socketTimeoutMS=10000,           
+            heartbeatFrequencyMS=10000,       
+            maxPoolSize=10                   
+        )
     return _client
 
 def IncrementUsage():
-    today = date.today().isoformat()
-    ip = request.remote_addr
-
     usage = GetMongoClient()["EduDuck"]["daily_usage"].find_one_and_update(
         {"ip": ip, "date": today},  
         {"$inc": {"timesUsed": 1}},                    
         upsert=True,                                   
         return_document=True                           
     )
-
-    return usage
+    return jsonify({"timesUsed": usage["timesUsed"], "ip": ip})
 
 def GetUsage():
     today = date.today().isoformat()
