@@ -1,4 +1,4 @@
-from flask import Flask , render_template
+from flask import Flask , render_template , send_from_directory
 from json import load , JSONDecodeError
 
 from routes.utils import uploadNotes as _uploadNotes_
@@ -164,6 +164,10 @@ def GetUsage():
 @app.route("/increment-usage")
 def IncrementUsage():
     return _IncrementUsage_()
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('static', 'sitemap.xml')
 
 if __name__ == "__main__":
     app.run()

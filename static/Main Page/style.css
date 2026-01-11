@@ -309,8 +309,8 @@ button:focus {
 
 #theme-toggle {
     position: fixed;
+    top: 1.2rem;
     right: 1.2rem;
-    bottom: 1.4rem;
     width: 44px;
     height: 44px;
     border-radius: 999px;

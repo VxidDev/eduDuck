@@ -3,33 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduDuck - AI-Powered Learning Tools</title>
+    <title>EduDuck - Free AI Quiz & Flashcard Generator for Students</title>
+    <meta name="description" content="EduDuck turns notes into quizzes, flashcards & study tools instantly. Free AI learning platform with OCR, DuckAI tutor, and no signup required. Perfect for exams and homework.">
+    <meta property="og:title" content="EduDuck - Free AI Study Tools">
+    <meta property="og:description" content="Generate quizzes, flashcards from notes instantly. Free tier with Hugging Face, Google Gemini & premium OpenAI support.">
+    <meta property="og:image" content="https://eduduck.app/static/img/duck.jpg">
+    <meta property="og:url" content="https://eduduck.app">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="EduDuck - Free AI Study Tools">
+    <meta name="twitter:description" content="Notes → Quizzes & Flashcards instantly. Free AI for students.">
+    <meta name="twitter:image" content="https://eduduck.app/static/img/duck.jpg">
+    <meta name="keywords" content="AI study tools, quiz generator, flashcard maker, free learning app, OCR notes, student AI, exam prep, homework help">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="VxidDev">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
     <link rel="stylesheet" href="/static/Main Page/style.css">
     <link rel="stylesheet" href="/static/header.css">
     <link rel="stylesheet" href="/static/body.css">
     <link rel="stylesheet" href="/static/Main/style.css">
+
+    <meta name="google-site-verification" content="AZ5cUHVKOHp9lKvThtsZ7HOlCFkWxvWi25c9ubsRV6Y"/>
 </head>
+
 <body>
     <div class="header">
         <a class="header-redirect" href="https://ko-fi.com/vxiddev" style="padding-left: 50px;">Donate</a>
         <h1 class="header-text">EduDuck</h1>
-        <button id="theme-toggle">🌙</button>
         <a class="header-redirect" href="/keyAccess" style="padding-right: 50px;">How to get key?</a>
     </div>
+
+    <button id="theme-toggle">🌙</button>
 
     <div class="main-content">
         <h2>AI-Powered Educational Tools</h2>
         <p>EduDuck transforms your study materials into interactive learning experiences using advanced AI. Convert notes to quizzes, enhance your study materials, and master subjects faster.</p>
         
+        <div class="hero-section">
+            <p style="font-size: 1.2em; padding: 20px 0;">Built by a student for students – perfect for tests, exams, and mastering tough subjects. No accounts needed yet, just grab a free API key and dive in!</p>
+        </div>
+        
         <div class="features">
             <div class="feature-card">
                 <h3><a href="/quiz-generator">📝 Quiz Generator</a></h3>
-                <p>Upload your notes or paste text to instantly generate customized quizzes and practice questions with detailed explanations.</p>
+                <p>Upload your notes or paste text to instantly generate customized quizzes and practice questions with detailed explanations. Perfect for exam prep – supports OCR for scanned notes.</p>
             </div>
             
             <div class="feature-card">
                 <h3><a href="/note-enhancer">✨ Note Enhancer</a></h3>
-                <p>Supercharge your notes with AI-generated summaries, key concept highlight and visual diagrams.</p>
+                <p>Supercharge your notes with AI-generated summaries, key concept highlights, visual diagrams, and connections between topics. Turn messy lecture notes into organized study guides ready for review.</p>
             </div>
 
             <div class="feature-card">
@@ -38,20 +61,60 @@
             </div>
         </div>
 
+        <div class="how-it-works">
+            <h2>How EduDuck Works</h2>
+            <span style="font-size: 25px;">
+                1. <strong>Paste or Upload:</strong> Drop in your notes, PDFs, or images (OCR-powered).<br>
+                2. <strong>Choose AI:</strong> Free Hugging Face/Google Gemini or premium OpenAI for advanced results.<br>
+                3. <strong>Generate Instantly:</strong> Get quizzes, flashcards, or enhanced notes in seconds.<br>
+                4. <strong>Practice Smart:</strong> Track progress with DuckAI explanations and custom tips.
+            </span>
+            <p><br>3 free uses per day – upgrade with your own API key for unlimited access.</p>
+        </div>
+
+
+
         <p style="align-self: center; font-size: 1.5em; padding-top: 50px;">
-            Mastered the quizzes and flashcards? <strong>DuckAI has your back!</strong> ask for concept explanations, quiz clarifications, physics homework help, or custom study tips tailored to your notes!
+            Mastered the quizzes and flashcards? <strong>DuckAI has your back!</strong> Ask for concept explanations, quiz clarifications, physics homework help, or custom study tips tailored to your notes!
         </p>
 
         <div class="features">
             <div class="feature-card feature-card-duckai" style="max-width: 500px; margin: 0 auto;">
                 <h3><a href="/duck-ai">🦆 DuckAI</a></h3>
-                <p>Your smart study companion—explain concepts, quiz help, remembers your notes! 🚀</p>
+                <p>Your smart study companion - explain concepts, quiz help, remembers your notes! Supports custom prompts, dark mode, and conversation history for ongoing study sessions.</p>
             </div>
+        </div>
+
+        <div class="why-eduduck">
+            <h2>Why Choose EduDuck?</h2>
+            <span style="font-size: 25px;">
+                1. <strong>Free Tier:</strong> 3 daily uses with OpenAI – no credit card needed.<br>
+                2. <strong>Fast & Private:</strong> Processes locally in-browser where possible, deployed on Render for speed.<br>
+                3. <strong>Student-Focused:</strong> Built for heavy workloads like math, physics, biology exams.<br>
+                4. <strong>Open Source:</strong> Check the code on <a class="repoLink" href="https://github.com/VxidDev/EduDuck">GitHub</a>, contribute features!<br>
+                5. <strong>Mobile-Friendly:</strong> Works on phone for on-the-go studying.
+            </span>
+        </div>
+
+        <div class="testimonials" style="display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 50px;">
+            <h2><br>What Students Say</h2>
+            <div class="reviews" style="display: flex; flex-direction: row; gap: 50px;">
+                <div class="feature-card" style="max-width: 400px;">
+                    <p>"EduDuck is really helpful especially for English, 90% passing rate, boosted up 15% with it." – Deathtyr</p>
+                </div>
+            </div>
+            <br>
+        </div>
+
+        <div class="cta-section" style="display: flex; justify-content: center; flex-direction: column;">
+            <span style="font-size: 38px; font-weight: bold;">Get Started with EduDuck</span>
+            <p style="font-size: 25px">Get your free API key and start now – no sign-up, instant results!</p>
+            <a href="/keyAccess" class="button" style="display: flex; font-size: 1.2em; text-decoration: none; align-items: center; justify-content: center;">Get Started</a>
         </div>
     </div>
 
     <footer>
-            <span class="">By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2025</span>
+        <span>By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2026 | Open Source on GitHub</span>
     </footer>
 
     <script src="/static/Components/DarkModeToggle.js"></script>
