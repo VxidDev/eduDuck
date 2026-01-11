@@ -31,7 +31,7 @@
 | ⭐ **Google Gemini** | [![Google AI Studio](https://aistudio.google.com/app/apikey)](https://aistudio.google.com/app/apikey) | 15 RPM |
 | 🔥 **OpenAI** | [![OpenAI](https://platform.openai.com/api-keys)](https://platform.openai.com/api-keys) | ~$0.001/quiz |
 
-2. **Try Live Demo**: [eduduck.onrender.com](https://eduduck.onrender.com/quiz-generator)
+2. **Try Live Demo**: [eduduck.app](https://eduduck.app/) 
 
 3. **Paste your notes** → Generate → Learn!
 
@@ -39,7 +39,7 @@
 
 - Frontend: HTML5 - CSS3 (CSS Variables) - Vanilla JS
 - Backend: Python Flask - Render Deployment
-- AI: Hugging Face Inference API - Google Gemini
+- AI: Hugging Face Inference API - Google Gemini - OpenAI
 - OCR: Tesseract - Custom preprocessing
 
 ## 🎯 Roadmap
