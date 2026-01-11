@@ -31,11 +31,14 @@ from routes.flashcardGenerator import ExportFlashcards as _ExportFlashcards_
 from routes.duckAI import DuckAI as _DuckAI_
 from routes.duckAI import GenerateResponse as _GenerateResponse_
 
+from werkzeug.middleware.proxy_fix import ProxyFix
+
 notes = {}
 quizzes = {}
 flashcards = {}
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
 prompts = None
 

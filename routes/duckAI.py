@@ -1,5 +1,6 @@
-from routes.utils import AiReq
+from routes.utils import AiReq , IncrementUsage
 from flask import render_template , jsonify , request
+import os
 
 standardApiErrors = {
     "API error 402": "API error 402 occurred. Payment required - add credits to your account.",
@@ -21,15 +22,18 @@ def GenerateResponse(prompts: dict):
     data: dict = request.get_json()
     MESSAGE = data["message"]
     API_MODE = data["apiMode"]
-
-    MODEL = data.get("model")
+    MODEL = data.get("model" , False)
+    IS_FREE = data["isFree"]
 
     IsReasoning = False
+
+    if IS_FREE: IncrementUsage()
+
     if MODEL:
         MODEL = MODEL.strip()
         IsReasoning = any(x in MODEL.lower() for x in ["gpt-5", "o1"])
 
-    API_KEY = data["apiKey"]
+    API_KEY = data["apiKey"] if not IS_FREE else os.getenv("GEMINI_API_KEY")
 
     if API_MODE == "Hugging Face": 
         API_URL = "https://router.huggingface.co/v1/chat/completions" 
@@ -78,6 +82,8 @@ def GenerateResponse(prompts: dict):
 
     if IsReasoning:
         payload["max_completion_tokens"] = 4096  
+    elif API_MODE == "Gemini": 
+        pass
     else:
         payload["max_tokens"] = 4096
         payload["temperature"] = data.get("temperature", 0.3)

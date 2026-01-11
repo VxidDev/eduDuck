@@ -83,44 +83,39 @@ body {
 }
 
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: rgba(0, 149, 255, 0.9);
+    color: white;
     background-image: url("/static/img/duck.jpg");
     background-size: cover;
     background-position: center;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.8rem 5%;
-    min-height: 64px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 149, 255, 0.3);
+    transition: all 0.3s ease;
 }
 
 .header-text {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #ffffff;
-    margin: 0;
-    letter-spacing: -0.02em;
-    white-space: nowrap;
-    text-shadow: 0 2px 6px rgba(0,0,0,0.45);
+    color: #fff;
+    font-size: 55px;
+    font-weight: bolder;
+    flex: 1;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(255,255,255,0.8);
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
 .header-redirect {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #7ff6ff;
+    color: #d6fbfb;
+    font-size: 40px;
+    font-weight: bolder;
     text-decoration: none;
-    padding: 0.5rem 1.3rem;
-    border-radius: 999px;
-    transition: all 0.25s ease;
-    border: 2px solid transparent;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 15px rgba(214, 251, 251, 0.8);
 }
 
 .header-redirect:hover {
@@ -128,6 +123,12 @@ body {
     background: rgba(0,0,0,0.18);
     border-color: rgba(0,0,0,0.18);
     transform: translateY(-1px);
+}
+
+.header-redirect:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 25px rgba(214, 251, 251, 1);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
 }
 
 .main-content {
