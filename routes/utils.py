@@ -7,6 +7,8 @@ from pymongo import MongoClient
 import os
 import urllib.parse
 from datetime import date
+from pymongo.server_api import ServerApi
+import certifi 
 
 from uuid import uuid4
 
@@ -25,13 +27,17 @@ def GetMongoClient() -> MongoClient:
     global _client
     if _client is None:
         _client = MongoClient(
-            GetMongoURI(),
-            serverSelectionTimeoutMS=5000,  
-            connectTimeoutMS=5000,        
-            socketTimeoutMS=10000,           
-            heartbeatFrequencyMS=10000,       
-            maxPoolSize=10                   
-        )
+        GetMongoURI(), 
+        server_api=ServerApi('1'), 
+        tls=True,
+        tlsCAFile=certifi.where(),  
+        serverSelectionTimeoutMS=10000, 
+        connectTimeoutMS=10000,
+        socketTimeoutMS=20000,
+        heartbeatFrequencyMS=10000,
+        maxPoolSize=10,
+        retryWrites=True
+    )
     return _client
 
 def IncrementUsage():
