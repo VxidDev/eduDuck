@@ -5,3 +5,4 @@ pypdf
 pillow
 pytesseract
 pymongo
+certifi
