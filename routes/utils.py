@@ -41,6 +41,8 @@ def GetMongoClient() -> MongoClient:
     return _client
 
 def IncrementUsage():
+    ip = request.remote_addr
+    
     usage = GetMongoClient()["EduDuck"]["daily_usage"].find_one_and_update(
         {"ip": ip, "date": today},  
         {"$inc": {"timesUsed": 1}},                    
