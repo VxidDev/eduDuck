@@ -7,6 +7,14 @@
   <a href="https://ko-fi.com/vxiddev"><img src="https://img.shields.io/badge/Support%20Me-Ko--fi-ff5f5f?style=for-the-badge&logo=kofi&logoColor=white" alt="Support"></a>
 </div>
 
+## ⚠️ Notice
+
+This repository contains the **public core version** of EduDuck and is no longer under active development.
+
+The production service at **eduduck.app** uses a private repository that extends this core with additional infrastructure, security, and scaling logic.
+
+---
+
 **AI-powered study companion** that transforms your notes into interactive quizzes, flashcards, and enhanced study materials.
 
 ## ✨ Features
