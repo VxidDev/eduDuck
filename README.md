@@ -16,14 +16,6 @@
 
 ---
 
-## ⚠️ Notice
-
-This repository contains the **public core version** of EduDuck and is no longer under active development.
-
-The production service at **eduduck.app** uses a **private repository** that extends this core with additional infrastructure, security, accounts, and scaling logic.
-
----
-
 **AI-powered study companion** that transforms your notes into interactive quizzes, flashcards, and enhanced study materials.
 
 ---
@@ -52,6 +44,7 @@ The production service at **eduduck.app** uses a **private repository** that ext
 | **📝 Quiz Generator** | Upload notes → instant quizzes |
 | **🗂️ Flashcard Generator** | Spaced repetition flashcards from any subject |
 | **✨ Note Enhancer** | AI-powered summaries, diagrams, key concepts |
+| **📆 Study Plan Generator** | AI-generated daily study plans tailored to your notes, goals, time, and learning style |
 | **🦆 DuckAI** | Chat with your notes, get explanations & study tips |
 | **📱 Multi-format** | TXT, PDF, PNG/JPG, handwritten notes via OCR |
 | **🌍 Multi-language** | English, Polish, German, French, Ukrainian, Russian |
@@ -63,9 +56,6 @@ The production service at **eduduck.app** uses a **private repository** that ext
 
 EduDuck supports **user accounts** to provide fair access limits and enable future personalization features.
 
-> ⚠️ Account functionality exists **only in the production service (eduduck.app)**.  
-> This public repository does **not** include authentication, limits, or account logic.
-
 ### 🆓 Free Account Benefits
 
 Creating a free account unlocks:
@@ -74,6 +64,7 @@ Creating a free account unlocks:
   - Quiz Generator
   - Flashcard Generator
   - Note Enhancer
+  - Study Plan Generator
   - 🦆 DuckAI chat
 - 🌍 Access across all supported languages
 - 🔒 Usage tracking to prevent abuse and keep the service available
@@ -135,7 +126,7 @@ Accounts help:
 ## 🛠️ Tech Stack
 
 - **Frontend**: HTML5, CSS3 (CSS Variables), Vanilla JS, markdown-it  
-- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB
+- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB , Amazon SES (email verification)
 - **Auth & Security**: Password hashing, session-based auth, usage limits  
 - **Data Layer**: JSON serialization, in-memory caching  
 - **AI**: Hugging Face Inference API, Google Gemini, OpenAI  
@@ -159,6 +150,7 @@ Accounts help:
 | ✅ Done | OpenAI API support |
 | ✅ Done | Free daily usage (3/day) |
 | ✅ Done | UI/UX improvements |
+| ✅ Done | Study Plan Generator |
 | 🔄 In Progress | User accounts & quiz history |
 | ⏳ Planned | Study progress tracking |
 
