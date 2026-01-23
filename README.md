@@ -12,6 +12,16 @@
   <a href="https://ko-fi.com/vxiddev">
     <img src="https://img.shields.io/badge/Support%20Me-Ko--fi-ff5f5f?style=for-the-badge&logo=kofi&logoColor=white" alt="Support">
   </a>
+  <a href="https://eduduck.onrender.com/login/google">
+    <img src="https://img.shields.io/badge/Login%20with-Google-red?style=for-the-badge&logo=google&logoColor=white" alt="Login with Google">
+  </a>
+  <a href="https://github.com/VxidDev/eduDuck/graphs/contributors">
+    <img src="https://img.shields.io/badge/Contributors-👥-blue?style=for-the-badge" alt="Contributors">
+  </a>
+  <br>
+  <img src="https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Flask-2.3.0-orange?style=for-the-badge&logo=flask&logoColor=white" alt="Flask">
+  <img src="https://img.shields.io/badge/Gunicorn-20.1.0-red?style=for-the-badge&logo=gunicorn&logoColor=white" alt="Gunicorn">
 </div>
 
 ---
@@ -27,12 +37,15 @@
   - [🆓 Free Account Benefits](#-free-account-benefits)
   - [🔮 Planned Account Features](#-planned-account-features)
   - [📌 Why Accounts?](#-why-accounts)
+- [🔑 Google OAuth Login](#-google-oauth-login)
 - [🚀 Quick Start](#-quick-start)
 - [🎓 Who Is EduDuck For?](#-who-is-eduduck-for)
-- [🛠️ Tech Stack](#tech-stack)
+- [🛠️ Tech Stack](#-tech-stack)
+- [🛠️ Local Development](#-local-development)
 - [🎯 Roadmap](#-roadmap)
 - [🤝 Contributions](#-contributions)
 - [💰 Support the Project](#-support-the-project)
+- [❗ Known Issues](#-known-issues)
 - [📄 License](#-license)
 
 ---
@@ -49,6 +62,7 @@
 | **📱 Multi-format** | TXT, PDF, PNG/JPG, handwritten notes via OCR |
 | **🌍 Multi-language** | English, Polish, German, French, Ukrainian, Russian |
 | **🎨 Modern UI** | Dark/light mode, mobile-first, glassmorphism design |
+| **🔑 Google OAuth Login** | Sign in instantly with Google, no password required |
 
 ---
 
@@ -122,17 +136,63 @@ Accounts help:
 
 ---
 
-<a id="tech-stack"></a>
 ## 🛠️ Tech Stack
 
 - **Frontend**: HTML5, CSS3 (CSS Variables), Vanilla JS, markdown-it  
-- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB , Amazon SES (email verification)
+- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB, Amazon SES (email verification), Google OAuth
 - **Auth & Security**: Password hashing, session-based auth, usage limits  
 - **Data Layer**: JSON serialization, in-memory caching  
 - **AI**: Hugging Face Inference API, Google Gemini, OpenAI  
 - **OCR**: Tesseract + custom preprocessing  
 
 ---
+
+## 🛠️ Local Development
+
+1. **Installation**
+```bash
+git clone https://github.com/VxidDev/eduDuck.git
+cd eduDuck
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+2. Add .env with the following variables:
+
+```
+FREE_TIER_API_KEY= ... (OpenAI key)
+MONGODB_URI= ... (MongoDB API link)
+SECRET_KEY= ... (32 char long)
+AWS_ACCESS_KEY_ID= ...
+AWS_SECRET_ACCESS_KEY= ...
+AWS_REGION= ...
+VERIFICATION_EMAIL= ...
+GOOGLE_CLIENT_ID= ...
+GOOGLE_CLIENT_SECRET= ...
+```
+
+3. Run locally using Gunicorn
+
+```bash
+# Production-style run with 4 workers on port 5000
+gunicorn -w 4 -b 0.0.0.0:5000 main:app
+```
+
+## 🔑 Setting Up Google OAuth
+
+1. Go to Google Cloud Console
+
+2. Create a new OAuth 2.0 Client ID (type: Web application)
+
+3. Add http://127.0.0.1:5000/authorize/google to Authorized redirect URIs
+
+4. Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in your .env
+
+5. Run and click Login with Google on /login endpoint.
+
+---
+
 
 ## 🎯 Roadmap
 
@@ -151,6 +211,7 @@ Accounts help:
 | ✅ Done | Free daily usage (3/day) |
 | ✅ Done | UI/UX improvements |
 | ✅ Done | Study Plan Generator |
+| ✅ Done | Google OAuth |
 | 🔄 In Progress | User accounts & quiz history |
 | ⏳ Planned | Study progress tracking |
 
