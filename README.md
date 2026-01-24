@@ -70,6 +70,8 @@
 
 EduDuck supports **user accounts** to provide fair access limits and enable future personalization features.
 
+> ❗ Accounts are only available on eduduck.app and not on the repo.
+
 ### 🆓 Free Account Benefits
 
 Creating a free account unlocks:
@@ -79,6 +81,7 @@ Creating a free account unlocks:
   - Flashcard Generator
   - Note Enhancer
   - Study Plan Generator
+  > ❗ Study Plan Generator is only available on eduduck.app and not on the repo. (might add later)
   - 🦆 DuckAI chat
 - 🌍 Access across all supported languages
 - 🔒 Usage tracking to prevent abuse and keep the service available
@@ -139,7 +142,7 @@ Accounts help:
 ## 🛠️ Tech Stack
 
 - **Frontend**: HTML5, CSS3 (CSS Variables), Vanilla JS, markdown-it  
-- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB, Amazon SES (email verification), Google OAuth
+- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB, MailGun (email verification), Google OAuth
 - **Auth & Security**: Password hashing, session-based auth, usage limits  
 - **Data Layer**: JSON serialization, in-memory caching  
 - **AI**: Hugging Face Inference API, Google Gemini, OpenAI  
@@ -164,12 +167,6 @@ pip install -r requirements.txt
 FREE_TIER_API_KEY= ... (OpenAI key)
 MONGODB_URI= ... (MongoDB API link)
 SECRET_KEY= ... (32 char long)
-AWS_ACCESS_KEY_ID= ...
-AWS_SECRET_ACCESS_KEY= ...
-AWS_REGION= ...
-VERIFICATION_EMAIL= ...
-GOOGLE_CLIENT_ID= ...
-GOOGLE_CLIENT_SECRET= ...
 ```
 
 3. Run locally using Gunicorn
@@ -212,6 +209,7 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 | ✅ Done | UI/UX improvements |
 | ✅ Done | Study Plan Generator |
 | ✅ Done | Google OAuth |
+| ✅ Done | Email Verification |
 | 🔄 In Progress | User accounts & quiz history |
 | ⏳ Planned | Study progress tracking |
 
@@ -239,6 +237,10 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 </div>
 
 ---
+
+## ❗ Known Issues
+
+Nothing... for now :[
 
 ## 📄 License
 
