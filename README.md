@@ -70,8 +70,6 @@
 
 EduDuck supports **user accounts** to provide fair access limits and enable future personalization features.
 
-> ❗ Accounts are only available on eduduck.app and not on the repo.
-
 ### 🆓 Free Account Benefits
 
 Creating a free account unlocks:
@@ -81,9 +79,9 @@ Creating a free account unlocks:
   - Flashcard Generator
   - Note Enhancer
   - Study Plan Generator
-  > ❗ Study Plan Generator is only available on eduduck.app and not on the repo. (might add later)
   - 🦆 DuckAI chat
 - 🌍 Access across all supported languages
+- 🗂️ Viewing past queries and chats.
 - 🔒 Usage tracking to prevent abuse and keep the service available
 
 Free usage resets **daily**. No payment required.
@@ -142,10 +140,10 @@ Accounts help:
 ## 🛠️ Tech Stack
 
 - **Frontend**: HTML5, CSS3 (CSS Variables), Vanilla JS, markdown-it  
-- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB, MailGun (email verification), Google OAuth
+- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB, MailGun (email verification), Google OAuth, Flask-Dance
 - **Auth & Security**: Password hashing, session-based auth, usage limits  
 - **Data Layer**: JSON serialization, in-memory caching  
-- **AI**: Hugging Face Inference API, Google Gemini, OpenAI  
+- **AI**: Hugging Face Inference API, Google Gemini, OpenAI
 - **OCR**: Tesseract + custom preprocessing  
 
 ---
@@ -210,7 +208,8 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 | ✅ Done | Study Plan Generator |
 | ✅ Done | Google OAuth |
 | ✅ Done | Email Verification |
-| 🔄 In Progress | User accounts & quiz history |
+| ✅ Done | User accounts & quiz history |
+| 🔄 In Progress | Improve OCR |
 | ⏳ Planned | Study progress tracking |
 
 ---
