@@ -209,7 +209,8 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 | ✅ Done | Google OAuth |
 | ✅ Done | Email Verification |
 | ✅ Done | User accounts & quiz history |
-| 🔄 In Progress | Improve OCR |
+| ✅ Done | Improve OCR |
+| 🔄 In Progress | Add User PFP support |
 | ⏳ Planned | Study progress tracking |
 
 ---
