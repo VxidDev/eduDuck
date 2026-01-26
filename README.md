@@ -28,6 +28,41 @@
 
 **AI-powered study companion** that transforms your notes into interactive quizzes, flashcards, and enhanced study materials.
 
+## ⚠️ Public Repo Notice & How to Contribute
+
+This public repository represents **older, stable commits** of EduDuck. The latest deployed version, including features like user accounts, profile picture support, and AI enhancements, exists only in the private repository.
+
+From now on, this repo will receive **historical commits** from the private repo, so you can:
+
+- Explore the development history safely
+- Learn from past implementations
+- Contribute to features
+
+### How You Can Help
+
+EduDuck is evolving, and contributions are welcome! Here are a few ways to participate:
+
+- Implement or improve frontend features
+- Optimize AI or OCR functionality
+- Add tests or documentation
+- Suggest UI/UX improvements
+- Help with bug fixes in older releases
+
+Please **fork this repo** and submit pull requests. Make sure not to include any secrets or personal data.
+
+## 🔧 Tasks & Feature Ideas
+
+**High priority**
+- Migrate parsers (priority: quiz parser) to C/C++
+- Improve OCR preprocessing for handwritten notes
+
+**Medium priority**
+- Optimize note upload and code speed
+- Add automated tests for AI features
+
+**Low priority / future**
+- Migrate JavaScript code to TypeScript
+
 ---
 
 ## 📚 Table of Contents
@@ -57,16 +92,18 @@
 | **📝 Quiz Generator** | Upload notes → instant quizzes |
 | **🗂️ Flashcard Generator** | Spaced repetition flashcards from any subject |
 | **✨ Note Enhancer** | AI-powered summaries, diagrams, key concepts |
-| **📆 Study Plan Generator** | AI-generated daily study plans tailored to your notes, goals, time, and learning style |
+| **📆 Study Plan Generator** | AI-generated daily study plans tailored to your notes, goals, time, and learning style (Not included in repo yet, already deployed) |
 | **🦆 DuckAI** | Chat with your notes, get explanations & study tips |
 | **📱 Multi-format** | TXT, PDF, PNG/JPG, handwritten notes via OCR |
 | **🌍 Multi-language** | English, Polish, German, French, Ukrainian, Russian |
 | **🎨 Modern UI** | Dark/light mode, mobile-first, glassmorphism design |
-| **🔑 Google OAuth Login** | Sign in instantly with Google, no password required |
+| **🔑 Google OAuth Login** | Sign in instantly with Google, no password required (not included in repo yet, already deployed)|
 
 ---
 
 ## 👤 Accounts
+
+> Not included in repo, deployed only (for now)
 
 EduDuck supports **user accounts** to provide fair access limits and enable future personalization features.
 
