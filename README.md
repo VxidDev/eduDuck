@@ -281,7 +281,7 @@ Nothing... for now :[
 
 ## 📄 License
 
-MIT License — **required attribution** to this repository in all deployments.
+Apache License 2.0 - see LICENSE for details.
 
 Made with ❤️ by **VxidDev** — self-taught since June 2025
 
