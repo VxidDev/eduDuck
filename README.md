@@ -249,7 +249,8 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 | ✅ Done | Email Verification |
 | ✅ Done | User accounts & quiz history |
 | ✅ Done | Improve OCR |
-| 🔄 In Progress | Add User PFP support |
+| ✅ Done | Add User PFP support |
+| 🔄 In Progress | Migrate quiz parser to C , C++ or Rust. |
 | ⏳ Planned | Study progress tracking |
 
 ---
