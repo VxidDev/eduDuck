@@ -1,3 +1,7 @@
+import { GetFreeLimitUsage } from "../Components/GetFreeLimitUsage.js";
+
+( async () => { await GetFreeLimitUsage() } )()
+
 document.addEventListener("DOMContentLoaded", () => {
 	const display = document.getElementById("display");
 	if (!display) return console.error("No display element");
@@ -7,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (!flashcards.length) {
 			display.innerHTML =
-				'<div class="no-flashcards">No flashcards generated 😔<br><a href="/flashcardGenerator">Generate some now!</a></div>';
+				'<div class="no-flashcards">No flashcards generated<br><a href="/flashcardGenerator">Generate some now!</a></div>';
 			return;
 		}
 

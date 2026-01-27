@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduDuck - Login</title>
+    <meta name="description" content="Login to EduDuck for free usage and more for quizzes, flashcards, and DuckAI. Free AI study tools for students.">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/variables.css">
+    <link rel="stylesheet" href="/static/Main Page/style.css">
+    <link rel="stylesheet" href="/static/header.css">
+    <link rel="stylesheet" href="/static/body.css">
+    <link rel="stylesheet" href="/static/Main/style.css">
+    <link rel="stylesheet" href="/static/login/style.css">
+    <link rel="stylesheet" href="/static/theme-toggle.css">
+    <script src="/static/login/script.js" defer></script>
+</head>
+
+<body>
+    <div class="header">
+        <a class="header-redirect" href="https://ko-fi.com/vxiddev" style="padding-left: 50px;">Donate</a>
+        <h1 class="header-text">EduDuck</h1>
+        <a class="header-redirect" href="/keyAccess" style="padding-right: 50px;">How to get key?</a>
+    </div>
+
+    <button id="theme-toggle">🌙</button>
+
+    <div class="main-content" style="display: flex; flex-direction: column; align-items: center; padding-top: 50px;">
+        <h2>Login to EduDuck</h2>
+        <p style="text-align:center; max-width:600px;">Access your saved notes, quizzes, flashcards, and DuckAI responses. If you don’t have an account yet, get a free API key first.</p>
+
+        <div id="login-form" class="auth-form" style="display: flex; flex-direction: column; gap: 15px; margin-top: 30px; width: 300px;">
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="Enter your username" style="padding:10px; font-size:1em;">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" style="padding:10px; font-size:1em;">
+
+            <button id="login-button" class="button" style="padding: 10px; font-size: 1.1em; cursor:pointer;">Login</button>
+
+            <p id="login-error" style="color:red; margin-top:10px; display:none;"></p>
+        </div>
+
+        <p style="margin-top:20px;">New here? <a href="/register" class="repoLink">Register today!</a></p>
+    </div>
+
+    <footer style="margin-top: 50px; text-align: center;">
+        <span>
+            By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2026 | 
+            Open Source on GitHub | 
+            <a class="repoLink" href="/terms" style="text-decoration: none;">Terms of Service</a>
+        </span>
+    </footer>
+
+    <script src="/static/Components/DarkModeToggle.js"></script>
+</body>
+</html>

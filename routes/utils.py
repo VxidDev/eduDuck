@@ -1,6 +1,6 @@
 from requests import post
 from pypdf import PdfReader
-from flask import request , jsonify
+from flask import request , jsonify , render_template , url_for
 from pytesseract import image_to_string
 from PIL import Image, ImageFilter, ImageEnhance
 from pymongo import MongoClient
@@ -8,11 +8,19 @@ import os
 import urllib.parse
 from datetime import date
 from pymongo.server_api import ServerApi
-import certifi 
+import certifi
+from bson.objectid import ObjectId 
+from flask_login import login_user , UserMixin , current_user
+from werkzeug.security import generate_password_hash , check_password_hash
 
 from uuid import uuid4
 
 _client = None
+
+class User(UserMixin):
+    def __init__(self, userDoc):
+        self.id = str(userDoc["_id"])
+        self.username = userDoc["username"]
 
 def GetMongoURI() -> str:
     RawUri = os.getenv("MONGODB_URI")
@@ -27,38 +35,149 @@ def GetMongoClient() -> MongoClient:
     global _client
     if _client is None:
         _client = MongoClient(
-        GetMongoURI(), 
-        server_api=ServerApi('1'), 
-        tls=True,
-        tlsCAFile=certifi.where(),  
+        GetMongoURI(),  
         serverSelectionTimeoutMS=10000, 
-        connectTimeoutMS=10000,
-        socketTimeoutMS=20000,
-        heartbeatFrequencyMS=10000,
-        maxPoolSize=10,
-        retryWrites=True
     )
     return _client
 
 def IncrementUsage():
+    if not current_user.is_authenticated:
+        return jsonify({"error": "Not logged in"}), 401
+
     today = date.today().isoformat()
-    ip = request.remote_addr
-    
-    usage = GetMongoClient()["EduDuck"]["daily_usage"].find_one_and_update(
-        {"ip": ip, "date": today},  
-        {"$inc": {"timesUsed": 1}},                    
-        upsert=True,                                   
-        return_document=True                           
+    users = GetMongoClient()["EduDuck"]["users"]
+
+    # Update usage
+    result = users.find_one_and_update(
+        {"_id": ObjectId(current_user.id)},
+        [
+            {
+                "$set": {
+                    "daily_usage": {
+                        "date": today,
+                        "timesUsed": {
+                            "$cond": [
+                                {"$eq": ["$daily_usage.date", today]},
+                                {"$add": ["$daily_usage.timesUsed", 1]},
+                                1
+                            ]
+                        }
+                    }
+                }
+            }
+        ],
+        return_document=True
     )
-    return jsonify({"timesUsed": usage["timesUsed"], "ip": ip})
+
+    timesUsed = result["daily_usage"]["timesUsed"]
+    return jsonify({"timesUsed": timesUsed})
 
 def GetUsage():
+    if not current_user.is_authenticated:
+        return jsonify({"timesUsed": 0, "remaining": 3})
+
+    users = GetMongoClient()["EduDuck"]["users"]
+    user = users.find_one({"_id": ObjectId(current_user.id)})
+
     today = date.today().isoformat()
-    ip = request.remote_addr
+    usage = user.get("daily_usage", {"date": today, "timesUsed": 0})
 
-    usage = GetMongoClient()["EduDuck"]["daily_usage"].find_one({"ip": ip , "date": today})
+    if usage["date"] != today:
+        timesUsed = 0
+    else:
+        timesUsed = usage["timesUsed"]
 
-    return jsonify({"timesUsed": usage["timesUsed"] if usage else 0})
+    remaining = max(3 - timesUsed, 0)
+    return jsonify({"timesUsed": timesUsed, "remaining": remaining})
+
+def LoadUser(userID):
+    try:
+        obj_id = ObjectId(userID)
+    except Exception:
+        return None
+
+    userDoc = GetMongoClient()["EduDuck"]["users"].find_one({"_id": obj_id})
+    return userDoc
+
+def LoadUserByUsername(username: str):
+    return GetMongoClient()["EduDuck"]["users"].find_one({
+        "username": {"$regex": f"^{username}$", "$options": "i"}
+    })
+
+def LoadUserByMail(mail: str):
+    return GetMongoClient()["EduDuck"]["users"].find_one({
+        "email": {"$regex": f"^{mail}$", "$options": "i"}
+    })
+
+
+def LoginUser(UserClass, data=None):
+    if data:
+        username = data.get("username")
+        password = data.get("password")
+    else:
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+    if not username or not password:
+        return jsonify({"error": "Missing credentials"}), 400
+
+    userDoc = LoadUserByUsername(username)
+    if not userDoc:
+        return jsonify({"error": "Invalid username or password"}), 401
+
+    if not check_password_hash(userDoc["password"], password):
+        return jsonify({"error": "Invalid username or password"}), 401
+
+    user = UserClass(userDoc)
+    login_user(user)
+
+    return None
+
+def RegisterUser():
+    if request.method == "POST":
+        data = request.get_json()
+        username = data.get("username")
+        password = data.get("password")
+        email: str = data.get("email")
+        confirm = data.get("confirm")
+
+        if not username or not password or not email or not confirm:
+            return jsonify({"error": "All fields are required"}), 400
+
+        if password != confirm:
+            return jsonify({"error": "Passwords do not match"}), 400
+
+        existingUser = LoadUserByUsername(username)
+        if existingUser:
+            return jsonify({"error": "Username already taken"}), 409
+
+        existingMail = LoadUserByMail(email.lower())
+        if existingMail:
+            return jsonify({"error": "Email already taken."}), 409
+
+        hashedPassword = generate_password_hash(password)
+
+        usersCollection = GetMongoClient()["EduDuck"]["users"]
+
+        userDoc = {
+            "username": username.lower(),
+            "email": email.lower(), 
+            "password": hashedPassword,
+            
+            "daily_usage": {
+                "date": date.today().isoformat(),
+                "timesUsed": 0
+            }
+        }
+
+        result = usersCollection.insert_one(userDoc)
+
+        user = User({"_id": result.inserted_id, "username": username})
+        login_user(user)
+
+        return jsonify({"success": True, "redirect": url_for("root")})
+
+    return render_template("pages/register.html")
 
 def AiReq(API_URL, headers, payload, mode, timeout=60):
     try:

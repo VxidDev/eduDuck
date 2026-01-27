@@ -6,3 +6,4 @@ pillow
 pytesseract
 pymongo
 certifi
+flask_login

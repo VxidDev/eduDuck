@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduDuck - Terms of Service</title>
+    <meta name="description" content="EduDuck Terms of Service - Rules and guidelines for using EduDuck AI study tools.">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/variables.css">
+    <link rel="stylesheet" href="/static/Main Page/style.css">
+    <link rel="stylesheet" href="/static/header.css">
+    <link rel="stylesheet" href="/static/body.css">
+    <link rel="stylesheet" href="/static/Main/style.css">
+    <link rel="stylesheet" href="/static/login/style.css">
+    <link rel="stylesheet" href="/static/theme-toggle.css">
+    <script src="{{ url_for('static', filename='privacy/script.js') }}" type="module" defer></script>
+
+    <script>
+        window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
+    </script>
+
+</head>
+
+<body>
+    <div class="header">
+        <a class="header-redirect" href="https://ko-fi.com/vxiddev" style="padding-left: 50px;">Donate</a>
+        <h1 class="header-text">Terms Of Service</h1>
+        <div style="padding-right: 50px; display: flex; gap: 15px; align-items: center;">
+            {% if not current_user.is_authenticated %}
+                <a class="header-link" href="/login">Login</a>
+                <span class="divider">/</span>
+                <a class="header-link" href="/register">Register</a>
+                <span class="free-uses">for 3 free uses/day!</span>
+            {% else %}
+                <span id="FreeUsageText">Welcome, {{ current_user.username }}! You have {{ remaining }} free uses today.</span>
+                <a class="header-link logout" href="/logout">Logout</a>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <button id="theme-toggle">🌙</button>
+
+    <div class="main-content" style="max-width: 800px; margin: 50px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 20px;">
+        <h2>EduDuck Terms of Service</h2>
+        <p>Welcome to EduDuck! By using our platform, you agree to the following terms and guidelines:</p>
+
+        <h3>1. Use of the Service</h3>
+        <p><strong>1.</strong> EduDuck provides AI-powered study tools including quizzes, flashcards, note enhancement, and DuckAI assistance. You agree to use the platform for educational purposes only.</p>
+        <p><strong>2.</strong> Users must not misuse the service, attempt to disrupt it, or exceed free-tier limits in ways that affect other users.</p>
+
+        <h3>2. Accounts</h3>
+        <p><strong>1.</strong> Some features require an account or API key. You are responsible for maintaining the confidentiality of your credentials and activity on your account.</p>
+        <p><strong>2.</strong> You must notify EduDuck immediately of any unauthorized use of your account.</p>
+
+        <h3>3. Content</h3>
+        <p><strong>1.</strong> You retain ownership of the notes, quizzes, and materials you upload.</p>
+        <p><strong>2.</strong> By using EduDuck, you grant a temporary license to process your uploaded content for AI-generated results. EduDuck does not claim ownership of your content.</p>
+        <p><strong>3.</strong> Do not upload illegal, offensive, or copyrighted content that you do not own or have permission to use. Violations may result in suspension or termination of your account.</p>
+
+        <h3>4. Free Usage</h3>
+        <p><strong>1.</strong> The free tier provides limited daily uses of EduDuck AI features. Additional usage may require an API key.</p>
+        <p><strong>2.</strong> EduDuck reserves the right to limit or suspend access to ensure fair usage among all users.</p>
+
+        <h3>5. Privacy</h3>
+        <p><strong>1.</strong> Your data may be stored temporarily for generating results and tracking usage. EduDuck does not sell your data.</p>
+        <p><strong>2.</strong> For more details on data handling, see our <a href="/privacy" class="repoLink">Privacy Policy</a>.</p>
+
+        <h3>6. Updates and Termination</h3>
+        <p><strong>1.</strong> EduDuck may update, suspend, or terminate services at any time without prior notice.</p>
+        <p><strong>2.</strong> Users should ensure they have backups of any important notes or quizzes.</p>
+        <p><strong>3.</strong> These Terms of Service may also be updated periodically. Continued use of EduDuck constitutes acceptance of the updated terms.</p>
+
+        <h3>7. Limitation of Liability</h3>
+        <p><strong>1.</strong> EduDuck is provided “as is” without warranties. We are not responsible for errors, downtime, or inaccuracies in AI-generated results.</p>
+        <p><strong>2.</strong> EduDuck and its developers are not liable for any direct, indirect, incidental, or consequential damages arising from the use of the platform.</p>
+
+        <h3>8. Governing Law</h3>
+        <p><strong>1.</strong> These terms are governed by the laws of Poland. Any disputes arising under these terms shall be resolved in the courts of Poland.</p>
+
+        <h3>9. Children`s Use</h3>
+        <p><strong>1.</strong> EduDuck is not intended for children under 13 years of age. We do not knowingly collect personal information from children.</p>
+
+        <h3>10. Contact</h3>
+        <p><strong>1.</strong> If you have questions about these terms, please contact us at <a style="text-decoration: none;" class="repoLink" href="mailto:team.eduduck@gmail.com">team.eduduck@gmail.com</a>.</p>
+
+        <p>By using EduDuck, you acknowledge that you have read and agree to these Terms of Service.</p>
+    </div>
+
+    <footer style="margin-top: 50px; text-align: center;">
+        <span>
+            By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2026 | 
+            Open Source on GitHub | 
+            <a class="repoLink" href="/terms" style="text-decoration: none;">Terms of Service</a>
+        </span>
+    </footer>
+
+    <script src="/static/Components/DarkModeToggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+/* ---------------- Light Mode ---------------- */
+:root {
+    /* Backgrounds */
+    --bg-main: #f6f8fb;
+    --bg-main-gradient-end: #e9ecef;
+    --bg-header: rgba(255, 255, 255, 0.96);
+    --bg-main-card: rgba(255, 255, 255, 0.94);
+    --bg-footer: #f2f4f7;
+    --bg-card: #ffffff;
+    --bg-card-soft: #f9fbff;
+
+    /* Cards / Panels */
+    --card-bg: #f7f7f7;
+    --card-border: #e0e0e0;
+    --card-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+
+    /* Text Colors */
+    --text-main: #151515;
+    --text-heading: #2c3e50;
+    --text-muted: #555555;
+    --text-soft: #666666;
+    --text-footer: #7f8c8d;
+    --text-placeholder: #9aa0b5;
+
+    /* Accent Colors */
+    --accent: #3498db;
+    --accent-dark: #2980b9;
+    --accent-danger: #e74c3c;
+    --accent-danger-dark: #c0392b;
+
+    /* Borders */
+    --border-soft: rgba(0,0,0,0.08);
+    --border-card: rgba(255,255,255,0.8);
+    --border-input: rgba(0,0,0,0.12);
+
+    /* Tables */
+    --table-border: #d0d0d0;
+    --table-header-bg: #e9e9e9;
+    --table-row-alt: #f1f1f1;
+
+    /* Blockquotes */
+    --blockquote-bg: #ececec;
+    --blockquote-border: rgb(50, 50, 50);
+
+    /* Shadows */
+    --shadow-soft: 0 25px 60px rgba(0,0,0,0.12);
+    --shadow-card: 0 16px 40px rgba(0,0,0,0.12);
+    --shadow-card-hover: 0 24px 60px rgba(0,0,0,0.2);
+
+    /* Backdrops */
+    --backdrop-main: blur(10px);
+    --backdrop-header: blur(20px);
+
+    /* Inputs */
+    --input-bg: rgba(255, 255, 255, 0.08);
+    --input-bg-focus: rgba(165, 165, 165, 0.2);
+    --input-border: rgba(255, 255, 255, 0.2);
+    --input-border-focus: rgba(131, 131, 131, 0.8);
+    --input-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+    --input-shadow-focus: 0 12px 40px rgba(0,0,0,0.6), 0 0 30px rgba(131,131,131,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+
+    /* Buttons */
+    --button-bg: rgb(217,217,217);
+    --button-bg-hover: rgba(165,165,165,0.8);
+    --button-bg-active: rgba(123,123,123,0.95);
+
+    /* Selects */
+    --select-bg: rgba(217,217,217,0.85);
+    --select-bg-hover: rgba(190,190,190,0.95);
+    --select-bg-focus: rgba(230,230,230,0.95);
+    --select-bg-active: rgba(170,170,170,0.85);
+    --select-border: #888;
+    --select-border-focus: #005bbb;
+    --select-color: #222;
+    --select-color-focus: #111;
+
+    /* Labels */
+    --label-color: rgba(20, 20, 20, 0.85);
+
+    /* Flashcards / md-content */
+    --flashcard-bg: linear-gradient(145deg,#ffffff,#f0f8ff);
+    --flashcard-border: rgba(59,130,246,0.1);
+    --flashcard-shadow: 0 10px 30px rgba(0,0,0,0.1),0 4px 12px rgba(0,0,0,0.05);
+    --question-bg: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+    --question-color: white;
+    --answer-bg: white;
+    --answer-border: rgba(0,0,0,0.05);
+    --no-flashcards-color: #6b7280;
+    --no-flashcards-link: #3b82f6;
+}
+
+/* ---------------- Dark Mode ---------------- */
+body.dark {
+    /* Backgrounds */
+    --bg-main: #050710;
+    --bg-main-gradient-end: #050710;
+    --bg-header: rgba(7, 10, 24, 0.96);
+    --bg-main-card: rgba(13, 16, 33, 0.96);
+    --bg-footer: #050712;
+    --bg-card: #0d101b;
+    --bg-card-soft: #141826;
+
+    /* Cards / Panels */
+    --card-bg: #101321;
+    --card-border: #232941;
+    --card-shadow: 0 18px 45px rgba(0,0,0,0.85);
+
+    /* Text Colors */
+    --text-main: #f5f7ff;
+    --text-heading: #ffffff;
+    --text-muted: #c3c7d9;
+    --text-soft: #a7aec4;
+    --text-footer: #9aa1bc;
+    --text-placeholder: #6c7190;
+
+    /* Accent Colors */
+    --accent: #4aa8ff;
+    --accent-dark: #1f6fd1;
+    --accent-danger: #ff6b6b;
+    --accent-danger-dark: #e63946;
+
+    /* Borders */
+    --border-soft: rgba(255,255,255,0.14);
+    --border-card: rgba(255,255,255,0.12);
+    --border-input: rgba(255,255,255,0.18);
+
+    /* Tables */
+    --table-border: #2d3554;
+    --table-header-bg: #181d34;
+    --table-row-alt: #141a2b;
+
+    /* Blockquotes */
+    --blockquote-bg: #171d33;
+    --blockquote-border: #4a86ff;
+
+    /* Shadows */
+    --shadow-soft: 0 25px 60px rgba(0,0,0,0.8);
+    --shadow-card: 0 20px 45px rgba(0,0,0,0.75);
+    --shadow-card-hover: 0 28px 70px rgba(0,0,0,0.9);
+
+    /* Backdrops */
+    --backdrop-main: blur(12px);
+    --backdrop-header: blur(24px);
+
+    /* Inputs */
+    --input-bg: rgba(12,16,32,0.85);
+    --input-bg-focus: rgba(25,34,73,0.95);
+    --input-border: rgba(255,255,255,0.18);
+    --input-border-focus: rgba(74,134,255,0.9);
+    --input-shadow: 0 10px 40px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.04);
+    --input-shadow-focus: 0 18px 55px rgba(0,0,0,0.95), 0 0 35px rgba(74,134,255,0.5), inset 0 1px 0 rgba(0,0,0,0.6);
+
+    /* Buttons */
+    --button-bg: rgb(60,68,92);
+    --button-bg-hover: rgba(90,108,160,0.95);
+    --button-bg-active: rgba(46,56,92,0.98);
+
+    /* Selects */
+    --select-bg: rgba(35,42,76,0.95);
+    --select-bg-hover: rgba(52,63,104,0.98);
+    --select-bg-focus: rgba(40,54,104,0.98);
+    --select-bg-active: rgba(28,37,78,0.95);
+    --select-border: #5a6ca0;
+    --select-border-focus: #4a86ff;
+    --select-color: #e5e9ff;
+    --select-color-focus: #ffffff;
+
+    /* Labels */
+    --label-color: rgba(230,235,255,0.9);
+
+    /* Flashcards / md-content */
+    --flashcard-bg: linear-gradient(145deg,#141826,#0d101b);
+    --flashcard-border: rgba(74,134,255,0.2);
+    --flashcard-shadow: 0 18px 45px rgba(0,0,0,0.85);
+    --question-bg: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+    --question-color: #f5f7ff;
+    --answer-bg: #101321;
+    --answer-border: rgba(255,255,255,0.05);
+    --no-flashcards-color: #9aa1bc;
+    --no-flashcards-link: #4aa8ff;
+}

@@ -37,7 +37,7 @@ def ParseFlashcards(fc: str) -> dict:
 
 def FlashcardGenerator(prompts: dict):
     data: dict = request.get_json()
-    IS_FREE = data["isFree"]
+    IS_FREE = data.get("isFree" , False)
     NOTES = data["notes"]
     LANGUAGE = data["language"]
     API_MODE = data["apiMode"]
@@ -136,13 +136,13 @@ def FlashcardGenerator(prompts: dict):
     return jsonify({'flashcards': flashcards})
 
 def FlashCardGenerator():
-    return render_template("flashCardGenerator.html")
+    return render_template("Flashcard Generator/flashCardGenerator.html")
 
 def FlashCardResult(flashcards: dict) -> None:
     flashcardId = request.args.get('id')
     Flashcards = flashcards.get(flashcardId)
     print("READ", flashcardId, "found:", bool(Flashcards))
-    return render_template("flashcards.html", flashcards=Flashcards)
+    return render_template("Flashcard Generator/flashcards.html", flashcards=Flashcards)
 
 def ImportFlashcards(flashcards: dict) -> None:
     file = request.files.get("flashcardFile")      

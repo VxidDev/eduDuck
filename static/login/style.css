@@ -1,0 +1,19 @@
+.main-content h2, 
+.main-content h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.main-content p {
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+.main-content a {
+    text-decoration: none;
+    color: #1a73e8; 
+}
+
+.main-content a:hover {
+    text-decoration: underline;
+}

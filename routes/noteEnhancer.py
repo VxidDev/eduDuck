@@ -5,7 +5,7 @@ from routes.utils import AiReq , IncrementUsage
 import os
 
 def NoteEnhancer():
-    return render_template('noteEnhancer.html')
+    return render_template('Note Enhancer/noteEnhancer.html')
 
 def EnhanceNotes(prompts: dict):
     data: dict = request.get_json()
@@ -95,7 +95,7 @@ def EnhancedNotes(notes: dict):
     noteID = request.args.get('notes')
     notes = notes.get(noteID, '') if noteID else ''
     print("READ", noteID, "found:", bool(notes))
-    return render_template('enhancedNotes.html', notes=notes)
+    return render_template('Note Enhancer/enhancedNotes.html', notes=notes)
 
 def ImportNotes(notes: dict) -> None:
     file = request.files.get("noteFile")      

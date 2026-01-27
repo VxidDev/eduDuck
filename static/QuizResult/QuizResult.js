@@ -1,4 +1,8 @@
-const params     = new URLSearchParams(window.location.search);
+import { GetFreeLimitUsage } from "../Components/GetFreeLimitUsage.js"
+
+( async () => { await GetFreeLimitUsage(); })();
+
+const params = new URLSearchParams(window.location.search);
 const resultJson = params.get("result");
 
 if (resultJson) {

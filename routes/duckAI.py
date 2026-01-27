@@ -15,15 +15,12 @@ moreApiErrors = {
     "API error 400": "API error 400 occurred. Bad request format. Check JSON payload and parameters."
 }
 
-def DuckAI():
-    return render_template("DuckAI.html")
-
 def GenerateResponse(prompts: dict):
     data: dict = request.get_json()
     MESSAGE = data["message"]
     API_MODE = data["apiMode"]
     MODEL = data.get("model" , False)
-    IS_FREE = data["isFree"]
+    IS_FREE = data.get("isFree" , False)
 
     IsReasoning = False
 

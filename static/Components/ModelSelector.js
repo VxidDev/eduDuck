@@ -1,67 +1,49 @@
 export function CustomModelListeners() {
-    const CustomModel = document.getElementById('customModel');
-    const CustomModelInput = document.querySelector('.customModelInput');
-    const APIModeSelector = document.getElementById('apiMode');
-    const ApiKeyInput = document.querySelector('.apiKey');
-    const CustomModelSelector = document.querySelector('.customModelSelector');
-    const FreeUsageSelector = document.getElementById("FreeUsage")
-    const QuestionSelector = document.getElementById("questionCount");
-    const FreeLimitBar = document.querySelector(".FreeLimit");
-    const SubmitBtn = document.querySelector(".submit");
+    const customModelCheckbox = document.getElementById('customModel');
+    const customModelInput = document.querySelector('.customModelInput');
+    const apiModeSelector = document.getElementById('apiMode');
+    const apiKeyInput = document.querySelector('.apiKey');
+    const customModelSelector = document.querySelector('.customModelSelector');
+    const freeUsageCheckbox = document.getElementById('FreeUsage');
+    const questionSelector = document.getElementById('questionCount');
+    const freeLimitBar = document.getElementById('FreeUsageText');
+    const submitBtn = document.getElementById('send-button') || document.querySelector(".submit");
 
-    if (!CustomModel || !CustomModelInput || !APIModeSelector || !CustomModelSelector || !ApiKeyInput || !FreeUsageSelector) {
+    if (!customModelCheckbox || !customModelInput || !apiModeSelector || !apiKeyInput || !customModelSelector) {
         console.warn('Core UI elements not found');
         return;
     }
 
-    const hasQuestionSelector = !!QuestionSelector;
-    const hasFreeLimitBar = !!FreeLimitBar;
+    customModelCheckbox.addEventListener('change', () => {
+        customModelInput.classList.toggle('hidden', !customModelCheckbox.checked);
+    });
 
-    CustomModel.addEventListener('change', () => {
-        if (CustomModel.checked) {
-            CustomModelInput.classList.remove('hidden');
+    apiModeSelector.addEventListener('change', () => {
+        const mode = apiModeSelector.value;
+        apiKeyInput.placeholder = `Enter your ${mode} API key here!`;
+
+        if (mode !== 'Hugging Face' && mode !== 'OpenAI') {
+            customModelSelector.style.display = 'none';
+            customModelInput.classList.add('hidden');
         } else {
-            CustomModelInput.classList.add('hidden');
+            customModelSelector.style.display = null;
+            customModelInput.classList.toggle('hidden', !customModelCheckbox.checked);
+            customModelInput.placeholder = mode === 'Hugging Face'
+                ? "Enter custom model here! (e.g., microsoft/DialoGPT-medium)"
+                : "Enter custom OpenAI model here! (e.g., gpt-4o-mini)";
         }
     });
 
-    APIModeSelector.addEventListener('change', () => {
-        ApiKeyInput.placeholder = `Enter your ${APIModeSelector.value} API key here!`;
-        if (APIModeSelector.value !== 'Hugging Face' && APIModeSelector.value !== "OpenAI") {
-            CustomModelSelector.style.display = "none";
-            CustomModelInput.classList.add('hidden');
-        } else {
-            if (CustomModel.checked) CustomModelInput.classList.remove('hidden');
-            CustomModelInput.placeholder = APIModeSelector.value === 'Hugging Face' ? "Enter custom model here! (e.g., microsoft/DialoGPT-medium)" : "Enter custom OpenAI model here! (e.g., gpt-4o-mini, gpt-4.1-nano)";
-            CustomModelSelector.style.display = null;
-        }
-    });
+    if (freeUsageCheckbox) {
+        freeUsageCheckbox.addEventListener('change', () => {
+            const isFree = freeUsageCheckbox.checked;
 
-    FreeUsageSelector.addEventListener('change', () => {
-        if (FreeUsageSelector.checked) {
-            CustomModelSelector.style.display = "none";
-            CustomModelInput.classList.add('hidden');
-            ApiKeyInput.classList.add('hidden');
-            APIModeSelector.classList.add('hidden');
-            
-            if (hasQuestionSelector) {
-                QuestionSelector.value = "5";
-                QuestionSelector.disabled = true;
-            }
-            if (hasFreeLimitBar && parseInt(FreeLimitBar.textContent[0]) >= 3) {
-                SubmitBtn.disabled = true;
-            }
-        } else {
-            if (CustomModel.checked) CustomModelInput.classList.remove('hidden');
-            if (APIModeSelector.value === 'Hugging Face' || APIModeSelector.value === "OpenAI") {
-                CustomModelSelector.style.display = null;
-            }
-            ApiKeyInput.classList.remove('hidden');
-            APIModeSelector.classList.remove('hidden');
-            if (hasQuestionSelector) {
-                QuestionSelector.disabled = false;
-            }
-            SubmitBtn.disabled = false;
-        }
-    });
+            [customModelSelector, customModelInput, apiKeyInput, apiModeSelector].forEach(el => {
+                if (el) el.style.display = isFree ? 'none' : '';
+            });
+
+            if (questionSelector) questionSelector.disabled = isFree;
+            submitBtn.disabled = isFree && freeLimitBar && parseInt(freeLimitBar.textContent[0]) >= 3;
+        });
+    }
 }

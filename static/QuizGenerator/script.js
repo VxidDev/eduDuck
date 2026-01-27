@@ -2,24 +2,43 @@ import { CustomModelListeners } from "../Components/ModelSelector.js";
 import { InitFileUploads } from "../Components/FileUploadHandler.js"
 import { GetFreeLimitUsage } from "../Components/GetFreeLimitUsage.js";
 
-const NoteInput        = document.querySelector(".notes");
-const Submit           = document.querySelector(".submit");
-const StatusLabel      = document.querySelector(".status");
-const TextInputs       = document.querySelectorAll(".textInput");
-const ApiKeyInput      = document.querySelector(".apiKey");
-const CustomModel      = document.getElementById("customModel");
+const NoteInput = document.querySelector(".notes");
+const Submit = document.querySelector(".submit");
+const StatusLabel = document.querySelector(".status");
+const TextInputs = document.querySelectorAll(".textInput");
+const ApiKeyInput = document.querySelector(".apiKey");
+const CustomModel = document.getElementById("customModel");
 const CustomModelInput = document.querySelector(".customModelInput");
 const LanguageSelector = document.getElementById("language");
 const QuestionSelector = document.getElementById("questionCount");
-const APIModeSelector  = document.getElementById("apiMode");
-const QuizDifficulty   = document.getElementById("difficulty");
-const FreeLimitBar     = document.querySelector(".FreeLimit");
-const FreeUsage        = document.getElementById("FreeUsage");
+const APIModeSelector = document.getElementById("apiMode");
+const QuizDifficulty = document.getElementById("difficulty");
+const FreeUsage = document.getElementById("FreeUsage");
+const FreeUsageText = document.getElementById("FreeUsageText");
+
+let FreeUsageLeft = 0;
 
 StatusLabel.textContent = '';
 
 CustomModelListeners();
-GetFreeLimitUsage(FreeLimitBar , Submit);
+( async () => { 
+	
+await GetFreeLimitUsage();
+
+// Initial Fetch
+if (FreeUsageText) {
+	const request = await fetch('/get-usage' , {
+		method: "GET",
+		headers: { "Content-Type": "application/json" }
+	});
+
+	let usageData = await request.json();
+
+	FreeUsageLeft = usageData.remaining || 0;
+	if (FreeUsageLeft <= 0 && FreeUsage?.checked) Submit.disabled = true;
+	FreeUsageText.textContent = `Welcome, ${window.CURRENT_USERNAME}! You have ${FreeUsageLeft} free uses today.`;
+}
+//
 
 const getMaxLines = el =>
 	el.classList.contains("slim")
@@ -41,6 +60,11 @@ TextInputs.forEach(ti => {
 });
 
 Submit.addEventListener("click", async () => {
+	if (FreeUsage?.checked && FreeUsageLeft <= 0) {
+		StatusLabel.textContent = "No free uses left today.";
+		return;
+	}
+
 	StatusLabel.textContent = "";
 
 	const notes  = NoteInput.value.trim();
@@ -67,13 +91,13 @@ Submit.addEventListener("click", async () => {
 	try {
 		const body = {
 			notes,
-			apiKey: FreeUsage.checked ? null : apiKey,
-			model: FreeUsage.checked ? null : model,
+			apiKey: FreeUsage && FreeUsage.checked ? null : apiKey,
+			model: FreeUsage && FreeUsage.checked ? null : model,
 			language: LanguageSelector.value.trim(),
 			questionCount: QuestionSelector.value.trim(),
-			apiMode: FreeUsage.checked ? "OpenAI" : APIModeSelector.value.trim(),
+			apiMode: FreeUsage && FreeUsage.checked ? "OpenAI" : APIModeSelector.value.trim(),
 			difficulty,
-			isFree: FreeUsage.checked
+			isFree: FreeUsage && FreeUsage.checked
 		};
 
 		const res1 = await fetch("/quiz-generator/gen-quiz", {
@@ -91,6 +115,20 @@ Submit.addEventListener("click", async () => {
 		const payload = await res2.json();
 
 		window.location.href = `/quiz-generator/quiz?quiz=${encodeURIComponent(payload.id)}`;
+
+		if (FreeUsageText && FreeUsage?.checked) { // If user somehow stays on page
+			const request = await fetch('/get-usage' , {
+				method: "GET",
+				headers: { "Content-Type": "application/json" }
+			});
+
+			const usageData = await request.json();
+			FreeUsageLeft = usageData.remaining || 0;
+			FreeUsageText.textContent = `Welcome, ${window.CURRENT_USERNAME}! You have ${FreeUsageLeft} free uses today.`;
+
+			if (FreeUsageLeft <= 0) Submit.disabled = true; 
+		}
+
 	} catch {
 		StatusLabel.textContent = "Error while generating quiz.";
 	}
@@ -152,3 +190,4 @@ InitFileUploads({
 	onRegularFile: SendFile,
 	onImportFile: ImportData
 })
+})();

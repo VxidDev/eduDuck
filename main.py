@@ -1,12 +1,12 @@
-from flask import Flask , render_template , send_from_directory
+from flask import Flask , render_template , send_from_directory , redirect , url_for , request , jsonify
 from json import load , JSONDecodeError
+from functools import wraps
 
-from routes.utils import uploadNotes as _uploadNotes_
-from routes.utils import storeNotes as _storeNotes_
-from routes.utils import storeQuiz as _storeQuiz_
-from routes.utils import storeFlashcards as _storeFlashcards_
-from routes.utils import GetUsage as _GetUsage_
-from routes.utils import IncrementUsage as _IncrementUsage_
+from routes.utils import ( 
+    LoginUser , RegisterUser , User , LoadUser, # Accounts
+    IncrementUsage , GetUsage, # Free Usage Logic
+    storeFlashcards, uploadNotes , storeNotes , storeQuiz # Storing (temp)
+)
 
 from routes.quiz import ParseQuiz
 from routes.quiz import QuizGenerator as _QuizGenerator_
@@ -28,10 +28,14 @@ from routes.flashcardGenerator import FlashCardResult as _FlashCardResult_
 from routes.flashcardGenerator import ImportFlashcards as _ImportFlashcards_
 from routes.flashcardGenerator import ExportFlashcards as _ExportFlashcards_
 
-from routes.duckAI import DuckAI as _DuckAI_
 from routes.duckAI import GenerateResponse as _GenerateResponse_
 
 from werkzeug.middleware.proxy_fix import ProxyFix
+from werkzeug.security import check_password_hash , generate_password_hash
+
+import os
+import secrets
+from flask_login import LoginManager , UserMixin , login_required , current_user , logout_user
 
 notes = {}
 quizzes = {}
@@ -39,6 +43,15 @@ flashcards = {}
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
+
+app.secret_key = os.getenv("SECRET_KEY")
+
+if not app.secret_key or len(app.secret_key) < 32:
+    raise RuntimeError("Invalid SECRET_KEY")
 
 prompts = None
 
@@ -49,25 +62,74 @@ except (FileNotFoundError , JSONDecodeError):
     print("Failed to load prompts.")
 
 if not prompts:
-    exit(0)
+    raise RuntimeError("Failed to load prompts.")
+
+def RemainingUsage():
+    return GetUsage().get_json().get("remaining", 3) if current_user.is_authenticated else 3
 
 @app.route("/" , methods=['GET'])
 def root():
-    return render_template("index.html")
+    return render_template("pages/index.html" , remaining=RemainingUsage())
 
 # ---------------- Utils ----------------------------------
 @app.route("/upload-notes", methods=['POST'], endpoint='uploadNotes')
-def uploadNotes():
-    return _uploadNotes_()
+def UploadNotes():
+    return uploadNotes()
 
 @app.route('/store-notes', methods=['POST'], endpoint='storeNotes')
-def storeNotes():
-    return _storeNotes_(notes)
+def StoreNotes():
+    return storeNotes(notes)
+
+@login_manager.user_loader
+def loadUser(userID):
+    userDoc = LoadUser(userID)
+
+    if not userDoc:
+        return None
+    
+    return User(userDoc)
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for("root"))
+
+    if request.method == "POST":
+        data = request.get_json() 
+        result = LoginUser(User, data)
+
+        if result:  
+            return result
+
+        return jsonify({"success": True})  
+
+    return render_template("pages/login.html")
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for("root"))
+        
+    return RegisterUser()
+
+@app.route("/logout" , methods=["GET"])
+def logout():
+    logout_user()
+    return redirect(url_for("root"))
+
+def apiLoginRequired(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if not current_user.is_authenticated:
+            return jsonify(error = "Unauthorized"), 401
+
+        return func(*args, **kwargs)
+    return wrapper
 
 # ---------------- Quiz Generator ------------------------
 @app.route('/quiz-generator/store-quiz', methods=['POST'], endpoint='storeQuiz')
-def storeQuiz():
-    return _storeQuiz_(quizzes)
+def StoreQuiz():
+    return storeQuiz(quizzes)
 
 @app.route('/quiz-generator/quiz/result', methods=['POST'], endpoint='submitQuizResult')
 def submitResult():
@@ -87,7 +149,7 @@ def ExportQuiz():
 
 @app.route('/quiz-generator/quiz/result', endpoint='quizResultPage')
 def result_page():
-    return render_template('QuizResult.html')
+    return render_template('Quiz Generator/QuizResult.html')
 
 @app.route("/quiz-generator/quiz", endpoint='showQuiz')
 def quiz():
@@ -124,12 +186,12 @@ def flashCards():
     return _FlashCardGenerator_()
 
 @app.route('/flashcard-generator/generate' , endpoint='flashcardGenerator' , methods=['POST'])
-def flashCards():
+def generateFlashCards():
     return _FlashcardGenerator_(prompts)
 
 @app.route('/store-flashcards' , methods=['POST'], endpoint='storeflashCards')
-def storeFlashcards():
-    return _storeFlashcards_(flashcards)
+def StoreFlashcards():
+    return storeFlashcards(flashcards)
 
 @app.route('/flashcard-generator/result' , endpoint='flashCardResult')
 def flashCardResult():
@@ -146,7 +208,7 @@ def ExportFlashcards():
 # -------------- DuckAI -----------------------------------
 @app.route('/duck-ai' , endpoint='DuckAI')
 def DuckAI():
-    return _DuckAI_()
+    return render_template("DuckAI/DuckAI.html" , remaining=RemainingUsage())
 
 @app.route('/duck-ai/generate' , endpoint='DuckAIResponse' , methods=['POST'])
 def GenerateResponse():
@@ -155,15 +217,17 @@ def GenerateResponse():
 # ---------------- Miscellanious ------------------------
 @app.route("/keyAccess")
 def keyAccess():
-    return render_template("keyAccess.html")
+    return render_template("pages/keyAccess.html")
 
 @app.route("/get-usage")
-def GetUsage():
-    return _GetUsage_()
+@apiLoginRequired
+def getUsage():
+    return GetUsage()
 
 @app.route("/increment-usage")
-def IncrementUsage():
-    return _IncrementUsage_()
+@apiLoginRequired
+def incrementUsage():
+    return IncrementUsage()
 
 @app.route('/sitemap.xml')
 def sitemap():
@@ -172,6 +236,14 @@ def sitemap():
 @app.route('/robots.txt')
 def robots():
     return send_from_directory('static' , 'robots.txt')
+
+@app.route('/privacy')
+def privacy():
+    return render_template('pages/privacy.html')
+
+@app.route('/terms')
+def terms():
+    return render_template('pages/terms.html')
 
 if __name__ == "__main__":
     app.run()

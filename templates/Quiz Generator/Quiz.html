@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduDuck - Quiz</title>
+    <link rel="stylesheet" href="/static/variables.css">
+    <link rel="stylesheet" href="/static/Main/style.css">
+    <link rel="stylesheet" href="/static/Quiz/QuizStyle.css">
+    <link rel="stylesheet" href="/static/theme-toggle.css">
+    <link rel="stylesheet" href="/static/header.css">
+    <script src="{{ url_for('static', filename='Quiz/Quiz.js') }}" type="module" defer></script>
+
+    <script>
+        window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
+    </script>
+
+</head>
+<body>
+    <div class="header">
+        <a class="header-redirect" href="https://ko-fi.com/vxiddev" style="padding-left: 50px;">Donate</a>
+        <h1 class="header-text">Quiz</h1>
+        <div style="padding-right: 50px; display: flex; gap: 15px; align-items: center;">
+            {% if not current_user.is_authenticated %}
+                <a class="header-link" href="/login">Login</a>
+                <span class="divider">/</span>
+                <a class="header-link" href="/register">Register</a>
+                <span class="free-uses">for 3 free uses/day!</span>
+            {% else %}
+                <span id="FreeUsageText">Welcome, {{ current_user.username }}! You have {{ remaining }} free uses today.</span>
+                <a class="header-link logout" href="/logout">Logout</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <button id="theme-toggle">🌙</button>
+    
+    <div class="main">
+        <div id="quizContainer" data-notes='{{ quiz|tojson|safe }}'>
+        </div>
+        
+        <button class="button submit-quiz" id="submitQuiz" style="display: none;">
+            Submit Quiz → Results
+        </button>
+        
+        <div id="results">
+            <div class="score" id="score"></div>
+            <div class="result-summary" id="summary"></div>
+            <a class="button" href="/">← New Quiz</a>
+        </div>
+
+        <button class="button export" style="margin-bottom: 25px;">📄 Export Quiz</button>
+    </div>
+
+    <footer style="margin-top: 50px; text-align: center;">
+        <span>
+            By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2026 | 
+            Open Source on GitHub | 
+            <a class="repoLink" href="/terms" style="text-decoration: none;">Terms of Service</a>
+        </span>
+    </footer>
+    
+    <script src="/static/Components/DarkModeToggle.js"></script>
+</body>
+</html>

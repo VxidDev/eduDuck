@@ -1,14 +1,24 @@
-export async function GetFreeLimitUsage(FreeLimitBar , SubmitBtn) {
-    SubmitBtn.disabled = true;
+export async function GetFreeLimitUsage() {
+    const FreeLimitBar = document.getElementById("FreeUsageText");
 
-    const request = await fetch("/get-usage" , {
-        method: "GET",
-		headers: { "Content-Type": "application/json" },
-    });
+    if (!FreeLimitBar) return;
 
-    const data = await request.json();
+    try {
+        const request = await fetch("/get-usage", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        });
 
-    FreeLimitBar.textContent = `${data.timesUsed}/3 free used`;
+        if (!request.ok) {
+            FreeLimitBar.textContent = "Login to see usage";
+            return;
+        }
 
-    SubmitBtn.disabled = false;
+        const data = await request.json();
+        FreeLimitBar.textContent = `Welcome, ${window.CURRENT_USERNAME}! You have ${data.remaining} free uses today.`;
+
+    } catch (err) {
+        FreeLimitBar.textContent = "Error loading usage";
+        console.error(err);
+    }
 }

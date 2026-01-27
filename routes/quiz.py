@@ -93,13 +93,13 @@ def ParseQuiz(quiz: str):
     return questions
 
 def QuizGenerator():
-    return render_template('QuizGenerator.html')
+    return render_template('Quiz Generator/QuizGenerator.html')
 
 def quiz(quizzes):
     quizID = request.args.get('quiz')
     quiz = quizzes.get(quizID, '') if quizID else ''
     print("READ", quizID, "found:", bool(quiz))
-    return render_template("Quiz.html" , quiz=quiz)
+    return render_template("Quiz Generator/Quiz.html" , quiz=quiz)
 
 def submitResult():
     data = request.get_json()

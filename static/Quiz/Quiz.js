@@ -1,3 +1,7 @@
+import { GetFreeLimitUsage } from "../Components/GetFreeLimitUsage.js";
+
+( async () => { await GetFreeLimitUsage() } )();
+
 document.addEventListener('DOMContentLoaded', () => {
     const quizContainer = document.getElementById('quizContainer');
     const rawJson = quizContainer.dataset.notes || '""';

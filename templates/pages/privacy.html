@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduDuck - Privacy Policy</title>
+    <meta name="description" content="EduDuck Privacy Policy - How we handle your data while using AI study tools.">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/variables.css">
+    <link rel="stylesheet" href="/static/Main Page/style.css">
+    <link rel="stylesheet" href="/static/header.css">
+    <link rel="stylesheet" href="/static/body.css">
+    <link rel="stylesheet" href="/static/Main/style.css">
+    <link rel="stylesheet" href="/static/login/style.css">
+    <link rel="stylesheet" href="/static/theme-toggle.css">
+    <script src="{{ url_for('static', filename='privacy/script.js') }}" type="module" defer></script>
+
+    <script>
+        window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
+    </script>
+
+</head>
+
+<body>
+    <div class="header">
+        <a class="header-redirect" href="https://ko-fi.com/vxiddev" style="padding-left: 50px;">Donate</a>
+        <h1 class="header-text">Privacy</h1>
+        <div style="padding-right: 50px; display: flex; gap: 15px; align-items: center;">
+            {% if not current_user.is_authenticated %}
+                <a class="header-link" href="/login">Login</a>
+                <span class="divider">/</span>
+                <a class="header-link" href="/register">Register</a>
+                <span class="free-uses">for 3 free uses/day!</span>
+            {% else %}
+                <span id="FreeUsageText">Welcome, {{ current_user.username }}! You have {{ remaining }} free uses today.</span>
+                <a class="header-link logout" href="/logout">Logout</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <button id="theme-toggle">🌙</button>
+
+    <div class="main-content" style="max-width: 800px; margin: 40px auto; padding: 0 20px; display: flex; flex-direction: column; gap: 10px;">
+        <h2>EduDuck Privacy Policy</h2>
+        <p>Your privacy is very important to us. This Privacy Policy explains what data we collect, how we use it, and your rights when using EduDuck AI study tools.</p>
+
+        <h3>1. Information We Collect</h3>
+        <p><strong>1.</strong> IP addresses: To enforce daily usage limits and prevent abuse.</p>
+        <p><strong>2.</strong> Uploaded notes, PDFs, or images: Temporarily processed for generating quizzes, flashcards, and enhanced notes.</p>
+        <p><strong>3.</strong> Account information: If you create an account, we store your username and password securely.</p>
+        <p><strong>4.</strong> Cookies and browser storage: For session management, theme preferences, and essential site functionality.</p>
+
+        <h3>2. How We Use Your Data</h3>
+        <p><strong>1.</strong> To provide AI study services, including quizzes, flashcards, and note enhancement.</p>
+        <p><strong>2.</strong> To track free-tier usage limits.</p>
+        <p><strong>3.</strong> To improve and maintain the security and functionality of our site.</p>
+
+        <h3>3. Legal Basis for Processing</h3>
+        <p>For users in the EU and other regions with data protection laws, we process your data under the following bases:</p>
+        <p><strong>•</strong> To fulfill our contract with you (providing AI study services).</p>
+        <p><strong>•</strong> Under our legitimate interest to manage usage limits, prevent abuse, and maintain site functionality.</p>
+        <p><strong>•</strong> With your consent for optional account features.</p>
+
+        <h3>4. Data Retention</h3>
+        <p>Uploaded files and AI-generated content are stored temporarily for processing (usually under 24 hours) and then deleted automatically. Account information is stored securely until you delete your account.</p>
+
+        <h3>5. Cookies & Tracking</h3>
+        <p>EduDuck uses minimal cookies and browser storage:</p>
+        <p><strong>• Session cookies:</strong> Required for login and session management.</p>
+        <p><strong>• Theme preference cookies:</strong> To remember your light/dark mode choice.</p>
+        <p>No analytics or advertising tracking is performed by default. You can manage cookies through your browser settings.</p>
+
+        <h3>6. Third-Party Services</h3>
+        <p>EduDuck uses third-party AI APIs (Hugging Face, OpenAI, Google Gemini) to process uploaded content. Your data is sent temporarily for processing and is not stored permanently by these services. Please review their privacy policies for more details:</p>
+        <p><strong>• <a href="https://huggingface.co/privacy" target="_blank" rel="noopener noreferrer">Hugging Face Privacy Policy</a></strong></p>
+        <p><strong>• <a href="https://openai.com/privacy" target="_blank" rel="noopener noreferrer">OpenAI Privacy Policy</a></strong></p>
+        <p><strong>• <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a></strong></p>
+
+        <h3>7. Your Rights</h3>
+        <p>If you are in the EU, UK, or California, you have the following rights:</p>
+        <p><strong>•</strong> Access your personal data.</p>
+        <p><strong>•</strong> Request correction of inaccurate data.</p>
+        <p><strong>•</strong> Request deletion of your account and uploaded content.</p>
+        <p><strong>•</strong> Withdraw consent to data processing at any time.</p>
+        <p><strong>•</strong> Complain to a supervisory authority if you believe your data is mishandled.</p>
+        <p>To exercise these rights, contact us at <a href="mailto:team.eduduck@gmail.com">team.eduduck@gmail.com</a>.</p>
+
+        <h3>8. Security</h3>
+        <p>We take reasonable technical and organizational measures to protect your data. However, no system is completely secure, and we cannot guarantee absolute protection.</p>
+
+        <h3>9. Changes to This Policy</h3>
+        <p>We may update this privacy policy from time to time. The latest version will always be available at <a href="/privacy" class="repoLink">/privacy</a>.</p>
+
+        <h3>10. Contact Us</h3>
+        <p>If you have questions about your data or privacy, contact us at <a href="mailto:team.eduduck@gmail.com">team.eduduck@gmail.com</a>.</p>
+
+        <p style="padding-bottom: 50px;">By using EduDuck, you agree to the practices described in this Privacy Policy.</p>
+    </div>
+
+    <footer style="margin-top: 50px; text-align: center;">
+        <span>
+            By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2026 | 
+            Open Source on GitHub | 
+            <a class="repoLink" href="/terms" style="text-decoration: none;">Terms of Service</a>
+        </span>
+    </footer>
+    <script src="/static/Components/DarkModeToggle.js"></script>
+</body>
+</html>

@@ -3,24 +3,43 @@ import { CustomModelListeners } from "../Components/ModelSelector.js"
 import { InitFileUploads } from "../Components/FileUploadHandler.js";
 import { GetFreeLimitUsage } from "../Components/GetFreeLimitUsage.js";
 
-const NoteInput          = document.querySelector(".notes");
-const Submit             = document.querySelector(".submit");
-const StatusLabel        = document.querySelector(".status");
-const TextInputs         = document.querySelectorAll(".textInput");
-const ApiKeyInput        = document.querySelector(".apiKey");
-const CustomModel        = document.getElementById("customModel");
-const CustomModelInput   = document.querySelector(".customModelInput");
-const LanguageSelector   = document.getElementById("language");
-const APIModeSelector    = document.getElementById("apiMode");
-const AmountSelector     = document.getElementById("questionCount");
-const CustomModelSelector= document.querySelector(".customModelSelector");
-const FreeLimitBar     = document.querySelector(".FreeLimit");
-const FreeUsage        = document.getElementById("FreeUsage");
+const NoteInput = document.querySelector(".notes");
+const Submit = document.querySelector(".submit");
+const StatusLabel = document.querySelector(".status");
+const TextInputs = document.querySelectorAll(".textInput");
+const ApiKeyInput = document.querySelector(".apiKey");
+const CustomModel = document.getElementById("customModel");
+const CustomModelInput = document.querySelector(".customModelInput");
+const LanguageSelector = document.getElementById("language");
+const APIModeSelector = document.getElementById("apiMode");
+const AmountSelector = document.getElementById("questionCount");
+const CustomModelSelector = document.querySelector(".customModelSelector");
+const FreeUsage = document.getElementById("FreeUsage");
+const FreeUsageText = document.getElementById("FreeUsageText");
+
+let FreeUsageLeft = 0;
 
 StatusLabel.textContent = '';
 
 CustomModelListeners();
-GetFreeLimitUsage(FreeLimitBar , Submit);
+( async () => { 
+
+await GetFreeLimitUsage();
+
+// Initial Fetch
+if (FreeUsageText) {
+	const request = await fetch('/get-usage' , {
+		method: "GET",
+		headers: { "Content-Type": "application/json" }
+	});
+
+	let usageData = await request.json();
+
+	FreeUsageLeft = usageData.remaining || 0;
+	if (FreeUsageLeft <= 0 && FreeUsage?.checked) Submit.disabled = true;
+	FreeUsageText.textContent = `Welcome, ${window.CURRENT_USERNAME}! You have ${FreeUsageLeft} free uses today.`;
+}
+//
 
 function getMaxLines(el) {
 	const b = el.classList;
@@ -37,12 +56,18 @@ TextInputs.forEach(ti => {
 });
 
 Submit.addEventListener("click", async () => {
+	if (FreeUsage && FreeUsage?.checked && FreeUsageLeft <= 0) {
+		StatusLabel.textContent = "No free uses left today.";
+		return;
+	}
+
 	StatusLabel.textContent = "";
 
-	const notes   = NoteInput.value.trim();
-	const apiKey  = ApiKeyInput.value.trim();
+	const notes = NoteInput.value.trim();
+	const apiKey = ApiKeyInput.value.trim();
 	const modelVisible = !CustomModelInput.classList.contains("hidden");
-	const model   = modelVisible ? CustomModelInput.value.trim() : null;
+	const model = modelVisible ? CustomModelInput.value.trim() : null;
+	const requiresApiKey = !FreeUsage || !FreeUsage.checked;
 
 	ValidateInput(
 		notes,
@@ -51,19 +76,22 @@ Submit.addEventListener("click", async () => {
 		model,
 		StatusLabel,
 		notes.split(" "),
-		FreeUsage
+		requiresApiKey
 	);
 
-	if (!notes || !apiKey && !FreeUsage.checked || notes.split(" ").length > 2500 || (!model && CustomModel.checked)) return;
+	if (!notes || !apiKey && requiresApiKey || notes.split(" ").length > 2500 || (!model && CustomModel.checked)) {
+		console.error("[ DEBUG ] Didn't pass check...");
+		return;
+	}
 
 	try {
 		const body = {
 			notes,
-			apiKey: FreeUsage.checked ? null : apiKey,
-			model: FreeUsage.checked ? null : model,
+			apiKey: FreeUsage && FreeUsage.checked ? null : apiKey,
+			model: FreeUsage && FreeUsage.checked ? null : model,
 			language: LanguageSelector.value.trim(),
-			apiMode: FreeUsage.checked ? "OpenAI" : APIModeSelector.value.trim(),
-			isFree: FreeUsage.checked,
+			apiMode: FreeUsage && FreeUsage.checked ? "OpenAI" : APIModeSelector.value.trim(),
+			isFree: FreeUsage && FreeUsage.checked,
 			amount: AmountSelector.value.trim()
 		};
 
@@ -82,6 +110,20 @@ Submit.addEventListener("click", async () => {
 		const payload = await res2.json();
 
 		window.location.href = `/flashcard-generator/result?id=${encodeURIComponent(payload.id)}`;
+
+		if (FreeUsageText && FreeUsage?.checked) { // If user somehow stays on page
+			const request = await fetch('/get-usage' , {
+				method: "GET",
+				headers: { "Content-Type": "application/json" }
+			});
+
+			const usageData = await request.json();
+			FreeUsageLeft = usageData.remaining || 0;
+			FreeUsageText.textContent = `Welcome, ${window.CURRENT_USERNAME}! You have ${FreeUsageLeft} free uses today.`;
+
+			if (FreeUsageLeft <= 0) Submit.disabled = true; 
+		}
+
 	} catch {
 		StatusLabel.textContent = "Error while generating flashcards.";
 	}
@@ -136,8 +178,8 @@ async function ImportData(file) {
 	}
 }
 
-
 InitFileUploads({
 	onRegularFile: SendFile,
 	onImportFile: ImportData
 });
+})();
