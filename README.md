@@ -103,7 +103,7 @@ Please **fork this repo** and submit pull requests. Make sure not to include any
 
 ## 👤 Accounts
 
-> Not included in repo, deployed only (for now)
+> Legacy accounts added.
 
 EduDuck supports **user accounts** to provide fair access limits and enable future personalization features.
 
@@ -213,6 +213,8 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 
 ## 🔑 Setting Up Google OAuth
 
+> No need to do right now, oauth is still only on private repo.
+
 1. Go to Google Cloud Console
 
 2. Create a new OAuth 2.0 Client ID (type: Web application)
@@ -277,7 +279,7 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 
 ## ❗ Known Issues
 
-Nothing... for now :[
+Quiz generator failing to load results.
 
 ## 📄 License
 
