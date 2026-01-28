@@ -28,41 +28,6 @@
 
 **AI-powered study companion** that transforms your notes into interactive quizzes, flashcards, and enhanced study materials.
 
-## ⚠️ Public Repo Notice & How to Contribute
-
-This public repository represents **older, stable commits** of EduDuck. The latest deployed version, including features like user accounts, profile picture support, and AI enhancements, exists only in the private repository.
-
-From now on, this repo will receive **historical commits** from the private repo, so you can:
-
-- Explore the development history safely
-- Learn from past implementations
-- Contribute to features
-
-### How You Can Help
-
-EduDuck is evolving, and contributions are welcome! Here are a few ways to participate:
-
-- Implement or improve frontend features
-- Optimize AI or OCR functionality
-- Add tests or documentation
-- Suggest UI/UX improvements
-- Help with bug fixes in older releases
-
-Please **fork this repo** and submit pull requests. Make sure not to include any secrets or personal data.
-
-## 🔧 Tasks & Feature Ideas
-
-**High priority**
-- Migrate parsers (priority: quiz parser) to C/C++
-- Improve OCR preprocessing for handwritten notes
-
-**Medium priority**
-- Optimize note upload and code speed
-- Add automated tests for AI features
-
-**Low priority / future**
-- Migrate JavaScript code to TypeScript
-
 ---
 
 ## 📚 Table of Contents
@@ -92,18 +57,16 @@ Please **fork this repo** and submit pull requests. Make sure not to include any
 | **📝 Quiz Generator** | Upload notes → instant quizzes |
 | **🗂️ Flashcard Generator** | Spaced repetition flashcards from any subject |
 | **✨ Note Enhancer** | AI-powered summaries, diagrams, key concepts |
-| **📆 Study Plan Generator** | AI-generated daily study plans tailored to your notes, goals, time, and learning style (Not included in repo yet, already deployed) |
+| **📆 Study Plan Generator** | AI-generated daily study plans tailored to your notes, goals, time, and learning style |
 | **🦆 DuckAI** | Chat with your notes, get explanations & study tips |
 | **📱 Multi-format** | TXT, PDF, PNG/JPG, handwritten notes via OCR |
 | **🌍 Multi-language** | English, Polish, German, French, Ukrainian, Russian |
 | **🎨 Modern UI** | Dark/light mode, mobile-first, glassmorphism design |
-| **🔑 Google OAuth Login** | Sign in instantly with Google, no password required (not included in repo yet, already deployed)|
+| **🔑 Google OAuth Login** | Sign in instantly with Google, no password required |
 
 ---
 
 ## 👤 Accounts
-
-> Legacy accounts added.
 
 EduDuck supports **user accounts** to provide fair access limits and enable future personalization features.
 
@@ -213,8 +176,6 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 
 ## 🔑 Setting Up Google OAuth
 
-> No need to do right now, oauth is still only on private repo.
-
 1. Go to Google Cloud Console
 
 2. Create a new OAuth 2.0 Client ID (type: Web application)
@@ -251,7 +212,8 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 | ✅ Done | Improve OCR |
 | ✅ Done | Add User PFP support |
 | ✅ Done | Migrate quiz parser to C , C++ or Rust. |
-| 🔄 In Progress | Migrate AiReq to C , C++ or Rust. |
+| ✅ Done | Improve AiReq |
+| 🔄 In Progress | Add attaching files to DuckAI. |
 | ⏳ Planned | Study progress tracking |
 
 ---
@@ -281,11 +243,11 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 
 ## ❗ Known Issues
 
-Quiz generator failing to load results.
+Nothing... for now :[
 
 ## 📄 License
 
-Apache License 2.0 - see LICENSE for details.
+MIT License — **required attribution** to this repository in all deployments.
 
 Made with ❤️ by **VxidDev** — self-taught since June 2025
 
