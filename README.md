@@ -253,7 +253,8 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 | ✅ Done | Migrate quiz parser to C , C++ or Rust. |
 | ✅ Done | Improve AiReq |
 | ✅ Done | Add attaching files to DuckAI. |
-| 🔄 In Progress | Fix file uploading if edited notes.textContent |
+| ✅ Done | Fix file uploading if edited notes.textContent |
+| 🔄 In Progress | Fix footer not at the bottom bug. |
 | ⏳ Planned | Study progress tracking |
 
 ---
