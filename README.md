@@ -227,6 +227,34 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 
 ---
 
+## 🚀 EduDuck – Deployment & Hosting Services
+
+EduDuck is fully open-source under the Apache 2.0 License, but running it yourself can be tricky — it requires MongoDB, Mailgun, Cloudflare R2, Google OAuth, and other setup steps.
+
+If you want to skip the hassle and get EduDuck up and running quickly, I offer a deployment + hosting service.
+### What’s included:
+- ✅ Full deployment of EduDuck on a server of your choice (or mine)
+- ✅ MongoDB database setup for storing quizzes, study plans, and user data
+- ✅ Cloud storage integration with Cloudflare R2
+- ✅ Email verification & notifications via Mailgun
+- ✅ Google OAuth login for easy account creation and authentication
+- ✅ SSL, backups, and updates handled automatically
+- ✅ Optional customization (branding, study plan defaults, etc.)
+
+
+### EduDuck Deployment & Hosting Pricing
+
+| Plan                  | Description                                      | Price / Month |
+|-----------------------|-------------------------------------------------|---------------|
+| Personal / Small      | Single instance, minimal traffic                | $10–$15       |
+| School / Class        | Multiple users or classes, priority support    | $25–$50       |
+| Business / Premium    | Dedicated instance, custom features, full support | $75+        |
+
+### How to get started
+Open an issue on this repo or contact me at team.eduduck@gmail.com / stas050595@gmail.com or on discord: `trainervoid`
+
+Choose your plan and provide your hosting/server details
+I handle deployment, setup, and configuration - you start using EduDuck immediately
 
 ## 🎯 Roadmap
 
