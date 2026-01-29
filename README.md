@@ -53,7 +53,7 @@ Please **fork this repo** and submit pull requests. Make sure not to include any
 ## 🔧 Tasks & Feature Ideas
 
 **High priority**
-- Migrate parsers (priority: quiz parser) to C/C++
+- Migrate parsers or other heavy functions to C/C++/Rust
 - Improve OCR preprocessing for handwritten notes
 
 **Medium priority**
@@ -92,12 +92,12 @@ Please **fork this repo** and submit pull requests. Make sure not to include any
 | **📝 Quiz Generator** | Upload notes → instant quizzes |
 | **🗂️ Flashcard Generator** | Spaced repetition flashcards from any subject |
 | **✨ Note Enhancer** | AI-powered summaries, diagrams, key concepts |
-| **📆 Study Plan Generator** | AI-generated daily study plans tailored to your notes, goals, time, and learning style (Not included in repo yet, already deployed) |
+| **📆 Study Plan Generator** | AI-generated daily study plans tailored to your notes, goals, time, and learning style |
 | **🦆 DuckAI** | Chat with your notes, get explanations & study tips |
 | **📱 Multi-format** | TXT, PDF, PNG/JPG, handwritten notes via OCR |
 | **🌍 Multi-language** | English, Polish, German, French, Ukrainian, Russian |
 | **🎨 Modern UI** | Dark/light mode, mobile-first, glassmorphism design |
-| **🔑 Google OAuth Login** | Sign in instantly with Google, no password required (not included in repo yet, already deployed)|
+| **🔑 Google OAuth Login** | Sign in instantly with Google, no password required |
 
 ---
 
@@ -202,6 +202,8 @@ pip install -r requirements.txt
 FREE_TIER_API_KEY= ... (OpenAI key)
 MONGODB_URI= ... (MongoDB API link)
 SECRET_KEY= ... (32 char long)
+GOOGLE_CLIENT_ID= ...
+GOOGLE_CLIENT_SECRET= ...
 ```
 
 3. Run locally using Gunicorn
@@ -312,7 +314,7 @@ I handle deployment, setup, and configuration - you start using EduDuck immediat
 
 ## ❗ Known Issues
 
-Quiz generator failing to load results.
+None :D
 
 ## 📄 License
 
