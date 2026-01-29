@@ -38,6 +38,12 @@
 
             <button id="login-button" class="button" style="padding: 10px; font-size: 1.1em; cursor:pointer;">Login</button>
 
+            <a href="{{ url_for('oauth.loginGoogle') }}" class="google-btn" style="text-decoration: none;">
+                <img src="{{ url_for('static', filename='img/google-logo.svg') }}"
+                alt="Google logo" class="google-logo">
+                Sign in with Google
+            </a>
+
             <p id="login-error" style="color:red; margin-top:10px; display:none;"></p>
         </div>
 

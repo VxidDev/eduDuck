@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduDuck - Study Plan Generator</title>
+    <link rel="stylesheet" href="/static/variables.css">
+    <link rel="stylesheet" href="/static/body.css">
+    <link rel="stylesheet" href="/static/Main/style.css">
+    <link rel="stylesheet" href="/static/header.css">
+    <link rel="stylesheet" href="/static/theme-toggle.css">
+    <link rel="stylesheet" href="/static/studyPlanGenerator/style.css">
+    <script src="{{ url_for('static', filename='studyPlanGenerator/script.js')}}" type="module" defer></script>
+
+    <script>
+        window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
+    </script>
+
+</head>
+<body>
+    <div class="header">
+        <a class="header-redirect" href="https://ko-fi.com/vxiddev" style="padding-left: 50px;">Donate</a>
+        <h1 class="header-text">Study Plan Generator</h1>
+        <div style="padding-right: 50px; display: flex; gap: 15px; align-items: center;">
+            {% if not current_user.is_authenticated %}
+                <a class="header-link" href="/login">Login</a>
+                <span class="divider">/</span>
+                <a class="header-link" href="/register">Register</a>
+                <span class="free-uses">for 3 free uses/day!</span>
+            {% else %}
+                <span id="FreeUsageText">Welcome, {{ current_user.username }}! You have {{ remaining }} free uses today.</span>
+                <a class="header-link logout" href="/logout">Logout</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <button id="theme-toggle">🌙</button>
+    
+    <div class="main-content">
+        <div class="main">
+            <div style="display: flex; justify-content: center; gap: 25px">
+                <div class="customModelSelector checkbox">
+                    <label for="customModel" id="customModelLabel">
+                        <input type="checkbox" id="customModel">
+                        Use custom model
+                    </label>
+                </div>
+                {% if current_user.is_authenticated %}
+                <div class="FreeUsage checkbox">
+                    <label for="FreeUsage" id="FreeUsageLabel">
+                        <input type="checkbox" id="FreeUsage">
+                        Free Daily (No API Key)
+                    </label>
+                </div>
+                {% endif %}
+            </div>
+            <textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here! (e.g., microsoft/DialoGPT-medium)"></textarea>
+
+            <select id="apiMode" class="select">
+                <option value="Hugging Face">Hugging Face</option>
+                <option value="Gemini">Gemini</option>
+                <option value="OpenAI">OpenAI</option>
+            </select>
+            
+            <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!"></textarea>
+            
+            <div class="file-upload-wrapper">
+                <input type="file" id="notesfileInput" class="file-input" accept=".txt,.png,.jpg,.jpeg,.pdf"/>
+                <label for="notesfileInput" class="button fileButton">📄 Upload notes file</label>
+            </div>
+
+            <textarea class="notes textInput standard" placeholder="Notes go here :]"></textarea>
+
+            <div class="study-plan-options">
+                <label>Start Date: <input type="date" id="startDate"></label>
+                <label>End Date: <input type="date" id="endDate"></label>
+                <label>Hours per Day: <input type="number" id="hoursPerDay" min="1" max="12" value="2"></label>
+                Learning Style:
+                <div style="display: flex; justify-content: center;">
+                    <label><input type="checkbox" class="learningStyle" value="Reading" checked> Reading</label>
+                    <label><input type="checkbox" class="learningStyle" value="Video"> Video</label>
+                    <label><input type="checkbox" class="learningStyle" value="Exercises" checked> Exercises</label>
+                </div>
+                <label>Goal: <input type="text" id="studyGoal" placeholder="e.g., Prepare for Maths Exam"></label>
+            </div>
+
+            <label for="language">Output Language:</label>
+            <select id="language" class="select">
+                <option value="eng">English</option>
+                <option value="pl">Polish</option>
+                <option value="ru">Russian</option>
+                <option value="de">German</option>
+                <option value="ua">Ukrainian</option>
+                <option value="fr">French</option>
+            </select>
+
+            <button class="button submit">🚀 Generate Study Plan</button>
+            <div class="file-upload-wrapper">
+                <input type="file" id="planfileInput" class="file-input import" accept=".json"/>
+                <label for="planfileInput" class="button fileButton">📄 Import Study Plan</label>
+            </div>
+            <div class="status"></div>
+        </div>
+    </div>
+    
+    <footer style="margin-top: 50px; text-align: center;">
+        <span>
+            By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2026 | 
+            Open Source on GitHub | 
+            <a class="repoLink" href="/terms" style="text-decoration: none;">Terms of Service</a>
+        </span>
+    </footer>
+
+    <script src="/static/Components/DarkModeToggle.js"></script>
+</body>
+</html>

@@ -19,7 +19,6 @@ moreApiErrors = {
     "API error 400": "1 What does API error 400 mean? a) Bad request b) Payment required c) Unauthorized d) Rate limited |CORRECT:a"
 }
 
-
 def ParseQuiz(quiz: str):
     questions = {}
     

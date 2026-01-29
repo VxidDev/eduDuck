@@ -5,7 +5,7 @@ from functools import wraps
 from routes.utils import ( 
     LoginUser , RegisterUser , User , LoadUser, # Accounts
     IncrementUsage , GetUsage, # Free Usage Logic
-    storeFlashcards, uploadNotes , storeNotes , storeQuiz # Storing (temp)
+    storeFlashcards, uploadNotes , storeNotes , storeQuiz , storeStudyPlan # Storing (temp)
 )
 
 from routes.quiz import ParseQuiz
@@ -30,6 +30,10 @@ from routes.flashcardGenerator import ExportFlashcards as _ExportFlashcards_
 
 from routes.duckAI import GenerateResponse as _GenerateResponse_
 
+from routes.studyPlanGenerator import StudyPlanGen , StudyPlan , ExportStudyPlan , ImportStudyPlan
+
+from routes.oauth import oauthBp , oauth
+
 from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.security import check_password_hash , generate_password_hash
 
@@ -40,9 +44,12 @@ from flask_login import LoginManager , UserMixin , login_required , current_user
 notes = {}
 quizzes = {}
 flashcards = {}
+studyPlans = {}
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+oauth.init_app(app)
+app.register_blueprint(oauthBp)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -79,6 +86,10 @@ def UploadNotes():
 @app.route('/store-notes', methods=['POST'], endpoint='storeNotes')
 def StoreNotes():
     return storeNotes(notes)
+
+@app.route('/store-study-plan', methods=['POST'], endpoint='storeStudyPlan')
+def StoreStudyPlan():
+    return storeStudyPlan(studyPlans)
 
 @login_manager.user_loader
 def loadUser(userID):
@@ -213,6 +224,27 @@ def DuckAI():
 @app.route('/duck-ai/generate' , endpoint='DuckAIResponse' , methods=['POST'])
 def GenerateResponse():
     return _GenerateResponse_(prompts)
+
+# -------------- Study Plan Generator ---------------------
+@app.route('/study-plan-generator' , endpoint='StudyPlanGenerator')
+def StudyPlanGenerator():
+    return render_template("Study Plan Generator/studyPlanGenerator.html")
+
+@app.route('/study-plan-generator/generate' , endpoint='StudyPlanGenerate' , methods=['POST'])
+def studyPlanGen():
+    return StudyPlanGen(prompts)
+
+@app.route('/study-plan-generator/result' , endpoint='StudyPlanResult')
+def StudyPlanResult():
+    return StudyPlan(studyPlans)
+
+@app.route('/study-plan-generator/export-plan' , endpoint='studyPlanExport')
+def ExportPlan():
+    return ExportStudyPlan(studyPlans)
+
+@app.route('/study-plan-generator/import-plan' , methods=['POST'] , endpoint='StudyPlanImport')
+def ImportPlan():
+    return ImportStudyPlan(studyPlans)
 
 # ---------------- Miscellanious ------------------------
 @app.route("/keyAccess")

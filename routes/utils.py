@@ -90,13 +90,23 @@ def GetUsage():
     remaining = max(3 - timesUsed, 0)
     return jsonify({"timesUsed": timesUsed, "remaining": remaining})
 
-def LoadUser(userID):
-    try:
-        obj_id = ObjectId(userID)
-    except Exception:
+def LoadUser(userID=None, googleId=None):
+    query = {}
+
+    if userID:
+        try:
+            objId = ObjectId(userID)
+            query["_id"] = objId
+        except Exception:
+            return None
+
+    elif googleId:
+        query["googleId"] = googleId
+
+    if not query:
         return None
 
-    userDoc = GetMongoClient()["EduDuck"]["users"].find_one({"_id": obj_id})
+    userDoc = GetMongoClient()["EduDuck"]["users"].find_one(query)
     return userDoc
 
 def LoadUserByUsername(username: str):
@@ -268,3 +278,11 @@ def storeFlashcards(flashcards: dict):
     flashcards[flashcardID] = Flashcards
     print("STORED", flashcardID, "len:", len(Flashcards))
     return jsonify({'id': flashcardID})
+
+def storeStudyPlan(studyPlans: dict):
+    data = request.get_json()
+    plan = data.get('plan' , '')
+    planID = str(uuid4())
+    studyPlans[planID] = plan
+    print("STORED", planID, "len:", len(plan))
+    return jsonify({'id': planID})

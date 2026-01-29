@@ -7,3 +7,5 @@ pytesseract
 pymongo
 certifi
 flask_login
+flask_dance
+Authlib

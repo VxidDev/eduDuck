@@ -87,6 +87,18 @@
     --answer-border: rgba(0,0,0,0.05);
     --no-flashcards-color: #6b7280;
     --no-flashcards-link: #3b82f6;
+    
+    /* Study Plan Generator */
+    --study-day-bg: #ffffff;
+    --study-day-border: rgba(0,0,0,0.08);
+    --study-day-hover-border: rgba(52,152,219,0.35);
+
+    --study-day-title: #2c3e50;
+
+    --study-task-bg: #f4f7fb;
+    --study-task-text: #333333;
+    --study-task-strong: #2563eb;
+    --study-task-minutes: #6b7280;
 }
 
 /* ---------------- Dark Mode ---------------- */
@@ -178,4 +190,16 @@ body.dark {
     --answer-border: rgba(255,255,255,0.05);
     --no-flashcards-color: #9aa1bc;
     --no-flashcards-link: #4aa8ff;
+
+    /* Study Plan - Dark */
+    --study-day-bg: #101321;
+    --study-day-border: rgba(255,255,255,0.1);
+    --study-day-hover-border: rgba(74,134,255,0.4);
+
+    --study-day-title: #f5f7ff;
+
+    --study-task-bg: rgba(255,255,255,0.05);
+    --study-task-text: #e5e9ff;
+    --study-task-strong: #6ee7ff;
+    --study-task-minutes: #9aa1bc;
 }
