@@ -1,5 +1,6 @@
-from routes.utils import AiReq , IncrementUsage
+from routes.utils import AiReq , IncrementUsage , GetMongoClient , GetQueryFromDB , Log
 from flask import render_template , jsonify , request
+from flask_login import current_user
 import os
 
 standardApiErrors = {
@@ -108,3 +109,15 @@ def GenerateResponse(prompts: dict):
     print(output)
 
     return jsonify({'response': output})
+
+def DuckAI():
+    if not current_user.is_authenticated:
+        return render_template("DuckAI/DuckAI.html" , remaining=RemainingUsage())
+    else:
+        chatID = request.args.get('id')
+
+        chat = GetQueryFromDB(chatID , 'duck-ai') or []
+
+        Log(f"Got query from mongoDB. (id: {chatID} , collection: study-plans)\nLength: {len(chat)}" , "info")
+
+        return render_template("DuckAI/DuckAI.html" , chat=chat)

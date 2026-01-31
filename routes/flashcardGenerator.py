@@ -1,5 +1,7 @@
-from routes.utils import AiReq , IncrementUsage
-from flask import render_template , request , jsonify , send_file
+from routes.utils import AiReq , IncrementUsage , StoreQuery , Log , GetQueryFromDB
+from flask_login import current_user
+from requests import post
+from flask import render_template , jsonify , request , send_file , url_for
 from json import load , JSONDecodeError , dumps
 from uuid import uuid4
 from io import BytesIO
@@ -19,17 +21,15 @@ moreApiErrors = {
 }
 
 def ParseFlashcards(fc: str) -> dict:
-    if not fc: return {}
-    output = {}
-    currFc = 0
+    if not fc: return []
+    output = []
     
     for flashcard in fc.split("~"):
         try:
             question, answer = flashcard.split("|", 1) 
             question, answer = question.strip(), answer.strip()
             if question and answer:  
-                output[currFc] = {'question': question, 'answer': answer}
-                currFc += 1 
+                output.append({'question': question, 'answer': answer})
         except ValueError:
             continue  
     
@@ -115,33 +115,42 @@ def FlashcardGenerator(prompts: dict):
     if (output is None):
         return jsonify({"flashcards": "Internal Error."})
 
-    print(f"Output: {output}")
+    Log("Got AI response, checking if success..." , "info")
 
     if output in standardApiErrors:
         output = standardApiErrors[output]
     elif output in moreApiErrors:
         output = moreApiErrors[output]
     else:
-        print("Successfully generated flashcards. Parsing...")
-    
-    print(output)
+        Log("Generated flashcards. Parsing..." , "success")
+
+    Log("Got AI response, checking if success..." , "info")
 
     flashcards = ParseFlashcards(output)
 
     if len(flashcards) == 0:
-        print("No flashcards.")
-    
-    print(flashcards)
+        Log("Failed to parse flashcards. (empty)" , "error")
+    else:
+        if current_user.is_authenticated:
+            queryRes = StoreQuery("flashcards" , flashcards)
+        else:
+            queryRes = post(url_for("storeflashCards" , _external=True) , json={"flashcards": flashcards})
 
-    return jsonify({'flashcards': flashcards})
+    return jsonify({'id': queryRes.json().get('id') if not current_user.is_authenticated else queryRes})
 
 def FlashCardGenerator():
     return render_template("Flashcard Generator/flashCardGenerator.html")
 
 def FlashCardResult(flashcards: dict) -> None:
     flashcardId = request.args.get('id')
-    Flashcards = flashcards.get(flashcardId)
-    print("READ", flashcardId, "found:", bool(Flashcards))
+
+    if current_user.is_authenticated:
+        Flashcards = GetQueryFromDB(flashcardId , 'flashcards') or ''
+        db = "mongoDB"
+    else:
+        Flashcards = flashcards.get(flashcardId, '') if flashcardId else ''
+        db = "session-storage"
+
     return render_template("Flashcard Generator/flashcards.html", flashcards=Flashcards)
 
 def ImportFlashcards(flashcards: dict) -> None:

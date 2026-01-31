@@ -102,14 +102,7 @@ Submit.addEventListener("click", async () => {
 		});
 		const data = await res1.json();
 
-		const res2 = await fetch("/store-flashcards", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ flashcards: data.flashcards })
-		});
-		const payload = await res2.json();
-
-		window.location.href = `/flashcard-generator/result?id=${encodeURIComponent(payload.id)}`;
+		window.location.href = `/flashcard-generator/result?id=${encodeURIComponent(data.id)}`;
 
 		if (FreeUsageText && FreeUsage?.checked) { // If user somehow stays on page
 			const request = await fetch('/get-usage' , {

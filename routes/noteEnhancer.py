@@ -1,7 +1,9 @@
-from flask import render_template , request , jsonify , send_file
+from flask import render_template , request , jsonify , send_file , url_for
 from io import BytesIO
 from uuid import uuid4
-from routes.utils import AiReq , IncrementUsage
+from routes.utils import AiReq , IncrementUsage , StoreQuery , Log , GetQueryFromDB
+from flask_login import current_user
+from requests import post
 import os
 
 def NoteEnhancer():
@@ -89,12 +91,28 @@ def EnhanceNotes(prompts: dict):
     if (notes is None):
         return jsonify({"notes": "Internal Error."})
 
-    return jsonify({'notes': notes})
+    if current_user.is_authenticated:
+        queryRes = StoreQuery("notes" , notes)
+    else:
+        queryRes = post(url_for("storeNotes" , _external=True) , json={"notes": notes})
+
+    return jsonify({'id': queryRes.json().get('id') if not current_user.is_authenticated else queryRes})
+
+    Log(f"Got query from {db}. (id: {quizID} , collection: quizzes)\nLength: {len(quiz)}" , "info")
+
+    return render_template("Quiz Generator/Quiz.html" , quiz=quiz)
 
 def EnhancedNotes(notes: dict):
-    noteID = request.args.get('notes')
-    notes = notes.get(noteID, '') if noteID else ''
-    print("READ", noteID, "found:", bool(notes))
+    noteID = request.args.get('id')
+
+    if current_user.is_authenticated:
+        notes = GetQueryFromDB(noteID , 'enhanced-notes') or ''
+        db = "mongoDB"
+    else:
+        notes = notes.get(noteID, '') if noteID else ''
+        db = "session-storage"
+
+    Log(f"Got query from {db}. (id: {noteID} , collection: enhanced-notes)\nLength: {len(notes)}" , "info")
     return render_template('Note Enhancer/enhancedNotes.html', notes=notes)
 
 def ImportNotes(notes: dict) -> None:

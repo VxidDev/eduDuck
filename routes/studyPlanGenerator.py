@@ -1,9 +1,11 @@
-from flask import request, jsonify , render_template , send_file
-from routes.utils import IncrementUsage , AiReq
+from flask import render_template , request , jsonify , send_file , url_for
+from flask_login import current_user
+from routes.utils import AiReq , IncrementUsage , StoreQuizResult , StoreQuery , GetQueryFromDB , Log , storeQuiz
 import os , re
 from io import BytesIO
 from json import dumps , JSONDecodeError , load
 from uuid import uuid4
+from requests import post
 
 standardApiErrors = {
     "API error 402": "Payment required or free credits exhausted.",
@@ -115,25 +117,39 @@ def StudyPlanGen(prompts: dict):
     if output is None:
         return jsonify({"plan": "Internal Error."})
 
-    print(f"Output: {output}")
+    Log("Got AI response, checking if success..." , "info")
 
     if output in standardApiErrors:
         output = standardApiErrors[output]
     elif output in moreApiErrors:
         output = moreApiErrors[output]
     else:
-        print("Successfully generated study plan.")
+        Log("Generated study plan. Parsing..." , "success")
 
     plan = ParseStudyPlan(output)
 
-    if (len(plan) == 0): print("Empty parsed plan...")
+    if (len(plan) == 0): 
+        Log("Failed to parse study plan. (empty)" , "error")
+    else:
+        if current_user.is_authenticated:
+            queryRes = StoreQuery("plan" , plan)
+        else:
+            queryRes = post(url_for("storeStudyPlan" , _external=True) , json={"plan": plan})
 
-    return jsonify({"plan": plan})
+    return jsonify({'id': queryRes.json().get('id') if not current_user.is_authenticated else queryRes})
 
 def StudyPlan(studyPlans):
-    planID = request.args.get('plan')
-    plan = studyPlans.get(planID, '') if planID else ''
-    print("READ", planID, "found:", bool(plan))
+    planID = request.args.get('id')
+
+    if current_user.is_authenticated:
+        plan = GetQueryFromDB(planID , 'study-plans') or ''
+        db = "mongoDB"
+    else:
+        plan = studyPlans.get(planID, '') if planID else ''
+        db = "session-storage"
+
+    Log(f"Got query from {db}. (id: {planID} , collection: study-plans)\nLength: {len(plan)}" , "info")
+
     return render_template("Study Plan Generator/StudyPlan.html" , plan=plan)
 
 def ExportStudyPlan(studyPlans: dict) -> None:

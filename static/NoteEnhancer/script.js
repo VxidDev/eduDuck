@@ -101,16 +101,10 @@ Submit.addEventListener("click", async () => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(body)
 		});
+
 		const data = await res1.json();
 
-		const res2 = await fetch("/store-notes", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ notes: data.notes })
-		});
-		const payload = await res2.json();
-
-		window.location.href = `/note-enhancer/result?notes=${encodeURIComponent(payload.id)}`;
+		window.location.href = `/note-enhancer/result?id=${encodeURIComponent(data.id)}`;
 
 		if (FreeUsageText && FreeUsage && FreeUsage?.checked) { // If user somehow stays on page
 			const request = await fetch('/get-usage' , {
@@ -126,7 +120,7 @@ Submit.addEventListener("click", async () => {
 		}
 
 	} catch {
-		StatusLabel.textContent = "Error while generating flashcards.";
+		StatusLabel.textContent = "Error while enhancing notes.";
 	}
 });
 

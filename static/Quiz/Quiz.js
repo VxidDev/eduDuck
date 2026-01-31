@@ -59,8 +59,9 @@ async function submitQuiz(quizData) {
         });
         
         if (!response.ok) throw new Error('Submit failed');
+
         const result = await response.json();
-        window.location.href = `/quiz-generator/quiz/result?result=${encodeURIComponent(JSON.stringify(result))}`;
+        window.location.href = `/quiz-generator/quiz/result?result=${encodeURIComponent(result.id)}`;
     } catch (error) {
         alert('Error submitting quiz. Please try again.');
         console.error('Submit error:', error);

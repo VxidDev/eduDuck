@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/static/EnhancedNotes/EnhancedNotesStyle.css">
     <link rel="stylesheet" href="/static/Main/style.css">
     <link rel="stylesheet" href="/static/theme-toggle.css">
+    <link rel="stylesheet" href="/static/header.css">
     <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
     <script src="{{ url_for('static', filename='EnhancedNotes/EnhancedScript.js') }}" type="module" defer></script>
 
@@ -28,6 +29,7 @@
                 <span class="free-uses">for 3 free uses/day!</span>
             {% else %}
                 <span id="FreeUsageText">Welcome, {{ current_user.username }}! You have {{ remaining }} free uses today.</span>
+                <a class="header-link" href="/profile">Profile</a>
                 <a class="header-link logout" href="/logout">Logout</a>
             {% endif %}
         </div>

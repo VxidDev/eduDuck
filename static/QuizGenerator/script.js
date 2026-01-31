@@ -105,16 +105,10 @@ Submit.addEventListener("click", async () => {
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(body)
 		});
+
 		const data = await res1.json();
 
-		const res2 = await fetch("/quiz-generator/store-quiz", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ quiz: data.quiz })
-		});
-		const payload = await res2.json();
-
-		window.location.href = `/quiz-generator/quiz?quiz=${encodeURIComponent(payload.id)}`;
+		window.location.href = `/quiz-generator/quiz?id=${encodeURIComponent(data.id)}`;
 
 		if (FreeUsageText && FreeUsage?.checked) { // If user somehow stays on page
 			const request = await fetch('/get-usage' , {
@@ -180,7 +174,7 @@ async function ImportData(file) {
 	const data = await res.json();
 
 	if (!data.err) {
-		window.location.href = `/quiz-generator/quiz?quiz=${encodeURIComponent(data.id)}`;
+		window.location.href = `/quiz-generator/quiz?id=${encodeURIComponent(data.id)}`;
     } else {
 		StatusLabel.textContent = data.err
 	}

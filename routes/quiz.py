@@ -1,9 +1,11 @@
 import re
-from flask import render_template , request , jsonify , send_file
-from routes.utils import AiReq , IncrementUsage
+from flask import render_template , request , jsonify , send_file , url_for
+from flask_login import current_user
+from routes.utils import AiReq , IncrementUsage , StoreQuizResult , StoreQuery , GetQueryFromDB , Log , storeQuiz
 from json import load , JSONDecodeError , dumps
 from uuid import uuid4
 from io import BytesIO
+from requests import post
 import os
 
 standardApiErrors = {
@@ -95,12 +97,26 @@ def QuizGenerator():
     return render_template('Quiz Generator/QuizGenerator.html')
 
 def quiz(quizzes):
-    quizID = request.args.get('quiz')
-    quiz = quizzes.get(quizID, '') if quizID else ''
-    print("READ", quizID, "found:", bool(quiz))
+    quizID = request.args.get('id')
+    
+    if current_user.is_authenticated:
+        quiz = GetQueryFromDB(quizID , 'quizzes') or ''
+        db = "mongoDB"
+    else:
+        quiz = quizzes.get(quizID, '') if quizID else ''
+        db = "session-storage"
+
+    Log(f"Got query from {db}. (id: {quizID} , collection: quizzes)\nLength: {len(quiz)}" , "info")
+
     return render_template("Quiz Generator/Quiz.html" , quiz=quiz)
 
-def submitResult():
+def QuizResult(quizResults):
+    quizResultID = request.args.get('result')
+    results = quizResults.get(quizResultID , '') if quizResultID else ''
+    print("READ", quizResultID, "found:", bool(results))
+    return render_template("Quiz Generator/QuizResult.html" , results=results)
+
+def submitResult(quizResults):
     data = request.get_json()
     quiz = data.get('quiz', {})
     user_answers = data.get('answers', {})
@@ -123,7 +139,7 @@ def submitResult():
         } for num, q in quiz.items()}
     }
     
-    return jsonify(result_data)
+    return StoreQuizResult(quizResults , result_data)
 
 def QuizGen(prompts: dict):
     data: dict = request.get_json()
@@ -206,25 +222,26 @@ def QuizGen(prompts: dict):
     if (output is None):
         return jsonify({"quiz": "Internal Error."})
 
-    print(f"Output: {output}")
+    Log("Got AI response, checking if success..." , "info")
 
     if output in standardApiErrors:
         output = standardApiErrors[output]
     elif output in moreApiErrors:
         output = moreApiErrors[output]
     else:
-        print("Successfully generated quiz. Parsing...")
-        
-    print(output)
+        Log("Generated quiz. Parsing..." , "success")
 
     quiz = ParseQuiz(output)
 
     if len(quiz) == 0:
-        print("Empty quiz.")
-    
-    print(quiz)
+        Log("Failed to parse quiz. (empty)" , "error")
+    else:
+        if current_user.is_authenticated:
+            queryRes = StoreQuery("quiz" , quiz)
+        else:
+            queryRes = post(url_for("storeQuiz" , _external=True) , json={"quiz": quiz})
 
-    return jsonify({'quiz': quiz})
+    return jsonify({'id': queryRes.json().get('id') if not current_user.is_authenticated else queryRes})
 
 def ImportQuiz(quizzes: dict) -> None:
     file = request.files.get("quizFile")      

@@ -23,6 +23,7 @@
                 <span class="free-uses">3 free uses/day</span>
             {% else %}
                 <span>Welcome, {{ current_user.username }}! You have {{ remaining }} free uses today.</span>
+                <a class="header-link" href="/profile">Profile</a>
                 <a class="header-link logout" href="/logout">Logout</a>
             {% endif %}
         </div>

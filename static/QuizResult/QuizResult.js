@@ -2,17 +2,20 @@ import { GetFreeLimitUsage } from "../Components/GetFreeLimitUsage.js"
 
 ( async () => { await GetFreeLimitUsage(); })();
 
-const params = new URLSearchParams(window.location.search);
-const resultJson = params.get("result");
+let results = document.querySelector(".main").dataset.results;
 
-if (resultJson) {
-	try {
-		const result = JSON.parse(decodeURIComponent(resultJson));
-		renderResults(result);
-	} catch {
-		document.getElementById("resultsList").innerHTML = "<p>Error loading results</p>";
-	}
+results = results
+  .replace(/'/g, '"')
+  .replace(/\bTrue\b/g, "true")
+  .replace(/\bFalse\b/g, "false");
+
+try {
+	const resultJSON = JSON.parse(results);
+	renderResults(resultJSON);
+} catch {
+	document.getElementById("resultsList").innerHTML = "<p>Error loading results</p>";
 }
+
 
 function renderResults(result) {
 	const scoreDisplay  = document.getElementById("scoreDisplay");

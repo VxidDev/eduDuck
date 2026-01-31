@@ -3,9 +3,10 @@ from json import load , JSONDecodeError
 from functools import wraps
 
 from routes.utils import ( 
-    LoginUser , RegisterUser , User , LoadUser, # Accounts
+    LoginUser , RegisterUser , User , LoadUser, sendVerificationEmail, VerifyEmail, UserProfile, # Accounts
     IncrementUsage , GetUsage, # Free Usage Logic
-    storeFlashcards, uploadNotes , storeNotes , storeQuiz , storeStudyPlan # Storing (temp)
+    storeFlashcards, uploadNotes , storeNotes , storeQuiz , storeStudyPlan , StoreQuizResult, # Storing (temp)
+    StoreQuery , StoreDuckAIConversation , GetQueryFromDB # Storing ("perm")
 )
 
 from routes.quiz import ParseQuiz
@@ -15,6 +16,7 @@ from routes.quiz import submitResult as _submitResult_
 from routes.quiz import QuizGen as _QuizGen_
 from routes.quiz import ImportQuiz as _ImportQuiz_
 from routes.quiz import ExportQuiz as _ExportQuiz_
+from routes.quiz import QuizResult
 
 from routes.noteEnhancer import EnhanceNotes as _EnhanceNotes_
 from routes.noteEnhancer import NoteEnhancer as _NoteEnhancer_
@@ -29,6 +31,7 @@ from routes.flashcardGenerator import ImportFlashcards as _ImportFlashcards_
 from routes.flashcardGenerator import ExportFlashcards as _ExportFlashcards_
 
 from routes.duckAI import GenerateResponse as _GenerateResponse_
+from routes.duckAI import DuckAI
 
 from routes.studyPlanGenerator import StudyPlanGen , StudyPlan , ExportStudyPlan , ImportStudyPlan
 
@@ -39,12 +42,15 @@ from werkzeug.security import check_password_hash , generate_password_hash
 
 import os
 import secrets
+
 from flask_login import LoginManager , UserMixin , login_required , current_user , logout_user
+from threading import Thread
 
 notes = {}
 quizzes = {}
 flashcards = {}
 studyPlans = {}
+quizResults = {}
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
@@ -121,7 +127,30 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for("root"))
         
-    return RegisterUser()
+    if request.method == "POST":
+        result = RegisterUser()
+
+        if isinstance(result, tuple):
+            msg, email = result
+            sendVerificationEmail(app , msg[1], msg[0] , msg[2] , "EduDuck Verification <no-reply@mg.eduduck.app>")
+
+            return jsonify({
+                "success": True,
+                "redirect": f"/check-email?email={email}"
+            })
+
+        return jsonify({"error": "Registration failed"}), 500
+    else:
+        return render_template("pages/register.html")
+
+@app.route("/verify-email/<token>")
+def verifyEmail(token):
+    return VerifyEmail(token)
+
+@app.route("/check-email")
+def CheckEmail():
+    email = request.args.get("email", "")
+    return render_template("pages/checkEmail.html", email=email)
 
 @app.route("/logout" , methods=["GET"])
 def logout():
@@ -137,6 +166,33 @@ def apiLoginRequired(func):
         return func(*args, **kwargs)
     return wrapper
 
+@app.route("/store-query" , endpoint="storeQuery")
+def storeQuery():
+    if not current_user.is_authenticated:
+        return jsonify({"error": "unauthorized"}) , 401
+
+    data = request.get_json()
+
+    response = StoreQuery(data.get("queryName") , data.get(data.get("queryName")))
+
+    if response not in ["unknown qName" , "empty query payload"]:
+        return jsonify({"id": response})
+
+    return jsonify({"error": response})
+
+@app.route("/get-query" , endpoint="getQuery" , methods=['POST'])
+def getQuery():
+    if not current_user.is_authenticated:
+        return jsonify({"error": "unauthorized"}) , 401
+
+    data = request.get_json()
+
+    return GetQueryFromDB(data.get('queryID' , None) , data.get('collection' , None))
+
+@app.route("/is-logined-in" , endpoint="checkLogin" , methods=["GET"])
+def checkLogin():
+    return jsonify({"login": current_user.is_authenticated})
+
 # ---------------- Quiz Generator ------------------------
 @app.route('/quiz-generator/store-quiz', methods=['POST'], endpoint='storeQuiz')
 def StoreQuiz():
@@ -144,7 +200,7 @@ def StoreQuiz():
 
 @app.route('/quiz-generator/quiz/result', methods=['POST'], endpoint='submitQuizResult')
 def submitResult():
-    return _submitResult_()
+    return _submitResult_(quizResults)
 
 @app.route('/quiz-generator/gen-quiz', methods=['POST'], endpoint='generateQuiz')
 def QuizGen():
@@ -160,7 +216,7 @@ def ExportQuiz():
 
 @app.route('/quiz-generator/quiz/result', endpoint='quizResultPage')
 def result_page():
-    return render_template('Quiz Generator/QuizResult.html')
+    return QuizResult(quizResults)
 
 @app.route("/quiz-generator/quiz", endpoint='showQuiz')
 def quiz():
@@ -218,8 +274,18 @@ def ExportFlashcards():
 
 # -------------- DuckAI -----------------------------------
 @app.route('/duck-ai' , endpoint='DuckAI')
-def DuckAI():
-    return render_template("DuckAI/DuckAI.html" , remaining=RemainingUsage())
+@login_required
+def duckAI():
+    return DuckAI()
+
+@app.route('/duck-ai/store-conversation' , endpoint='DuckAIStoreConversation' , methods=['POST'])
+def StoreConversation():
+    if not current_user.is_authenticated:
+        return jsonify({"error": "Unauthorized"}) , 401
+    
+    data = request.get_json()
+
+    return jsonify({ "queryID": StoreDuckAIConversation(data.get("messages") , data.get("queryID" , None))})
 
 @app.route('/duck-ai/generate' , endpoint='DuckAIResponse' , methods=['POST'])
 def GenerateResponse():
@@ -250,6 +316,10 @@ def ImportPlan():
 @app.route("/keyAccess")
 def keyAccess():
     return render_template("pages/keyAccess.html")
+
+@app.route("/profile")
+def profile():
+    return UserProfile()
 
 @app.route("/get-usage")
 @apiLoginRequired

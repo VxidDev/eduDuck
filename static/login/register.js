@@ -52,10 +52,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ username, email, password, confirm: confirm })
             });
+            
             const data = await res.json();
 
             if (res.ok) {
-                window.location.href = "/"; 
+                const redirectUrl = data.redirect || "/";
+                window.location.href = redirectUrl;
             } else {
                 errorMsg.textContent = data.error || "Registration failed.";
                 errorMsg.style.display = "block";

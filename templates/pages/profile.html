@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduDuck - Profile</title>
+
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+
+    <link rel="stylesheet" href="/static/variables.css">
+    <link rel="stylesheet" href="/static/Main Page/style.css">
+    <link rel="stylesheet" href="/static/header.css">
+    <link rel="stylesheet" href="/static/body.css">
+    <link rel="stylesheet" href="/static/Main/style.css">
+    <link rel="stylesheet" href="/static/theme-toggle.css">
+</head>
+
+<body>
+    <div class="header">
+        <a class="header-redirect" href="https://ko-fi.com/vxiddev" style="padding-left: 50px;">Donate</a>
+        <h1 class="header-text">EduDuck</h1>
+        <div style="padding-right: 50px; display: flex; gap: 15px; align-items: center;">
+            <span>Welcome, {{ current_user.username }}!</span>
+            <a class="header-link logout" href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <button id="theme-toggle">🌙</button>
+
+    <div class="main-content">
+        <h2>Your Profile</h2>
+        <p>View and reopen your saved quizzes, flashcards, study plans, notes, and DuckAI conversations.</p>
+
+        <div class="features">
+            <div class="feature-card">
+                <h3>📝 Quizzes</h3>
+                {% if quizzes %}
+                    <ul>
+                        {% for q in quizzes %}
+                            <li>
+                                <a href="/quiz-generator/quiz?id={{ q.queryID }}" style="text-decoration: none;" class="repoLink">
+                                    Quiz - {{ q.createdAt.strftime("%Y-%m-%d %H:%M") }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No quizzes yet.</p>
+                {% endif %}
+            </div>
+
+            <div class="feature-card">
+                <h3>🗂️ Flashcards</h3>
+                {% if flashcards %}
+                    <ul>
+                        {% for f in flashcards %}
+                            <li>
+                                <a href="/flashcard-generator/result?id={{ f.queryID }}" style="text-decoration: none;" class="repoLink">
+                                    Flashcards - {{ f.createdAt.strftime("%Y-%m-%d %H:%M") }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No flashcards yet.</p>
+                {% endif %}
+            </div>
+
+            <div class="feature-card">
+                <h3>📅 Study Plans</h3>
+                {% if plans %}
+                    <ul>
+                        {% for p in plans %}
+                            <li>
+                                <a href="/study-plan-generator/result?id={{ p.queryID }}" style="text-decoration: none;" class="repoLink">
+                                    Study plan - {{ p.createdAt.strftime("%Y-%m-%d %H:%M") }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No study plans yet.</p>
+                {% endif %}
+            </div>
+
+            <div class="feature-card">
+                <h3>✨ Enhanced Notes</h3>
+                {% if notes %}
+                    <ul>
+                        {% for n in notes %}
+                            <li>
+                                <a href="/note-enhancer/result?id={{ n.queryID }}" style="text-decoration: none;" class="repoLink">
+                                    Notes - {{ n.createdAt.strftime("%Y-%m-%d %H:%M") }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No enhanced notes yet.</p>
+                {% endif %}
+            </div>
+
+            <div class="feature-card feature-card-duckai">
+                <h3>🦆 DuckAI Conversations</h3>
+                {% if duckai %}
+                    <ul>
+                        {% for c in duckai %}
+                            <li>
+                                <a href="/duck-ai?id={{ c.queryID }}" style="text-decoration: none;" class="repoLink">
+                                    Chat - last edited {{ c.lastEditedAt.strftime("%Y-%m-%d %H:%M") }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No DuckAI chats yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <footer style="margin-top: 50px; text-align: center;">
+        <span>
+            By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2026 | 
+            Open Source on GitHub |
+            <a class="repoLink" href="/terms" style="text-decoration: none;">Terms of Service</a>
+        </span>
+    </footer>
+
+    <script src="/static/Components/DarkModeToggle.js"></script>
+</body>
+</html>

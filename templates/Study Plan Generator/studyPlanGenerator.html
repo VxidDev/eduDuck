@@ -29,6 +29,7 @@
                 <span class="free-uses">for 3 free uses/day!</span>
             {% else %}
                 <span id="FreeUsageText">Welcome, {{ current_user.username }}! You have {{ remaining }} free uses today.</span>
+                <a class="header-link" href="/profile">Profile</a>
                 <a class="header-link logout" href="/logout">Logout</a>
             {% endif %}
         </div>
@@ -65,8 +66,8 @@
             <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!"></textarea>
             
             <div class="file-upload-wrapper">
-                <input type="file" id="notesfileInput" class="file-input" accept=".txt,.png,.jpg,.jpeg,.pdf"/>
-                <label for="notesfileInput" class="button fileButton">📄 Upload notes file</label>
+                <input type="file" id="fileInput" class="file-input" accept=".txt,.md,.csv,.json,.log,.py,.js,.html,.css,.xml,.yml,.yaml,.ini,.cfg,.tex,.png,.jpg,.jpeg,.gif,.bmp,.tiff,.tif,.webp,.ppm,.pbm,.pgm,.jp2,.j2k"/>
+                <label for="fileInput" class="button fileButton">📄 Upload notes file</label>
             </div>
 
             <textarea class="notes textInput standard" placeholder="Notes go here :]"></textarea>

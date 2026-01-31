@@ -108,14 +108,7 @@ CustomModelListeners();
 			});
 			const data = await res1.json();
 
-			const res2 = await fetch("/store-study-plan", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ plan: data.plan })
-			});
-			const payload = await res2.json();
-
-			window.location.href = `/study-plan-generator/result?plan=${encodeURIComponent(payload.id)}`;
+			window.location.href = `/study-plan-generator/result?id=${encodeURIComponent(data.id)}`;
 
 			if (FreeUsageText && FreeUsage && FreeUsage?.checked) {
 				const request = await fetch('/get-usage', { method: "GET", headers: { "Content-Type": "application/json" } });
