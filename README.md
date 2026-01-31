@@ -103,8 +103,6 @@ Please **fork this repo** and submit pull requests. Make sure not to include any
 
 ## 👤 Accounts
 
-> Legacy accounts added.
-
 EduDuck supports **user accounts** to provide fair access limits and enable future personalization features.
 
 ### 🆓 Free Account Benefits
@@ -176,13 +174,18 @@ Accounts help:
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: HTML5, CSS3 (CSS Variables), Vanilla JS, markdown-it  
-- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB, MailGun (email verification), Google OAuth, Flask-Dance
-- **Auth & Security**: Password hashing, session-based auth, usage limits  
-- **Data Layer**: JSON serialization, in-memory caching  
-- **AI**: Hugging Face Inference API, Google Gemini, OpenAI
-- **OCR**: Tesseract + custom preprocessing  
-
+- **Frontend**: HTML5, CSS3 (CSS Variables), Vanilla JavaScript, TypeScript, markdown-it
+- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB (PyMongo), MailGun (email verification), Authlib (OAuth client)
+- **OAuth Providers**: Google, GitHub, Discord, Microsoft
+- **Auth & Security**: Werkzeug password hashing, session-based auth, Flask-Login, usage limits, email verification tokens
+- **Data Layer**: JSON serialization, msgspec, BSON (MongoDB), in-memory caching, UUID generation
+- **AI APIs**: Hugging Face Inference API, Google Gemini (2.5 Flash), OpenAI (GPT models)
+- **OCR**: Tesseract + PIL image preprocessing
+- **PDF Processing**: pypdf (PdfReader)
+- **HTTP Client**: httpx (HTTP/2 support, connection pooling), requests
+- **Rust Extensions**: PyO3 (Python bindings), custom parsers for quiz & study plans
+- **Logging**: Rich console
+- **Utilities**: python-dotenv, JWT decode, certifi, functools decorators
 ---
 
 ## 🛠️ Local Development
@@ -284,6 +287,10 @@ I handle deployment, setup, and configuration - you start using EduDuck immediat
 | ✅ Done | Improve AiReq |
 | ✅ Done | Add attaching files to DuckAI. |
 | ✅ Done | Fix file uploading if edited notes.textContent |
+| ✅ Done | Added password reset option |
+| ✅ Done | Added account deletion option |
+| ✅ Done | Improved UX/UI |
+| ✅ Done | Migrated part of JS code to TS |
 | 🔄 In Progress | Fix footer not at the bottom bug. |
 | ⏳ Planned | Study progress tracking |
 
