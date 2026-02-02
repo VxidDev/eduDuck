@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>EduDuck - Terms of Service</title>
     <meta name="description" content="EduDuck Terms of Service - Rules and guidelines for using EduDuck AI study tools.">
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
@@ -14,10 +15,13 @@
     <link rel="stylesheet" href="/static/login/style.css">
     <link rel="stylesheet" href="/static/theme-toggle.css">
     <script src="{{ url_for('static', filename='privacy/script.js') }}" type="module" defer></script>
+    <script src="/static/Components/csrf.js" defer></script>
 
     <script>
         window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
     </script>
+
+    <script src="{{ url_for('static' , filename='base.js') }}" type="module" defer></script>
 
 </head>
 
@@ -33,8 +37,10 @@
                 <span class="free-uses">for 3 free uses/day!</span>
             {% else %}
                 <span id="FreeUsageText">Welcome, {{ current_user.username }}! You have {{ remaining }} free uses today.</span>
-                <a class="header-link" href="/profile">Profile</a>
                 <a class="header-link logout" href="/logout">Logout</a>
+                <a class="header-link pfp" href="/profile" id="profile-link" style="display: inline-block; width: 40px; height: 40px; border-radius: 50%; overflow: hidden;">
+                    <img id="user-pfp" src="/profile/user-pfp/{{ current_user.id }}" alt="PFP (Profile HREF)" style="width: 100%; height: 100%; object-fit: cover;">
+                </a>
             {% endif %}
         </div>
     </div>

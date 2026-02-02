@@ -1,15 +1,16 @@
-from flask import render_template , request , jsonify , send_file , url_for
+from flask import render_template , request , jsonify , send_file , url_for , current_app
 from io import BytesIO
 from uuid import uuid4
-from routes.utils import AiReq , IncrementUsage , StoreQuery , Log , GetQueryFromDB
+from routes.utils import AiReq , IncrementUsage , StoreQuery , Log , GetQueryFromDB , StoreTempQuery , GetMongoClient
 from flask_login import current_user
 from requests import post
+from bson import ObjectId
 import os
 
 def NoteEnhancer():
     return render_template('Note Enhancer/noteEnhancer.html')
 
-def EnhanceNotes(prompts: dict):
+def EnhanceNotes(prompts: dict , notes: dict):
     data: dict = request.get_json()
     IS_FREE = data["isFree"]
     NOTES = data["notes"]
@@ -19,7 +20,23 @@ def EnhanceNotes(prompts: dict):
 
     IsReasoning = False
 
-    if IS_FREE: IncrementUsage()
+    if IS_FREE:
+        with current_app.app_context():
+            if not current_user.is_authenticated:
+                Log("User not logined in." , "error")
+                return render_template("pages/loginRequired.html")
+
+            userData = GetMongoClient()["EduDuck"]["users"].find_one({"_id": ObjectId(current_user.id)})
+            if not userData:
+                Log("User account not found." , "error")
+                return render_template("pages/loginRequired.html")
+
+            times_used = userData.get("daily_usage", {}).get("timesUsed", 0)
+            if times_used >= 3:
+                Log("Daily limit reached." , "error")
+                return render_template("pages/dailyLimit.html", remaining=0)
+
+        IncrementUsage()
 
     if MODEL:
         MODEL = MODEL.strip()
@@ -86,30 +103,36 @@ def EnhanceNotes(prompts: dict):
 
     if payload and API_MODE == "Hugging Face": print(f"Model: {payload["model"]}") 
 
-    notes = AiReq(API_URL , headers , payload , API_MODE)
+    enhancedNotes = AiReq(API_URL , headers , payload , API_MODE)
 
-    if (notes is None):
+    if (enhancedNotes is None):
         return jsonify({"notes": "Internal Error."})
 
     if current_user.is_authenticated:
-        queryRes = StoreQuery("notes" , notes)
+        queryRes = StoreQuery("notes" , enhancedNotes)
+        db = "mongoDB"
     else:
-        queryRes = post(url_for("storeNotes" , _external=True) , json={"notes": notes})
+        queryRes = StoreTempQuery(enhancedNotes , notes)
+        db = "session-storage"
 
-    return jsonify({'id': queryRes.json().get('id') if not current_user.is_authenticated else queryRes})
+    return jsonify({'id': queryRes})
 
-    Log(f"Got query from {db}. (id: {quizID} , collection: quizzes)\nLength: {len(quiz)}" , "info")
+    Log(f"Got query from {db}. (id: {queryRes} , collection: enhanced-notes)\nLength: {len(enhancedNotes)}" , "info")
 
-    return render_template("Quiz Generator/Quiz.html" , quiz=quiz)
+    return jsonify({'id': queryRes})
 
-def EnhancedNotes(notes: dict):
+def EnhancedNotes(Notes: dict):
     noteID = request.args.get('id')
 
     if current_user.is_authenticated:
         notes = GetQueryFromDB(noteID , 'enhanced-notes') or ''
         db = "mongoDB"
+
+        if not notes:
+            notes = Notes.get(noteID, '') if noteID else ''
+            db = "session-storage (fallback from mongoDb)"
     else:
-        notes = notes.get(noteID, '') if noteID else ''
+        notes = Notes.get(noteID, '') if noteID else ''
         db = "session-storage"
 
     Log(f"Got query from {db}. (id: {noteID} , collection: enhanced-notes)\nLength: {len(notes)}" , "info")

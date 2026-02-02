@@ -108,7 +108,7 @@ CustomModelListeners();
 			});
 			const data = await res1.json();
 
-			window.location.href = `/study-plan-generator/result?id=${encodeURIComponent(data.id)}`;
+			window.location.href = `/study-plan-generator/result?plan=${encodeURIComponent(data.id)}`;
 
 			if (FreeUsageText && FreeUsage && FreeUsage?.checked) {
 				const request = await fetch('/get-usage', { method: "GET", headers: { "Content-Type": "application/json" } });

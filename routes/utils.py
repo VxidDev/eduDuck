@@ -1,8 +1,7 @@
 from requests import post
 from pypdf import PdfReader
-from flask import request , jsonify , render_template , url_for , render_template_string
-from pytesseract import image_to_string
-from PIL import Image, ImageFilter, ImageEnhance
+from flask import request , jsonify , render_template , url_for
+from PIL import Image
 from pymongo import MongoClient , ReturnDocument
 import os
 import urllib.parse
@@ -15,11 +14,22 @@ from werkzeug.security import generate_password_hash , check_password_hash
 import secrets
 from rich.console import Console
 from typing import Optional , Union , Dict , Any
+import base64
+import io
+import httpx
+import msgspec 
 
 from uuid import uuid4
+import time
 
 console = Console()
 _client = None
+
+_httpxclient = httpx.Client(
+    timeout=httpx.Timeout(60.0, connect=10.0),
+    limits=httpx.Limits(max_connections=100, max_keepalive_connections=20),
+    http2=True  # HTTP/2 support for better performance
+)
 
 def Log(text , status) -> None:
     colors = {
@@ -68,7 +78,6 @@ def IncrementUsage():
     today = date.today().isoformat()
     users = GetMongoClient()["EduDuck"]["users"]
 
-    # Update usage
     result = users.find_one_and_update(
         {"_id": ObjectId(current_user.id)},
         [
@@ -221,75 +230,136 @@ def RegisterUser():
 
     return render_template("pages/register.html")
 
-def AiReq(API_URL, headers, payload, mode, timeout=60):
+# Define response schemas for even faster parsing (optional but recommended)
+class OpenAIChoice(msgspec.Struct):
+    message: dict
+
+class OpenAIResponse(msgspec.Struct):
+    choices: list[OpenAIChoice]
+
+decoder = msgspec.json.Decoder()  # Reusable decoder
+
+def AiReq(API_URL, headers, payload, mode="OpenAI", timeout=60, extract_text=False):
     try:
-        response = post(API_URL, headers=headers, json=payload, timeout=timeout)
+        start = time.perf_counter()
+        client_timeout = httpx.Timeout(timeout, connect=10.0) if timeout != 60 else None
         
-        if response.status_code == 200:
-            result = response.json()
-            if not result:
-                data = "API error: Failed to extract JSON."
-
-            elif mode == "OpenAI":
-                data = result["choices"][0]["message"]["content"]
-
-            elif mode == "Hugging Face":
-                data = result["choices"][0]["message"]["content"]
-
-            else: 
-                data = "".join(
-                    part["text"]
-                    for part in result["candidates"][0]["content"]["parts"]
-                )
-            return data
-        else:
-            print(response.json())
+        response = _httpxclient.post(
+            API_URL, 
+            headers=headers, 
+            json=payload,
+            timeout=client_timeout
+        )
+        
+        if response.status_code != 200:
+            print(decoder.decode(response.content))
             return f'API error {response.status_code}'
-            
+        end = time.perf_counter()
+
+        Log(f"API request to {API_URL} took {end - start:.4f} seconds", "info")
+
+        start = time.perf_counter()
+        result = decoder.decode(response.content)
+
+        if extract_text:
+            output_texts = [
+                content.get("text", "")
+                for item in result.get("output", [])
+                for content in item.get("content", [])
+                if content.get("type") == "output_text"
+            ]
+            data = "\n".join(output_texts).strip() or "API returned no text."
+        else:
+            if mode in ("OpenAI", "Hugging Face"):
+                try:
+                    data = result["choices"][0]["message"]["content"]
+                except (KeyError, IndexError, TypeError) as e:
+                    print(f"Error parsing {mode} response: {e}")
+                    data = f"Error parsing {mode} response."
+            else:
+                try:
+                    parts = result["candidates"][0]["content"]["parts"]
+                    data = "".join(part["text"] for part in parts)
+                except (KeyError, IndexError, TypeError):
+                    data = "Unknown API format."
+
+        end = time.perf_counter()
+        Log(f"Parsing response took: {end - start:.4f} seconds", "info")
+
+        return data
+
+    except httpx.TimeoutException:
+        print(f"Request timeout after {timeout}s")
+        return None
+    except httpx.RequestError as err:
+        print(f"Network error: {str(err)}")
+        return None
     except Exception as err:
         print(f"Internal Error: {str(err)}")
         return None
 
+def cleanup():
+    if _httpxclient: _httpxclient.close()
+
 def uploadNotes():
     file = request.files.get("notesFile")
     supportedImageFormats = ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'tif', 'webp', 'ppm', 'pbm', 'pgm', 'jp2', 'j2k']
+    supportedTextFormats = ['txt', 'md', 'csv', 'json', 'log', 'py', 'js', 'html', 'css', 'xml', 'yml', 'yaml', 'ini', 'cfg', 'tex']
 
     if not file:
         return jsonify({"notes": "No file received."})
 
-    ext: str = file.filename.split('.')[-1]
+    ext = file.filename.split('.')[-1].lower()
 
-    if ext in ['txt', 'md', 'csv', 'json', 'log', 'py', 'js', 'html', 'css', 'xml', 'yml', 'yaml', 'ini', 'cfg', 'tex']:
+    if ext in supportedTextFormats:
         return jsonify({"notes": file.read().decode("utf-8")})
+
     elif ext == 'pdf':
-        reader = PdfReader(file)
-        textChunks = []
-        for page in reader.pages:
-            textChunks.append(page.extract_text() or "")   
-        
+        reader_pdf = PdfReader(file)
+        textChunks = [page.extract_text() or "" for page in reader_pdf.pages]
         return jsonify({"notes": "\n".join(textChunks)})
+
     elif ext in supportedImageFormats:
         try:
-            image = Image.open(file.stream)
-            file.stream.seek(0)
-        
-            image = image.convert('L')
-            image = image.filter(ImageFilter.MedianFilter(size=3))
-            enhancer = ImageEnhance.Contrast(image)
-            image = enhancer.enhance(2.0)
-        
-            text = image_to_string(image, config='--psm 6')
+            image = Image.open(file.stream).convert('RGB')
 
-            return jsonify({"notes": text.strip()})
+            base_width = 1800
+            wpercent = (base_width / float(image.size[0]))
+            hsize = int(float(image.size[1]) * wpercent)
+            image = image.resize((base_width, hsize), Image.Resampling.LANCZOS)
+
+            buffered = io.BytesIO()
+            image.save(buffered, format="PNG")
+            img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
+
+            API_URL = "https://api.openai.com/v1/responses" 
+            headers = {"Authorization": f"Bearer {os.getenv("FREE_TIER_API_KEY")}"}
+            payload = {
+                "model": "gpt-4.1-nano",
+                "input": [
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "input_image", "image_url": f"data:image/png;base64,{img_str}"},
+                            {"type": "input_text", "text": "Please extract all text from this image."}
+                        ]
+                    }
+                ]
+            }
+
+            text = AiReq(API_URL, headers, payload, mode="OpenAI" , extract_text=True)
+            return jsonify({"notes": text.strip() if text else "OCR API returned nothing."})
+
         except Exception as e:
             print(str(e))
             return jsonify({"notes": "OCR error."})
+
     else:
         return jsonify({"notes": "Unsupported file type."})
 
 def StoreQuery(qName , query=None) -> Optional[str]:
     if not current_user.is_authenticated:
-        return "forbidden"
+        return "forbidden" , 401
 
     if not query:
         query = request.get_json(silent=True).get(qName , '') or {}
@@ -318,6 +388,8 @@ def StoreQuery(qName , query=None) -> Optional[str]:
         "query": query,
         "createdAt": datetime.utcnow() 
     })
+
+    Log("Added query to mongoDB. ID: " + QueryID , "info")
 
     return QueryID
 
@@ -361,43 +433,13 @@ def GetQueryFromDB(queryID: str, collection: str) -> Union[Dict[str, Any], str, 
     else:
         return Entry.get("query", "")
 
-def storeNotes(notes: dict):
-    data = request.get_json()
-    Notes = data.get('notes', '')
-    noteID = str(uuid4())
-    notes[noteID] = Notes
-    print("STORED", noteID, "len:", len(Notes))
-    return jsonify({'id': noteID})
+def StoreTempQuery(query: Union[str , dict], collection: dict) -> str:
+    queryID = str(uuid4())
 
-def storeQuiz(quizzes: dict):
-    data = request.get_json()
-    quiz = data.get('quiz', '')
-    quizID = str(uuid4())
-    quizzes[quizID] = quiz
-    print("STORED", quizID, "len:", len(quiz))
-    return jsonify({'id': quizID})
+    collection[queryID] = query
+    Log(f"Added query to temp collection. Length: {len(collection)} , ID: {queryID}" , "info")
 
-def storeFlashcards(flashcards: dict):
-    data = request.get_json()
-    Flashcards = data.get('flashcards' , '')
-    flashcardID = str(uuid4())
-    flashcards[flashcardID] = Flashcards
-    print("STORED", flashcardID, "len:", len(Flashcards))
-    return jsonify({'id': flashcardID})
-
-def storeStudyPlan(studyPlans: dict):
-    data = request.get_json()
-    plan = data.get('plan' , '')
-    planID = str(uuid4())
-    studyPlans[planID] = plan
-    print("STORED", planID, "len:", len(plan))
-    return jsonify({'id': planID})
-
-def StoreQuizResult(quizResults , quizResult) -> str:
-    resultID = str(uuid4())
-    quizResults[resultID] = quizResult
-    print("STORED", resultID, "len:", len(quizResult))
-    return jsonify({'id': resultID})
+    return queryID
 
 def sendVerificationEmail(app , toEmail, subject, body, email):
     with app.app_context():
@@ -451,3 +493,20 @@ def UserProfile():
         notes=notes,
         duckai=duckai
     )
+
+def GetUserPFP():
+    try:
+        user_doc = GetMongoClient()["EduDuck"]["users"].find_one({"_id": ObjectId(current_user.id)})
+        if not user_doc:
+            return jsonify({"error": "User not found"}), 404
+
+        key = user_doc.get("profilePicture")
+        if key:
+            url = f"https://avatars.eduduck.app/{key}"
+        else:
+            url = url_for("static", filename="img/default-profile.png") 
+
+        return jsonify({"url": url})
+    except Exception as e:
+        Log(f"Failed to get user profile picture -> {str(e)}" , "error")
+        return jsonify({"error": str(e)}), 500

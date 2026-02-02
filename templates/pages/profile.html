@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>EduDuck - Profile</title>
 
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
@@ -13,6 +14,11 @@
     <link rel="stylesheet" href="/static/body.css">
     <link rel="stylesheet" href="/static/Main/style.css">
     <link rel="stylesheet" href="/static/theme-toggle.css">
+
+    <script src="/static/Components/csrf.js" defer></script>
+    <script src="/static/Components/DarkModeToggle.js" defer></script>
+    <script src="{{ url_for('static', filename='profile/script.js') }}" type="module" defer></script>
+    <script src="{{ url_for('static', filename='base.js') }}" type="module" defer></script>
 </head>
 
 <body>
@@ -22,30 +28,43 @@
         <div style="padding-right: 50px; display: flex; gap: 15px; align-items: center;">
             <span>Welcome, {{ current_user.username }}!</span>
             <a class="header-link logout" href="/logout">Logout</a>
+            <a class="header-link pfp" href="/profile" id="profile-link" style="display: inline-block; width: 40px; height: 40px; border-radius: 50%; overflow: hidden;">
+                <img id="user-pfp" src="/profile/user-pfp/{{ current_user.id }}" alt="PFP (Profile HREF)" style="width: 100%; height: 100%; object-fit: cover;">
+            </a>
         </div>
     </div>
 
     <button id="theme-toggle">🌙</button>
 
-    <div class="main-content">
+    <div class="main-content profile-main">
         <h2>Your Profile</h2>
         <p>View and reopen your saved quizzes, flashcards, study plans, notes, and DuckAI conversations.</p>
 
-        <div class="features">
+        <!-- Profile Picture Upload -->
+        <div class="profile-upload-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 25px;">
+            <h3>Update Profile Picture</h3>
+            <form id="profile-pic-form" enctype="multipart/form-data" class="auth-form">
+                <input type="file" id="profile-picture-input" name="profile_picture" accept="image/*" class="textInput">
+                <button type="submit" class="button">Upload</button>
+            </form>
+            <p id="profile-pic-status" class="tutorial-note" style="margin-top: 10px;">upload profile picture by clicking button above</p>
+        </div>
+
+        <div class="features" style="margin-top: 32px;">
             <div class="feature-card">
                 <h3>📝 Quizzes</h3>
                 {% if quizzes %}
                     <ul>
                         {% for q in quizzes %}
                             <li>
-                                <a href="/quiz-generator/quiz?id={{ q.queryID }}" style="text-decoration: none;" class="repoLink">
+                                <a href="/quiz-generator/quiz?id={{ q.queryID }}" class="repoLink">
                                     Quiz - {{ q.createdAt.strftime("%Y-%m-%d %H:%M") }}
                                 </a>
                             </li>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p>No quizzes yet.</p>
+                    <p class="tutorial-note">No quizzes yet.</p>
                 {% endif %}
             </div>
 
@@ -55,14 +74,14 @@
                     <ul>
                         {% for f in flashcards %}
                             <li>
-                                <a href="/flashcard-generator/result?id={{ f.queryID }}" style="text-decoration: none;" class="repoLink">
+                                <a href="/flashcard-generator/result?id={{ f.queryID }}" class="repoLink">
                                     Flashcards - {{ f.createdAt.strftime("%Y-%m-%d %H:%M") }}
                                 </a>
                             </li>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p>No flashcards yet.</p>
+                    <p class="tutorial-note">No flashcards yet.</p>
                 {% endif %}
             </div>
 
@@ -72,14 +91,14 @@
                     <ul>
                         {% for p in plans %}
                             <li>
-                                <a href="/study-plan-generator/result?id={{ p.queryID }}" style="text-decoration: none;" class="repoLink">
+                                <a href="/study-plan-generator/result?id={{ p.queryID }}" class="repoLink">
                                     Study plan - {{ p.createdAt.strftime("%Y-%m-%d %H:%M") }}
                                 </a>
                             </li>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p>No study plans yet.</p>
+                    <p class="tutorial-note">No study plans yet.</p>
                 {% endif %}
             </div>
 
@@ -89,14 +108,14 @@
                     <ul>
                         {% for n in notes %}
                             <li>
-                                <a href="/note-enhancer/result?id={{ n.queryID }}" style="text-decoration: none;" class="repoLink">
+                                <a href="/note-enhancer/result?id={{ n.queryID }}" class="repoLink">
                                     Notes - {{ n.createdAt.strftime("%Y-%m-%d %H:%M") }}
                                 </a>
                             </li>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p>No enhanced notes yet.</p>
+                    <p class="tutorial-note">No enhanced notes yet.</p>
                 {% endif %}
             </div>
 
@@ -106,27 +125,25 @@
                     <ul>
                         {% for c in duckai %}
                             <li>
-                                <a href="/duck-ai?id={{ c.queryID }}" style="text-decoration: none;" class="repoLink">
+                                <a href="/duck-ai?id={{ c.queryID }}" class="repoLink">
                                     Chat - last edited {{ c.lastEditedAt.strftime("%Y-%m-%d %H:%M") }}
                                 </a>
                             </li>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p>No DuckAI chats yet.</p>
+                    <p class="tutorial-note">No DuckAI chats yet.</p>
                 {% endif %}
             </div>
         </div>
     </div>
 
-    <footer style="margin-top: 50px; text-align: center;">
+    <footer class="main-footer">
         <span>
             By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2026 | 
             Open Source on GitHub |
-            <a class="repoLink" href="/terms" style="text-decoration: none;">Terms of Service</a>
+            <a class="repoLink" href="/terms">Terms of Service</a>
         </span>
     </footer>
-
-    <script src="/static/Components/DarkModeToggle.js"></script>
 </body>
 </html>

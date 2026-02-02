@@ -1,6 +1,7 @@
 from routes.utils import AiReq , IncrementUsage , GetMongoClient , GetQueryFromDB , Log
-from flask import render_template , jsonify , request
+from flask import render_template , jsonify , request , current_app
 from flask_login import current_user
+from bson import ObjectId
 import os
 
 standardApiErrors = {
@@ -25,7 +26,23 @@ def GenerateResponse(prompts: dict):
 
     IsReasoning = False
 
-    if IS_FREE: IncrementUsage()
+    if IS_FREE:
+        with current_app.app_context():
+            if not current_user.is_authenticated:
+                Log("User not logined in." , "error")
+                return render_template("pages/loginRequired.html")
+
+            userData = GetMongoClient()["EduDuck"]["users"].find_one({"_id": ObjectId(current_user.id)})
+            if not userData:
+                Log("User account not found." , "error")
+                return render_template("pages/loginRequired.html")
+
+            times_used = userData.get("daily_usage", {}).get("timesUsed", 0)
+            if times_used >= 3:
+                Log("Daily limit reached." , "error")
+                return render_template("pages/dailyLimit.html", remaining=0)
+
+        IncrementUsage()
 
     if MODEL:
         MODEL = MODEL.strip()
@@ -112,7 +129,7 @@ def GenerateResponse(prompts: dict):
 
 def DuckAI():
     if not current_user.is_authenticated:
-        return render_template("DuckAI/DuckAI.html" , remaining=RemainingUsage())
+        return render_template("DuckAI/DuckAI.html" , chat=[])
     else:
         chatID = request.args.get('id')
 

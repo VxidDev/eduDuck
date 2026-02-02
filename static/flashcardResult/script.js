@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!display) return console.error("No display element");
 
     try {
-        const flashcards = JSON.parse(display.dataset.notes || "[]");
+        const flashcardsRaw = JSON.parse(display.dataset.notes || "[]");
+        const flashcards = Object.values(flashcardsRaw);
 
         if (!flashcards.length) {
             display.innerHTML =

@@ -391,3 +391,10 @@ body.dark .tutorial-note {
     color: #ff6b6b;
 }
 
+.pfp {
+    transition: transform 0.3s ease-in-out; 
+}
+
+.pfp:hover {
+    transform: scale(1.1);
+}

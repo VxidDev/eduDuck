@@ -1,10 +1,11 @@
-from flask import render_template , request , jsonify , send_file , url_for
+from flask import render_template , request , jsonify , send_file , url_for , current_app
 from flask_login import current_user
-from routes.utils import AiReq , IncrementUsage , StoreQuizResult , StoreQuery , GetQueryFromDB , Log , storeQuiz
+from routes.utils import AiReq , IncrementUsage , StoreTempQuery , StoreQuery , GetQueryFromDB , Log , GetMongoClient
 import os , re
 from io import BytesIO
 from json import dumps , JSONDecodeError , load
 from uuid import uuid4
+from bson import ObjectId
 from requests import post
 
 standardApiErrors = {
@@ -31,7 +32,7 @@ def ParseStudyPlan(planText: str):
 
     return studyPlan
 
-def StudyPlanGen(prompts: dict):
+def StudyPlanGen(prompts: dict , studyPlans: dict):
     data = request.get_json()
     
     IS_FREE = data["isFree"]
@@ -49,6 +50,21 @@ def StudyPlanGen(prompts: dict):
     IsReasoning = False
 
     if IS_FREE:
+        with current_app.app_context():
+            if not current_user.is_authenticated:
+                Log("User not logined in." , "error")
+                return render_template("pages/loginRequired.html")
+
+            userData = GetMongoClient()["EduDuck"]["users"].find_one({"_id": ObjectId(current_user.id)})
+            if not userData:
+                Log("User account not found." , "error")
+                return render_template("pages/loginRequired.html")
+
+            times_used = userData.get("daily_usage", {}).get("timesUsed", 0)
+            if times_used >= 3:
+                Log("Daily limit reached." , "error")
+                return render_template("pages/dailyLimit.html", remaining=0)
+
         IncrementUsage()
 
     if MODEL:
@@ -114,7 +130,7 @@ def StudyPlanGen(prompts: dict):
 
     output = AiReq(API_URL, headers, payload, API_MODE)
 
-    if output is None:
+    if output is None or "{ 'error': }" in output:
         return jsonify({"plan": "Internal Error."})
 
     Log("Got AI response, checking if success..." , "info")
@@ -128,22 +144,28 @@ def StudyPlanGen(prompts: dict):
 
     plan = ParseStudyPlan(output)
 
+    queryRes = None
+
     if (len(plan) == 0): 
         Log("Failed to parse study plan. (empty)" , "error")
     else:
         if current_user.is_authenticated:
             queryRes = StoreQuery("plan" , plan)
         else:
-            queryRes = post(url_for("storeStudyPlan" , _external=True) , json={"plan": plan})
+            queryRes = StoreTempQuery(plan , studyPlans)
 
-    return jsonify({'id': queryRes.json().get('id') if not current_user.is_authenticated else queryRes})
+    return jsonify({'id': queryRes})
 
 def StudyPlan(studyPlans):
-    planID = request.args.get('id')
+    planID = request.args.get('plan')
 
     if current_user.is_authenticated:
         plan = GetQueryFromDB(planID , 'study-plans') or ''
         db = "mongoDB"
+
+        if not plan:
+            plan = studyPlans.get(planID, '') if planID else ''
+            db = "session-storage (fallback from mongoDb)"
     else:
         plan = studyPlans.get(planID, '') if planID else ''
         db = "session-storage"

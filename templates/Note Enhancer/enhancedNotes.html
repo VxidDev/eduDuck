@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>EduDuck - Enhanced Notes</title>
     <link rel="stylesheet" href="/static/variables.css">
     <link rel="stylesheet" href="/static/EnhancedNotes/EnhancedNotesStyle.css">
@@ -11,11 +12,13 @@
     <link rel="stylesheet" href="/static/header.css">
     <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/dist/markdown-it.min.js"></script>
     <script src="{{ url_for('static', filename='EnhancedNotes/EnhancedScript.js') }}" type="module" defer></script>
+    <script src="/static/Components/csrf.js" defer></script>
 
     <script>
         window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
     </script>
 
+    <script src="{{ url_for('static' , filename='base.js') }}" type="module" defer></script>
 </head>
 <body>
     <div class="header">
@@ -29,8 +32,10 @@
                 <span class="free-uses">for 3 free uses/day!</span>
             {% else %}
                 <span id="FreeUsageText">Welcome, {{ current_user.username }}! You have {{ remaining }} free uses today.</span>
-                <a class="header-link" href="/profile">Profile</a>
                 <a class="header-link logout" href="/logout">Logout</a>
+                <a class="header-link pfp" href="/profile" id="profile-link" style="display: inline-block; width: 40px; height: 40px; border-radius: 50%; overflow: hidden;">
+                    <img id="user-pfp" src="/profile/user-pfp/{{ current_user.id }}" alt="PFP (Profile HREF)" style="width: 100%; height: 100%; object-fit: cover;">
+                </a>
             {% endif %}
         </div>
     </div>

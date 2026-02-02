@@ -1,10 +1,11 @@
-from routes.utils import AiReq , IncrementUsage , StoreQuery , Log , GetQueryFromDB
+from routes.utils import AiReq , IncrementUsage , StoreQuery , Log , GetQueryFromDB , StoreTempQuery , GetMongoClient
 from flask_login import current_user
 from requests import post
-from flask import render_template , jsonify , request , send_file , url_for
+from flask import render_template , jsonify , request , send_file , url_for , current_app
 from json import load , JSONDecodeError , dumps
 from uuid import uuid4
 from io import BytesIO
+from bson import ObjectId
 import os
 
 standardApiErrors = {
@@ -35,7 +36,7 @@ def ParseFlashcards(fc: str) -> dict:
     
     return output
 
-def FlashcardGenerator(prompts: dict):
+def FlashcardGenerator(prompts: dict , flashcardDict: dict):
     data: dict = request.get_json()
     IS_FREE = data.get("isFree" , False)
     NOTES = data["notes"]
@@ -46,7 +47,23 @@ def FlashcardGenerator(prompts: dict):
 
     IsReasoning = False
 
-    if IS_FREE: IncrementUsage()
+    if IS_FREE:
+        with current_app.app_context():
+            if not current_user.is_authenticated:
+                Log("User not logined in." , "error")
+                return render_template("pages/loginRequired.html")
+
+            userData = GetMongoClient()["EduDuck"]["users"].find_one({"_id": ObjectId(current_user.id)})
+            if not userData:
+                Log("User account not found." , "error")
+                return render_template("pages/loginRequired.html")
+
+            times_used = userData.get("daily_usage", {}).get("timesUsed", 0)
+            if times_used >= 3:
+                Log("Daily limit reached." , "error")
+                return render_template("pages/dailyLimit.html", remaining=0)
+
+        IncrementUsage()
 
     if MODEL:
         MODEL = MODEL.strip()
@@ -134,9 +151,9 @@ def FlashcardGenerator(prompts: dict):
         if current_user.is_authenticated:
             queryRes = StoreQuery("flashcards" , flashcards)
         else:
-            queryRes = post(url_for("storeflashCards" , _external=True) , json={"flashcards": flashcards})
+            queryRes = StoreTempQuery(flashcards , flashcardDict)
 
-    return jsonify({'id': queryRes.json().get('id') if not current_user.is_authenticated else queryRes})
+    return jsonify({'id': queryRes})
 
 def FlashCardGenerator():
     return render_template("Flashcard Generator/flashCardGenerator.html")
@@ -147,9 +164,18 @@ def FlashCardResult(flashcards: dict) -> None:
     if current_user.is_authenticated:
         Flashcards = GetQueryFromDB(flashcardId , 'flashcards') or ''
         db = "mongoDB"
+
+        if not Flashcards:
+            Flashcards = flashcards.get(flashcardId, '') if flashcardId else ''
+            db = "session-storage (fallback from mongoDb)"
     else:
         Flashcards = flashcards.get(flashcardId, '') if flashcardId else ''
         db = "session-storage"
+
+    if not Flashcards:
+        Log(f"Failed to get flashcards from {db}. (empty)" , "error")
+    else:
+        Log(f"Got query from {db}. (id: {flashcardId} , collection: flashcards)\nLength: {len(Flashcards)}" , "info")
 
     return render_template("Flashcard Generator/flashcards.html", flashcards=Flashcards)
 

@@ -1,0 +1,13 @@
+[package]
+name = "quiz_parser"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "quiz_parser"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.21", features = ["extension-module"] }
+indexmap = "2"
+once_cell = "1.18"

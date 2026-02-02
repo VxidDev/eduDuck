@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>EduDuck - Login</title>
     <meta name="description" content="Login to EduDuck for free usage and more for quizzes, flashcards, and DuckAI. Free AI study tools for students.">
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="/static/login/style.css">
     <link rel="stylesheet" href="/static/theme-toggle.css">
     <script src="/static/login/script.js" defer></script>
+    <script src="/static/Components/csrf.js" defer></script>
 </head>
 
 <body>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Email Verified - EduDuck</title>
     <meta name="description" content="Your EduDuck account has been successfully verified. Start using AI quizzes, flashcards, and study tools now.">
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="/static/header.css">
     <link rel="stylesheet" href="/static/body.css">
     <link rel="stylesheet" href="/static/theme-toggle.css">
+    <script src="/static/Components/csrf.js" defer></script>
 </head>
 <body>
     <div class="header">

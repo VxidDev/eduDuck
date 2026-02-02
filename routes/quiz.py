@@ -1,12 +1,16 @@
 import re
-from flask import render_template , request , jsonify , send_file , url_for
+from flask import render_template , request , jsonify , send_file , url_for , current_app
 from flask_login import current_user
-from routes.utils import AiReq , IncrementUsage , StoreQuizResult , StoreQuery , GetQueryFromDB , Log , storeQuiz
+from quiz_parser import parse_quiz # Rust Function
+from routes.utils import AiReq , IncrementUsage , StoreTempQuery, StoreQuery , GetQueryFromDB , Log , GetMongoClient
 from json import load , JSONDecodeError , dumps
 from uuid import uuid4
 from io import BytesIO
 from requests import post
+from bson import ObjectId
 import os
+
+import time
 
 standardApiErrors = {
     "API error 402": "1 What does API error 402 mean? a) Payment error b) Deposit needed c) Free credits exhausted d) Invalid API key |CORRECT:c",
@@ -21,78 +25,6 @@ moreApiErrors = {
     "API error 400": "1 What does API error 400 mean? a) Bad request b) Payment required c) Unauthorized d) Rate limited |CORRECT:a"
 }
 
-def ParseQuiz(quiz: str):
-    questions = {}
-    
-    text = re.sub(r'[\u2013\u2014\u2015\u2011‑–—]', '-', quiz)
-    text = re.sub(r'\s+', ' ', text).strip()
-    
-    blocks = re.split(r'(\|\s*CORRECT\s*:\s*[a-dA-D]\|)', text)
-    
-    i = 0
-    while i < len(blocks):
-        if re.match(r'^\d+\s', blocks[i].strip()):
-            q_num_match = re.match(r'(\d+)\s', blocks[i])
-            if not q_num_match:
-                i += 1
-                continue
-            q_num = q_num_match.group(1)
-            
-            j = i + 1
-            question_end = len(blocks)
-            while j < len(blocks):
-                if re.match(r'^\|\s*CORRECT\s*:', blocks[j]):
-                    question_end = j
-                    break
-                j += 1
-            
-            full_text = ''.join(blocks[i:question_end]).strip()
-            
-            correct_match = re.search(r'\|\s*CORRECT\s*:\s*([a-dA-D])', ''.join(blocks[question_end-1:question_end+1]))
-            if not correct_match:
-                i = question_end
-                continue
-            correct = correct_match.group(1).lower()
-            
-            a_pos = re.search(r'\ba\)\s', full_text, re.I)
-            if not a_pos:
-                i = question_end
-                continue
-            
-            question = full_text[:a_pos.start()].strip(' ?.,:;-?!0123456789 \t')
-            options_text = full_text[a_pos.start():].strip()
-            
-            label_pattern = r'(?i)\b([a-d])\)\s*'
-            opt_splits = re.split(label_pattern, options_text)
-            
-            answers = {}
-            current_label = None
-            current_opt = ''
-            
-            for part in opt_splits:
-                label_match = re.match(r'(?i)^([a-d])$', part)
-                if label_match:
-                    if current_label:
-                        answers[current_label.lower()] = current_opt.strip(' .,!?;:')
-                    current_label = label_match.group(1).lower()
-                    current_opt = ''
-                else:
-                    current_opt += part
-            
-            if current_label:
-                answers[current_label.lower()] = current_opt.strip(' .,!?;:')
-            
-            if set('abcd') <= set(answers.keys()):
-                questions[q_num] = {
-                    'question': question,
-                    'answers': answers,
-                    'correct': correct
-                }
-        
-        i += 2
-    
-    return questions
-
 def QuizGenerator():
     return render_template('Quiz Generator/QuizGenerator.html')
 
@@ -102,6 +34,10 @@ def quiz(quizzes):
     if current_user.is_authenticated:
         quiz = GetQueryFromDB(quizID , 'quizzes') or ''
         db = "mongoDB"
+
+        if not quiz:
+            quiz = quizzes.get(quizID, '') if quizID else ''
+            db = "session-storage (fallback from mongoDb)"
     else:
         quiz = quizzes.get(quizID, '') if quizID else ''
         db = "session-storage"
@@ -116,7 +52,7 @@ def QuizResult(quizResults):
     print("READ", quizResultID, "found:", bool(results))
     return render_template("Quiz Generator/QuizResult.html" , results=results)
 
-def submitResult(quizResults):
+def submitResult(quizResults: dict):
     data = request.get_json()
     quiz = data.get('quiz', {})
     user_answers = data.get('answers', {})
@@ -139,9 +75,9 @@ def submitResult(quizResults):
         } for num, q in quiz.items()}
     }
     
-    return StoreQuizResult(quizResults , result_data)
+    return jsonify({"id": StoreTempQuery(result_data , quizResults)})
 
-def QuizGen(prompts: dict):
+def QuizGen(prompts: dict , quizzes: dict):
     data: dict = request.get_json()
     IS_FREE = data["isFree"]
     NOTES = data["notes"]
@@ -153,7 +89,23 @@ def QuizGen(prompts: dict):
 
     IsReasoning = False
 
-    if IS_FREE: IncrementUsage()
+    if IS_FREE:
+        with current_app.app_context():
+            if not current_user.is_authenticated:
+                Log("User not logined in." , "error")
+                return render_template("pages/loginRequired.html")
+
+            userData = GetMongoClient()["EduDuck"]["users"].find_one({"_id": ObjectId(current_user.id)})
+            if not userData:
+                Log("User account not found." , "error")
+                return render_template("pages/loginRequired.html")
+
+            times_used = userData.get("daily_usage", {}).get("timesUsed", 0)
+            if times_used >= 3:
+                Log("Daily limit reached." , "error")
+                return render_template("pages/dailyLimit.html", remaining=0)
+
+        IncrementUsage()
 
     if MODEL:
         MODEL = MODEL.strip()
@@ -217,12 +169,14 @@ def QuizGen(prompts: dict):
 
     if payload and API_MODE == "Hugging Face": print(f"Model: {payload["model"]}") 
 
+    start = time.perf_counter()
     output = AiReq(API_URL , headers , payload , API_MODE)
+    end = time.perf_counter()
 
     if (output is None):
         return jsonify({"quiz": "Internal Error."})
 
-    Log("Got AI response, checking if success..." , "info")
+    Log(f"Got AI response, time: {end - start:.6f}s. checking if success..." , "info")
 
     if output in standardApiErrors:
         output = standardApiErrors[output]
@@ -231,7 +185,13 @@ def QuizGen(prompts: dict):
     else:
         Log("Generated quiz. Parsing..." , "success")
 
-    quiz = ParseQuiz(output)
+    start = time.perf_counter()
+    quiz = parse_quiz(output)
+    end = time.perf_counter()
+
+    Log(f"Parsing Time: {end - start:0.6f}s" , "info")
+
+    queryRes = None
 
     if len(quiz) == 0:
         Log("Failed to parse quiz. (empty)" , "error")
@@ -239,9 +199,9 @@ def QuizGen(prompts: dict):
         if current_user.is_authenticated:
             queryRes = StoreQuery("quiz" , quiz)
         else:
-            queryRes = post(url_for("storeQuiz" , _external=True) , json={"quiz": quiz})
+            queryRes = StoreTempQuery(quiz , quizzes)
 
-    return jsonify({'id': queryRes.json().get('id') if not current_user.is_authenticated else queryRes})
+    return jsonify({'id': queryRes})
 
 def ImportQuiz(quizzes: dict) -> None:
     file = request.files.get("quizFile")      

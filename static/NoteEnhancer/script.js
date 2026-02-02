@@ -170,7 +170,7 @@ async function ImportData(file) {
 	const data = await res.json();
 
 	if (!data.err) {
-		window.location.href = `/note-enhancer/result?notes=${encodeURIComponent(data.id)}`;
+		window.location.href = `/note-enhancer/result?id=${encodeURIComponent(data.id)}`;
     } else {
 		StatusLabel.textContent = data.err
 	}
