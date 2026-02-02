@@ -207,6 +207,12 @@ MONGODB_URI= ... (MongoDB API link)
 SECRET_KEY= ... (32 char long)
 GOOGLE_CLIENT_ID= ...
 GOOGLE_CLIENT_SECRET= ...
+MAILGUN_API_KEY= ...
+VERIFICATION_EMAIL= ...
+R2_ACCESS_KEY_ID= ...
+R2_SECRET_ACCESS_KEY= ...
+R2_ACCOUNT_ID= ...
+R2_BUCKET_NAME= ...
 ```
 
 3. Run locally using Gunicorn
@@ -217,8 +223,6 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 ```
 
 ## 🔑 Setting Up Google OAuth
-
-> No need to do right now, oauth is still only on private repo.
 
 1. Go to Google Cloud Console
 
@@ -291,8 +295,11 @@ I handle deployment, setup, and configuration - you start using EduDuck immediat
 | ✅ Done | Added account deletion option |
 | ✅ Done | Improved UX/UI |
 | ✅ Done | Migrated part of JS code to TS |
-| 🔄 In Progress | Fix footer not at the bottom bug. |
-| ⏳ Planned | Study progress tracking |
+| ✅ Done | Fix footer not at the bottom bug. |
+| ✅ Done | Migrated most of JS code to TS. |
+| ✅ Done | Study progress tracking |
+| 🔄 In Progress | Add note analyzer |
+| ⏳ Planned | ??? |
 
 ---
 
