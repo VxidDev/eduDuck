@@ -9,7 +9,7 @@ from uuid import uuid4
 load_dotenv()
 
 from routes.utils import ( 
-    LoginUser , RegisterUser , User , LoadUser, sendVerificationEmail, VerifyEmail, UserProfile, GetMongoClient, GetUserPFP, # Accounts
+    LoginUser , RegisterUser , User , LoadUser, SendEmail, VerifyEmail, UserProfile, GetMongoClient, GetUserPFP, LoadUserByMail , LoadUserByUsername, CheckPasswordSetup, GetStudyStreakData, GetNextAction, # Accounts
     IncrementUsage , GetUsage, # Free Usage Logic
     uploadNotes, # Storing (temp)
     StoreQuery , StoreDuckAIConversation , GetQueryFromDB, # Storing ("perm"),
@@ -41,6 +41,13 @@ from routes.duckAI import GenerateResponse as _GenerateResponse_
 from routes.duckAI import DuckAI
 
 from routes.studyPlanGenerator import StudyPlanGen , StudyPlan , ExportStudyPlan , ImportStudyPlan
+from routes.noteAnalyzer import (
+    NoteAnalyzer as NoteAnalyzerRoute,
+    NoteAnalyzerPage as NoteAnalyzerPageRoute,
+    NoteAnalysisResult as NoteAnalysisResultRoute,
+    ImportNoteAnalysis as ImportNoteAnalysisRoute,
+    ExportNoteAnalysis as ExportNoteAnalysisRoute,
+)
 
 from routes.oauth import oauthBp , oauth
 
@@ -59,7 +66,9 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
 import boto3
+from botocore.exceptions import ClientError
 from botocore.client import Config
+import datetime
 
 import atexit
 
@@ -70,6 +79,7 @@ quizzes = {}
 flashcards = {}
 studyPlans = {}
 quizResults = {}
+noteAnalyses = {}
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 2.5 * 1024 * 1024
@@ -120,7 +130,7 @@ R2_SECRET_ACCESS_KEY = os.getenv("R2_SECRET_ACCESS_KEY")
 R2_ACCOUNT_ID = os.getenv("R2_ACCOUNT_ID")
 R2_BUCKET_NAME = os.getenv("R2_BUCKET_NAME")
 R2_REGION = os.getenv("R2_REGION", "auto")
-R2_ENDPOINT_URL = f"https://avatars.eduduck.app"
+R2_ENDPOINT_URL = f"https://{R2_ACCOUNT_ID}.r2.cloudflarestorage.com"
 
 s3 = boto3.client(
     "s3",
@@ -130,6 +140,27 @@ s3 = boto3.client(
     aws_secret_access_key=R2_SECRET_ACCESS_KEY,
     config=Config(signature_version="s3v4")
 )
+
+def SetupTTLIndexes():
+    db = GetMongoClient()["EduDuck"]
+    
+    collections = ["users", "quizzes", "study-plans", "flashcards",
+               "enhanced-notes", "duck-ai", "note-analysis"]
+    
+    for collection_name in collections:
+        try:
+            db[collection_name].create_index(
+                "deletedAt",
+                expireAfterSeconds=2592000
+            )
+            Log(f"TTL index created for {collection_name}", "info")
+        except Exception as e:
+            if "already exists" in str(e):
+                Log(f"TTL index already exists for {collection_name}", "info")
+            else:
+                Log(f"Failed to create TTL index for {collection_name}: {str(e)}", "warn")
+
+SetupTTLIndexes()
 
 def RemainingUsage():
     return GetUsage().get_json().get("remaining", 3) if current_user.is_authenticated else 3
@@ -151,7 +182,7 @@ def UploadNotes():
 
 @login_manager.user_loader
 def loadUser(userID):
-    userDoc = LoadUser(userID)
+    userDoc = LoadUser(userID=userID)
 
     if not userDoc:
         return None
@@ -175,6 +206,35 @@ def login():
 
     return render_template("pages/login.html")
 
+@app.route("/setup-password", methods=['GET', 'POST'])
+@login_required
+def setupPassword():
+    if request.method == 'POST':
+        data = request.get_json()
+        new_password = data.get('password', '').strip()
+        confirm = data.get('confirm', '').strip()
+        
+        if len(new_password) < 8:
+            return jsonify({"message": "Password must be at least 8 characters"}), 400
+        if new_password != confirm:
+            return jsonify({"message": "Passwords do not match"}), 400
+            
+        hashed = generate_password_hash(new_password)
+        usersCollection = GetMongoClient()["EduDuck"]["users"]
+        usersCollection.update_one(
+            {"_id": ObjectId(current_user.id)},
+            {"$set": {"password": hashed, "needs_password_setup": False}}
+        )
+
+        skip_url = request.args.get("skip", "/")
+        return jsonify({
+            "message": "Password set successfully",
+            "redirect": f"{skip_url}?IGNORE=1" 
+        }), 200
+
+    skip_url = request.args.get("skip", "/")
+    return render_template("pages/setupPassword.html", url=f"{skip_url}?IGNORE=1")
+
 @app.route("/register", methods=["GET", "POST"])
 @limiter.exempt
 def register():
@@ -184,18 +244,29 @@ def register():
     if request.method == "POST":
         result = RegisterUser()
 
-        if isinstance(result, tuple):
+        if isinstance(result, tuple) and isinstance(result[0], tuple):
             msg, email = result
-            sendVerificationEmail(app , msg[1], msg[0] , msg[2] , "EduDuck Verification <no-reply@mg.eduduck.app>")
-
-            return jsonify({
-                "success": True,
-                "redirect": f"/check-email?email={email}"
-            })
-
-        return jsonify({"error": "Registration failed"}), 500
-    else:
-        return render_template("pages/register.html")
+            
+            try:
+                SendEmail(
+                    msg[1],  # to_email
+                    msg[0],  # subject
+                    msg[2],  # verification_link
+                    "EduDuck Verification <no-reply@mg.eduduck.app>",
+                    render_template("pages/email.html", VERIFY_URL=msg[2])
+                )
+                
+                return jsonify({
+                    "success": True,
+                    "redirect": f"/check-email?email={email}"
+                })
+            except Exception as e:
+                Log(f"Failed to send verification email: {str(e)}", "error")
+                return jsonify({"error": "Failed to send verification email."}), 500
+   
+        return result
+    
+    return render_template("pages/register.html")
 
 @app.route("/verify-email/<token>")
 @limiter.exempt
@@ -248,6 +319,14 @@ def getQuery():
 
     return GetQueryFromDB(data.get('queryID' , None) , data.get('collection' , None))
 
+@app.route("/api/study-streak", methods=["GET"])
+@login_required
+@limiter.limit("60 per hour")
+def getStudyStreak():
+    days = request.args.get("days", 365, type=int)
+    data = GetStudyStreakData(current_user.id, days)
+    return jsonify(data)
+
 @app.route("/is-logined-in" , endpoint="checkLogin" , methods=["GET"])
 @limiter.exempt
 def checkLogin():
@@ -289,10 +368,17 @@ def uploadProfilePicture():
             except ClientError as ce:
                 Log(f"Failed to delete old profile picture -> {str(ce)}", "warning")
 
+        file.seek(0)
+        content_type = file.content_type or 'application/octet-stream'
+
         s3.upload_fileobj(
             Fileobj=file,
             Bucket=R2_BUCKET_NAME,
             Key=key,
+            ExtraArgs={
+                'ContentType': content_type,
+                'ACL': 'public-read' 
+            }
         )
     except Exception as e:
         Log(f"Failed to upload profile picture to Cloudflare R2 -> {str(e)}", "error")
@@ -322,19 +408,216 @@ def getUserPFP():
 
     return GetUserPFP()
 
-# ---------------- Quiz Generator ------------------------
-@app.route('/quiz-generator/store-quiz', methods=['POST'], endpoint='storeQuiz')
-@limiter.limit("100 per hour")
-def StoreQuiz():
-    return storeQuiz(quizzes)
+@app.route("/settings" , methods=['GET'] , endpoint='userSettings')
+@CheckPasswordSetup
+@login_required
+@limiter.exempt
+def userSettings():
+    return render_template("pages/userSettings.html")
 
+@app.route("/reset-password", methods=['GET', 'POST'], endpoint='resetPassword')
+@limiter.exempt
+def resetPassword():
+    if request.method == 'POST':
+        data = request.get_json()
+        username_or_email = data.get('username_email', '').strip()
+        
+        if not username_or_email:
+            return jsonify({"message": "Please provide a username or email"}), 400
+   
+        import re
+        email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        is_email_input = re.fullmatch(email_pattern, username_or_email) is not None
+    
+        if is_email_input:
+            user = LoadUserByMail(username_or_email)
+        else:
+            user = LoadUserByUsername(username_or_email)
+  
+        if not user:
+            return jsonify({
+                "message": "If an account exists with that username or email, a password reset link has been sent."
+            }), 200
+ 
+        reset_token = secrets.token_urlsafe(32)
+
+        usersCollection = GetMongoClient()["EduDuck"]["users"]
+        usersCollection.update_one(
+            {"_id": user["_id"]},
+            {
+                "$set": {
+                    "reset_token": reset_token,
+                    "reset_token_expires": datetime.datetime.now(datetime.UTC).timestamp() + 3600  
+                }
+            }
+        )
+    
+        reset_url = url_for('resetPasswordConfirm', token=reset_token, _external=True)
+
+        try:
+            SendEmail(
+                user["email"],
+                "Reset Password",
+                f"Click here to reset your password: {reset_url}",
+                "EduDuck Password Reset <no-reply@mg.eduduck.app>",
+                render_template("pages/resetPasswordEmail.html", RESET_URL=reset_url)
+            )
+            Log(f"Password reset email sent to {user['email']}", "success")
+        except Exception as e:
+            Log(f"Failed to send reset email: {str(e)}", "error")
+            return jsonify({"message": "Failed to send email. Please try again later."}), 500
+        
+        return jsonify({
+            "message": "If an account exists with that username or email, a password reset link has been sent."
+        }), 200
+    
+    return render_template("pages/resetPassword.html")
+
+@app.route("/reset-password/<token>", methods=['GET', 'POST'], endpoint='resetPasswordConfirm')
+@limiter.exempt
+def resetPasswordConfirm(token):
+    usersCollection = GetMongoClient()["EduDuck"]["users"]
+    
+    if request.method == 'POST':
+        data = request.get_json()
+        new_password = data.get('password', '').strip()
+        confirm_password = data.get('confirm', '').strip()
+        
+        if not new_password or not confirm_password:
+            return jsonify({"message": "Both password fields are required"}), 400
+        
+        if new_password != confirm_password:
+            return jsonify({"message": "Passwords do not match"}), 400
+        
+        if len(new_password) < 8:
+            return jsonify({"message": "Password must be at least 8 characters long"}), 400
+
+        user = usersCollection.find_one({
+            "reset_token": token,
+            "reset_token_expires": {"$gt": datetime.datetime.now(datetime.UTC).timestamp()}
+        })
+        
+        if not user:
+            return jsonify({"message": "Invalid or expired reset token"}), 400
+     
+        hashed_password = generate_password_hash(new_password)
+        usersCollection.update_one(
+            {"_id": user["_id"]},
+            {
+                "$set": {"password": hashed_password},
+                "$unset": {"reset_token": "", "reset_token_expires": ""}
+            }
+        )
+        
+        Log(f"Password reset successful for user {user['username']}", "success")
+        
+        return jsonify({"message": "Password reset successful. You can now log in."}), 200
+  
+    user = usersCollection.find_one({
+        "reset_token": token,
+        "reset_token_expires": {"$gt": datetime.datetime.now(datetime.UTC).timestamp() }
+    })
+    
+    if not user:
+        return render_template("pages/resetPasswordConfirm.html", valid=False)
+    
+    return render_template("pages/resetPasswordConfirm.html", valid=True, token=token)
+
+@app.route('/api/next-action', methods=['GET'])
+@login_required
+@limiter.limit("30 per hour")
+def nextAction():
+    try:
+        return jsonify(GetNextAction())
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 401
+
+@app.route('/dist/<path:filename>')
+def serveDist(filename):
+    dist_folder = os.path.join(app.root_path, 'dist')
+    return send_from_directory(dist_folder, filename)
+
+@app.route("/delete-account", methods=['POST'], endpoint='deleteAccount')
+@login_required
+@limiter.limit("5 per hour")
+def deleteAccount():
+    data = request.get_json()
+    password = data.get('password', '').strip()
+    confirm_text = data.get('confirm', '').strip()
+    
+    if not password:
+        return jsonify({"error": "Password is required"}), 400
+    
+    if confirm_text != "DELETE":
+        return jsonify({"error": "Please type DELETE to confirm"}), 400
+    
+    user = GetMongoClient()["EduDuck"]["users"].find_one(
+        {"_id": ObjectId(current_user.id)}
+    )
+    
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    if user.get("password"):
+        if not check_password_hash(user["password"], password):
+            return jsonify({"error": "Incorrect password"}), 401
+    else:
+        return jsonify({"error": "OAuth users must set a password first"}), 403
+    
+    try:
+        db = GetMongoClient()["EduDuck"]
+        user_id = current_user.id
+        now = datetime.datetime.now(datetime.UTC)
+        
+        db["users"].update_one(
+            {"_id": ObjectId(user_id)},
+            {"$set": {"deletedAt": now}}
+        )
+        db["quizzes"].update_many(
+            {"userID": user_id},
+            {"$set": {"deletedAt": now}}
+        )
+        db["study-plans"].update_many(
+            {"userID": user_id},
+            {"$set": {"deletedAt": now}}
+        )
+        db["flashcards"].update_many(
+            {"userID": user_id},
+            {"$set": {"deletedAt": now}}
+        )
+        db["enhanced-notes"].update_many(
+            {"userID": user_id},
+            {"$set": {"deletedAt": now}}
+        )
+        db["duck-ai"].update_many(
+            {"userID": user_id},
+            {"$set": {"deletedAt": now}}
+        )
+      
+        if user.get("profilePicture"):
+            try:
+                s3.delete_object(Bucket=R2_BUCKET_NAME, Key=user["profilePicture"])
+            except Exception as e:
+                Log(f"Failed to delete profile picture: {str(e)}", "warning")
+        
+        Log(f"Account soft-deleted: {user['username']}", "info")
+
+        logout_user()
+        
+        return jsonify({"success": True, "message": "Account deleted successfully. Data retained for recovery."}), 200
+        
+    except Exception as e:
+        Log(f"Failed to soft-delete account: {str(e)}", "error")
+        return jsonify({"error": "Failed to delete account"}), 500
+
+# ---------------- Quiz Generator ------------------------
 @app.route('/quiz-generator/quiz/result', methods=['POST' , 'GET'], endpoint='QuizResult')
 @limiter.exempt
 def submitResult():
     if request.method == 'POST':
         return _submitResult_(quizResults)
 
-    return QuizResult(quizResults)
+    return QuizResult(quizResults, RemainingUsage)
 
 @app.route('/quiz-generator/gen-quiz', methods=['POST'], endpoint='generateQuiz')
 @limiter.limit("30 per hour")
@@ -354,12 +637,12 @@ def ExportQuiz():
 @app.route("/quiz-generator/quiz", endpoint='showQuiz')
 @limiter.exempt
 def quiz():
-    return _quiz_(quizzes)
+    return _quiz_(quizzes, RemainingUsage)
 
 @app.route('/quiz-generator', endpoint='quizGeneratorPage')
 @limiter.exempt
 def QuizGenerator():
-    return _QuizGenerator_()
+    return _QuizGenerator_(RemainingUsage)
 
 # ---------------- Note Enhancer ------------------------
 @app.route('/note-enhancer/result', endpoint='enhancedNotes')
@@ -397,11 +680,6 @@ def flashCards():
 @limiter.limit("30 per hour")
 def generateFlashCards():
     return _FlashcardGenerator_(prompts , flashcards)
-
-@app.route('/store-flashcards' , methods=['POST'], endpoint='storeflashCards')
-@limiter.limit("100 per hour")
-def StoreFlashcards():
-    return storeFlashcards(flashcards)
 
 @app.route('/flashcard-generator/result' , endpoint='flashCardResult')
 @limiter.exempt
@@ -441,7 +719,7 @@ def GenerateResponse():
 @app.route('/study-plan-generator' , endpoint='StudyPlanGenerator')
 @limiter.exempt
 def StudyPlanGenerator():
-    return render_template("Study Plan Generator/studyPlanGenerator.html")
+    return render_template("Study Plan Generator/studyPlanGenerator.html", remaining=RemainingUsage() , prefill_topic=request.args.get('topic', '').strip())
 
 @app.route('/study-plan-generator/generate' , endpoint='StudyPlanGenerate' , methods=['POST'])
 @limiter.limit("30 per hour")
@@ -451,7 +729,7 @@ def studyPlanGen():
 @app.route('/study-plan-generator/result' , endpoint='StudyPlanResult')
 @limiter.exempt
 def StudyPlanResult():
-    return StudyPlan(studyPlans)
+    return StudyPlan(studyPlans, RemainingUsage)
 
 @app.route('/study-plan-generator/export-plan' , endpoint='studyPlanExport')
 @limiter.exempt
@@ -462,6 +740,32 @@ def ExportPlan():
 @limiter.exempt
 def ImportPlan():
     return ImportStudyPlan(studyPlans)
+# ---------------- Note Analyzer ------------------------
+
+@app.route("/note-analyzer", endpoint="noteAnalyzerPage")
+@limiter.exempt
+def noteAnalyzerPage():
+    return NoteAnalyzerPageRoute()
+
+@app.route("/note-analyzer/analyze", methods=["POST"], endpoint="noteAnalyzerAnalyze")
+@limiter.limit("30 per hour")
+def noteAnalyzerAnalyze():
+    return NoteAnalyzerRoute(prompts, noteAnalyses)
+
+@app.route("/note-analyzer/result", endpoint="noteAnalyzerResult")
+@limiter.exempt
+def noteAnalyzerResult():
+    return NoteAnalysisResultRoute(noteAnalyses)
+
+@app.route("/note-analyzer/import-analysis", methods=["POST"], endpoint="noteAnalyzerImport")
+@limiter.exempt
+def noteAnalyzerImport():
+    return ImportNoteAnalysisRoute(noteAnalyses)
+
+@app.route("/note-analyzer/export-analysis", endpoint="noteAnalyzerExport")
+@limiter.exempt
+def noteAnalyzerExport():
+    return ExportNoteAnalysisRoute(noteAnalyses)
 
 # ---------------- Miscellanious ------------------------
 @app.route("/keyAccess")
@@ -471,6 +775,8 @@ def keyAccess():
 
 @app.route("/profile")
 @limiter.exempt
+@CheckPasswordSetup
+@login_required
 def profile():
     return UserProfile()
 
@@ -505,6 +811,11 @@ def privacy():
 @limiter.exempt
 def terms():
     return render_template('pages/terms.html')
+
+@app.route('/.well-known/microsoft-identity-association.json')
+@limiter.exempt
+def microsoft_identity_association():
+    return send_from_directory('static', 'microsoft-identity-association.json')
 
 if __name__ == "__main__":
     app.run()

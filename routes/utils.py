@@ -1,6 +1,6 @@
 from requests import post
 from pypdf import PdfReader
-from flask import request , jsonify , render_template , url_for
+from flask import request , jsonify , render_template , url_for , redirect
 from PIL import Image
 from pymongo import MongoClient , ReturnDocument
 import os
@@ -17,7 +17,14 @@ from typing import Optional , Union , Dict , Any
 import base64
 import io
 import httpx
-import msgspec 
+import msgspec
+from functools import wraps
+import re
+from datetime import datetime, timedelta, date
+from collections import defaultdict
+import math
+from collections import defaultdict , Counter
+import random
 
 from uuid import uuid4
 import time
@@ -74,54 +81,37 @@ def GetMongoClient() -> MongoClient:
 def IncrementUsage():
     if not current_user.is_authenticated:
         return jsonify({"error": "Not logged in"}), 401
-
+    
     today = date.today().isoformat()
     users = GetMongoClient()["EduDuck"]["users"]
-
     result = users.find_one_and_update(
-        {"_id": ObjectId(current_user.id)},
-        [
-            {
-                "$set": {
-                    "daily_usage": {
-                        "date": today,
-                        "timesUsed": {
-                            "$cond": [
-                                {"$eq": ["$daily_usage.date", today]},
-                                {"$add": ["$daily_usage.timesUsed", 1]},
-                                1
-                            ]
-                        }
-                    }
-                }
-            }
-        ],
+        {"_id": ObjectId(current_user.id), "deleted": {"$ne": True}},
+        {"$set": {"daily_usage.date": today},
+         "$inc": {"daily_usage.timesUsed": 1}},
         return_document=True
     )
-
     timesUsed = result["daily_usage"]["timesUsed"]
     return jsonify({"timesUsed": timesUsed})
 
 def GetUsage():
     if not current_user.is_authenticated:
         return jsonify({"timesUsed": 0, "remaining": 3})
-
+    
     users = GetMongoClient()["EduDuck"]["users"]
-    user = users.find_one({"_id": ObjectId(current_user.id)})
-
+    user = users.find_one({"_id": ObjectId(current_user.id), "deleted": {"$ne": True}})
     today = date.today().isoformat()
+    
     usage = user.get("daily_usage", {"date": today, "timesUsed": 0})
-
     if usage["date"] != today:
         timesUsed = 0
     else:
         timesUsed = usage["timesUsed"]
-
+    
     remaining = max(3 - timesUsed, 0)
     return jsonify({"timesUsed": timesUsed, "remaining": remaining})
 
-def LoadUser(userID=None, googleId=None):
-    query = {}
+def LoadUser(userID=None, googleId=None, githubId=None, discordId=None, microsoftId=None):
+    query = {"deleted": {"$ne": True}}  
 
     if userID:
         try:
@@ -129,47 +119,69 @@ def LoadUser(userID=None, googleId=None):
             query["_id"] = objId
         except Exception:
             return None
-
     elif googleId:
         query["googleId"] = googleId
+    elif githubId:
+        query["githubId"] = githubId
+    elif discordId:
+        query["discordId"] = discordId
+    elif microsoftId:
+        query["microsoftId"] = microsoftId
 
-    if not query:
+    if len(query) == 1:  
         return None
 
     userDoc = GetMongoClient()["EduDuck"]["users"].find_one(query)
     return userDoc
 
 def LoadUserByUsername(username: str):
+    pattern = re.compile(f"^{re.escape(username)}", re.IGNORECASE)
     return GetMongoClient()["EduDuck"]["users"].find_one({
-        "username": {"$regex": f"^{username}$", "$options": "i"}
+        "username": pattern,
+        "deleted": {"$ne": True}
     })
 
-def LoadUserByMail(mail: str):
+def LoadUserByMail(email: str):
+    pattern = re.compile(f"^{re.escape(email)}", re.IGNORECASE)
     return GetMongoClient()["EduDuck"]["users"].find_one({
-        "email": {"$regex": f"^{mail}$", "$options": "i"}
+        "email": pattern,
+        "deleted": {"$ne": True}
     })
-
 
 def LoginUser(UserClass, data=None):
     if data:
-        username = data.get("username")
+        username_or_email = data.get("username")
         password = data.get("password")
     else:
-        username = request.form.get("username")
+        username_or_email = request.form.get("username")
         password = request.form.get("password")
-
-    if not username or not password:
+    
+    if not username_or_email or not password:
         return jsonify({"error": "Missing credentials"}), 400
 
-    userDoc = LoadUserByUsername(username)
+    import re
+    email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    is_email = re.fullmatch(email_pattern, username_or_email.strip()) is not None
+
+    if is_email:
+        userDoc = LoadUserByMail(username_or_email)
+    else:
+        userDoc = LoadUserByUsername(username_or_email)
+
     if not userDoc:
         return jsonify({"error": "Invalid username or password"}), 401
+
+    if not userDoc.get("password"):
+        return jsonify({"error": "Password login not available for this account"}), 403
 
     if not check_password_hash(userDoc["password"], password):
         return jsonify({"error": "Invalid username or password"}), 401
 
     if not userDoc.get("verified", False):
         return jsonify({"error": "Email not verified. Check your inbox."}), 403
+
+    if userDoc.get("deletedAt") is not None:
+        return jsonify({"error": "Account was deleted. Recover within 30 days by reaching out to support."}) , 403
 
     user = UserClass(userDoc)
     login_user(user)
@@ -213,7 +225,8 @@ def RegisterUser():
                 "timesUsed": 0
             },
 
-            "verification_token": secrets.token_urlsafe(32)
+            "verification_token": secrets.token_urlsafe(32),
+            "verification_token_expires": datetime.utcnow().timestamp() + 86400  
         }
 
         result = usersCollection.insert_one(userDoc)
@@ -370,10 +383,13 @@ def StoreQuery(qName , query=None) -> Optional[str]:
 
     QueryID = str(uuid4())
 
-    dbNames = {'quiz': 'quizzes' , 
-               'plan': 'study-plans' , 
-               'flashcards': 'flashcards' ,
-               'notes': 'enhanced-notes'}
+    dbNames = {
+        "quiz": "quizzes",
+        "plan": "study-plans",
+        "flashcards": "flashcards",
+        "notes": "enhanced-notes",
+        "note-analysis": "note-analysis",
+    }
 
     collection = dbNames.get(qName , 'err')
 
@@ -441,58 +457,77 @@ def StoreTempQuery(query: Union[str , dict], collection: dict) -> str:
 
     return queryID
 
-def sendVerificationEmail(app , toEmail, subject, body, email):
-    with app.app_context():
-        response = post(
-            "https://api.eu.mailgun.net/v3/mg.eduduck.app/messages",
-            auth=("api", os.getenv('MAILGUN_API_KEY')),
-            data={
-                "from": email,  # e.g. "EduDuck Verification <no-reply@mg.eduduck.app>"
-                "to": toEmail,
-                "subject": subject,
-                "text": body,
-                "html": render_template("pages/email.html" , VERIFY_URL=body)
-            }
-        )
+def SendEmail(toEmail, subject, body, email , html):
+    response = post(
+        "https://api.eu.mailgun.net/v3/mg.eduduck.app/messages",
+        auth=("api", os.getenv('MAILGUN_API_KEY')),
+        data={
+            "from": email,  # e.g. "EduDuck Verification <no-reply@mg.eduduck.app>"
+            "to": toEmail,
+            "subject": subject,
+            "text": body,
+            "html": html
+        }
+    )
 
-        if not response.ok:
-            raise RuntimeError(f"Mailgun API error: {response.status_code}, {response.text}")
+    if not response.ok:
+        raise RuntimeError(f"Mailgun API error: {response.status_code}, {response.text}")
 
     return response
 
 def VerifyEmail(token):
     usersCollection = GetMongoClient()["EduDuck"]["users"]
-    user = usersCollection.find_one({"verification_token": token})
+    
+    user = usersCollection.find_one({
+        "verification_token": token,
+        "verification_token_expires": {"$gt": datetime.utcnow().timestamp()}
+    })
 
     if not user:
-        return "Invalid or expired token", 400
+        expired_user = usersCollection.find_one({"verification_token": token})
+        
+        if expired_user:
+            usersCollection.delete_one({"_id": expired_user["_id"]})
+            return render_template("pages/emailVerified.html", success=False)
+    
+        return render_template("pages/emailVerified.html", success=False)
 
     usersCollection.update_one(
         {"_id": user["_id"]},
-        {"$set": {"verified": True}, "$unset": {"verification_token": ""}}
+        {
+            "$set": {"verified": True}, 
+            "$unset": {"verification_token": "", "verification_token_expires": ""}
+        }
     )
 
     login_user(User(user))
 
-    return render_template("pages/emailVerified.html" , success=True , email=user["email"])
+    return render_template("pages/emailVerified.html", success=True, email=user["email"])
 
 def UserProfile():
     db = GetMongoClient()["EduDuck"]
-
-    quizzes = list(db["quizzes"].find({"userID": current_user.id}).sort("createdAt", -1))
-    plans = list(db["study-plans"].find({"userID": current_user.id}).sort("createdAt", -1))
-    flashcards = list(db["flashcards"].find({"userID": current_user.id}).sort("createdAt", -1))
-    notes = list(db["enhanced-notes"].find({"userID": current_user.id}).sort("createdAt", -1))
-    duckai = list(db["duck-ai"].find({"userID": current_user.id}).sort("lastEditedAt", -1))
-
+    userid = current_user.id
+    streakdata = GetStudyStreakData(userid)
+    filter = {"userID": userid, "deleted": {"$ne": True}}
+    
+    quizzes = list(db["quizzes"].find(filter).sort("createdAt", -1))
+    plans = list(db["study-plans"].find(filter).sort("createdAt", -1))
+    flashcards = list(db["flashcards"].find(filter).sort("createdAt", -1))
+    notes = list(db["enhanced-notes"].find(filter).sort("createdAt", -1))
+    duckai = list(db["duck-ai"].find(filter).sort("lastEditedAt", -1))
+    noteanalyses = list(db["note-analysis"].find(filter).sort("createdAt", -1))  
+    
     return render_template(
         "pages/profile.html",
         quizzes=quizzes,
         plans=plans,
         flashcards=flashcards,
         notes=notes,
-        duckai=duckai
+        duckai=duckai,
+        streakdata=streakdata,
+        noteanalyses=noteanalyses  
     )
+
 
 def GetUserPFP():
     try:
@@ -510,3 +545,442 @@ def GetUserPFP():
     except Exception as e:
         Log(f"Failed to get user profile picture -> {str(e)}" , "error")
         return jsonify({"error": str(e)}), 500
+
+def CheckPasswordSetup(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if current_user.is_authenticated:
+            user = GetMongoClient()["EduDuck"]["users"].find_one({
+                "_id": ObjectId(current_user.id),
+                "deleted": {"$ne": True}
+            })
+            if user and user.get("needs_password_setup") and not request.args.get("IGNORE"):
+                return redirect(f"{url_for('setupPassword')}?skip={request.path}")
+        return func(*args, **kwargs)
+    return wrapper
+
+def GetStudyStreakData(user_id: str, days: int = 365):
+    try:
+        db = GetMongoClient()["EduDuck"]
+        
+        # Calculate date range
+        end_date = datetime.now()
+        start_date = end_date - timedelta(days=days)
+        
+        # Map of collections and their query type identifiers
+        collection_mapping = {
+            "duck-ai": "duckAI",
+            "enhanced-notes": "notes",
+            "quizzes": "quiz",
+            "flashcards": "flashcards",
+            "study-plans": "studyPlan",
+            "note-analysis": "note-analysis" 
+        }
+
+        
+        daily_counts = defaultdict(int)
+        
+        # Aggregate from all collections
+        for collection_name, query_type in collection_mapping.items():
+            try:
+                pipeline = [
+                    {
+                        "$match": {
+                            "userID": user_id,
+                            "createdAt": {
+                                "$gte": start_date,
+                                "$lte": end_date
+                            },
+                            "deleted": {"$ne": True}
+                        }
+                    },
+                    {
+                        "$group": {
+                            "_id": {
+                                "$dateToString": {
+                                    "format": "%Y-%m-%d",
+                                    "date": "$createdAt"
+                                }
+                            },
+                            "count": {"$sum": 1}
+                        }
+                    }
+                ]
+                
+                results = db[collection_name].aggregate(pipeline)
+                for doc in results:
+                    daily_counts[doc["_id"]] += doc["count"]
+                    
+            except Exception as e:
+                Log(f"Error aggregating {collection_name}: {str(e)}", "warning")
+                continue
+        
+        # Also count lastEditedAt for duck-ai conversations (chat activity)
+        try:
+            pipeline_edits = [
+                {
+                    "$match": {
+                        "userID": user_id,
+                        "lastEditedAt": {
+                            "$gte": start_date,
+                            "$lte": end_date,
+                            "$ne": "$createdAt"
+                        },
+                        "deleted": {"$ne": True}
+                    }
+                },
+                {
+                    "$group": {
+                        "_id": {
+                            "$dateToString": {
+                                "format": "%Y-%m-%d",
+                                "date": "$lastEditedAt"
+                            }
+                        },
+                        "count": {"$sum": 1}
+                    }
+                }
+            ]
+            
+            results = db["duck-ai"].aggregate(pipeline_edits)
+            for doc in results:
+                daily_counts[doc["_id"]] += doc["count"]
+                
+        except Exception as e:
+            Log(f"Error aggregating duck-ai edits: {str(e)}", "warning")
+        
+        # Build complete date map
+        date_map = {}
+        current = start_date.date()
+        while current <= end_date.date():
+            date_str = current.isoformat()
+            date_map[date_str] = {
+                "date": date_str,
+                "count": daily_counts.get(date_str, 0),
+                "weekday": current.weekday()
+            }
+            current += timedelta(days=1)
+        
+        # Calculate streaks
+        sorted_dates = sorted(date_map.keys())
+        current_streak = 0
+        longest_streak = 0
+        temp_streak = 0
+        
+        for date_str in sorted_dates:
+            if date_map[date_str]["count"] > 0:
+                temp_streak += 1
+                longest_streak = max(longest_streak, temp_streak)
+            else:
+                temp_streak = 0
+        
+        # Calculate current streak
+        today = date.today()
+        temp_streak = 0
+        check_date = today
+        
+        while check_date >= start_date.date():
+            date_str = check_date.isoformat()
+            if date_map.get(date_str, {}).get("count", 0) > 0:
+                temp_streak += 1
+                check_date -= timedelta(days=1)
+            else:
+                if temp_streak == 0 and check_date == today - timedelta(days=1):
+                    check_date -= timedelta(days=1)
+                    continue
+                break
+        
+        current_streak = temp_streak
+        
+        # Calculate total activities
+        total_activities = sum(daily_counts.values())
+        
+        return {
+            "data": list(date_map.values()),
+            "currentStreak": current_streak,
+            "longestStreak": longest_streak,
+            "totalDays": sum(1 for d in date_map.values() if d["count"] > 0),
+            "totalActivities": total_activities  # Add this
+        }
+        
+    except Exception as e:
+        Log(f"Failed to get study streak data: {str(e)}", "error")
+        return {
+            "data": [],
+            "currentStreak": 0,
+            "longestStreak": 0,
+            "totalDays": 0,
+            "totalActivities": 0
+        }
+
+
+def CalculateIntensity(count: int, max_count: int) -> float:
+    if count == 0:
+        return 0.0
+    if max_count == 0:
+        return 0.0
+    
+    return math.sqrt(count / max_count)
+
+_user_history = {}
+
+def extract_topic(query_data, qtype):
+    if not query_data:
+        return 'General'
+    
+    topic = 'General'
+    
+    if isinstance(query_data, dict):
+        # Strip generic prefixes first
+        raw_topic = query_data.get('topic', '')
+        if isinstance(raw_topic, str):
+            raw_topic = raw_topic.strip()
+        else:
+            raw_topic = ''
+        prefixes = ['Enhanced Study Notes on ', 'Quiz on ', 'Flashcards for ', 'Study Plan: ']
+        for prefix in prefixes:
+            if raw_topic.startswith(prefix):
+                raw_topic = raw_topic[len(prefix):].strip()
+        
+        if raw_topic and len(raw_topic) > 3:
+            return raw_topic[:55]
+        
+        # Quiz: smart question parsing
+        first_q = next(iter(query_data.values()), {})
+        if isinstance(first_q, dict) and 'question' in first_q:
+            question = (first_q.get('question') or '').strip()
+            question_lower = question.lower()
+            common_words = {
+                'how', 'what', 'why', 'when', 'where', 'which', 'the', 'a', 'an', 
+                'is', 'are', 'does', 'do', 'did', 'can', 'will', 'would'
+            }
+            
+            words = re.findall(r'\b[a-zA-Z]{4,}\b', question_lower)
+            words = [w.capitalize() for w in words if w not in common_words and len(w) > 2]
+            
+            if words:
+                topic_words = []
+                preview = ''
+                for word in words:
+                    test = f"{preview} {word}".strip()
+                    if len(test) <= 55:
+                        topic_words.append(word)
+                        preview = test
+                    else:
+                        break
+                topic = ' '.join(topic_words)
+            else:
+                words = question.split()[:8]
+                topic = ' '.join(words)[:55]
+            return topic
+        
+        # Content/notes – add isinstance(first_q, dict) guard
+        if isinstance(first_q, dict) and 'content' in first_q:
+            content = (first_q.get('content') or '').strip()
+            sentences = re.split(r'[.!?]+', content)
+            topic = (sentences[0] or '').strip() if sentences else ''
+            if len(topic) > 55:
+                words = topic.split()
+                topic = ' '.join(words[:10])
+            return topic or 'General'
+        
+        # Generic dict first value
+        first_key = next(iter(query_data), None)
+        if first_key is not None and isinstance(query_data[first_key], str):
+            return query_data[first_key][:55].rsplit(' ', 1)[0]
+    
+    elif isinstance(query_data, str):
+        lines = [line.strip('# \n\t*-') for line in query_data.split('\n') if line.strip()]
+        if lines:
+            topic = lines[0]
+            if len(topic) > 55:
+                words = topic.split()
+                topic = ' '.join(words[:10])
+            return topic
+    
+    return 'General'
+
+def GetNextAction():
+    if not current_user.is_authenticated:
+        raise ValueError("Unauthorized")
+    
+    today_str = date.today().isoformat()
+    user_id = current_user.id
+    
+    # Memory:// avoid repeats
+    last_rec = _user_history.get(user_id)
+    avoid_action = last_rec['action_type'] if last_rec else None
+    avoid_topic = last_rec['topic'] if last_rec else None
+    
+    # Fetch active queries only
+    collections = {
+        "quizzes": "quiz",
+        "enhanced-notes": "notes",
+        "flashcards": "flashcards",
+        "study-plans": "studyplan",
+        "duck-ai": "chat",
+        "note-analysis": "analysis"
+    }
+    all_queries = []
+    db = GetMongoClient()['EduDuck']
+    
+    for coll_name, qtype in collections.items():
+        query_filter = {
+            'userID': user_id,
+            '$or': [
+                {'deletedAt': {'$exists': False}},
+                {'deletedAt': None}
+            ]
+        }
+        for doc in db[coll_name].find(query_filter).sort('createdAt', -1).limit(50):
+            # Robust date parsing
+            created_at_raw = doc.get('createdAt')
+            if isinstance(created_at_raw, dict) and '$date' in created_at_raw:
+                created_at = datetime.fromisoformat(created_at_raw['$date'].replace('Z', '+00:00'))
+            elif isinstance(created_at_raw, str):
+                created_at = datetime.fromisoformat(created_at_raw.replace('Z', '+00:00'))
+            else:
+                created_at = doc.get('lastEditedAt') or datetime.utcnow()
+            
+            q_date = created_at.date().isoformat()
+            topic = extract_topic(doc.get('query'), qtype)
+            
+            # Chat refinement
+            if qtype == 'chat' and 'queries' in doc:
+                for msg in doc['queries']:
+                    if msg.get('role') == 'user' and msg.get('content'):
+                        content = msg['content'].strip()
+                        if len(content) > 10:
+                            words = re.findall(r'\b[a-zA-Z]{3,}\b', content.lower())
+                            words = [w.capitalize() for w in words[:3] if w not in {'How', 'What', 'Why', 'When'}]
+                            if words:
+                                topic = ' '.join(words)
+                        break
+            
+            all_queries.append({'date': q_date, 'type': qtype, 'topic': topic})
+    
+    today_queries = [q for q in all_queries if q['date'] == today_str]
+    
+    def get_recommendation(all_queries, today_queries, avoid_action=None, avoid_topic=None):
+        # Rule 1: Fresh start - balanced types
+        if len(today_queries) == 0:
+            starters = [
+                ("flashcards", "Quick Review", "5 flashcards to kickstart studying.", 3),
+                ("notes", "Today's Focus", "Notes for today's main topic.", 5),
+                ("quiz", "Warmup Quiz", "Short 5-question warmup.", 4),
+                ("chat", "Ask DuckAI", "Chat with DuckAI about your study plan.", 2),
+                ("study_plan", "Daily Plan", "Create a study plan for today.", 4),
+                ("flashcards", "Core Ideas", "Flashcards for key concepts.", 2),
+                ("notes", "Session Notes", "Capture what to study today.", 4),
+                ("quiz", "Quick Check", "Fast knowledge test.", 3),
+                ("chat", "Study Tips", "Get study tips from DuckAI.", 3),
+                ("study_plan", "Weekly Goals", "Plan your week ahead.", 5),
+                ("analysis", "Analyze Notes", "Get insights on your study notes.", 4),
+            ]
+            filtered = [(a,t,r,m) for a,t,r,m in starters 
+                    if (a != avoid_action or t != avoid_topic)]
+            if not filtered: filtered = starters
+            act, top, reason, time = random.choice(filtered)
+            return {
+                "action_type": act,
+                "topic": top,
+                "reason": reason,
+                "estimated_time_minutes": time
+            }
+        
+        # Topic coverage
+        topic_data = defaultdict(lambda: {
+            "notes": False,
+            "quiz": False,
+            "flashcards": False,
+            "studyplan": False,
+            "chat": False,
+            "analysis": False
+        })
+        
+        for q in all_queries:
+            norm_topic = q['topic'] if len(q['topic']) > 3 else 'General'
+            topic_data[norm_topic][q['type']] = True
+        
+        # Rule 2: Notes → Quiz progression
+        for topic, data in topic_data.items():
+            if topic != avoid_topic and data['notes'] and not data['quiz']:
+                return {
+                    "action_type": "quiz",
+                    "topic": topic,
+                    "reason": f"Quiz '{topic}' from your notes.",
+                    "estimated_time_minutes": 5
+                }
+        
+        # Rule 3: Quiz → Flashcards  
+        for topic, data in topic_data.items():
+            if topic != avoid_topic and data['quiz'] and not data['flashcards']:
+                return {
+                    "action_type": "flashcards",
+                    "topic": topic,
+                    "reason": f"Flashcards for '{topic}'.",
+                    "estimated_time_minutes": 3
+                }
+        
+        # NEW Rule 3.5: Quiz → Chat (explain quiz)
+        for topic, data in topic_data.items():
+            if topic != avoid_topic and data['quiz'] and not data['chat']:
+                return {
+                    "action_type": "chat",
+                    "topic": topic,
+                    "reason": f"Chat about '{topic}' quiz.",
+                    "estimated_time_minutes": 2
+                }
+        
+        # NEW Rule 4: Any content → Study Plan
+        for topic, data in topic_data.items():
+            if topic != avoid_topic and (data['notes'] or data['quiz'] or data['flashcards']) and not data['study_plan']:
+                return {
+                    "action_type": "study_plan",
+                    "topic": topic,
+                    "reason": f"Study plan for '{topic}'.",
+                    "estimated_time_minutes": 4
+                }
+        
+        # Rule 5: Review old (any type)
+        old_queries = [q for q in all_queries if (date.today() - date.fromisoformat(q['date'])).days > 2]
+        recent_topics = Counter(q['topic'] for q in old_queries[:10] if len(q['topic']) > 3)
+        candidates = [(t, c) for t, c in recent_topics.items() if t != avoid_topic]
+        if candidates:
+            old_topic = candidates[0][0]
+            types = random.choice(['quiz', 'flashcards', 'chat'])  # Vary review type
+            reasons = {
+                'quiz': f"Review '{old_topic}' with quiz.",
+                'flashcards': f"Flashcard review for '{old_topic}'.", 
+                'chat': f"Discuss '{old_topic}' with DuckAI."
+            }
+            return {
+                "action_type": types,
+                "topic": old_topic,
+                "reason": reasons[types],
+                "estimated_time_minutes": 4 if types != 'chat' else 3
+            }
+        
+        # Rule 6: Balanced fallback (all types)
+        recent_topic = Counter(q['topic'] for q in all_queries[:20] if len(q['topic']) > 3).most_common(1)[0][0]
+        fallbacks = [
+            ("chat", f"DuckAI {recent_topic}", f"Ask DuckAI about {recent_topic}.", 2),
+            ("study_plan", f"Plan {recent_topic}", f"Study plan for {recent_topic}.", 4),
+            ("flashcards", recent_topic, f"More {recent_topic} flashcards.", 3),
+            ("notes", f"Deep Dive {recent_topic}", f"Deep notes on {recent_topic}.", 5),
+            ("analysis", f"Analyze {recenttopic}", f"Deep analysis of {recenttopic} notes.", 4),
+        ]
+        filtered_fallbacks = [(a,t,r,m) for a,t,r,m in fallbacks if a != avoid_action]
+        if not filtered_fallbacks: filtered_fallbacks = fallbacks
+        act, top, reason, time = random.choice(filtered_fallbacks)
+        return {
+            "action_type": act,
+            "topic": top,
+            "reason": reason,
+            "estimated_time_minutes": time
+        }
+
+    result = get_recommendation(all_queries, today_queries, avoid_action, avoid_topic)
+    _user_history[current_user.id] = result
+
+    return result

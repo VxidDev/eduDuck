@@ -11,3 +11,12 @@ crate-type = ["cdylib"]
 pyo3 = { version = "0.21", features = ["extension-module"] }
 indexmap = "2"
 once_cell = "1.18"
+
+[profile.release]
+opt-level = 3              # Maximum optimization
+lto = "fat"                # Aggressive Link-Time Optimization
+codegen-units = 1          # Single codegen unit for best optimization
+strip = true               # Remove debug symbols
+panic = "abort"            # Faster panic handling
+overflow-checks = false    # Remove runtime checks
+

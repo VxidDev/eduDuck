@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EduDuck{% endblock %}</title>
+    <meta name="description" content="{% block description %}EduDuck is a free AI-powered learning platform for students.{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}EduDuck - Free AI Study Tools{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Generate quizzes, flashcards from notes instantly. Free tier with Hugging Face, Google Gemini & premium OpenAI support.{% endblock %}">
+    <meta property="og:image" content="https://eduduck.app/static/img/duck.jpg">
+    <meta property="og:url" content="https://eduduck.app">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}EduDuck - Free AI Study Tools{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Notes → Quizzes & Flashcards instantly. Free AI for students.{% endblock %}">
+    <meta name="twitter:image" content="https://eduduck.app/static/img/duck.jpg">
+    <meta name="keywords" content="AI study tools, quiz generator, flashcard maker, free learning app, OCR notes, student AI, exam prep, homework help">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="VxidDev">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/apple-touch-icon.png">
+    <link rel="stylesheet" href="/static/variables.css">
+    <link rel="stylesheet" href="/static/body.css">
+    <link rel="stylesheet" href="/static/theme-toggle.css">
+    <link rel="stylesheet" href="/static/header.css">
+    <link rel="stylesheet" href="/static/profile/style.css">
+    <script src="/static/Components/csrf.js" defer></script>
+    <script src="/static/Components/UserMenuPopUp.js" defer></script>
+    <script src="{{ url_for('static' , filename='base.js') }}" type="module" defer></script>
+    <meta name="google-site-verification" content="AZ5cUHVKOHp9lKvThtsZ7HOlCFkWxvWi25c9ubsRV6Y"/>
+    <meta name="msvalidate.01" content="2F2470319361A2FEDD539AEF5BF1803B" />
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <nav class="header-nav" aria-label="Main navigation">
+            <a class="header-redirect" href="https://ko-fi.com/vxiddev" aria-label="Support on Ko-fi">
+                <svg class="donate-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+                </svg>
+                <span>Donate</span>
+            </a>
+            <div class="header-brand">
+                <h1 class="header-text">
+                    <a href="/" style="text-decoration: none; color: inherit;">
+                        <span class="brand-icon">🦆</span>
+                        EduDuck
+                    </a>
+                </h1>
+            </div>
+            <div class="header-actions">
+                {% if not current_user.is_authenticated %}
+                    <div class="auth-links">
+                        <a class="header-link" href="/login">Login</a>
+                        <span class="divider" aria-hidden="true">•</span>
+                        <a class="header-link header-link-primary" href="/register">Register</a>
+                    </div>
+                    <span class="free-uses" role="status">3 free uses/day</span>
+                {% else %}
+                    <div class="user-menu-wrapper">
+                        <button 
+                            class="user-menu-toggle" 
+                            id="profile-button"
+                            type="button"
+                            aria-haspopup="menu"
+                            aria-expanded="false"
+                            aria-label="User menu"
+                            aria-controls="user-menu">
+                            <img 
+                                id="user-pfp" 
+                                src="/profile/user-pfp/{{ current_user.id }}"
+                                alt="Profile picture" 
+                                class="user-avatar">
+                            <span class="menu-chevron" aria-hidden="true">▼</span>
+                        </button>
+
+                        <div 
+                            class="user-menu" 
+                            id="user-menu" 
+                            role="menu"
+                            aria-labelledby="profile-button"
+                            hidden>
+                            <div class="menu-header">
+                                <span id="FreeUsageText" class="usage-badge" role="status">
+                                    <svg class="badge-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                    {{ remaining }} uses left today
+                                </span>
+                            </div>
+                            <a href="/profile" class="user-menu-item" role="menuitem">
+                                <svg class="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+                                    <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Profile
+                            </a>
+                            <a href="/settings" class="user-menu-item" role="menuitem">
+                                <svg class="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M12 1v6m0 6v6M23 12h-6m-6 0H1" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                                Settings
+                            </a>
+                            <hr class="menu-divider" role="separator">
+                            <a href="/logout" class="user-menu-item danger" role="menuitem">
+                                <svg class="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                                Log out
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <button id="theme-toggle">🌙</button>
+
+    <main class="page-content-wrapper">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <span>
+            By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2026 | 
+            Open Source on GitHub | 
+            <a class="repoLink" href="/terms" style="text-decoration: none;">Terms of Service</a>
+        </span>
+    </footer>
+
+    <script src="/static/Components/DarkModeToggle.js"></script>
+</body>
+</html>

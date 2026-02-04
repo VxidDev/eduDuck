@@ -15,7 +15,7 @@ export async function GetFreeLimitUsage() {
         }
 
         const data = await request.json();
-        FreeLimitBar.textContent = `Welcome, ${window.CURRENT_USERNAME}! You have ${data.remaining} free uses today.`;
+        FreeLimitBar.textContent = `${data.remaining} free uses remaining today.`;
 
     } catch (err) {
         FreeLimitBar.textContent = "Error loading usage";

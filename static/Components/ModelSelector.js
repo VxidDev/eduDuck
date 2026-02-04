@@ -43,7 +43,7 @@ export function CustomModelListeners() {
             });
 
             if (questionSelector) questionSelector.disabled = isFree;
-            submitBtn.disabled = isFree && freeLimitBar && parseInt(freeLimitBar.textContent[0]) >= 3;
+            submitBtn.disabled = isFree && freeLimitBar && parseInt(freeLimitBar.textContent[0]) <= 0;
         });
     }
 }

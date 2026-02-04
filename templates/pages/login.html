@@ -1,65 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>EduDuck - Login</title>
-    <meta name="description" content="Login to EduDuck for free usage and more for quizzes, flashcards, and DuckAI. Free AI study tools for students.">
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-    <link rel="stylesheet" href="/static/variables.css">
-    <link rel="stylesheet" href="/static/Main Page/style.css">
-    <link rel="stylesheet" href="/static/header.css">
-    <link rel="stylesheet" href="/static/body.css">
+{% extends "base.html" %}
+
+{% block title %}EduDuck - Login{% endblock %}
+{% block description %}Login to EduDuck for free usage and more for quizzes, flashcards, and DuckAI. Free AI study tools for students.{% endblock %}
+
+{% block head %}
     <link rel="stylesheet" href="/static/Main/style.css">
     <link rel="stylesheet" href="/static/login/style.css">
-    <link rel="stylesheet" href="/static/theme-toggle.css">
-    <script src="/static/login/script.js" defer></script>
-    <script src="/static/Components/csrf.js" defer></script>
-</head>
+    <link rel="stylesheet" href="/static/flash.css">
+    <script src="/dist/login/script.js" defer></script>
+{% endblock %}
 
-<body>
-    <div class="header">
-        <a class="header-redirect" href="https://ko-fi.com/vxiddev" style="padding-left: 50px;">Donate</a>
-        <h1 class="header-text">EduDuck</h1>
-        <a class="header-redirect" href="/keyAccess" style="padding-right: 50px;">How to get key?</a>
-    </div>
-
-    <button id="theme-toggle">🌙</button>
-
+{% block content %}
     <div class="main-content" style="display: flex; flex-direction: column; align-items: center; padding-top: 50px;">
         <h2>Login to EduDuck</h2>
-        <p style="text-align:center; max-width:600px;">Access your saved notes, quizzes, flashcards, and DuckAI responses. If you don’t have an account yet, get a free API key first.</p>
+        <p style="text-align:center; max-width:600px;">Access your saved notes, quizzes, flashcards, and DuckAI responses.</p>
 
-        <div id="login-form" class="auth-form" style="display: flex; flex-direction: column; gap: 15px; margin-top: 30px; width: 300px;">
-            <label for="username">Username</label>
-            <input type="text" id="username" placeholder="Enter your username" style="padding:10px; font-size:1em;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <div id="login-form" class="auth-form" style="display: flex; flex-direction: column; gap: 15px; margin-top: 30px; width: 450px; max-width: 90vw;">
+            <label for="username">Username or Email</label>
+            <input type="text" id="username" placeholder="Enter your username or email" style="padding:10px; font-size:1em;">
 
             <label for="password">Password</label>
             <input type="password" id="password" placeholder="Enter your password" style="padding:10px; font-size:1em;">
 
             <button id="login-button" class="button" style="padding: 10px; font-size: 1.1em; cursor:pointer;">Login</button>
 
-            <a href="{{ url_for('oauth.loginGoogle') }}" class="google-btn" style="text-decoration: none;">
-                <img src="{{ url_for('static', filename='img/google-logo.svg') }}"
-                alt="Google logo" class="google-logo">
-                Sign in with Google
-            </a>
+            <!-- Compact OAuth section -->
+            <div class="oauth-divider">
+                <span>Or continue with</span>
+            </div>
+
+            <div class="oauth-grid">
+                <a href="{{ url_for('oauth.loginGoogle') }}" class="oauth-btn-compact" title="Sign in with Google">
+                    <img src="{{ url_for('static', filename='img/google-logo.svg') }}" alt="Google" class="oauth-logo">
+                </a>
+
+                <a href="{{ url_for('oauth.loginMicrosoft') }}" class="oauth-btn-compact" title="Sign in with Microsoft">
+                    <img src="{{ url_for('static', filename='img/microsoft-logo.svg') }}" alt="Microsoft" class="oauth-logo">
+                </a>
+
+                <a href="{{ url_for('oauth.loginGithub') }}" class="oauth-btn-compact" title="Sign in with GitHub">
+                    <img src="{{ url_for('static', filename='img/github-logo.svg') }}" alt="GitHub" class="oauth-logo oauth-logo-theme-dependant">
+                </a>
+
+                <a href="{{ url_for('oauth.loginDiscord') }}" class="oauth-btn-compact" title="Sign in with Discord">
+                    <img src="{{ url_for('static', filename='img/discord-logo.svg') }}" alt="Discord" class="oauth-logo">
+                </a>
+            </div>
 
             <p id="login-error" style="color:red; margin-top:10px; display:none;"></p>
         </div>
 
+        <p style="margin-top:20px;">Forgot password? <a href="/reset-password" class="repoLink">Reset password</a></p>
         <p style="margin-top:20px;">New here? <a href="/register" class="repoLink">Register today!</a></p>
     </div>
-
-    <footer style="margin-top: 50px; text-align: center;">
-        <span>
-            By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2026 | 
-            Open Source on GitHub | 
-            <a class="repoLink" href="/terms" style="text-decoration: none;">Terms of Service</a>
-        </span>
-    </footer>
-
-    <script src="/static/Components/DarkModeToggle.js"></script>
-</body>
-</html>
+{% endblock %}

@@ -8,7 +8,7 @@ from bson import ObjectId
 import os
 
 def NoteEnhancer():
-    return render_template('Note Enhancer/noteEnhancer.html')
+    return render_template('Note Enhancer/noteEnhancer.html' , prefill_topic=request.args.get('topic', '').strip())
 
 def EnhanceNotes(prompts: dict , notes: dict):
     data: dict = request.get_json()
@@ -115,8 +115,6 @@ def EnhanceNotes(prompts: dict , notes: dict):
         queryRes = StoreTempQuery(enhancedNotes , notes)
         db = "session-storage"
 
-    return jsonify({'id': queryRes})
-
     Log(f"Got query from {db}. (id: {queryRes} , collection: enhanced-notes)\nLength: {len(enhancedNotes)}" , "info")
 
     return jsonify({'id': queryRes})
@@ -153,7 +151,13 @@ def ImportNotes(notes: dict) -> None:
 def ExportNotes(notes: dict) -> None:
     notesID = request.args.get("notes")
 
-    Notes = notes.get(notesID)
+    if current_user.is_authenticated:
+        Notes = GetQueryFromDB(notesID , 'enhanced-notes') or ''
+
+        if not Notes:
+            Notes = notes.get(notesID, '') if notesID else ''
+    else:
+        Notes = notes.get(notesID, '') if notesID else ''
 
     buffer = BytesIO(Notes.encode("utf-8"))
     buffer.seek(0)

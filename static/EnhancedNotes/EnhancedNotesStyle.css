@@ -1,77 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-body {
-    height: 100vh;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Courier New', Courier, monospace;
-    background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-main-gradient-end) 100%);
-    color: var(--text-main);
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    background: rgba(0, 149, 255, 0.9);
-    color: white;
-    background-image: url("/static/img/duck.jpg");
-    background-size: cover;
-    background-position: center;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 149, 255, 0.3);
-    transition: all 0.3s ease;
-    padding: 8px 40px;
-}
-
-.header:hover {
-    box-shadow: 0 12px 40px rgba(0, 149, 255, 0.5);
-    transform: translateY(-2px);
-}
-
-.header-text {
-    color: #fff;
-    font-size: 55px;
-    font-weight: bolder;
-    flex: 1;
-    text-align: center;
-    text-shadow: 0 0 20px rgba(255,255,255,0.8);
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-}
-
-.header-redirect {
-    color: #d6fbfb;
-    font-size: 40px;
-    font-weight: bolder;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: all 0.3s ease;
-    text-shadow: 0 0 15px rgba(214, 251, 251, 0.8);
-}
-
-.header-redirect:hover {
-    transform: scale(1.05);
-    text-shadow: 0 0 25px rgba(214, 251, 251, 1);
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
-}
-
 .md-content {
     max-width: 900px;
     margin: 40px auto;
@@ -174,14 +100,6 @@ body {
 }
 
 @media (max-width: 900px) {
-    .header-text {
-        font-size: 40px;
-    }
-
-    .header-redirect {
-        font-size: 26px;
-    }
-
     .md-content {
         margin: 24px 12px 32px;
         padding: 20px 18px;
@@ -189,21 +107,6 @@ body {
 }
 
 @media (max-width: 600px) {
-    .header {
-        flex-direction: column;
-        padding: 10px 16px;
-        text-align: center;
-        gap: 6px;
-    }
-
-    .header-text {
-        font-size: 32px;
-    }
-
-    .header-redirect {
-        font-size: 22px;
-    }
-
     .md-content {
         margin: 20px 10px 28px;
         padding: 18px 14px;

@@ -1,28 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Check Your Email - EduDuck</title>
-    <meta name="description" content="Verify your EduDuck account via email. Check your inbox to activate your free AI study tools account.">
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-    <link rel="stylesheet" href="/static/variables.css">
-    <link rel="stylesheet" href="/static/Main Page/style.css">
-    <link rel="stylesheet" href="/static/header.css">
-    <link rel="stylesheet" href="/static/body.css">
-    <link rel="stylesheet" href="/static/theme-toggle.css">
-    <script src="/static/Components/csrf.js" defer></script>
-</head>
-<body>
-    <div class="header">
-        <a class="header-redirect" href="https://ko-fi.com/vxiddev" style="padding-left: 50px;">Donate</a>
-        <h1 class="header-text">EduDuck</h1>
-        <a class="header-redirect" href="/keyAccess" style="padding-right: 50px;">How to get key?</a>
-    </div>
-    
-    <button id="theme-toggle">🌙</button>
 
+{% extends "base.html" %}
+
+{% block title %}Check Your Email - EduDuck{% endblock %}
+{% block description %}Verify your EduDuck account via email. Check your inbox to activate your free AI study tools account.{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/Main/style.css">
+{% endblock %}
+
+{% block content %}
     <div class="main-content" style="text-align: center; padding: 80px 20px;">
         <h2>Email Verification Required</h2>
         <p style="font-size: 1.3em; margin-top: 20px;">
@@ -35,15 +21,5 @@
         </p>
         <a href="/" class="button" style="margin-top: 40px; font-size: 1.2em; text-decoration: none; padding: 15px 25px;">Back to Home</a>
     </div>
+{% endblock %}
 
-    <footer style="margin-top: 50px; text-align: center;">
-        <span>
-            By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2026 | 
-            Open Source on GitHub | 
-            <a class="repoLink" href="/terms" style="text-decoration: none;">Terms of Service</a>
-        </span>
-    </footer>
-
-    <script src="/static/Components/DarkModeToggle.js"></script>
-</body>
-</html>

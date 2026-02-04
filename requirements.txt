@@ -17,3 +17,4 @@ maturin
 msgspec
 httpx
 h2
+pyjwt

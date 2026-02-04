@@ -1,80 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>EduDuck - Flashcard Generator</title>
-    <link rel="stylesheet" href="/static/variables.css">
-    <link rel="stylesheet" href="/static/body.css">
-    <link rel="stylesheet" href="/static/Main/style.css">
-    <link rel="stylesheet" href="/static/header.css">
-    <link rel="stylesheet" href="/static/theme-toggle.css">
-    <script src="{{ url_for('static', filename='flashcardGenerator/script.js') }}" type="module" defer></script>
-    <script src="/static/Components/csrf.js" defer></script>
+{% extends "base.html" %}
 
+{% block title %}EduDuck - Flashcard Generator{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/Main/style.css">
+    <link rel="stylesheet" href="/static/spinner.css">
+    <script src="/dist/flashcardGenerator/script.js" type="module" defer></script>
     <script>
         window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
     </script>
+{% endblock %}
 
-    <script src="{{ url_for('static' , filename='base.js') }}" type="module" defer></script>
-</head> 
-<body>
-    <div class="header">
-        <a class="header-redirect" href="https://ko-fi.com/vxiddev" style="padding-left: 50px;">Donate</a>
-        <h1 class="header-text">Flashcard Generator</h1>
-        <div style="padding-right: 50px; display: flex; gap: 15px; align-items: center;">
-            {% if not current_user.is_authenticated %}
-                <a class="header-link" href="/login">Login</a>
-                <span class="divider">/</span>
-                <a class="header-link" href="/register">Register</a>
-                <span class="free-uses">for 3 free uses/day!</span>
-            {% else %}
-                <span id="FreeUsageText">Welcome, {{ current_user.username }}! You have {{ remaining }} free uses today.</span>
-                <a class="header-link logout" href="/logout">Logout</a>
-                <a class="header-link pfp" href="/profile" id="profile-link" style="display: inline-block; width: 40px; height: 40px; border-radius: 50%; overflow: hidden;">
-                    <img id="user-pfp" src="/profile/user-pfp/{{ current_user.id }}" alt="PFP (Profile HREF)" style="width: 100%; height: 100%; object-fit: cover;">
-                </a>
-            {% endif %}
-        </div>
-    </div>
-
-    <button id="theme-toggle">🌙</button>
-    
+{% block content %}
     <div class="main-content">
         <div class="main">
-        <div style="display: flex; justify-content: center; gap: 25px">
-            <div class="customModelSelector checkbox">
-                <label for="customModel" id="customModelLabel">
-                    <input type="checkbox" id="customModel">
-                    Use custom model
-                </label>
-            </div>
-            {% if current_user.is_authenticated %}
-            <div class="FreeUsage checkbox">
-                <label for="FreeUsage" id="FreeUsageLabel">
-                    <input type="checkbox" id="FreeUsage">
-                    Free Daily (No API Key)
-                </label>
-            </div>
-            {% endif %}
-        </div>
-        <textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here! (e.g., mistralai/Mistral-7B-Instruct)"></textarea>
-
-        <select id="apiMode" class="select">
-            <option value="Hugging Face">Hugging Face</option>
-            <option value="Gemini">Gemini</option>
-            <option value="OpenAI">OpenAI</option>
-        </select>
+        {% include 'includes/model_selector.html' %}
         
-        <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!"></textarea>
+        {% include 'includes/file_upload.html' %}
         
-        <div class="file-upload-wrapper">
-            <input type="file" id="fileInput" class="file-input" accept=".pdf,.txt,.md,.csv,.json,.log,.py,.js,.html,.css,.xml,.yml,.yaml,.ini,.cfg,.tex,.png,.jpg,.jpeg,.gif,.bmp,.tiff,.tif,.webp,.ppm,.pbm,.pgm,.jp2,.j2k"/>
-            <label for="fileInput" class="button fileButton">📄 Upload notes file</label>
-        </div>
-        
-        <textarea class="notes textInput standard" placeholder="Notes go here :]"></textarea>
+        <textarea class="notes textInput standard" placeholder="Notes go here :]">{{ prefill_topic or '' }}</textarea>
                 
         <div class="options-section">
             <select id="questionCount" class="select">
@@ -85,33 +29,17 @@
             </select>
         </div>
         
-        <label for="language">Output Language:</label>
-        <select id="language" class="select">
-            <option value="eng">English</option>
-            <option value="pl">Polish</option>
-            <option value="ru">Russian</option>
-            <option value="de">German</option>
-            <option value="ua">Ukrainian</option>
-            <option value="fr">French</option>
-        </select>
+        {% include 'includes/language_selector.html' %}
         
         <button class="button submit" style="width: auto;">✨ Generate Flashcards</button>
         <div class="file-upload-wrapper">
             <input type="file" id="quizfileInput" class="file-input import" accept=".json"/>
             <label for="quizfileInput" class="button fileButton">📄 Import Flashcards</label>
         </div>
-        <span class="status"></span>
+        <div class="status-wrapper">
+            <div class="spinner hidden"></div>
+            <span class="status-text hidden"></span>
+        </div>
     </div>
     </div>
-    
-    <footer style="margin-top: 50px; text-align: center;">
-        <span>
-            By <a class="repoLink" href="https://github.com/VxidDev/eduDuck/">VxidDev</a> - 2026 | 
-            Open Source on GitHub | 
-            <a class="repoLink" href="/terms" style="text-decoration: none;">Terms of Service</a>
-        </span>
-    </footer>
-
-    <script src="/static/Components/DarkModeToggle.js"></script>
-</body>
-</html>
+{% endblock %}

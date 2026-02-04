@@ -156,7 +156,7 @@ def FlashcardGenerator(prompts: dict , flashcardDict: dict):
     return jsonify({'id': queryRes})
 
 def FlashCardGenerator():
-    return render_template("Flashcard Generator/flashCardGenerator.html")
+    return render_template("Flashcard Generator/flashCardGenerator.html" , prefill_topic=request.args.get('topic', '').strip())
 
 def FlashCardResult(flashcards: dict) -> None:
     flashcardId = request.args.get('id')

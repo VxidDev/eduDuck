@@ -8,6 +8,9 @@ from uuid import uuid4
 from bson import ObjectId
 from requests import post
 
+import study_plan_parser
+import time
+
 standardApiErrors = {
     "API error 402": "Payment required or free credits exhausted.",
     "API error 401": "Invalid or missing API key."
@@ -20,17 +23,6 @@ moreApiErrors = {
     "Request timeout": "The request took too long to process. Try again later.",
     "API error 400": "Bad request. The input data may be malformed or missing required fields."
 }
-
-def ParseStudyPlan(planText: str):
-    parts = re.split(r'(Day \d+:)', planText)
-    studyPlan = []
-
-    for i in range(1, len(parts), 2):
-        dayLabel = parts[i].strip()
-        dayContent = parts[i + 1].strip() if i + 1 < len(parts) else ""
-        studyPlan.append({"day": dayLabel, "tasks": dayContent})
-
-    return studyPlan
 
 def StudyPlanGen(prompts: dict , studyPlans: dict):
     data = request.get_json()
@@ -142,7 +134,11 @@ def StudyPlanGen(prompts: dict , studyPlans: dict):
     else:
         Log("Generated study plan. Parsing..." , "success")
 
-    plan = ParseStudyPlan(output)
+    start = time.perf_counter()
+    plan = study_plan_parser.parse_study_plan(output)
+    end = time.perf_counter()
+
+    Log(f"Parsing took: {end - start:.6f} seconds", "info")
 
     queryRes = None
 
@@ -156,7 +152,7 @@ def StudyPlanGen(prompts: dict , studyPlans: dict):
 
     return jsonify({'id': queryRes})
 
-def StudyPlan(studyPlans):
+def StudyPlan(studyPlans, RemainingUsage):
     planID = request.args.get('plan')
 
     if current_user.is_authenticated:
@@ -172,7 +168,7 @@ def StudyPlan(studyPlans):
 
     Log(f"Got query from {db}. (id: {planID} , collection: study-plans)\nLength: {len(plan)}" , "info")
 
-    return render_template("Study Plan Generator/StudyPlan.html" , plan=plan)
+    return render_template("Study Plan Generator/StudyPlan.html" , plan=plan, remaining=RemainingUsage())
 
 def ExportStudyPlan(studyPlans: dict) -> None:
     planID = request.args.get("plan")

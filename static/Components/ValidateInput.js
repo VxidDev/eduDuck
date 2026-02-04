@@ -1,18 +1,26 @@
-export function ValidateInput(text , apiKey , customModelVisible , modelValue , StatusLabel , wordsCount , requiresApiKey) {
+export function ValidateInput(
+    text,
+    apiKey,
+    customModelVisible,
+    modelValue,
+    StatusLabel,
+    wordsCount,
+    requiresApiKey
+) {
     let msg =
-		!apiKey && requiresApiKey
-			? "Enter API key."
-			: !text
-			? "Enter notes first."
-			: wordsCount > 2500
-			? "Notes too long."
-			: customModelVisible && !model
-			? "Enter model."
-			: "Generating...";
+        !apiKey && requiresApiKey
+            ? "Enter API key."
+            : !text
+            ? "Enter notes first."
+            : wordsCount > 2500
+            ? "Notes too long."
+            : customModelVisible && !modelValue
+            ? "Enter model."
+            : "Generating...";
 
-    if (customModelVisible && CustomModel.checked && !modelValue) {
+    if (customModelVisible && !modelValue) {
         msg = "Enter model.";
     }
-    
+
     StatusLabel.textContent = msg;
 }

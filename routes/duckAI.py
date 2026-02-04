@@ -129,7 +129,7 @@ def GenerateResponse(prompts: dict):
 
 def DuckAI():
     if not current_user.is_authenticated:
-        return render_template("DuckAI/DuckAI.html" , chat=[])
+        return render_template("DuckAI/DuckAI.html" , chat=[] , prefill_topic=request.args.get('topic', '').strip())
     else:
         chatID = request.args.get('id')
 
@@ -137,4 +137,4 @@ def DuckAI():
 
         Log(f"Got query from mongoDB. (id: {chatID} , collection: study-plans)\nLength: {len(chat)}" , "info")
 
-        return render_template("DuckAI/DuckAI.html" , chat=chat)
+        return render_template("DuckAI/DuckAI.html" , chat=chat , prefill_topic=request.args.get('topic', '').strip())

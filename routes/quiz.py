@@ -9,6 +9,7 @@ from io import BytesIO
 from requests import post
 from bson import ObjectId
 import os
+import submit_quiz
 
 import time
 
@@ -25,10 +26,10 @@ moreApiErrors = {
     "API error 400": "1 What does API error 400 mean? a) Bad request b) Payment required c) Unauthorized d) Rate limited |CORRECT:a"
 }
 
-def QuizGenerator():
-    return render_template('Quiz Generator/QuizGenerator.html')
+def QuizGenerator(RemainingUsage):
+    return render_template('Quiz Generator/QuizGenerator.html', remaining=RemainingUsage() , prefill_topic=request.args.get('topic', '').strip())
 
-def quiz(quizzes):
+def quiz(quizzes, RemainingUsage):
     quizID = request.args.get('id')
     
     if current_user.is_authenticated:
@@ -44,15 +45,16 @@ def quiz(quizzes):
 
     Log(f"Got query from {db}. (id: {quizID} , collection: quizzes)\nLength: {len(quiz)}" , "info")
 
-    return render_template("Quiz Generator/Quiz.html" , quiz=quiz)
+    return render_template("Quiz Generator/Quiz.html" , quiz=quiz, remaining=RemainingUsage())
 
-def QuizResult(quizResults):
+def QuizResult(quizResults, RemainingUsage):
     quizResultID = request.args.get('result')
     results = quizResults.get(quizResultID , '') if quizResultID else ''
     print("READ", quizResultID, "found:", bool(results))
-    return render_template("Quiz Generator/QuizResult.html" , results=results)
+    return render_template("Quiz Generator/QuizResult.html" , results=results, remaining=RemainingUsage())
 
 def submitResult(quizResults: dict):
+    start = time.perf_counter()
     data = request.get_json()
     quiz = data.get('quiz', {})
     user_answers = data.get('answers', {})
@@ -60,20 +62,9 @@ def submitResult(quizResults: dict):
     if not quiz:
         return jsonify({'error': 'No quiz data'}), 400
     
-    score = sum(1 for num in quiz if (user_answers.get(num) or '').lower() == (quiz[num].get('correct') or '').lower())
-    total = len(quiz)
-    percentage = round((score / total) * 100, 1) if total > 0 else 0
-    
-    result_data = {
-        'score': score,
-        'total': total,
-        'percentage': percentage,
-        'results': {num: {
-            'correct': q.get('correct'), 
-            'user': user_answers.get(num), 
-            'right': (user_answers.get(num) or '').lower() == (q.get('correct') or '').lower()
-        } for num, q in quiz.items()}
-    }
+    result_data = submit_quiz.submit_quiz.submit_result(quiz, user_answers)
+    end = time.perf_counter()
+    Log(f"Parsing Time: {end - start:0.6f}s" , "info")
     
     return jsonify({"id": StoreTempQuery(result_data , quizResults)})
 
@@ -221,7 +212,13 @@ def ImportQuiz(quizzes: dict) -> None:
 def ExportQuiz(quizzes: dict) -> None:
     quizID = request.args.get("quiz")
 
-    quiz = quizzes.get(quizID)
+    if current_user.is_authenticated:
+        quiz = GetQueryFromDB(quizID, 'quizzes') or ''
+
+        if not quiz:
+            quiz = quizzes.get(quizID, '') if quizID else ''
+    else:
+        quiz = quizzes.get(quizID, '') if quizID else ''
 
     buffer = BytesIO(dumps(quiz, indent=2).encode("utf-8"))
     buffer.seek(0)

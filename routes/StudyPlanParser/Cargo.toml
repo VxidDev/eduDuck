@@ -1,0 +1,20 @@
+[package]
+name = "study_plan_parser"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "study_plan_parser"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.20", features = ["extension-module"] }
+
+[profile.release]
+opt-level = 3              # Maximum optimization
+lto = "fat"                # Aggressive Link-Time Optimization
+codegen-units = 1          # Single codegen unit for best optimization
+strip = true               # Remove debug symbols
+panic = "abort"            # Faster panic handling
+overflow-checks = false    # Remove runtime checks
+
