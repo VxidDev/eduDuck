@@ -28,28 +28,6 @@
 
 **AI-powered study companion** that transforms your notes into interactive quizzes, flashcards, and enhanced study materials.
 
-## ⚠️ Public Repo Notice & How to Contribute
-
-This public repository represents **older, stable commits** of EduDuck. The latest deployed version, including features like user accounts, profile picture support, and AI enhancements, exists only in the private repository.
-
-From now on, this repo will receive **historical commits** from the private repo, so you can:
-
-- Explore the development history safely
-- Learn from past implementations
-- Contribute to features
-
-### How You Can Help
-
-EduDuck is evolving, and contributions are welcome! Here are a few ways to participate:
-
-- Implement or improve frontend features
-- Optimize AI or OCR functionality
-- Add tests or documentation
-- Suggest UI/UX improvements
-- Help with bug fixes in older releases
-
-Please **fork this repo** and submit pull requests. Make sure not to include any secrets or personal data.
-
 ## 🔧 Tasks & Feature Ideas
 
 **High priority**
@@ -61,7 +39,7 @@ Please **fork this repo** and submit pull requests. Make sure not to include any
 - Add automated tests for AI features
 
 **Low priority / future**
-- Migrate JavaScript code to TypeScript
+- none for now
 
 ---
 
@@ -196,7 +174,7 @@ git clone https://github.com/VxidDev/eduDuck.git
 cd eduDuck
 python -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+bash build.sh
 ```
 
 2. Add .env with the following variables:
@@ -298,7 +276,8 @@ I handle deployment, setup, and configuration - you start using EduDuck immediat
 | ✅ Done | Fix footer not at the bottom bug. |
 | ✅ Done | Migrated most of JS code to TS. |
 | ✅ Done | Study progress tracking |
-| 🔄 In Progress | Add note analyzer |
+| ✅ Done | Add note analyzer |
+| 🔄 In Progress | ??? |
 | ⏳ Planned | ??? |
 
 ---
