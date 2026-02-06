@@ -13,7 +13,6 @@
     margin: 2rem 0 3rem;
     background: linear-gradient(135deg, var(--accent), var(--accent-dark));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
     line-height: 1;
 } 

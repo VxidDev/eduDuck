@@ -1,0 +1,14 @@
+/home/vxid-dev/Coding/Eduduck/routes/QuizParser/target/release/deps/pyo3_build_config-e69c4ec43b7f0267.d: /home/vxid-dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.21.2/src/lib.rs /home/vxid-dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.21.2/src/errors.rs /home/vxid-dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.21.2/src/impl_.rs /home/vxid-dev/Coding/Eduduck/routes/QuizParser/target/release/build/pyo3-build-config-fb2c973912c3ec42/out/pyo3-build-config-file.txt /home/vxid-dev/Coding/Eduduck/routes/QuizParser/target/release/build/pyo3-build-config-fb2c973912c3ec42/out/pyo3-build-config.txt
+
+/home/vxid-dev/Coding/Eduduck/routes/QuizParser/target/release/deps/libpyo3_build_config-e69c4ec43b7f0267.rlib: /home/vxid-dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.21.2/src/lib.rs /home/vxid-dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.21.2/src/errors.rs /home/vxid-dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.21.2/src/impl_.rs /home/vxid-dev/Coding/Eduduck/routes/QuizParser/target/release/build/pyo3-build-config-fb2c973912c3ec42/out/pyo3-build-config-file.txt /home/vxid-dev/Coding/Eduduck/routes/QuizParser/target/release/build/pyo3-build-config-fb2c973912c3ec42/out/pyo3-build-config.txt
+
+/home/vxid-dev/Coding/Eduduck/routes/QuizParser/target/release/deps/libpyo3_build_config-e69c4ec43b7f0267.rmeta: /home/vxid-dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.21.2/src/lib.rs /home/vxid-dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.21.2/src/errors.rs /home/vxid-dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.21.2/src/impl_.rs /home/vxid-dev/Coding/Eduduck/routes/QuizParser/target/release/build/pyo3-build-config-fb2c973912c3ec42/out/pyo3-build-config-file.txt /home/vxid-dev/Coding/Eduduck/routes/QuizParser/target/release/build/pyo3-build-config-fb2c973912c3ec42/out/pyo3-build-config.txt
+
+/home/vxid-dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.21.2/src/lib.rs:
+/home/vxid-dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.21.2/src/errors.rs:
+/home/vxid-dev/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/pyo3-build-config-0.21.2/src/impl_.rs:
+/home/vxid-dev/Coding/Eduduck/routes/QuizParser/target/release/build/pyo3-build-config-fb2c973912c3ec42/out/pyo3-build-config-file.txt:
+/home/vxid-dev/Coding/Eduduck/routes/QuizParser/target/release/build/pyo3-build-config-fb2c973912c3ec42/out/pyo3-build-config.txt:
+
+# env-dep:CARGO_PKG_VERSION=0.21.2
+# env-dep:OUT_DIR=/home/vxid-dev/Coding/Eduduck/routes/QuizParser/target/release/build/pyo3-build-config-fb2c973912c3ec42/out
