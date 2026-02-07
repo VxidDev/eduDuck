@@ -3,10 +3,6 @@
 {% block title %}EduDuck - Free AI Quiz & Flashcard Generator for Students{% endblock %}
 {% block description %}EduDuck turns notes into quizzes, flashcards & study tools instantly. Free AI learning platform with OCR, DuckAI tutor, and no signup required. Perfect for exams and homework.{% endblock %}
 
-{% block head %}
-    <link rel="stylesheet" href="/static/Main/style.css">
-{% endblock %}
-
 {% block content %}
     <div class="main-content">
         <!-- Hero Section -->
@@ -25,7 +21,7 @@
                 </a>
             </div>
 
-            <div class="hero-badge">
+            <div class="hero-badge" style="margin-top: 25px;">
                 <span class="badge-dot"></span>
                 <span class="badge-text">Built by a student for students – No sign-up required</span>
             </div>
@@ -134,7 +130,7 @@
                 How EduDuck Works
             </h2>
             
-            <div class="steps-container">
+            <div class="steps-container" style="display: flex; flex-direction: column; gap:25px;">
                 <div class="step-card">
                     <div class="step-number">1</div>
                     <div class="step-content">
@@ -142,8 +138,6 @@
                         <p>Drop in your notes, PDFs, or images with OCR-powered text extraction</p>
                     </div>
                 </div>
-
-                <div class="step-arrow">→</div>
 
                 <div class="step-card">
                     <div class="step-number">2</div>
@@ -153,8 +147,6 @@
                     </div>
                 </div>
 
-                <div class="step-arrow">→</div>
-
                 <div class="step-card">
                     <div class="step-number">3</div>
                     <div class="step-content">
@@ -162,8 +154,6 @@
                         <p>Get quizzes, flashcards, or enhanced notes in seconds</p>
                     </div>
                 </div>
-
-                <div class="step-arrow">→</div>
 
                 <div class="step-card">
                     <div class="step-number">4</div>
@@ -174,7 +164,7 @@
                 </div>
             </div>
 
-            <div class="free-tier-badge">
+            <div class="free-tier-badge" style="margin-top: 25px;">
                 <span class="badge-icon">🎁</span>
                 3 free uses per day - upgrade with your own API key for unlimited access
             </div>
@@ -183,7 +173,7 @@
         <!-- DuckAI Spotlight -->
         <section class="duckai-spotlight">
             <div class="spotlight-content">
-                <h2 class="spotlight-title">Meet DuckAI 🦆</h2>
+                <h2 class="spotlight-title">Meet DuckAI</h2>
                 <p class="spotlight-subtitle">Mastered the quizzes and flashcards? <strong>DuckAI has your back!</strong></p>
                 <p class="spotlight-description">Ask for concept explanations, quiz clarifications, physics homework help, or custom study tips tailored to your notes!</p>
             </div>
@@ -280,7 +270,7 @@
             <div class="cta-content">
                 <h2 class="cta-title">Ready to Ace Your Exams?</h2>
                 <p class="cta-description">Get your free API key and start now - no sign-up, instant results!</p>
-                <a href="/keyAccess" class="cta-button cta-large repoLink">
+                <a href="/keyAccess" class="cta-button cta-large repoLink" style="margin-bottom: 25px;">
                     <span class="cta-icon repoLink">🚀</span>
                     Get Started Free
                     <span class="cta-arrow">→</span>
