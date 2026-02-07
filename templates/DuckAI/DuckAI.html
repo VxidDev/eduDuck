@@ -4,6 +4,7 @@
 
 {% block head %}
     <link rel="stylesheet" href="/static/spinner.css">
+    <link rel="stylesheet" href="/static/DuckAI/style.css">
     <script src="/dist/DuckAI/script.js" type="module" defer></script>
     <script>
         window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
