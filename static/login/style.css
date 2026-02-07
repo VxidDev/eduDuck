@@ -95,7 +95,7 @@ body.dark .oauth-logo-theme-dependant {
     white-space: nowrap;
 }
 
-/* Dark mode adjustments */
+
 body.dark .password-requirements {
     background: rgba(20, 24, 38, 0.6);
     border-color: rgba(74, 168, 255, 0.15);
@@ -163,7 +163,7 @@ body.dark .oauth-btn-compact {
     border-color: var(--border-card);
 }
 
-/* Mobile responsive */
+
 @media (max-width: 600px) {
     .password-requirements {
         grid-template-columns: 1fr;

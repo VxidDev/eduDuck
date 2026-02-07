@@ -220,7 +220,7 @@ body:not(.dark) .day-cell.current-day {
 }
 
 .tooltip {
-    position: fixed; /* Changed from absolute to fixed */
+    position: fixed; 
     background: var(--card-bg);
     color: var(--text-main);
     padding: 10px 14px;
@@ -258,7 +258,7 @@ body:not(.dark) .day-cell.current-day {
     align-items: center;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
     .streak-header {
         flex-direction: column;

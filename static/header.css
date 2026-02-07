@@ -1,8 +1,6 @@
-/* =============================================================================
-   Header Component - Enhanced with Bigger Size & Better Spacing
-   ========================================================================== */
 
-/* Header container - BIGGER SIZE */
+
+
 .header {
   position: sticky;
   top: 0;
@@ -23,13 +21,13 @@ body.dark .header {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
-/* Cleaner look on scroll */
+
 .header.scrolled {
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
   backdrop-filter: blur(30px);
 }
 
-/* Header navigation grid - INCREASED PADDING */
+
 .header-nav {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -44,7 +42,7 @@ body.dark .header {
   min-height: 100px;
 }
 
-/* ==================== LEFT SECTION - DONATE ==================== */
+
 .header-redirect {
   justify-self: start;
   display: inline-flex;
@@ -85,7 +83,7 @@ body.dark .header {
   filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.6));
 }
 
-/* ==================== CENTER SECTION - BRAND ==================== */
+
 .header-brand {
   display: flex;
   justify-content: center;
@@ -132,7 +130,7 @@ body.dark .header {
   filter: drop-shadow(0 4px 12px rgba(67, 83, 255, 0.6));
 }
 
-/* Optional: Subtle float animation */
+
 @keyframes subtle-float {
   0%, 100% {
     transform: translateY(0px);
@@ -146,14 +144,14 @@ body.dark .header {
   animation: subtle-float 3s ease-in-out infinite;
 }
 
-/* Disable animation on reduced motion */
+
 @media (prefers-reduced-motion: reduce) {
   .brand-icon {
     animation: none;
   }
 }
 
-/* ==================== RIGHT SECTION - AUTH ==================== */
+
 .header-actions {
   justify-self: end;
   display: flex;
@@ -237,7 +235,7 @@ body.dark .header {
   opacity: 0.5;
 }
 
-/* Free uses badge */
+
 .free-uses {
   color: var(--accent-primary);
   font-size: var(--text-sm, 0.875rem);
@@ -263,7 +261,7 @@ body.dark .header {
   }
 }
 
-/* ==================== USER MENU ==================== */
+
 .user-menu-wrapper {
   position: relative;
 }
@@ -327,7 +325,7 @@ body.dark .header {
   transform: rotate(180deg);
 }
 
-/* ==================== DROPDOWN MENU ==================== */
+
 .user-menu {
   position: absolute;
   top: calc(100% + var(--space-3, 0.75rem));
@@ -425,7 +423,7 @@ body.dark .header {
   margin: var(--space-3, 0.75rem) 0;
 }
 
-/* ==================== RESPONSIVE ==================== */
+
 @media (max-width: 1024px) {
   .header-nav {
     gap: var(--space-6, 1.5rem);
@@ -494,7 +492,7 @@ body.dark .header {
   }
 }
 
-/* ==================== ACCESSIBILITY ==================== */
+
 .header-link:focus-visible,
 .header-redirect:focus-visible {
   outline: 3px solid var(--accent-primary);
@@ -513,7 +511,7 @@ body.dark .header {
   border: 0;
 }
 
-/* ==================== PRINT STYLES ==================== */
+
 @media print {
   .header {
     position: static;

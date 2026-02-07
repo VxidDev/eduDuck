@@ -1,4 +1,4 @@
-/* ==================== Container & Layout ==================== */
+
 .results-container {
     max-width: 900px;
     margin: 0 auto;
@@ -17,7 +17,7 @@
     }
 }
 
-/* ==================== Score Card ==================== */
+
 .score-card {
     background: var(--card-bg);
     border-radius: 16px;
@@ -143,7 +143,7 @@
     border-color: rgba(239, 68, 68, 0.2);
 }
 
-/* ==================== Action Buttons ==================== */
+
 .action-buttons {
     display: flex;
     gap: 1rem;
@@ -161,7 +161,7 @@
     text-align: center;
 }
 
-/* ==================== Sections ==================== */
+
 .sections-container {
     text-align: center;
 }
@@ -337,7 +337,7 @@
 .why-section li::before { color: #2563eb; }
 .suggestions-section li::before { color: #059669; }
 
-/* ==================== Next Steps ==================== */
+
 .next-steps {
     background: var(--card-bg);
     border-radius: 14px;
@@ -421,7 +421,7 @@
     padding-bottom: 2px;
 }
 
-/* ==================== Footer Actions ==================== */
+
 .footer-actions {
     display: flex;
     gap: 1rem;
@@ -454,7 +454,7 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* ==================== Error Container ==================== */
+
 .error-container {
     text-align: center;
     padding: 4rem 1.5rem;
@@ -489,7 +489,7 @@
     text-align: center;
 }
 
-/* ==================== Dark Mode ==================== */
+
 @media (prefers-color-scheme: dark) {
     .score-card,
     .section-card,
@@ -526,7 +526,7 @@
     }
 }
 
-/* ==================== Mobile Responsive ==================== */
+
 @media (max-width: 768px) {
     .results-container {
         padding: 1.5rem 1rem;
