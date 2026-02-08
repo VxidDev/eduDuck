@@ -2052,12 +2052,16 @@ footer p {
   transition: width var(--transition-slow, 350ms);
 }
 .spinner {
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
   border: 3px solid var(--border-primary);
   border-top-color: var(--accent-primary);
   border-radius: var(--radius-full, 9999px);
   animation: spin 0.6s linear infinite;
+}
+
+body.dark .spinner {
+    border-top-color: #4dabf7;
 }
 .spinner-sm {
   width: var(--donate-icon-size);
@@ -4331,9 +4335,6 @@ body.dark .header {
     width: 44px;
     height: 44px;
     justify-content: center;
-  }
-
-    width: max-content;
   }
 }
 
