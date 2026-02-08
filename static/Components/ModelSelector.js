@@ -38,9 +38,16 @@ export function CustomModelListeners() {
         freeUsageCheckbox.addEventListener('change', () => {
             const isFree = freeUsageCheckbox.checked;
 
-            [customModelSelector, customModelInput, apiKeyInput, apiModeSelector].forEach(el => {
+            [customModelSelector, customModelInput, apiModeSelector].forEach(el => {
                 if (el) el.style.display = isFree ? 'none' : '';
             });
+
+            if (isFree) {
+                apiKeyInput.classList.add('hidden');
+                apiKeyInput.value = ''; // Clear the API key when free usage is selected
+            } else {
+                apiKeyInput.classList.remove('hidden');
+            }
 
             if (questionSelector) questionSelector.disabled = isFree;
             submitBtn.disabled = isFree && freeLimitBar && parseInt(freeLimitBar.textContent[0]) <= 0;

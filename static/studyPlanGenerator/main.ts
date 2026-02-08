@@ -1,11 +1,12 @@
-import { CustomModelListeners } from "../Components/ModelSelector.js";
 import { InitFileUploads } from "../Components/FileUploadHandler.js";
+import { CustomModelListeners } from "../Components/ModelSelector.js";
 import { showSpinner, showStatus, hideStatus } from "../Components/StatusManager.js";
 import {
     NoteInput, Submit, TextInputs, ApiKeyInput, CustomModel, CustomModelInput,
-    LanguageSelector, APIModeSelector, FreeUsage, FreeUsageText, ApiKeyInputParent
+    LanguageSelector, APIModeSelector, FreeUsage, FreeUsageText, StartDateInput,
+    EndDateInput, HoursInput, LearningStyleInputs, GoalInput, ApiKeyInputParent
 } from "./ui.js";
-import { getFreeLimitUsage, analyzeNotes, uploadNotes, importAnalysis } from "./api.js";
+import { getFreeLimitUsage, generateStudyPlan, uploadNotes, importPlan } from "./api.js";
 
 let FreeUsageLeft = 0;
 
@@ -29,15 +30,15 @@ async function handleFileUpload(file: File) {
         NoteInput.value = data.notes;
 
         const MAXLINES = getMaxLines(NoteInput);
-        const LINEHEIGHT = 25;
+        const LINEHEIGHT = 20;
         NoteInput.style.height = `${Math.min(
             NoteInput.scrollHeight,
-            MAXLINES * LINEHEIGHT + 35
+            MAXLINES * LINEHEIGHT + 60
         )}px`;
 
         hideStatus();
     } catch (error) {
-        console.error("File upload error:", error);
+            console.error("File upload error:", error);
         NoteInput.value = "File upload failed.";
         showStatus("File upload failed.");
     }
@@ -47,16 +48,16 @@ async function handleImport(file: File) {
     showSpinner();
 
     try {
-        const data = await importAnalysis(file);
+        const data = await importPlan(file);
 
         if (!data.err && data.id) {
-            window.location.href = `/note-analyzer/result?id=${encodeURIComponent(data.id)}`;
+            window.location.href = `/study-plan-generator/result?plan=${encodeURIComponent(data.id)}`;
         } else {
             showStatus(data.err || "Unknown error occurred.");
         }
     } catch (error) {
         console.error("Import error:", error);
-        showStatus("Error importing note analysis.");
+        showStatus("Error importing study plan.");
     }
 }
 
@@ -108,20 +109,38 @@ document.addEventListener('DOMContentLoaded', async () => {
         const words = notes.split(" ");
         const requiresApiKey = !FreeUsage || !FreeUsage.checked;
 
+        const startDate = StartDateInput.value;
+        const endDate = EndDateInput.value;
+        const hoursPerDay = HoursInput.value;
+        const learningStyles = Array.from(LearningStyleInputs).filter(c => c.checked).map(c => c.value);
+        const goal = GoalInput.value.trim();
+
         if (!apiKey && requiresApiKey) {
             showStatus("Enter API key.");
             return;
         }
         if (!notes) {
-            showStatus("Enter notes first.");
+            showStatus("Enter topics/notes first.");
             return;
         }
         if (words.length > 2500) {
-            showStatus("Notes too long (max 2500 words).");
+            showStatus("Notes too long.");
+            return;
+        }
+        if (!startDate || !endDate) {
+            showStatus("Select start and end date.");
+            return;
+        }
+        if (learningStyles.length === 0) {
+            showStatus("Select at least one learning style.");
             return;
         }
         if (modelVisible && !model) {
             showStatus("Enter model.");
+            return;
+        }
+        if (!goal) {
+            showStatus("Enter goal first.");
             return;
         }
 
@@ -132,25 +151,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                 notes,
                 apiKey: FreeUsage?.checked ? null : apiKey,
                 model: FreeUsage?.checked ? null : model,
-                language: LanguageSelector?.value?.trim() || "English",
+                language: LanguageSelector?.value?.trim() || "eng",
                 apiMode: FreeUsage?.checked ? "OpenAI" : APIModeSelector.value.trim(),
                 isFree: FreeUsage?.checked ?? false,
-                temperature: 0.3,
-                top_p: 0.9
+                startDate,
+                endDate,
+                hoursPerDay,
+                learningStyles,
+                goal
             };
 
-            const data = await analyzeNotes(body);
-
-            if (data.analysis) {
-                showStatus(data.analysis);
-                return;
-            }
-
-            if (data.id) {
-                window.location.href = `/note-analyzer/result?id=${encodeURIComponent(data.id)}`;
-            } else {
-                showStatus("Error: No analysis ID returned.");
-            }
+            const data = await generateStudyPlan(body);
+            window.location.href = `/study-plan-generator/result?plan=${encodeURIComponent(data.id)}`;
 
             if (FreeUsageText && FreeUsage?.checked) {
                 FreeUsageLeft = await getFreeLimitUsage();
@@ -160,8 +172,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
         } catch (error) {
-            console.error("Note analysis error:", error);
-            showStatus("Error while analyzing notes.");
+            console.error("Study plan generation error:", error);
+            showStatus("Error while generating study plan.");
         }
     });
 

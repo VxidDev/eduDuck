@@ -1,18 +1,6 @@
 import { GetFreeLimitUsage } from "../Components/GetFreeLimitUsage.js";
 
-interface MarkdownitInstance {
-    render: (src: string) => string;
-}
-
-declare global {
-    interface Window {
-        markdownit: (options: {
-            html: boolean;
-            linkify: boolean;
-            typographer: boolean;
-        }) => MarkdownitInstance;
-    }
-}
+declare const markdownit: any;
 
 (async () => {
     await GetFreeLimitUsage();
@@ -20,15 +8,18 @@ declare global {
     const display = document.querySelector('.Enhanced') as HTMLElement;
     if (!display) return;
 
-    const md = (window as any).markdownit({ 
-        html: false, 
-        linkify: true, 
-        typographer: true 
-    }) as MarkdownitInstance;
+    const md = markdownit({
+        html: false,
+        linkify: true,
+        typographer: true
+    });
 
-    let raw = JSON.parse(display.dataset.notes || '""');
-    if (typeof raw === "string") {
-        raw = raw.trim();
+    let raw: string;
+    try {
+        raw = JSON.parse(display.dataset.notes || '""').trim();
+    } catch (e) {
+        display.innerHTML = '<p>Failed to parse notes!</p>';
+        return;
     }
 
     if (!raw) {
@@ -36,19 +27,19 @@ declare global {
         return;
     }
 
-    display.innerHTML = md.render(raw as string);
-    display.innerHTML += '<button class="button export" style="margin-bottom: 25px;">📄 Export Enhanced Notes</button>';
+    display.innerHTML = md.render(raw);
 
-    const exportBtn = document.querySelector(".export") as HTMLButtonElement;
-    if (exportBtn) {
-        exportBtn.addEventListener("click", handleExport);
-    }
+    const exportButton = document.createElement('button');
+    exportButton.classList.add('button', 'export');
+    exportButton.style.marginBottom = '25px';
+    exportButton.textContent = '📄 Export Enhanced Notes';
+    exportButton.addEventListener("click", () => {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+        if (!id) return;
+
+        window.open(`/note-enhancer/export-notes?notes=${encodeURIComponent(id)}`);
+    });
+
+    display.appendChild(exportButton);
 })();
-
-function handleExport(): void {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-    if (!id) return;
-
-    window.open(`/note-enhancer/export-notes?notes=${encodeURIComponent(id)}`);
-}

@@ -1,0 +1,90 @@
+import { FreeUsage, FreeUsageText } from "./ui.js";
+
+export async function getFreeLimitUsage(): Promise<number> {
+    if (!FreeUsageText) return 0;
+    try {
+        const request = await fetch("/get-usage", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        });
+
+        if (!request.ok) {
+            FreeUsageText.textContent = "Login to see usage";
+            return 0;
+        }
+
+        const data = await request.json();
+        const remaining = data.remaining || 0;
+        FreeUsageText.textContent = `${remaining} free uses remaining today.`;
+        return remaining;
+    } catch (err) {
+        FreeUsageText.textContent = "Error loading usage";
+        console.error(err);
+        return 0;
+    }
+}
+
+export async function generate(
+    history: string,
+    apiKey: string | null,
+    model: string | null,
+    apiMode: string,
+    isFree: boolean
+): Promise<string> {
+    const res = await fetch("/duck-ai/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            message: history,
+            apiKey,
+            model,
+            apiMode,
+            isFree
+        })
+    });
+
+    const data = await res.json();
+    return data.response.trim();
+}
+
+export async function storeConversation(
+    messages: Array<{ role: string; content: string }>,
+    queryID: string | null
+): Promise<string | null> {
+    if (!(window as any).CURRENT_USERNAME) return null;
+
+    try {
+        const storeRes = await fetch("/duck-ai/store-conversation", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                messages,
+                queryID
+            })
+        });
+
+        if (storeRes.ok) {
+            const storeData = await storeRes.json();
+            return storeData.queryID || null;
+        } else {
+            console.error("DuckAI store failed:", storeRes.status, storeRes.statusText);
+        }
+    } catch (err) {
+        console.error("DuckAI store conversation error:", err);
+    }
+    return null;
+}
+
+export async function uploadFile(file: File): Promise<string | null> {
+    const formData = new FormData();
+    formData.append("notesFile", file);
+
+    const res = await fetch("/upload-notes", { method: "POST", body: formData });
+
+    if (!res.ok) {
+        return null;
+    }
+
+    const data = await res.json();
+    return data.notes;
+}

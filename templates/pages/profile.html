@@ -5,7 +5,7 @@
 
 {% block head %}
     <link rel="stylesheet" href="/static/profile/style.css">
-    <script src="/dist/profile/script.js" type="module" defer></script>
+    <script src="/dist/profile/main.js" type="module" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -161,7 +161,7 @@
                     <ul>
                         {% for na in noteanalyses %}
                             <li>
-                                <a href="{{ url_for('noteAnalyzerResult', id=na.queryID) }}" class="repoLink">
+                                <a href="{{ url_for('note_analyzer_result', id=na.queryID) }}" class="repoLink">
                                     Analysis - {{ na.createdAt.strftime('%Y-%m-%d %H:%M') }}
                                 </a>
                             </li>

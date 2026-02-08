@@ -24,14 +24,10 @@ export PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1
 pip install --upgrade pip
 pip install maturin
 
-# Install TypeScript compiler (Node.js is pre-installed on Render)
-echo "Installing TypeScript compiler..."
-npm install -g typescript
-
 # Compile TypeScript files
 echo "Compiling TypeScript files..."
 if [ -f tsconfig.json ]; then
-    tsc
+    npx tsc
 else
     echo "No tsconfig.json found, skipping TypeScript compilation"
 fi
