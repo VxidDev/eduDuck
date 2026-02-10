@@ -277,7 +277,8 @@ I handle deployment, setup, and configuration - you start using EduDuck immediat
 | ✅ Done | Migrated most of JS code to TS. |
 | ✅ Done | Study progress tracking |
 | ✅ Done | Add note analyzer |
-| 🔄 In Progress | Simplify UI |
+| ✅ Done | Simplify UI |
+| 🔄 In Progress | Add multi-language pages. |
 | ⏳ Planned | ??? |
 
 ---
