@@ -26,6 +26,8 @@
 
 ---
 
+> Due to technical issues update development will be slowed time for unknown time.
+
 **AI-powered study companion** that transforms your notes into interactive quizzes, flashcards, and enhanced study materials.
 
 ## 🔧 Tasks & Feature Ideas
