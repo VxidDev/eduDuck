@@ -1,0 +1,6 @@
+.env
+*.mo
+venv
+.github
+__pycache__
+target

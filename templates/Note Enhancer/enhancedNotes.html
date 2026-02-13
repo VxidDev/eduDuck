@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Enhanced Notes{% endblock %}
+{% block title %}{{ _('EduDuck - Enhanced Notes') }}{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="/static/variables.css">
@@ -13,5 +13,5 @@
 {% endblock %}
 
 {% block content %}
-    <div class="Enhanced md-content" data-notes='{{ notes|tojson|safe }}' style="display: flex; flex-direction: column;"><span style="align-self: center; text-align: center;">Nothing There :[</span><br></div>
+    <div class="Enhanced md-content" data-notes='{{ notes|tojson|safe }}' style="display: flex; flex-direction: column;"><span style="align-self: center; text-align: center;">{{ _('Nothing There :[') }}</span><br></div>
 {% endblock %}

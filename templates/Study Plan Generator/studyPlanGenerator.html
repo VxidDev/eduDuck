@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Study Plan Generator{% endblock %}
+{% block title %}{{ _('EduDuck - Study Plan Generator') }}{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="/static/studyPlanGenerator/style.css">
-    <link rel="stylesheet" href="/static/spinner.css">
-    <script src="/dist/studyPlanGenerator/script.js" type="module" defer></script>
-    <script src="/dist/Components/fileDrop.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='studyPlanGenerator/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='spinner.css') }}">
+    <script src="{{ url_for('static', filename='dist/studyPlanGenerator/script.js') }}" type="module" defer></script>
+    <script src="{{ url_for('static', filename='dist/Components/fileDrop.js') }}" defer></script>
     <script>
         window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
     </script>
@@ -15,71 +15,76 @@
 {% block content %}
     <div class="main-content">
         <div class="main">
-            <div style="display: flex; justify-content: center; gap: 25px">
+            <div style="display: flex; justify-content: center; gap: 25px;">
                 <div class="customModelSelector checkbox">
                     <label for="customModel" id="customModelLabel">
                         <input type="checkbox" id="customModel">
-                        Use custom model
+                        {{ _('Use custom model') }}
                     </label>
                 </div>
                 {% if current_user.is_authenticated %}
                 <div class="FreeUsage checkbox">
                     <label for="FreeUsage" id="FreeUsageLabel">
                         <input type="checkbox" id="FreeUsage">
-                        Free Daily (No API Key)
+                        {{ _('Free Daily (No API Key)') }}
                     </label>
                 </div>
                 {% endif %}
             </div>
-            <textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here! (e.g., microsoft/DialoGPT-medium)"></textarea>
+
+            <textarea class="customModelInput textInput slimmest hidden" placeholder="{{ _('Enter custom model here! (e.g., microsoft/DialoGPT-medium)') }}"></textarea>
 
             <select id="apiMode" class="select">
-                <option value="Hugging Face">Hugging Face</option>
-                <option value="Gemini">Gemini</option>
-                <option value="OpenAI">OpenAI</option>
+                <option value="Hugging Face">{{ _('Hugging Face') }}</option>
+                <option value="Gemini">{{ _('Gemini') }}</option>
+                <option value="OpenAI">{{ _('OpenAI') }}</option>
             </select>
-            
-            <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!"></textarea>
-            
+
+            <textarea class="apiKey textInput slimmest" placeholder="{{ _('Enter your Hugging Face API key here!') }}"></textarea>
+
             <div class="file-upload-wrapper">
-                <input type="file" id="fileInput" class="file-input" accept=".pdf,.txt,.md,.csv,.json,.log,.py,.js,.html,.css,.xml,.yml,.yaml,.ini,.cfg,.tex,.png,.jpg,.jpeg,.gif,.bmp,.tiff,.tif,.webp,.ppm,.pbm,.pgm,.jp2,.j2k"/>
-                <label for="fileInput" class="button fileButton">📄 Upload notes file</label>
+                <input type="file" id="fileInput" class="file-input" accept=".pdf,.txt,.md,.csv,.json,.log,.py,.js,.html,.css,.xml,.yml,.yaml,.ini,.cfg,.tex,.png,.jpg,.jpeg,.gif,.bmp,.tiff,.tif,.webp,.ppm,.pbm,.pgm,.jp2,.j2k">
+                <label for="fileInput" class="button fileButton">{{ _('Upload notes file') }}</label>
             </div>
 
-            <textarea class="notes textInput standard" placeholder="Notes go here :]">{{ prefill_topic or '' }}</textarea>
+            <textarea class="notes textInput standard" placeholder="{{ _('Notes go here') }} {{ prefill_topic or '' }}"></textarea>
 
             <div class="study-plan-options">
-                <label>Start Date: <input type="date" id="startDate"></label>
-                <label>End Date: <input type="date" id="endDate"></label>
-                <label>Hours per Day: <input type="number" id="hoursPerDay" min="1" max="12" value="2"></label>
-                Learning Style:
+                <label>{{ _('Start Date') }}<input type="date" id="startDate"></label>
+                <label>{{ _('End Date') }}<input type="date" id="endDate"></label>
+                <label>{{ _('Hours per Day') }}<input type="number" id="hoursPerDay" min="1" max="12" value="2"></label>
+
+                <label>{{ _('Learning Style') }}</label>
                 <div style="display: flex; justify-content: center;">
-                    <label><input type="checkbox" class="learningStyle" value="Reading" checked> Reading</label>
-                    <label><input type="checkbox" class="learningStyle" value="Video"> Video</label>
-                    <label><input type="checkbox" class="learningStyle" value="Exercises" checked> Exercises</label>
+                    <label><input type="checkbox" class="learningStyle" value="Reading" checked> {{ _('Reading') }}</label>
+                    <label><input type="checkbox" class="learningStyle" value="Video"> {{ _('Video') }}</label>
+                    <label><input type="checkbox" class="learningStyle" value="Exercises" checked> {{ _('Exercises') }}</label>
                 </div>
-                <label>Goal: <input type="text" id="studyGoal" placeholder="e.g., Prepare for Maths Exam"></label>
+
+                <label>{{ _('Goal') }}<input type="text" id="studyGoal" placeholder="{{ _('e.g., Prepare for Maths Exam') }}"></label>
             </div>
 
-            <label for="language">Output Language:</label>
+            <label for="language">{{ _('Output Language') }}</label>
             <select id="language" class="select">
-                <option value="eng">English</option>
-                <option value="pl">Polish</option>
-                <option value="ru">Russian</option>
-                <option value="de">German</option>
-                <option value="ua">Ukrainian</option>
-                <option value="fr">French</option>
+                <option value="eng">{{ _('English') }}</option>
+                <option value="pl">{{ _('Polish') }}</option>
+                <option value="ru">{{ _('Russian') }}</option>
+                <option value="de">{{ _('German') }}</option>
+                <option value="ua">{{ _('Ukrainian') }}</option>
+                <option value="fr">{{ _('French') }}</option>
             </select>
 
-            <button class="button submit">🚀 Generate Study Plan</button>
+            <button class="button submit">{{ _('Generate Study Plan') }}</button>
+
             <div class="file-upload-wrapper">
-                <input type="file" id="planfileInput" class="file-input import" accept=".json"/>
-                <label for="planfileInput" class="button fileButton">📄 Import Study Plan</label>
+                <input type="file" id="planfileInput" class="file-input import" accept=".json">
+                <label for="planfileInput" class="button fileButton">{{ _('Import Study Plan') }}</label>
             </div>
-            <div class="status-wrapper">
-                <div class="spinner hidden"></div>
-                <span class="status-text hidden"></span>
-            </div>
+        </div>
+
+        <div class="status-wrapper">
+            <div class="spinner hidden"></div>
+            <span class="status-text hidden"></span>
         </div>
     </div>
 {% endblock %}

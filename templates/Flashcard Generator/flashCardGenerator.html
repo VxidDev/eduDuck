@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Flashcard Generator{% endblock %}
+{% block title %}{{ _('EduDuck - Flashcard Generator') }}{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="/static/spinner.css">
@@ -18,23 +18,23 @@
         
         {% include 'includes/file_upload.html' %}
         
-        <textarea class="notes textInput standard" placeholder="Notes go here :]">{{ prefill_topic or '' }}</textarea>
+        <textarea class="notes textInput standard" placeholder="{{ _('Notes go here :)') }}">{{ prefill_topic or '' }}</textarea>
                 
         <div class="options-section">
             <select id="questionCount" class="select">
-                <option value="5">5 Flashcards</option>
-                <option value="10">10 Flashcards</option>
-                <option value="15">15 Flashcards</option>
-                <option value="20">20 Flashcards</option>
+                <option value="5">{{ _('5 Flashcards') }}</option>
+                <option value="10">{{ _('10 Flashcards') }}</option>
+                <option value="15">{{ _('15 Flashcards') }}</option>
+                <option value="20">{{ _('20 Flashcards') }}</option>
             </select>
         </div>
         
         {% include 'includes/language_selector.html' %}
         
-        <button class="button submit" style="width: auto;">✨ Generate Flashcards</button>
+        <button class="button submit" style="width: auto;">{{ _('✨ Generate Flashcards') }}</button>
         <div class="file-upload-wrapper">
             <input type="file" id="quizfileInput" class="file-input import" accept=".json"/>
-            <label for="quizfileInput" class="button fileButton">📄 Import Flashcards</label>
+            <label for="quizfileInput" class="button fileButton">📄 {{ _('Import Flashcards') }}</label>
         </div>
         <div class="status-wrapper">
             <div class="spinner hidden"></div>

@@ -1,70 +1,70 @@
 
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Terms of Service{% endblock %}
-{% block description %}EduDuck Terms of Service - Rules and guidelines for using EduDuck AI study tools.{% endblock %}
+{% block title %}{{ _('EduDuck - Terms of Service') }}{% endblock %}
+{% block description %}{{ _('EduDuck Terms of Service - Rules and guidelines for using EduDuck AI study tools.') }}{% endblock %}
 
 {% block head %}
 {% endblock %}
 
 {% block content %}
     <div class="main-content doc-content">
-        <h2>EduDuck Terms of Service</h2>
-        <p>Welcome to EduDuck! By using our platform, you agree to the following terms and guidelines:</p>
+        <h2>{{ _('EduDuck Terms of Service') }}</h2>
+        <p>{{ _('Welcome to EduDuck! By using our platform, you agree to the following terms and guidelines:') }}</p>
 
-        <h3>1. Use of the Service</h3>
-        <p><strong>1.</strong> EduDuck provides AI-powered study tools including quiz generation, flashcard creation, note enhancement, note analysis, study plan generation, and DuckAI chat assistance. You agree to use the platform for educational purposes only.</p>
-        <p><strong>2.</strong> Users must not misuse the service, attempt to disrupt it, or exceed free-tier limits in ways that affect other users.</p>
+        <h3>1. {{ _('Use of the Service') }}</h3>
+        <p><strong>1.</strong> {{ _('EduDuck provides AI-powered study tools including quiz generation, flashcard creation, note enhancement, note analysis, study plan generation, and DuckAI chat assistance. You agree to use the platform for educational purposes only.') }}</p>
+        <p><strong>2.</strong> {{ _('Users must not misuse the service, attempt to disrupt it, or exceed free-tier limits in ways that affect other users.') }}</p>
 
-        <h3>2. Accounts and Authentication</h3>
-        <p><strong>1.</strong> Some features require an account. You can register with email/password or sign in using OAuth providers (Google, GitHub, Discord, or Microsoft).</p>
-        <p><strong>2.</strong> Email verification is required for password-based accounts via MailGun.</p>
-        <p><strong>3.</strong> You are responsible for maintaining the confidentiality of your credentials and all activity on your account.</p>
-        <p><strong>4.</strong> You must notify EduDuck immediately of any unauthorized use of your account.</p>
-        <p><strong>5.</strong> Deleted accounts can be recovered within 30 days by contacting support. After 30 days, deletion is permanent.</p>
+        <h3>2. {{ _('Accounts and Authentication') }}</h3>
+        <p><strong>1.</strong> {{ _('Some features require an account. You can register with email/password or sign in using OAuth providers (Google, GitHub, Discord, or Microsoft).') }}</p>
+        <p><strong>2.</strong> {{ _('Email verification is required for password-based accounts via MailGun.') }}</p>
+        <p><strong>3.</strong> {{ _('You are responsible for maintaining the confidentiality of your credentials and all activity on your account.') }}</p>
+        <p><strong>4.</strong> {{ _('You must notify EduDuck immediately of any unauthorized use of your account.') }}</p>
+        <p><strong>5.</strong> {{ _('Deleted accounts can be recovered within 30 days by contacting support. After 30 days, deletion is permanent.') }}</p>
 
-        <h3>3. Content and Data</h3>
-        <p><strong>1.</strong> You retain ownership of the notes, PDFs, images, and materials you upload.</p>
-        <p><strong>2.</strong> By using EduDuck, you grant a temporary license to process your uploaded content for AI-generated results. EduDuck does not claim ownership of your content.</p>
-        <p><strong>3.</strong> Do not upload illegal, offensive, or copyrighted content that you do not own or have permission to use. Violations may result in suspension or termination of your account.</p>
-        <p><strong>4.</strong> Generated content (quizzes, flashcards, study plans, enhanced notes, note analyses) is stored in MongoDB. For logged-in users, content persists; for guest users, content is stored temporarily in session storage.</p>
+        <h3>3. {{ _('Content and Data') }}</h3>
+        <p><strong>1.</strong> {{ _('You retain ownership of the notes, PDFs, images, and materials you upload.') }}</p>
+        <p><strong>2.</strong> {{ _('By using EduDuck, you grant a temporary license to process your uploaded content for AI-generated results. EduDuck does not claim ownership of your content.') }}</p>
+        <p><strong>3.</strong> {{ _('Do not upload illegal, offensive, or copyrighted content that you do not own or have permission to use. Violations may result in suspension or termination of your account.') }}</p>
+        <p><strong>4.</strong> {{ _('Generated content (quizzes, flashcards, study plans, enhanced notes, note analyses) is stored in MongoDB. For logged-in users, content persists; for guest users, content is stored temporarily in session storage.') }}</p>
 
-        <h3>4. Free Usage and API Keys</h3>
-        <p><strong>1.</strong> The free tier provides 3 daily uses of EduDuck AI features per registered account, tracked daily and reset at midnight UTC.</p>
-        <p><strong>2.</strong> Additional usage requires your own API key from Hugging Face, OpenAI, or Google Gemini.</p>
-        <p><strong>3.</strong> EduDuck reserves the right to limit or suspend access to ensure fair usage among all users.</p>
-        <p><strong>4.</strong> API keys you provide are not stored permanently and are used only for your current session.</p>
+        <h3>4. {{ _('Free Usage and API Keys') }}</h3>
+        <p><strong>1.</strong> {{ _('The free tier provides 3 daily uses of EduDuck AI features per registered account, tracked daily and reset at midnight UTC.') }}</p>
+        <p><strong>2.</strong> {{ _('Additional usage requires your own API key from Hugging Face, OpenAI, or Google Gemini.') }}</p>
+        <p><strong>3.</strong> {{ _('EduDuck reserves the right to limit or suspend access to ensure fair usage among all users.') }}</p>
+        <p><strong>4.</strong> {{ _('API keys you provide are not stored permanently and are used only for your current session.') }}</p>
 
-        <h3>5. Privacy and Data Storage</h3>
-        <p><strong>1.</strong> Your data is stored in MongoDB (hosted by MongoDB Atlas) and may be processed temporarily for generating results and tracking usage.</p>
-        <p><strong>2.</strong> Uploaded files (PDFs, images) are processed using Tesseract OCR and PIL for image preprocessing, then discarded after processing.</p>
-        <p><strong>3.</strong> EduDuck does not sell your data. For more details on data handling, see our <a href="/privacy" class="repoLink">Privacy Policy</a>.</p>
+        <h3>5. {{ _('Privacy and Data Storage') }}</h3>
+        <p><strong>1.</strong> {{ _('Your data is stored in MongoDB (hosted by MongoDB Atlas) and may be processed temporarily for generating results and tracking usage.') }}</p>
+        <p><strong>2.</strong> {{ _('Uploaded files (PDFs, images) are processed using Tesseract OCR and PIL for image preprocessing, then discarded after processing.') }}</p>
+        <p><strong>3.</strong> {{ _('EduDuck does not sell your data. For more details on data handling, see our') }} <a href="/privacy" class="repoLink">{{ _('Privacy Policy') }}</a>.</p>
 
-        <h3>6. Third-Party AI Services</h3>
-        <p><strong>1.</strong> EduDuck integrates with Hugging Face Inference API, Google Gemini (2.5 Flash), and OpenAI APIs for AI-powered features.</p>
-        <p><strong>2.</strong> Your uploaded content is sent to these services for processing. Review their respective terms of service and privacy policies.</p>
-        <p><strong>3.</strong> EduDuck is not responsible for the accuracy, availability, or responses generated by third-party AI models.</p>
+        <h3>6. {{ _('Third-Party AI Services') }}</h3>
+        <p><strong>1.</strong> {{ _('EduDuck integrates with Hugging Face Inference API, Google Gemini (2.5 Flash), and OpenAI APIs for AI-powered features.') }}</p>
+        <p><strong>2.</strong> {{ _('Your uploaded content is sent to these services for processing. Review their respective terms of service and privacy policies.') }}</p>
+        <p><strong>3.</strong> {{ _('EduDuck is not responsible for the accuracy, availability, or responses generated by third-party AI models.') }}</p>
 
-        <h3>7. Updates and Termination</h3>
-        <p><strong>1.</strong> EduDuck may update, suspend, or terminate services at any time without prior notice.</p>
-        <p><strong>2.</strong> Users can export their generated content (quizzes, flashcards, study plans, notes, note analyses) in JSON or text formats before deletion.</p>
-        <p><strong>3.</strong> These Terms of Service may be updated periodically. Continued use of EduDuck constitutes acceptance of the updated terms.</p>
+        <h3>7. {{ _('Updates and Termination') }}</h3>
+        <p><strong>1.</strong> {{ _('EduDuck may update, suspend, or terminate services at any time without prior notice.') }}</p>
+        <p><strong>2.</strong> {{ _('Users can export their generated content (quizzes, flashcards, study plans, notes, note analyses) in JSON or text formats before deletion.') }}</p>
+        <p><strong>3.</strong> {{ _('These Terms of Service may be updated periodically. Continued use of EduDuck constitutes acceptance of the updated terms.') }}</p>
 
-        <h3>8. Limitation of Liability</h3>
-        <p><strong>1.</strong> EduDuck is provided "as is" without warranties. We are not responsible for errors, downtime, or inaccuracies in AI-generated results.</p>
-        <p><strong>2.</strong> EduDuck and its developers are not liable for any direct, indirect, incidental, or consequential damages arising from the use of the platform.</p>
-        <p><strong>3.</strong> Generated quizzes, flashcards, study plans, and note analyses are for educational assistance only and should be reviewed for accuracy.</p>
+        <h3>8. {{ _('Limitation of Liability') }}</h3>
+        <p><strong>1.</strong> {{ _('EduDuck is provided "as is" without warranties. We are not responsible for errors, downtime, or inaccuracies in AI-generated results.') }}</p>
+        <p><strong>2.</strong> {{ _('EduDuck and its developers are not liable for any direct, indirect, incidental, or consequential damages arising from the use of the platform.') }}</p>
+        <p><strong>3.</strong> {{ _('Generated quizzes, flashcards, study plans, and note analyses are for educational assistance only and should be reviewed for accuracy.') }}</p>
 
-        <h3>9. Governing Law</h3>
-        <p><strong>1.</strong> These terms are governed by the laws of Poland. Any disputes arising under these terms shall be resolved in the courts of Poland.</p>
+        <h3>9. {{ _('Governing Law') }}</h3>
+        <p><strong>1.</strong> {{ _('These terms are governed by the laws of Poland. Any disputes arising under these terms shall be resolved in the courts of Poland.') }}</p>
 
-        <h3>10. Children's Use</h3>
-        <p><strong>1.</strong> EduDuck is not intended for children under 13 years of age. We do not knowingly collect personal information from children.</p>
+        <h3>10. {{ _('Children\'s Use') }}</h3>
+        <p><strong>1.</strong> {{ _('EduDuck is not intended for children under 13 years of age. We do not knowingly collect personal information from children.') }}</p>
 
-        <h3>11. Contact</h3>
-        <p><strong>1.</strong> If you have questions about these terms, please contact us at <a style="text-decoration: none;" class="repoLink" href="mailto:team.eduduck@gmail.com">team.eduduck@gmail.com</a>.</p>
+        <h3>11. {{ _('Contact') }}</h3>
+        <p><strong>1.</strong> {{ _('If you have questions about these terms, please contact us at') }} <a style="text-decoration: none;" class="repoLink" href="mailto:team.eduduck@gmail.com">team.eduduck@gmail.com</a>.</p>
 
-        <p>By using EduDuck, you acknowledge that you have read and agree to these Terms of Service.</p>
+        <p>{{ _('By using EduDuck, you acknowledge that you have read and agree to these Terms of Service.') }}</p>
     </div>
 {% endblock %}
 

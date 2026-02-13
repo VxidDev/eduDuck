@@ -1,25 +1,26 @@
-<div style="display: flex; justify-content: center; gap: 25px">
+<div style="display: flex; justify-content: center; gap: 25px;">
     <div class="customModelSelector checkbox">
         <label for="customModel" id="customModelLabel">
             <input type="checkbox" id="customModel">
-            Use custom model
+            {{ _('Use custom model') }}
         </label>
     </div>
     {% if current_user.is_authenticated %}
     <div class="FreeUsage checkbox">
         <label for="FreeUsage" id="FreeUsageLabel">
             <input type="checkbox" id="FreeUsage">
-            Free Daily (No API Key)
+            {{ _('Free Daily (No API Key)') }}
         </label>
     </div>
     {% endif %}
 </div>
-<textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here! (e.g., mistralai/Mistral-7B-Instruct)"></textarea>
+
+<textarea class="customModelInput textInput slimmest hidden" placeholder="{{ _('Enter custom model here! (e.g., mistralai/Mistral-7B-Instruct)') }}"></textarea>
 
 <select id="apiMode" class="select">
-    <option value="Hugging Face">Hugging Face</option>
-    <option value="Gemini">Gemini</option>
-    <option value="OpenAI">OpenAI</option>
+    <option value="Hugging Face">{{ _('Hugging Face') }}</option>
+    <option value="Gemini">{{ _('Gemini') }}</option>
+    <option value="OpenAI">{{ _('OpenAI') }}</option>
 </select>
 
-<textarea class="apiKey textInput slimmest" placeholder="Enter your API key here!"></textarea>
+<textarea class="apiKey textInput slimmest" placeholder="{{ _('Enter your API key here!') }}"></textarea>

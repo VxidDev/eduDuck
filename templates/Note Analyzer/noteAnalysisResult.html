@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Note Analysis Results{% endblock %}
+{% block title %}{{ _('EduDuck - Note Analysis Results') }}{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="/static/noteAnalyzer/result-style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='noteAnalyzer/result-style.css') }}">
     <script>
         window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
         window.ANALYSIS_DATA = JSON.parse('{{ analysis | tojson | safe }}');
@@ -17,51 +17,57 @@
             {% if analysis and analysis.overall_score is defined %}
                 <!-- Overall Score Card -->
                 <div class="score-card">
-                    <h1 class="score-title">📊 Note Analysis Results</h1>
+                    <h1 class="score-title">{{ _('Note Analysis Results') }}</h1>
+
                     <div class="overall-score">
                         <div class="score-value {% if analysis.overall_score >= 80 %}score-excellent{% elif analysis.overall_score >= 60 %}score-good{% elif analysis.overall_score >= 40 %}score-needs-work{% else %}score-poor{% endif %}">
-                            {{ analysis.overall_score }}
+                            {{ analysis.overall_score }}%
                         </div>
-                        <p class="score-label">Overall Quality Score</p>
-                        <p class="score-subtitle">
-                            Based on {{ analysis.sections | length }} section{{ 's' if analysis.sections | length != 1 else '' }} analyzed
-                        </p>
+                        <p class="score-label">{{ _('Overall Quality Score') }}</p>
+                        <p class="score-subtitle">{{ _('Based on') }} {{ analysis.sections | length }} {{ _('section') }}{% if analysis.sections | length != 1 %}{{ _('s') }}{% endif %} {{ _('analyzed') }}</p>
                     </div>
-                    
+
                     {% if analysis.overall_score >= 80 %}
-                        <p class="interpretation excellent">🎉 <strong>Excellent!</strong> Your notes are comprehensive and well-structured.</p>
+                        <p class="interpretation excellent">
+                            <strong>{{ _('Excellent!') }}</strong> {{ _('Your notes are comprehensive and well-structured.') }}
+                        </p>
                     {% elif analysis.overall_score >= 60 %}
-                        <p class="interpretation good">💪 <strong>Good Foundation!</strong> Your notes cover the basics well. Review the suggestions below to make them even better.</p>
+                        <p class="interpretation good">
+                            <strong>{{ _('Good Foundation!') }}</strong> {{ _('Your notes cover the basics well. Review the suggestions below to make them even better.') }}
+                        </p>
                     {% elif analysis.overall_score >= 40 %}
-                        <p class="interpretation needs-work">⚠️ <strong>Needs Improvement.</strong> There are several areas that need attention. Focus on the suggestions below.</p>
+                        <p class="interpretation needs-work">
+                            <strong>{{ _('Needs Improvement.') }}</strong> {{ _('There are several areas that need attention. Focus on the suggestions below.') }}
+                        </p>
                     {% else %}
-                        <p class="interpretation poor">🔴 <strong>Significant Gaps Detected.</strong> Your notes need major improvements. Start with high-priority issues first.</p>
+                        <p class="interpretation poor">
+                            <strong>{{ _('Significant Gaps Detected.') }}</strong> {{ _('Your notes need major improvements. Start with high-priority issues first.') }}
+                        </p>
                     {% endif %}
-                    
                 </div>
 
                 <!-- Action Buttons -->
                 <div class="action-buttons">
-                    <a href="/note-analyzer" class="button secondary">🔍 Analyze Another</a>
-                    <a href="/note-analyzer/export-analysis?id={{ request.args.get('id', '') }}" class="button secondary">💾 Export Analysis</a>
+                    <a href="{{ url_for('note_analyzer') }}" class="button secondary">{{ _('Analyze Another') }}</a>
+                    <a href="{{ url_for('note_analyzer.export_analysis', id=request.args.get('id', '')) }}" class="button secondary">{{ _('Export Analysis') }}</a>
                 </div>
 
                 <!-- Sections Analysis -->
                 <div class="sections-container">
-                    <h2 class="sections-title">Detailed Analysis</h2>
-                    
+                    <h2 class="sections-title">{{ _('Detailed Analysis') }}</h2>
+
                     {% for section in analysis.sections %}
                         <div class="section-card">
                             <div class="section-header">
                                 <h3 class="section-title">{{ section.title }}</h3>
                                 <span class="confidence-badge {% if section.confidence >= 80 %}confidence-high{% elif section.confidence >= 60 %}confidence-medium{% else %}confidence-low{% endif %}">
-                                    Confidence: {{ section.confidence }}%
+                                    {{ _('Confidence') }}: {{ section.confidence }}%
                                 </span>
                             </div>
 
                             {% if section.issues and section.issues | length > 0 %}
                                 <div class="section-content issues-section">
-                                    <h4 class="content-title issues-title">Issues Identified</h4>
+                                    <h4 class="content-title issues-title">{{ _('Issues Identified') }}</h4>
                                     <ul class="content-list">
                                         {% for issue in section.issues %}
                                             <li>{{ issue }}</li>
@@ -72,7 +78,7 @@
 
                             {% if section.why_it_matters and section.why_it_matters | length > 0 %}
                                 <div class="section-content why-section">
-                                    <h4 class="content-title why-title">Why It Matters</h4>
+                                    <h4 class="content-title why-title">{{ _('Why It Matters') }}</h4>
                                     <ul class="content-list">
                                         {% for reason in section.why_it_matters %}
                                             <li>{{ reason }}</li>
@@ -83,7 +89,7 @@
 
                             {% if section.suggestions and section.suggestions | length > 0 %}
                                 <div class="section-content suggestions-section">
-                                    <h4 class="content-title suggestions-title">Suggestions for Improvement</h4>
+                                    <h4 class="content-title suggestions-title">{{ _('Suggestions for Improvement') }}</h4>
                                     <ul class="content-list">
                                         {% for suggestion in section.suggestions %}
                                             <li>{{ suggestion }}</li>
@@ -97,30 +103,30 @@
 
                 <!-- Next Steps -->
                 <div class="next-steps">
-                    <h3>🎯 Next Steps</h3>
+                    <h3>{{ _('Next Steps') }}</h3>
                     <ol class="steps-list">
-                        <li>Address high-priority issues first (sections with lower confidence scores)</li>
-                        <li>Implement 2-3 suggestions per study session to avoid overwhelm</li>
-                        <li>Re-analyze your notes after improvements to track progress</li>
-                        <li>Use <a href="/note-enhancer" class="inline-link">Note Enhancer</a> for AI-powered improvements</li>
-                        <li>Test your understanding by generating a <a href="/quiz-generator" class="inline-link">quiz</a> from your notes</li>
+                        <li>{{ _('Address high-priority issues first (sections with lower confidence scores)') }}</li>
+                        <li>{{ _('Implement 2-3 suggestions per study session to avoid overwhelm') }}</li>
+                        <li>{{ _('Re-analyze your notes after improvements to track progress') }}</li>
+                        <li>{{ _('Use') }} <a href="{{ url_for('note_enhancer') }}" class="inline-link">{{ _('Note Enhancer') }}</a> {{ _('for AI-powered improvements') }}</li>
+                        <li>{{ _('Test your understanding by generating a') }} <a href="{{ url_for('quiz_generator') }}" class="inline-link">{{ _('quiz') }}</a> {{ _('from your notes') }}</li>
                     </ol>
                 </div>
 
                 <!-- Footer Actions -->
                 <div class="footer-actions">
-                    <a href="/note-analyzer" class="button primary">🔍 Analyze More Notes</a>
-                    <a href="/quiz-generator?topic={{ analysis.sections[0].title if analysis.sections else '' }}" class="button secondary">📝 Generate Quiz</a>
-                    <a href="/note-enhancer" class="button secondary">✨ Enhance Notes</a>
+                    <a href="{{ url_for('note_analyzer') }}" class="button primary">{{ _('Analyze More Notes') }}</a>
+                    <a href="{{ url_for('quiz_generator', topic=analysis.sections[0].title if analysis.sections else '') }}" class="button secondary">{{ _('Generate Quiz') }}</a>
+                    <a href="{{ url_for('note_enhancer') }}" class="button secondary">{{ _('Enhance Notes') }}</a>
                 </div>
 
             {% else %}
                 <!-- No Analysis Found -->
                 <div class="error-container">
                     <div class="error-icon">⚠️</div>
-                    <h2>Analysis Not Found</h2>
-                    <p>We couldn't find the analysis you're looking for. It may have expired or the link is incorrect.</p>
-                    <a href="/note-analyzer" class="button primary">Analyze New Notes</a>
+                    <h2>{{ _('Analysis Not Found') }}</h2>
+                    <p>{{ _("We couldn't find the analysis you're looking for. It may have expired or the link is incorrect.") }}</p>
+                    <a href="{{ url_for('note_analyzer') }}" class="button primary">{{ _('Analyze New Notes') }}</a>
                 </div>
             {% endif %}
         </div>

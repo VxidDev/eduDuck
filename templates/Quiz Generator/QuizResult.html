@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Quiz Results{% endblock %}
+{% block title %}{{ _('EduDuck - Quiz Results') }}{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="/static/Quiz/QuizStyle.css">
@@ -17,7 +17,7 @@
             <div class="score-display" id="scoreDisplay">0/10</div>
             <div class="result-stats">
                 <span id="percentage">0%</span>
-                <span id="totalQuestions">0 questions</span>
+                <span id="totalQuestions">{{ _('0 questions') }}</span>
             </div>
         </div>
         
@@ -26,7 +26,7 @@
         </div>
         
         <div class="result-actions">
-            <a class="button" href="/" style="text-align: center; align-content: center; text-decoration: none;">← New Quiz</a>
+            <a class="button" href="/" style="text-align: center; align-content: center; text-decoration: none;">{{ _('← New Quiz') }}</a>
         </div>
     </div>
 {% endblock %}

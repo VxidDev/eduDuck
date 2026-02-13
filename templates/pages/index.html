@@ -1,29 +1,29 @@
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Free AI Quiz & Flashcard Generator for Students{% endblock %}
-{% block description %}EduDuck turns notes into quizzes, flashcards & study tools instantly. Free AI learning platform with OCR, DuckAI tutor, and no signup required. Perfect for exams and homework.{% endblock %}
+{% block title %}{{ _('EduDuck - Free AI Quiz & Flashcard Generator for Students') }}{% endblock %}
+{% block description %}{{ _('EduDuck turns notes into quizzes, flashcards & study tools instantly. Free AI learning platform with OCR, DuckAI tutor, and no signup required. Perfect for exams and homework.') }}{% endblock %}
 
 {% block content %}
     <div class="main-content">
         <!-- Hero Section -->
         <div class="hero-section">
-            <h2 class="hero-title">AI-Powered Educational Tools</h2>
-            <p class="hero-subtitle">Transform your study materials into interactive learning experiences using advanced AI. Convert notes to quizzes, enhance your study materials, and master subjects faster.</p>
+            <h2 class="hero-title">{{ _('AI-Powered Educational Tools') }}</h2>
+            <p class="hero-subtitle">{{ _('Transform your study materials into interactive learning experiences using advanced AI. Convert notes to quizzes, enhance your study materials, and master subjects faster.') }}</p>
             
             <div class="hero-cta">
                 <a href="/keyAccess" class="cta-button cta-primary">
                     <span class="cta-icon">🚀</span>
-                    Get Started Free
+                    {{ _('Get Started Free') }}
                 </a>
                 <a href="#how-it-works" class="cta-button cta-secondary">
                     <span class="cta-icon">📖</span>
-                    Learn How
+                    {{ _('Learn How') }}
                 </a>
             </div>
 
             <div class="hero-badge" style="margin-top: 25px;">
                 <span class="badge-dot"></span>
-                <span class="badge-text">Built by a student for students – No sign-up required</span>
+                <span class="badge-text">{{ _('Built by a student for students – No sign-up required') }}</span>
             </div>
         </div>
 
@@ -31,15 +31,15 @@
         <div class="stats-section">
             <div class="stat-card">
                 <div class="stat-number">3</div>
-                <div class="stat-label">Free Uses Daily</div>
+                <div class="stat-label">{{ _('Free Uses Daily') }}</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">4</div>
-                <div class="stat-label">AI Tools</div>
+                <div class="stat-label">{{ _('AI Tools') }}</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">∞</div>
-                <div class="stat-label">With Your API Key</div>
+                <div class="stat-label">{{ _('With Your API Key') }}</div>
             </div>
         </div>
 
@@ -47,77 +47,77 @@
         <section class="features-section" aria-labelledby="features-heading">
             <h2 id="features-heading" class="section-title">
                 <span class="title-icon" role="img" aria-label="Sparkles">✨</span>
-                Study Smarter, Not Harder
+                {{ _('Study Smarter, Not Harder') }}
             </h2>
             
             <div class="features" role="list">
                 <article class="feature-card" data-aos="fade-up" role="listitem">
                     <span class="feature-icon" role="img" aria-label="Memo">📝</span>
-                    <h3><a href="/quiz-generator">Quiz Generator</a></h3>
-                    <p>Upload your notes or paste text to instantly generate customized quizzes and practice questions with detailed explanations. Perfect for exam prep – supports OCR for scanned notes.</p>
+                    <h3><a href="/quiz-generator">{{ _('Quiz Generator') }}</a></h3>
+                    <p>{{ _('Upload your notes or paste text to instantly generate customized quizzes and practice questions with detailed explanations. Perfect for exam prep – supports OCR for scanned notes.') }}</p>
                     <footer class="feature-tags">
-                        <span class="tag">OCR Support</span>
-                        <span class="tag">Instant</span>
-                        <span class="tag">Multiple Choice</span>
-                        <span class="tag">Explanations</span>
-                        <span class="tag">Exam Prep</span>
-                        <span class="tag">PDF Upload</span>
+                        <span class="tag">{{ _('OCR Support') }}</span>
+                        <span class="tag">{{ _('Instant') }}</span>
+                        <span class="tag">{{ _('Multiple Choice') }}</span>
+                        <span class="tag">{{ _('Explanations') }}</span>
+                        <span class="tag">{{ _('Exam Prep') }}</span>
+                        <span class="tag">{{ _('PDF Upload') }}</span>
                     </footer>
                 </article>
                 
                 <article class="feature-card" data-aos="fade-up" data-aos-delay="100" role="listitem">
                     <span class="feature-icon" role="img" aria-label="Sparkles">✨</span>
-                    <h3><a href="/note-enhancer">Note Enhancer</a></h3>
-                    <p>Supercharge your notes with AI-generated summaries, key concept highlights, visual diagrams, and connections between topics. Turn messy lecture notes into organized study guides.</p>
+                    <h3><a href="/note-enhancer">{{ _('Note Enhancer') }}</a></h3>
+                    <p>{{ _('Supercharge your notes with AI-generated summaries, key concept highlights, visual diagrams, and connections between topics. Turn messy lecture notes into organized study guides.') }}</p>
                     <footer class="feature-tags">
-                        <span class="tag">AI Summary</span>
-                        <span class="tag">Visual</span>
-                        <span class="tag">OCR Support</span>
-                        <span class="tag">Diagrams</span>
-                        <span class="tag">Key Concepts</span>
-                        <span class="tag">Organized</span>
+                        <span class="tag">{{ _('AI Summary') }}</span>
+                        <span class="tag">{{ _('Visual') }}</span>
+                        <span class="tag">{{ _('OCR Support') }}</span>
+                        <span class="tag">{{ _('Diagrams') }}</span>
+                        <span class="tag">{{ _('Key Concepts') }}</span>
+                        <span class="tag">{{ _('Organized') }}</span>
                     </footer>
                 </article>
 
                 <article class="feature-card" data-aos="fade-up" data-aos-delay="200" role="listitem">
                     <span class="feature-icon" role="img" aria-label="Card index">🗂️</span>
-                    <h3><a href="/flashcard-generator">Flashcard Generator</a></h3>
-                    <p>Upload your notes or paste text to instantly generate spaced repetition flashcards for perfect memorization.</p>
+                    <h3><a href="/flashcard-generator">{{ _('Flashcard Generator') }}</a></h3>
+                    <p>{{ _('Upload your notes or paste text to instantly generate spaced repetition flashcards for perfect memorization.') }}</p>
                     <footer class="feature-tags">
-                        <span class="tag">Spaced Rep</span>
-                        <span class="tag">Memory</span>
-                        <span class="tag">OCR Support</span>
-                        <span class="tag">Quick Review</span>
-                        <span class="tag">Auto-Generate</span>
-                        <span class="tag">Export</span>
+                        <span class="tag">{{ _('Spaced Rep') }}</span>
+                        <span class="tag">{{ _('Memory') }}</span>
+                        <span class="tag">{{ _('OCR Support') }}</span>
+                        <span class="tag">{{ _('Quick Review') }}</span>
+                        <span class="tag">{{ _('Auto-Generate') }}</span>
+                        <span class="tag">{{ _('Export') }}</span>
                     </footer>
                 </article>
 
                 <article class="feature-card" data-aos="fade-up" data-aos-delay="300" role="listitem">
                     <span class="feature-icon" role="img" aria-label="Calendar">📅</span>
-                    <h3><a href="/study-plan-generator">Study Plan Generator</a></h3>
-                    <p>Create a personalized study plan in minutes. Enter your goals, subjects, and available time, and get a structured schedule to maximize learning efficiency.</p>
+                    <h3><a href="/study-plan-generator">{{ _('Study Plan Generator') }}</a></h3>
+                    <p>{{ _('Create a personalized study plan in minutes. Enter your goals, subjects, and available time, and get a structured schedule to maximize learning efficiency.') }}</p>
                     <footer class="feature-tags">
-                        <span class="tag">Personalized</span>
-                        <span class="tag">Tracking</span>
-                        <span class="tag">OCR Support</span>
-                        <span class="tag">Time Management</span>
-                        <span class="tag">Goal-Oriented</span>
-                        <span class="tag">Scheduling</span>
+                        <span class="tag">{{ _('Personalized') }}</span>
+                        <span class="tag">{{ _('Tracking') }}</span>
+                        <span class="tag">{{ _('OCR Support') }}</span>
+                        <span class="tag">{{ _('Time Management') }}</span>
+                        <span class="tag">{{ _('Goal-Oriented') }}</span>
+                        <span class="tag">{{ _('Scheduling') }}</span>
                     </footer>
                 </article>
 
                 <article class="feature-card" data-aos="fade-up" data-aos-delay="400" role="listitem">
                     <span class="feature-icon" role="img" aria-label="Magnifying Glass">🔍</span>
-                    <h3><a href="/note-analyzer">Note Analyzer</a></h3>
-                    <p>Get AI-powered feedback on your notes quality, completeness, and structure. Identifies gaps, suggests improvements, and provides actionable recommendations to make your notes exam-ready.</p>
+                    <h3><a href="/note-analyzer">{{ _('Note Analyzer') }}</a></h3>
+                    <p>{{ _('Get AI-powered feedback on your notes quality, completeness, and structure. Identifies gaps, suggests improvements, and provides actionable recommendations to make your notes exam-ready.') }}</p>
                     <footer class="feature-tags">
-                        <span class="tag">Quality Score</span>
-                        <span class="tag">Gap Detection</span>
-                        <span class="tag">OCR Support</span>
-                        <span class="tag">Actionable Tips</span>
-                        <span class="tag">Structure Review</span>
-                        <span class="tag">Improvement Plan</span>
+                        <span class="tag">{{ _('Quality Score') }}</span>
+                        <span class="tag">{{ _('Gap Detection') }}</span>
+                        <span class="tag">{{ _('OCR Support') }}</span>
+                        <span class="tag">{{ _('Actionable Tips') }}</span>
+                        <span class="tag">{{ _('Structure Review') }}</span>
+                        <span class="tag">{{ _('Improvement Plan') }}</span>
                     </footer>
                 </article>
             </div>
@@ -127,66 +127,66 @@
         <section id="how-it-works" class="how-it-works">
             <h2 class="section-title">
                 <span class="title-icon">🎯</span>
-                How EduDuck Works
+                {{ _('How EduDuck Works') }}
             </h2>
             
             <div class="steps-container" style="display: flex; flex-direction: column; gap:25px;">
                 <div class="step-card">
                     <div class="step-number">1</div>
                     <div class="step-content">
-                        <h3>Paste or Upload</h3>
-                        <p>Drop in your notes, PDFs, or images with OCR-powered text extraction</p>
+                        <h3>{{ _('Paste or Upload') }}</h3>
+                        <p>{{ _('Drop in your notes, PDFs, or images with OCR-powered text extraction') }}</p>
                     </div>
                 </div>
 
                 <div class="step-card">
                     <div class="step-number">2</div>
                     <div class="step-content">
-                        <h3>Choose AI</h3>
-                        <p>Free Hugging Face/Google Gemini or premium OpenAI for advanced results</p>
+                        <h3>{{ _('Choose AI') }}</h3>
+                        <p>{{ _('Free Hugging Face/Google Gemini or premium OpenAI for advanced results') }}</p>
                     </div>
                 </div>
 
                 <div class="step-card">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <h3>Generate Instantly</h3>
-                        <p>Get quizzes, flashcards, or enhanced notes in seconds</p>
+                        <h3>{{ _('Generate Instantly') }}</h3>
+                        <p>{{ _('Get quizzes, flashcards, or enhanced notes in seconds') }}</p>
                     </div>
                 </div>
 
                 <div class="step-card">
                     <div class="step-number">4</div>
                     <div class="step-content">
-                        <h3>Practice Smart</h3>
-                        <p>Track progress with DuckAI explanations and custom tips</p>
+                        <h3>{{ _('Practice Smart') }}</h3>
+                        <p>{{ _('Track progress with DuckAI explanations and custom tips') }}</p>
                     </div>
                 </div>
             </div>
 
             <div class="free-tier-badge" style="margin-top: 25px;">
                 <span class="badge-icon">🎁</span>
-                3 free uses per day - upgrade with your own API key for unlimited access
+                {{ _('3 free uses per day - upgrade with your own API key for unlimited access') }}
             </div>
         </section>
 
         <!-- DuckAI Spotlight -->
         <section class="duckai-spotlight">
             <div class="spotlight-content">
-                <h2 class="spotlight-title">Meet DuckAI</h2>
-                <p class="spotlight-subtitle">Mastered the quizzes and flashcards? <strong>DuckAI has your back!</strong></p>
-                <p class="spotlight-description">Ask for concept explanations, quiz clarifications, physics homework help, or custom study tips tailored to your notes!</p>
+                <h2 class="spotlight-title">{{ _('Meet DuckAI') }}</h2>
+                <p class="spotlight-subtitle">{{ _('Mastered the quizzes and flashcards? <strong>DuckAI has your back!</strong>') }}</p>
+                <p class="spotlight-description">{{ _('Ask for concept explanations, quiz clarifications, physics homework help, or custom study tips tailored to your notes!') }}</p>
             </div>
 
             <div class="duckai-feature-card">
                 <div class="feature-icon duckai-icon">🦆</div>
-                <h3><a href="/duck-ai" class="repoLink">DuckAI</a></h3>
-                <p>Your smart study companion - explain concepts, quiz help, remembers your notes! Supports custom prompts, dark mode, and conversation history for ongoing study sessions.</p>
+                <h3><a href="/duck-ai" class="repoLink">{{ _('DuckAI') }}</a></h3>
+                <p>{{ _('Your smart study companion - explain concepts, quiz help, remembers your notes! Supports custom prompts, dark mode, and conversation history for ongoing study sessions.') }}</p>
                 <div class="feature-tags">
-                    <span class="tag tag-special">AI Tutor</span>
-                    <span class="tag tag-special">Context-Aware</span>
-                    <span class="tag tag-special">24/7</span>
-                    <span class="tag tag-special">OCR Support</span>
+                    <span class="tag tag-special">{{ _('AI Tutor') }}</span>
+                    <span class="tag tag-special">{{ _('Context-Aware') }}</span>
+                    <span class="tag tag-special">{{ _('24/7') }}</span>
+                    <span class="tag tag-special">{{ _('OCR Support') }}</span>
                 </div>
             </div>
         </section>
@@ -195,44 +195,44 @@
         <section class="why-section">
             <h2 class="section-title">
                 <span class="title-icon">🏆</span>
-                Why Choose EduDuck?
+                {{ _('Why Choose EduDuck?') }}
             </h2>
 
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <div class="benefit-icon">🎁</div>
-                    <h3>Free Tier</h3>
-                    <p>3 daily uses with OpenAI - no credit card needed</p>
+                    <h3>{{ _('Free Tier') }}</h3>
+                    <p>{{ _('3 daily uses with OpenAI - no credit card needed') }}</p>
                 </div>
 
                 <div class="benefit-card">
                     <div class="benefit-icon">⚡</div>
-                    <h3>Fast & Private</h3>
-                    <p>Processes locally in-browser where possible, deployed on Render for speed</p>
+                    <h3>{{ _('Fast & Private') }}</h3>
+                    <p>{{ _('Processes locally in-browser where possible, deployed on Render for speed') }}</p>
                 </div>
 
                 <div class="benefit-card">
                     <div class="benefit-icon">🎓</div>
-                    <h3>Student-Focused</h3>
-                    <p>Built for heavy workloads like math, physics, biology exams</p>
+                    <h3>{{ _('Student-Focused') }}</h3>
+                    <p>{{ _('Built for heavy workloads like math, physics, biology exams') }}</p>
                 </div>
 
                 <div class="benefit-card">
                     <div class="benefit-icon">🔓</div>
-                    <h3>Open Source</h3>
-                    <p><a class="repoLink" href="https://github.com/VxidDev/EduDuck">Open-Source</a> roots with enhanced private version</p>
+                    <h3>{{ _('Open Source') }}</h3>
+                    <p><a class="repoLink" href="https://github.com/VxidDev/EduDuck">{{ _('Open-Source') }}</a> {{ _('roots with enhanced private version') }}</p>
                 </div>
 
                 <div class="benefit-card">
                     <div class="benefit-icon">📱</div>
-                    <h3>Mobile-Friendly</h3>
-                    <p>Works on phone for on-the-go studying</p>
+                    <h3>{{ _('Mobile-Friendly') }}</h3>
+                    <p>{{ _('Works on phone for on-the-go studying') }}</p>
                 </div>
 
                 <div class="benefit-card">
                     <div class="benefit-icon">🔒</div>
-                    <h3>Secure</h3>
-                    <p>Your data stays private, encrypted connections</p>
+                    <h3>{{ _('Secure') }}</h3>
+                    <p>{{ _('Your data stays private, encrypted connections') }}</p>
                 </div>
             </div>
         </section>
@@ -241,13 +241,13 @@
         <section class="testimonials-section">
             <h2 class="section-title">
                 <span class="title-icon">💬</span>
-                What Students Say
+                {{ _('What Students Say') }}
             </h2>
             
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="quote-icon">"</div>
-                    <p class="testimonial-text">EduDuck is really helpful especially for English, 90% passing rate, boosted up 15% with it.</p>
+                    <p class="testimonial-text">{{ _('EduDuck is really helpful especially for English, 90% passing rate, boosted up 15% with it.') }}</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">D</div>
                         <span class="author-name">Deathtyr</span>
@@ -256,7 +256,7 @@
 
                 <div class="testimonial-card">
                     <div class="quote-icon">"</div>
-                    <p class="testimonial-text">EduDuck is the greatest thing since sliced bread.</p>
+                    <p class="testimonial-text">{{ _('EduDuck is the greatest thing since sliced bread.') }}</p>
                     <div class="testimonial-author">
                         <div class="author-avatar">F</div>
                         <span class="author-name">Fuwutoy</span>
@@ -268,14 +268,14 @@
         <!-- Final CTA -->
         <section class="final-cta">
             <div class="cta-content">
-                <h2 class="cta-title">Ready to Ace Your Exams?</h2>
-                <p class="cta-description">Get your free API key and start now - no sign-up, instant results!</p>
+                <h2 class="cta-title">{{ _('Ready to Ace Your Exams?') }}</h2>
+                <p class="cta-description">{{ _('Get your free API key and start now - no sign-up, instant results!') }}</p>
                 <a href="/keyAccess" class="cta-button cta-large repoLink" style="margin-bottom: 25px;">
                     <span class="cta-icon repoLink">🚀</span>
-                    Get Started Free
+                    {{ _('Get Started Free') }}
                     <span class="cta-arrow">→</span>
                 </a>
-                <p class="cta-note">Join students already improving their grades with EduDuck</p>
+                <p class="cta-note">{{ _('Join students already improving their grades with EduDuck') }}</p>
             </div>
         </section>
     </div>

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Quiz Generator{% endblock %}
+{% block title %}{{ _('EduDuck - Quiz Generator') }}{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="/static/spinner.css">
@@ -18,33 +18,33 @@
         
         {% include 'includes/file_upload.html' %}
         
-        <textarea class="notes textInput standard" placeholder="Notes go here :]">{{ prefill_topic or '' }}</textarea>
+        <textarea class="notes textInput standard" placeholder="{{ _('Notes go here :)') }}">{{ prefill_topic or '' }}</textarea>
         
         <div class="selectors" style="display: flex; gap: 25px; justify-content: center;">
             <div class="options-section">
                 <select id="questionCount" class="select">
-                    <option value="5">5 Questions</option>
-                    <option value="10">10 Questions</option>
-                    <option value="15">15 Questions</option>
-                    <option value="20">20 Questions</option>
+                    <option value="5">{{ _('5 Questions') }}</option>
+                    <option value="10">{{ _('10 Questions') }}</option>
+                    <option value="15">{{ _('15 Questions') }}</option>
+                    <option value="20">{{ _('20 Questions') }}</option>
                 </select>
             </div>
             <div class="difficulty-section">
                 <select id="difficulty" class="select"> 
-                    <option value="easy">🟢 Easy - Quick Recall</option>
-                    <option value="medium">🟡 Medium - Apply It</option>
-                    <option value="hard">🟠 Hard - Deep Think</option>
-                    <option value="challenging">🔴 Challenging - Master Mode</option>
+                    <option value="easy">{{ _('🟢 Easy - Quick Recall') }}</option>
+                    <option value="medium">{{ _('🟡 Medium - Apply It') }}</option>
+                    <option value="hard">{{ _('🟠 Hard - Deep Think') }}</option>
+                    <option value="challenging">{{ _('🔴 Challenging - Master Mode') }}</option>
                 </select>
             </div>
         </div>
         
         {% include 'includes/language_selector.html' %}
         
-        <button class="button submit">🚀 Generate Quiz</button>
+        <button class="button submit">{{ _('🚀 Generate Quiz') }}</button>
         <div class="file-upload-wrapper">
             <input type="file" id="quizfileInput" class="file-input import" accept=".json"/>
-            <label for="quizfileInput" class="button fileButton">📄 Import Quiz</label>
+            <label for="quizfileInput" class="button fileButton">📄 {{ _('Import Quiz') }}</label>
         </div>
 
         <div class="status-wrapper">

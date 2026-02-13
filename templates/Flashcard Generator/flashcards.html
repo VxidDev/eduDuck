@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Flashcards{% endblock %}
+{% block title %}{{ _('EduDuck - Flashcards') }}{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="/static/variables.css">
@@ -14,7 +14,7 @@
 
 {% block content %}
     <div class="main">
-        <p class="md-content" id="display" data-notes='{{ flashcards|tojson|safe }}'>Loading...</p>
-        <button class="button export" style="margin-bottom: 25px;">📄 Export Flashcards</button>
+        <p class="md-content" id="display" data-notes='{{ flashcards|tojson|safe }}'>{{ _('Loading...') }}</p>
+        <button class="button export" style="margin-bottom: 25px;">📄 {{ _('Export Flashcards') }}</button>
     </div>
 {% endblock %}

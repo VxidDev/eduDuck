@@ -1,8 +1,8 @@
 
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Register{% endblock %}
-{% block description %}Register for EduDuck to save your notes, quizzes, flashcards, and DuckAI responses. Free AI study tools for students.{% endblock %}
+{% block title %}{{ _('EduDuck - Register') }}{% endblock %}
+{% block description %}{{ _('Register for EduDuck to save your notes, quizzes, flashcards, and DuckAI responses. Free AI study tools for students.') }}{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="/static/variables.css">
@@ -14,8 +14,8 @@
 
 {% block content %}
     <div class="main-content" style="display: flex; flex-direction: column; align-items: center; padding-top: 50px;">
-        <h2>Create Your EduDuck Account</h2>
-        <p style="text-align:center; max-width:600px;">Register to save notes, quizzes, flashcards, and DuckAI responses. Free AI study tools for students.</p>
+        <h2>{{ _('Create Your EduDuck Account') }}</h2>
+        <p style="text-align:center; max-width:600px;">{{ _('Register to save notes, quizzes, flashcards, and DuckAI responses. Free AI study tools for students.') }}</p>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -30,74 +30,74 @@
         {% endwith %}
 
         <div id="register-form" class="auth-form" style="display: flex; flex-direction: column; gap: 15px; margin-top: 30px; width: 450px; max-width: 90vw;">
-            <label for="username">Username</label>
-            <input type="text" id="username" placeholder="Choose a username" style="padding:10px; font-size:1em;">
+            <label for="username">{{ _('Username') }}</label>
+            <input type="text" id="username" placeholder="{{ _('Choose a username') }}" style="padding:10px; font-size:1em;">
 
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Enter your email" style="padding:10px; font-size:1em;">
+            <label for="email">{{ _('Email') }}</label>
+            <input type="email" id="email" placeholder="{{ _('Enter your email') }}" style="padding:10px; font-size:1em;">
 
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Choose a password" style="padding:10px; font-size:1em;">
+            <label for="password">{{ _('Password') }}</label>
+            <input type="password" id="password" placeholder="{{ _('Choose a password') }}" style="padding:10px; font-size:1em;">
 
             <div id="password-requirements" class="password-requirements">
                 <div class="requirement" id="req-length">
                     <span class="req-icon"></span>
-                    <span class="req-text">8+ characters</span>
+                    <span class="req-text">{{ _('8+ characters') }}</span>
                 </div>
                 <div class="requirement" id="req-letter">
                     <span class="req-icon"></span>
-                    <span class="req-text">Contains letters</span>
+                    <span class="req-text">{{ _('Contains letters') }}</span>
                 </div>
                 <div class="requirement" id="req-number">
                     <span class="req-icon"></span>
-                    <span class="req-text">Contains numbers</span>
+                    <span class="req-text">{{ _('Contains numbers') }}</span>
                 </div>
                 <div class="requirement" id="req-special">
                     <span class="req-icon"></span>
-                    <span class="req-text">Special char</span>
+                    <span class="req-text">{{ _('Special char') }}</span>
                 </div>
                 <div class="requirement" id="req-no-space">
                     <span class="req-icon"></span>
-                    <span class="req-text">No spaces</span>
+                    <span class="req-text">{{ _('No spaces') }}</span>
                 </div>
             </div>
 
-            <label for="confirm_password">Confirm Password</label>
-            <input type="password" id="confirm_password" placeholder="Repeat your password" style="padding:10px; font-size:1em;">
+            <label for="confirm_password">{{ _('Confirm Password') }}</label>
+            <input type="password" id="confirm_password" placeholder="{{ _('Repeat your password') }}" style="padding:10px; font-size:1em;">
 
             <div id="password-match" class="password-match" style="display:none;">
                 <span class="req-icon"></span>
-                <span class="req-text">Passwords match</span>
+                <span class="req-text">{{ _('Passwords match') }}</span>
             </div>
 
-            <button id="register-button" class="button" style="padding: 10px; font-size: 1.1em; cursor:pointer;">Register</button>
+            <button id="register-button" class="button" style="padding: 10px; font-size: 1.1em; cursor:pointer;">{{ _('Register') }}</button>
 
             <div class="oauth-divider">
-                <span>Or continue with</span>
+                <span>{{ _('Or continue with') }}</span>
             </div>
 
             <div class="oauth-grid">
-                <a href="{{ url_for('oauth.loginGoogle') }}" class="oauth-btn-compact" title="Sign in with Google">
-                    <img src="{{ url_for('static', filename='img/google-logo.svg') }}" alt="Google" class="oauth-logo">
+                <a href="{{ url_for('oauth.loginGoogle') }}" class="oauth-btn-compact" title="{{ _('Sign in with Google') }}">
+                    <img src="{{ url_for('static', filename='img/google-logo.svg') }}" alt="{{ _('Google') }}" class="oauth-logo">
                 </a>
 
-                <a href="{{ url_for('oauth.loginMicrosoft') }}" class="oauth-btn-compact" title="Sign in with Microsoft">
-                    <img src="{{ url_for('static', filename='img/microsoft-logo.svg') }}" alt="Microsoft" class="oauth-logo">
+                <a href="{{ url_for('oauth.loginMicrosoft') }}" class="oauth-btn-compact" title="{{ _('Sign in with Microsoft') }}">
+                    <img src="{{ url_for('static', filename='img/microsoft-logo.svg') }}" alt="{{ _('Microsoft') }}" class="oauth-logo">
                 </a>
 
-                <a href="{{ url_for('oauth.loginGithub') }}" class="oauth-btn-compact" title="Sign in with GitHub">
-                    <img src="{{ url_for('static', filename='img/github-logo.svg') }}" alt="GitHub" class="oauth-logo oauth-logo-theme-dependant">
+                <a href="{{ url_for('oauth.loginGithub') }}" class="oauth-btn-compact" title="{{ _('Sign in with GitHub') }}">
+                    <img src="{{ url_for('static', filename='img/github-logo.svg') }}" alt="{{ _('GitHub') }}" class="oauth-logo oauth-logo-theme-dependant">
                 </a>
 
-                <a href="{{ url_for('oauth.loginDiscord') }}" class="oauth-btn-compact" title="Sign in with Discord">
-                    <img src="{{ url_for('static', filename='img/discord-logo.svg') }}" alt="Discord" class="oauth-logo">
+                <a href="{{ url_for('oauth.loginDiscord') }}" class="oauth-btn-compact" title="{{ _('Sign in with Discord') }}">
+                    <img src="{{ url_for('static', filename='img/discord-logo.svg') }}" alt="{{ _('Discord') }}" class="oauth-logo">
                 </a>
             </div>
 
             <p id="register-error" style="color:red; margin-top:10px; display:none;"></p>
         </div>
 
-        <p style="margin-top:20px;">Already have an account? <a href="/login" class="repoLink">Login here</a></p>
+        <p style="margin-top:20px;">{{ _('Already have an account?') }} <a href="/login" class="repoLink">{{ _('Login here') }}</a></p>
     </div>
 {% endblock %}
 

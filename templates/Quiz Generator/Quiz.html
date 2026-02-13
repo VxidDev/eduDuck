@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Quiz{% endblock %}
+{% block title %}{{ _('EduDuck - Quiz') }}{% endblock %}
 
 {% block head %}
 
@@ -17,9 +17,9 @@
         </div>
         
         <button class="button submit-quiz" id="submitQuiz" style="display: none; justify-content: center; align-items: center; text-align: center;">
-            Submit Quiz →
+            {{ _('Submit Quiz →') }}
         </button>
         
-        <button class="button export" style="margin-bottom: 25px;">📄 Export Quiz</button>
+        <button class="button export" style="margin-bottom: 25px;">📄 {{ _('Export Quiz') }}</button>
     </div>
 {% endblock %}

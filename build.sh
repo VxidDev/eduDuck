@@ -59,5 +59,9 @@ if [ ! -f requirements.txt ]; then
 fi
 pip install -r requirements.txt
 
+# Compile translation files
+echo "Compiling translation files..."
+pybabel compile -d translations
+
 echo "✓ Build complete with performance optimizations"
 echo "✓ TypeScript compilation complete"
