@@ -1,80 +1,81 @@
-
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Profile{% endblock %}
+{% block title %}{{ _('EduDuck - Profile') }}{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="/static/profile/style.css">
-    <script src="/dist/profile/main.js" type="module" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile/style.css') }}">
+    <script src="{{ url_for('static', filename='dist/profile/main.js') }}" type="module" defer></script>
 {% endblock %}
 
 {% block content %}
     <div class="main-content profile-main">
-        <h2>Your Profile</h2>
-        <p>View and reopen your saved quizzes, flashcards, study plans, notes, note analyses, and DuckAI conversations.</p>
+        <h2>{{ _('Your Profile') }}</h2>
+        <p>{{ _('View and reopen your saved quizzes, flashcards, study plans, notes, note analyses, and DuckAI conversations.') }}</p>
 
         <div class="streak-container">
             <button id="next-action-btn" class="button" style="background: #10b981; color: white; width: auto; margin-top: 20px; padding-left: 25px; padding-right: 25px;">
-                🦆 What should I do next?
+                {{ _('What should I do next?') }}
             </button>
 
-        <div id="next-modal" style="display: none; position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background: white; border-radius: 12px; padding: 24px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); z-index: 1000; max-width: 400px;">
-            <h3 id="next-title"></h3>
-            <p id="next-topic" style="font-weight: 600; color: #10b981;"></p>
-            <p id="next-reason"></p>
-            <button id="generate-btn" class="button" style="background: #10b981; color: white; width: 100%; margin-top: 16px;">Generate Now</button>
-            <button onclick="document.getElementById('next-modal').style.display='none'" style="margin-top: 12px; background: none; border: 1px solid #d1d5db; color: #374151; padding-left: 15px; padding-right: 15px; border-radius: 15px;">Close</button>
-        </div>
+            <div id="next-modal" style="display: none; position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background: white; border-radius: 12px; padding: 24px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); z-index: 1000; max-width: 400px;">
+                <h3 id="next-title"></h3>
+                <p id="next-topic" style="font-weight: 600; color: #10b981;"></p>
+                <p id="next-reason"></p>
+                <button id="generate-btn" class="button" style="background: #10b981; color: white; width: 100%; margin-top: 16px;">{{ _('Generate Now') }}</button>
+                <button onclick="document.getElementById('next-modal').style.display='none'" style="margin-top: 12px; background: none; border: 1px solid #d1d5db; color: #374151; padding-left: 15px; padding-right: 15px; border-radius: 15px;">{{ _('Close') }}</button>
+            </div>
+
             <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 999;" onclick="document.getElementById('next-modal').style.display='none'; this.style.display='none';"></div>
+
             <div class="streak-header">
-                <h3>Study Activity</h3>
+                <h3>{{ _('Study Activity') }}</h3>
                 <div class="streak-stats">
                     <div class="stat">
                         <span class="stat-value" id="current-streak">0</span>
-                        <span class="stat-label">day streak</span>
+                        <span class="stat-label">{{ _('day streak') }}</span>
                     </div>
                     <div class="stat">
                         <span class="stat-value" id="longest-streak">0</span>
-                        <span class="stat-label">longest streak</span>
+                        <span class="stat-label">{{ _('longest streak') }}</span>
                     </div>
                     <div class="stat">
                         <span class="stat-value" id="total-days">0</span>
-                        <span class="stat-label">total days</span>
+                        <span class="stat-label">{{ _('total days') }}</span>
                     </div>
                     <div class="stat">
                         <span class="stat-value" id="total-activities">0</span>
-                        <span class="stat-label">activities</span>
+                        <span class="stat-label">{{ _('activities') }}</span>
                     </div>
                 </div>
             </div>
-            
+
             <div class="color-controls">
                 <div class="color-picker">
-                    <label for="base-color">Custom Color:</label>
+                    <label for="base-color">{{ _('Custom Color') }}</label>
                     <input type="color" id="base-color" value="#10b981">
                 </div>
                 <div class="color-presets">
-                    <span class="preset-label">Presets:</span>
-                    <button class="color-preset" data-color="#10b981" style="background: #10b981;" title="Green (default)"></button>
-                    <button class="color-preset" data-color="#3b82f6" style="background: #3b82f6;" title="Blue"></button>
-                    <button class="color-preset" data-color="#8b5cf6" style="background: #8b5cf6;" title="Purple"></button>
-                    <button class="color-preset" data-color="#f59e0b" style="background: #f59e0b;" title="Orange"></button>
-                    <button class="color-preset" data-color="#ef4444" style="background: #ef4444;" title="Red"></button>
-                    <button class="color-preset" data-color="#ec4899" style="background: #ec4899;" title="Pink"></button>
+                    <span class="preset-label">{{ _('Presets') }}</span>
+                    <button class="color-preset" data-color="#10b981" style="background: #10b981;" title="{{ _('Green (default)') }}"></button>
+                    <button class="color-preset" data-color="#3b82f6" style="background: #3b82f6;" title="{{ _('Blue') }}"></button>
+                    <button class="color-preset" data-color="#8b5cf6" style="background: #8b5cf6;" title="{{ _('Purple') }}"></button>
+                    <button class="color-preset" data-color="#f59e0b" style="background: #f59e0b;" title="{{ _('Orange') }}"></button>
+                    <button class="color-preset" data-color="#ef4444" style="background: #ef4444;" title="{{ _('Red') }}"></button>
+                    <button class="color-preset" data-color="#ec4899" style="background: #ec4899;" title="{{ _('Pink') }}"></button>
                 </div>
             </div>
-            
+
             <div class="heatmap-wrapper">
                 <div class="weekday-labels">
-                    <span>Mon</span>
-                    <span>Wed</span>
-                    <span>Fri</span>
+                    <span>{{ _('Mon') }}</span>
+                    <span>{{ _('Wed') }}</span>
+                    <span>{{ _('Fri') }}</span>
                 </div>
                 <div class="heatmap-grid" id="heatmap" style="gap: 4px !important;"></div>
             </div>
-            
+
             <div class="intensity-legend">
-                <span>Less</span>
+                <span>{{ _('Less') }}</span>
                 <div class="legend-boxes">
                     <div class="legend-box level-0"></div>
                     <div class="legend-box level-1"></div>
@@ -82,9 +83,9 @@
                     <div class="legend-box level-3"></div>
                     <div class="legend-box level-4"></div>
                 </div>
-                <span>More</span>
+                <span>{{ _('More') }}</span>
             </div>
-            
+
             <!-- Tooltip -->
             <div class="tooltip" id="heatmap-tooltip" style="display: none;">
                 <div class="tooltip-date"></div>
@@ -92,120 +93,94 @@
                 <div class="tooltip-streak"></div>
             </div>
         </div>
-
         <!-- Profile Picture Upload -->
         <div class="profile-upload-section" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 25px; padding-top: 50px;">
-            <h3>Update Profile Picture</h3>
+            <h3>{{ _('Update Profile Picture') }}</h3>
             <form id="profile-pic-form" enctype="multipart/form-data" class="auth-form">
                 <input type="file" id="profile-picture-input" name="profile_picture" accept="image/*" class="textInput">
-                <button type="submit" class="button">Upload</button>
+                <button type="submit" class="button">{{ _('Upload') }}</button>
             </form>
-            <p id="profile-pic-status" class="tutorial-note" style="margin-top: 10px;">upload profile picture by clicking button above</p>
+            <p id="profile-pic-status" class="tutorial-note" style="margin-top: 10px;">{{ _('Upload profile picture by clicking button above') }}</p>
         </div>
 
         <div class="features" style="margin-top: 32px;">
             <div class="feature-card">
-                <h3>📝 Quizzes</h3>
+                <h3>{{ _('Quizzes') }}</h3>
                 {% if quizzes %}
                     <ul>
                         {% for q in quizzes %}
-                            <li>
-                                <a href="/quiz-generator/quiz?id={{ q.queryID }}" class="repoLink">
-                                    Quiz - {{ q.createdAt.strftime("%Y-%m-%d %H:%M") }}
-                                </a>
-                            </li>
+                            <li><a href="{{ url_for('quiz_generator.quiz', id=q.query_ID) }}" class="repoLink">{{ _('Quiz') }} - {{ q.created_at.strftime('%Y-%m-%d %H:%M') }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p class="tutorial-note">No quizzes yet.</p>
+                    <p class="tutorial-note">{{ _('No quizzes yet.') }}</p>
                 {% endif %}
             </div>
 
             <div class="feature-card">
-                <h3>🗂️ Flashcards</h3>
+                <h3>{{ _('Flashcards') }}</h3>
                 {% if flashcards %}
                     <ul>
                         {% for f in flashcards %}
-                            <li>
-                                <a href="/flashcard-generator/result?id={{ f.queryID }}" class="repoLink">
-                                    Flashcards - {{ f.createdAt.strftime("%Y-%m-%d %H:%M") }}
-                                </a>
-                            </li>
+                            <li><a href="{{ url_for('flashcard_generator.result', id=f.query_ID) }}" class="repoLink">{{ _('Flashcards') }} - {{ f.created_at.strftime('%Y-%m-%d %H:%M') }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p class="tutorial-note">No flashcards yet.</p>
+                    <p class="tutorial-note">{{ _('No flashcards yet.') }}</p>
                 {% endif %}
             </div>
 
             <div class="feature-card">
-                <h3>📅 Study Plans</h3>
+                <h3>{{ _('Study Plans') }}</h3>
                 {% if plans %}
                     <ul>
                         {% for p in plans %}
-                            <li>
-                                <a href="/study-plan-generator/result?id={{ p.queryID }}" class="repoLink">
-                                    Study plan - {{ p.createdAt.strftime("%Y-%m-%d %H:%M") }}
-                                </a>
-                            </li>
+                            <li><a href="{{ url_for('study_plan_generator.result', id=p.query_ID) }}" class="repoLink">{{ _('Study plan') }} - {{ p.created_at.strftime('%Y-%m-%d %H:%M') }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p class="tutorial-note">No study plans yet.</p>
+                    <p class="tutorial-note">{{ _('No study plans yet.') }}</p>
                 {% endif %}
             </div>
 
             <div class="feature-card">
-                <h3>📊 Note Analyses</h3>
-                {% if noteanalyses %}
+                <h3>{{ _('Note Analyses') }}</h3>
+                {% if note_analyses %}
                     <ul>
-                        {% for na in noteanalyses %}
-                            <li>
-                                <a href="{{ url_for('note_analyzer_result', id=na.queryID) }}" class="repoLink">
-                                    Analysis - {{ na.createdAt.strftime('%Y-%m-%d %H:%M') }}
-                                </a>
-                            </li>
+                        {% for na in note_analyses %}
+                            <li><a href="{{ url_for('note_analyzer.result', id=na.query_ID) }}" class="repoLink">{{ _('Analysis') }} - {{ na.created_at.strftime('%Y-%m-%d %H:%M') }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p class="tutorial-note">No note analyses yet.</p>
+                    <p class="tutorial-note">{{ _('No note analyses yet.') }}</p>
                 {% endif %}
             </div>
 
             <div class="feature-card">
-                <h3>✨ Enhanced Notes</h3>
+                <h3>{{ _('Enhanced Notes') }}</h3>
                 {% if notes %}
                     <ul>
                         {% for n in notes %}
-                            <li>
-                                <a href="/note-enhancer/result?id={{ n.queryID }}" class="repoLink">
-                                    Notes - {{ n.createdAt.strftime("%Y-%m-%d %H:%M") }}
-                                </a>
-                            </li>
+                            <li><a href="{{ url_for('note_enhancer.result', id=n.query_ID) }}" class="repoLink">{{ _('Notes') }} - {{ n.created_at.strftime('%Y-%m-%d %H:%M') }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p class="tutorial-note">No enhanced notes yet.</p>
+                    <p class="tutorial-note">{{ _('No enhanced notes yet.') }}</p>
                 {% endif %}
             </div>
 
             <div class="feature-card feature-card-duckai">
-                <h3>🦆 DuckAI Conversations</h3>
+                <h3>{{ _('DuckAI Conversations') }}</h3>
                 {% if duckai %}
                     <ul>
                         {% for c in duckai %}
-                            <li>
-                                <a href="/duck-ai?id={{ c.queryID }}" class="repoLink">
-                                    Chat - last edited {{ c.lastEditedAt.strftime("%Y-%m-%d %H:%M") }}
-                                </a>
-                            </li>
+                            <li><a href="{{ url_for('duck_ai', id=c.query_ID) }}" class="repoLink">{{ _('Chat') }} - {{ _('last edited') }} {{ c.last_edited_at.strftime('%Y-%m-%d %H:%M') }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p class="tutorial-note">No DuckAI chats yet.</p>
+                    <p class="tutorial-note">{{ _('No DuckAI chats yet.') }}</p>
                 {% endif %}
             </div>
         </div>
     </div>
 {% endblock %}
-

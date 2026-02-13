@@ -1,15 +1,15 @@
 
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Daily Limit Reached{% endblock %}
-{% block description %}You have reached your daily limit of free uses on EduDuck. Upgrade or wait until tomorrow to continue using AI study tools.{% endblock %}
+{% block title %}{{ _('EduDuck - Daily Limit Reached') }}{% endblock %}
+{% block description %}{{ _('You have reached your daily limit of free uses on EduDuck. Upgrade or wait until tomorrow to continue using AI study tools.') }}{% endblock %}
 
 {% block content %}
     <div class="main-content" style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding-top: 100px; text-align: center;">
-        <h2>⚠️ Daily Limit Reached</h2>
-        <p style="font-size: 1.5em; margin: 20px 0;">You have used all 3 free daily uses of EduDuck's AI study tools.</p>
-        <p style="margin: 10px 0;">Come back tomorrow for more free uses or upgrade your API key for unlimited access.</p>
-        <a href="/keyAccess" class="button" style="justify-content: center; align-items: center; display: flex; font-size: 1.2em; text-decoration: none; width: auto; padding: 0 15px 0 15px;">Get API key for unlimited access</a>
+        <h2>⚠️ {{ _('Daily Limit Reached') }}</h2>
+        <p style="font-size: 1.5em; margin: 20px 0;">{{ _("You have used all 3 free daily uses of EduDuck's AI study tools.") }}</p>
+        <p style="margin: 10px 0;">{{ _('Come back tomorrow for more free uses or upgrade your API key for unlimited access.') }}</p>
+        <a href="/keyAccess" class="button" style="justify-content: center; align-items: center; display: flex; font-size: 1.2em; text-decoration: none; width: auto; padding: 0 15px 0 15px;">{{ _('Get API key for unlimited access') }}</a>
     </div>
 {% endblock %}
 

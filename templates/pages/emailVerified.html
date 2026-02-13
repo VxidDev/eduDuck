@@ -1,25 +1,25 @@
 
 {% extends "base.html" %}
 
-{% block title %}Email Verified - EduDuck{% endblock %}
-{% block description %}Your EduDuck account has been successfully verified. Start using AI quizzes, flashcards, and study tools now.{% endblock %}
+{% block title %}{{ _('Email Verified - EduDuck') }}{% endblock %}
+{% block description %}{{ _('Your EduDuck account has been successfully verified. Start using AI quizzes, flashcards, and study tools now.') }}{% endblock %}
 
 {% block content %}
     <div class="main-content" style="text-align: center; padding: 80px 20px;">
         {% if success %}
-            <h2>🎉 Email Verified!</h2>
+            <h2>🎉 {{ _('Email Verified!') }}</h2>
             <p style="font-size: 1.3em; margin-top: 20px;">
-                Your EduDuck account (<strong>{{ email }}</strong>) has been successfully verified.
+                {{ _('Your EduDuck account (') }}<strong>{{ email }}</strong>{{ _(') has been successfully verified.') }}
             </p>
-            <p style="margin-top: 30px;">You can now start using EduDuck!</p>
+            <p style="margin-top: 30px;">{{ _('You can now start using EduDuck!') }}</p>
         {% else %}
-            <h2>⚠️ Verification Failed</h2>
+            <h2>⚠️ {{ _('Verification Failed') }}</h2>
             <p style="font-size: 1.3em; margin--top: 20px;">
-                The verification link is invalid or has expired.
+                {{ _('The verification link is invalid or has expired.') }}
             </p>
-            <p style="margin-top: 30px;">Please try registering again or contact support.</p>
+            <p style="margin-top: 30px;">{{ _('Please try registering again or contact support.') }}</p>
         {% endif %}
-        <a href="/" class="button" style="margin-top: 40px; font-size: 1.2em; text-decoration: none; padding: 15px 25px;">Back to Home</a>
+        <a href="/" class="button" style="margin-top: 40px; font-size: 1.2em; text-decoration: none; padding: 15px 25px;">{{ _('Back to Home') }}</a>
     </div>
 {% endblock %}
 

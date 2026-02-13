@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Note Analyzer{% endblock %}
+{% block title %}{{ _('EduDuck - Note Analyzer') }}{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="/static/noteAnalyzer/style.css">
-    <link rel="stylesheet" href="/static/spinner.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='noteAnalyzer/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='spinner.css') }}">
     <script src="/dist/noteAnalyzer/main.js" type="module" defer></script>
-    <script src="/dist/Components/fileDrop.js" defer></script>
+    <script src="{{ url_for('static', filename='dist/Components/fileDrop.js') }}" defer></script>
     <script>
         window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
     </script>
@@ -15,60 +15,61 @@
 {% block content %}
     <div class="main-content">
         <div class="main">
-            <div style="display: flex; justify-content: center; gap: 25px">
+            <div style="display: flex; justify-content: center; gap: 25px;">
                 <div class="customModelSelector checkbox">
                     <label for="customModel" id="customModelLabel">
                         <input type="checkbox" id="customModel">
-                        Use custom model
+                        {{ _('Use custom model') }}
                     </label>
                 </div>
                 {% if current_user.is_authenticated %}
                 <div class="FreeUsage checkbox">
                     <label for="FreeUsage" id="FreeUsageLabel">
                         <input type="checkbox" id="FreeUsage">
-                        Free Daily (No API Key)
+                        {{ _('Free Daily (No API Key)') }}
                     </label>
                 </div>
                 {% endif %}
             </div>
-            <textarea class="customModelInput textInput slimmest hidden" placeholder="Enter custom model here! (e.g., gpt-4o-mini)"></textarea>
+
+            <textarea class="customModelInput textInput slimmest hidden" placeholder="{{ _('Enter custom model here! (e.g., gpt-4o-mini)') }}"></textarea>
 
             <select id="apiMode" class="select">
-                <option value="Hugging Face">Hugging Face</option>
-                <option value="Gemini">Gemini</option>
-                <option value="OpenAI">OpenAI</option>
+                <option value="Hugging Face">{{ _('Hugging Face') }}</option>
+                <option value="Gemini">{{ _('Gemini') }}</option>
+                <option value="OpenAI">{{ _('OpenAI') }}</option>
             </select>
-            
-            <textarea class="apiKey textInput slimmest" placeholder="Enter your Hugging Face API key here!"></textarea>
-            
+
+            <textarea class="apiKey textInput slimmest" placeholder="{{ _('Enter your Hugging Face API key here!') }}"></textarea>
+
             <div class="file-upload-wrapper">
-                <input type="file" id="fileInput" class="file-input" accept=".pdf,.txt,.md,.csv,.json,.log,.py,.js,.html,.css,.xml,.yml,.yaml,.ini,.cfg,.tex,.png,.jpg,.jpeg,.gif,.bmp,.tiff,.tif,.webp,.ppm,.pbm,.pgm,.jp2,.j2k"/>
-                <label for="fileInput" class="button fileButton">📄 Upload notes file</label>
+                <input type="file" id="fileInput" class="file-input" accept=".pdf,.txt,.md,.csv,.json,.log,.py,.js,.html,.css,.xml,.yml,.yaml,.ini,.cfg,.tex,.png,.jpg,.jpeg,.gif,.bmp,.tiff,.tif,.webp,.ppm,.pbm,.pgm,.jp2,.j2k">
+                <label for="fileInput" class="button fileButton">{{ _('Upload notes file') }}</label>
             </div>
 
-            <textarea class="notes textInput large" placeholder="Paste your notes here for analysis...">{{ prefill_topic or '' }}</textarea>
+            <textarea class="notes textInput large" placeholder="{{ _('Paste your notes here for analysis...') }} {{ prefill_topic or '' }}"></textarea>
 
-            <label for="language">Output Language:</label>
+            <label for="language">{{ _('Output Language') }}</label>
             <select id="language" class="select">
-                <option value="English">English</option>
-                <option value="Polish">Polish</option>
-                <option value="Russian">Russian</option>
-                <option value="German">German</option>
-                <option value="Ukrainian">Ukrainian</option>
-                <option value="French">French</option>
+                <option value="English">{{ _('English') }}</option>
+                <option value="Polish">{{ _('Polish') }}</option>
+                <option value="Russian">{{ _('Russian') }}</option>
+                <option value="German">{{ _('German') }}</option>
+                <option value="Ukrainian">{{ _('Ukrainian') }}</option>
+                <option value="French">{{ _('French') }}</option>
             </select>
 
-            <button class="button submit">🔍 Analyze My Notes</button>
-            
-            <div class="file-upload-wrapper">
-                <input type="file" id="analysisfileInput" class="file-input import" accept=".json"/>
-                <label for="analysisfileInput" class="button fileButton">📄 Import Analysis</label>
-            </div>
+            <button class="button submit">{{ _('Analyze My Notes') }}</button>
 
-            <div class="status-wrapper hidden">
-                <div class="spinner hidden"></div>
-                <span class="status-text hidden"></span>
+            <div class="file-upload-wrapper">
+                <input type="file" id="analysisfileInput" class="file-input import" accept=".json">
+                <label for="analysisfileInput" class="button fileButton">{{ _('Import Analysis') }}</label>
             </div>
+        </div>
+
+        <div class="status-wrapper hidden">
+            <div class="spinner hidden"></div>
+            <span class="status-text hidden"></span>
         </div>
     </div>
 {% endblock %}

@@ -9,6 +9,7 @@ export const ChatMessages = document.getElementById("chat-messages") as HTMLElem
 export const NewChat = document.getElementById("new-chat") as HTMLElement;
 export const FreeUsage = document.getElementById("FreeUsage") as HTMLInputElement | null;
 export const FreeUsageText = document.getElementById("FreeUsageText") as HTMLElement | null;
+export const LanguageSelector = document.getElementById("output-language") as HTMLSelectElement;
 const StatusWrapper = document.querySelector<HTMLElement>('.status-wrapper')!;
 const Spinner = document.querySelector<HTMLElement>('.spinner')!;
 const StatusText = document.querySelector<HTMLElement>('.status-text')!;

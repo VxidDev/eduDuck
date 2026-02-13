@@ -14,11 +14,13 @@ from botocore.client import Config
 from botocore.exceptions import ClientError
 from bson import ObjectId
 from dotenv import load_dotenv
-from flask import Flask, render_template, send_from_directory, redirect, url_for, request, jsonify
+from flask import Flask, render_template, send_from_directory, redirect, url_for, request, jsonify, make_response
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_login import LoginManager, login_required, current_user, logout_user
 from flask_wtf.csrf import CSRFProtect
+from flask_babel import Babel, get_locale
+from flask_babel import gettext as _
 from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
@@ -63,6 +65,25 @@ if not app.secret_key or len(app.secret_key) < 32:
     raise RuntimeError("Invalid SECRET_KEY")
 
 csrf = CSRFProtect(app)
+
+def determine_request_locale():
+    # Try to get the language from a cookie
+    lang = request.cookies.get('lang')
+    Log(f"determine_request_locale called. Cookie 'lang' value: {lang}", "info")
+    if lang:
+        return lang
+    # Try to guess the language from the user accept header first
+    # Otherwise, use a default language (e.g., 'en')
+    return request.accept_languages.best_match(['en', 'pl', 'uk', 'fr', 'ru', 'de'])
+
+babel = Babel(app , locale_selector=determine_request_locale)
+app.config['BABEL_TRANSLATION_DIRECTORIES'] = 'translations'
+
+@app.context_processor
+def inject_babel_globals():
+    current_locale = get_locale()
+    Log(f"inject_babel_globals: Setting template 'locale' to: {current_locale}", "info")
+    return dict(_=_, locale=current_locale)
 
 # In-memory data stores (temporary solution)
 notes = {}
@@ -158,9 +179,11 @@ def setup_ttl_indexes():
     ]
     for collection_name in collections:
         try:
-            db[collection_name].create_index(
-                "deletedAt",
-                expireAfterSeconds=2592000  # 30 days
+            db.collection.create_index(
+                [("deletedAt", 1)], 
+                expireAfterSeconds=2592000,
+                partialFilterExpression={"deleted": True},  # Matches existing
+                name="deletedAt_1"
             )
             Log(f"TTL index created for {collection_name}", "info")
         except Exception as e:
@@ -542,6 +565,18 @@ def delete_account():
 # API & Data Routes
 #
 
+@app.route("/set-language", methods=["POST"])
+@limiter.exempt
+def set_language():
+    lang = request.form.get("lang")
+    if lang in ['en', 'pl', 'uk', 'fr', 'ru', 'de']: # Ensure lang is valid
+        Log(f"Attempting to set language cookie to: {lang}", "info")
+        response = make_response(redirect(request.referrer or url_for("root")))
+        response.set_cookie("lang", lang, max_age=365 * 24 * 60 * 60, path='/')
+        Log(f"Language cookie set for: {lang}", "info")
+        return response
+    return redirect(request.referrer or url_for("root"))
+
 @app.route("/store-query", endpoint="store_query")
 @limiter.limit("100 per hour")
 @api_login_required
@@ -763,7 +798,7 @@ def note_analyzer_import():
 
 @app.route("/note-analyzer/export-analysis", endpoint="note_analyzer_export")
 @limiter.exempt
-def note_analyzer_export():
+def export_note_analysis():
     return ExportNoteAnalysis(noteAnalyses)
 
 #

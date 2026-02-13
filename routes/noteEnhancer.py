@@ -12,11 +12,14 @@ def NoteEnhancer():
 
 def EnhanceNotes(prompts: dict , notes: dict):
     data: dict = request.get_json()
+    Log(f"EnhanceNotes - Full data received: {data}", "info") # Added log statement
     IS_FREE = data["isFree"]
     NOTES = data["notes"]
     LANGUAGE = data["language"]
     API_MODE = data["apiMode"]
     MODEL = data.get("model" , False)
+
+    Log(f"EnhanceNotes - LANGUAGE received: {LANGUAGE}", "info") # Added log statement
 
     IsReasoning = False
 

@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}EduDuck - DuckAI{% endblock %}
+{% block title %}{{ _('EduDuck - DuckAI') }}{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="/static/spinner.css">
-    <link rel="stylesheet" href="/static/DuckAI/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='spinner.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='DuckAI/style.css') }}">
     <script src="/dist/DuckAI/main.js" type="module" defer></script>
-    <script src="/dist/Components/fileDrop.js" defer></script>
+    <script src="{{ url_for('static', filename='dist/Components/fileDrop.js') }}" defer></script>
     <script>
         window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
     </script>
@@ -17,28 +17,35 @@
 
     <div style="display: flex; justify-content: center; flex-direction: column; align-items: center; gap: 45px; max-width: 550px; margin: 0 auto;">
         {% include 'includes/model_selector.html' %}
-
-        {% include 'includes/file_upload.html' %} 
+        {% include 'includes/file_upload.html' %}
+        {% include 'includes/language_selector.html' %}
     </div>
 
-    <div class="main-content" data-chat='{{ chat| tojson |safe }}''>
+    <div class="main-content" data-chat="{{ chat | tojson | safe }}">
         <div class="status-wrapper">
             <div class="spinner hidden"></div>
             <span class="status-text hidden"></span>
         </div>
+
         <div class="chat-container">
             <div id="chat-messages" class="chat-messages">
                 <div class="message ai-message">
                     <div class="message-bubble">
-                        Quack! I'm DuckAI, your study companion. Ask me about quizzes, physics, concepts, or anything from your notes! 🚀
+                        {{ _("Quack! I'm DuckAI, your study companion. Ask me about quizzes, physics, concepts, or anything from your notes!") }}
                     </div>
                 </div>
             </div>
-            <div class="chat-input-wrapper">
-                <textarea id="user-input" class="textInput" placeholder="Ask DuckAI about kinematics, quiz help, or your notes..." autocomplete="off" rows="1">{{ prefill_topic or '' }}</textarea>
 
-                <button class="button submit" id="send-button">Send</button>
-                <button class="button" id="new-chat" style="margin-left: 10px;">New Chat</button>
+            <div class="chat-input-wrapper">
+                <textarea 
+                    id="user-input" 
+                    class="textInput" 
+                    placeholder="{{ _('Ask DuckAI about kinematics, quiz help, or your notes...') }} {{ prefill_topic or '' }}" 
+                    autocomplete="off"
+                    rows="1"
+                ></textarea>
+                <button class="button submit" id="send-button">{{ _('Send') }}</button>
+                <button class="button" id="new-chat" style="margin-left: 10px;">{{ _('New Chat') }}</button>
             </div>
         </div>
     </div>

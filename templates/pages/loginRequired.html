@@ -1,15 +1,15 @@
 
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Login Required{% endblock %}
-{% block description %}You must be logged in to use the free tier on EduDuck. Get your free API key and start learning instantly.{% endblock %}
+{% block title %}{{ _('EduDuck - Login Required') }}{% endblock %}
+{% block description %}{{ _('You must be logged in to use the free tier on EduDuck. Get your free API key and start learning instantly.') }}{% endblock %}
 
 {% block content %}
     <div class="main-content" style="display: flex; justify-content: center; align-items: center; flex-direction: column; padding-top: 100px; text-align: center;">
-        <h2>🚫 Login Required</h2>
-        <p style="font-size: 1.5em; margin: 20px 0;">You must be logged in to use the free tier of EduDuck.</p>
-        <a href="/login" class="button" style="justify-content: center; align-items: center; display: flex; font-size: 1.2em; text-decoration: none;"> Login</a>
-        <p style="margin-top: 20px;">Don't have an account? <a class="repoLink" href="/register">Register here</a> to get 3 free uses per day!</p>
+        <h2>🚫 {{ _('Login Required') }}</h2>
+        <p style="font-size: 1.5em; margin: 20px 0;">{{ _('You must be logged in to use the free tier of EduDuck.') }}</p>
+        <a href="/login" class="button" style="justify-content: center; align-items: center; display: flex; font-size: 1.2em; text-decoration: none;"> {{ _('Login') }}</a>
+        <p style="margin-top: 20px;">{{ _("Don't have an account?") }} <a class="repoLink" href="/register">{{ _('Register here') }}</a> {{ _('to get 3 free uses per day!') }}</p>
     </div>
 {% endblock %}
 

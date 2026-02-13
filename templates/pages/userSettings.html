@@ -1,8 +1,8 @@
 
 {% extends "base.html" %}
 
-{% block title %}EduDuck - Settings{% endblock %}
-{% block description %}Manage your EduDuck account settings{% endblock %}
+{% block title %}{{ _('EduDuck - Settings') }}{% endblock %}
+{% block description %}{{ _('Manage your EduDuck account settings') }}{% endblock %}
 
 {% block head %}
     <link rel="stylesheet" href="/static/profile/style.css">
@@ -13,55 +13,53 @@
 {% block content %}
     <div class="main-content" style="display: flex; justify-content: center; padding-top: 50px;">
         <div style="max-width: 700px; width: 100%; padding: 20px;">
-            <h2 style="margin-bottom: 15px; color: var(--text-heading);">⚙️ Account Settings</h2>
-            <p style="color: var(--text-muted); margin-bottom: 30px;">Manage your EduDuck account preferences and security settings.</p>
+            <h2 style="margin-bottom: 15px; color: var(--text-heading);">⚙️ {{ _('Account Settings') }}</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">{{ _('Manage your EduDuck account preferences and security settings.') }}</p>
             
             <!-- Danger Zone -->
             <div class="danger-zone">
-                <h3>⚠️ Danger Zone</h3>
-                <p>Permanently delete your account and all associated data. This action cannot be undone.</p>
+                <h3>⚠️ {{ _('Danger Zone') }}</h3>
+                <p>{{ _('Permanently delete your account and all associated data. This action cannot be undone.') }}</p>
                 
                 <button id="delete-account-btn" class="delete-btn">
-                    Delete Account
+                    {{ _('Delete Account') }}
                 </button>
             </div>
 
             <!-- Delete Account Modal -->
             <div id="delete-modal" class="modal-backdrop">
                 <div class="modal-content">
-                    <h3>⚠️ Delete Account</h3>
-                    <p>This will permanently delete your account and all data including quizzes, flashcards, notes, and study plans.</p>
+                    <h3>⚠️ {{ _('Delete Account') }}</h3>
+                    <p>{{ _('This will permanently delete your account and all data including quizzes, flashcards, notes, and study plans.') }}</p>
                     
                     <div class="form-group">
-                        <label for="delete-password">Enter your password</label>
-                        <input type="password" id="delete-password" placeholder="Password" autocomplete="current-password">
+                        <label for="delete-password">{{ _('Enter your password') }}</label>
+                        <input type="password" id="delete-password" placeholder="{{ _('Password') }}" autocomplete="current-password">
                     </div>
                     
                     <label class="checkbox-group">
                         <input type="checkbox" id="delete-confirm-checkbox">
-                        <span>I understand this action is irreversible</span>
+                        <span>{{ _('I understand this action is irreversible') }}</span>
                     </label>
                     
                     <div class="form-group">
-                        <label for="delete-confirm-text">Type <strong>DELETE</strong> to confirm</label>
-                        <input type="text" id="delete-confirm-text" placeholder="DELETE" autocomplete="off">
+                        <label for="delete-confirm-text">{{ _('Type <strong>DELETE</strong> to confirm') }}</label>
+                        <input type="text" id="delete-confirm-text" placeholder="{{ _('DELETE') }}" autocomplete="off">
                     </div>
                     
                     <p id="delete-error" class="error-message"></p>
                     
                     <div class="modal-actions">
-                        <button id="cancel-delete-btn" class="cancel-btn">
-                            Cancel
+                        <button id="cancel-delete-btn" class="cancel-btn">{{ _('Cancel') }}
                         </button>
-                        <button id="confirm-delete-btn" class="confirm-delete-btn" disabled>
-                            Delete Forever
+                        <button id="confirm-delete-btn" class="confirm-delete-btn" disabled>{{ _('Delete Forever') }}
                         </button>
                     </div>
                 </div>
             </div>
 
             <p style="margin-top: 30px; text-align: center;">
-                <a href="/" class="repoLink">Back To Home</a>
+                <a href="/" class="repoLink">{{ _('Back To Home') }}</a>
             </p>
         </div>
     </div>
