@@ -11,15 +11,15 @@ msgstr ""
 #: templates/base.html:7 templates/base.html:56
 #: templates/pages/keyAccess.html:44
 msgid "EduDuck"
-msgstr "ЭдуДак"
+msgstr "EduDuck"
 
 #: templates/base.html:8
 msgid "EduDuck is a free AI-powered learning platform for students."
-msgstr "ЭдуДак — бесплатная платформа обучения с искусственным интеллектом для студентов."
+msgstr "EduDuck — бесплатная платформа обучения с искусственным интеллектом для студентов."
 
 #: templates/base.html:9 templates/base.html:15
 msgid "EduDuck - Free AI Study Tools"
-msgstr "ЭдуДак - Бесплатные инструменты для учебы ИИ"
+msgstr "EduDuck - Бесплатные инструменты для учебы ИИ"
 
 #: templates/base.html:10
 msgid "Generate quizzes, flashcards from notes instantly. Free tier with Hugging Face, Google Gemini & premium OpenAI support."
@@ -135,7 +135,7 @@ msgstr "Условия использования"
 
 #: templates/DuckAI/DuckAI.html:3
 msgid "EduDuck - DuckAI"
-msgstr "ЭдуДак - DuckAI"
+msgstr "EduDuck - DuckAI"
 
 #: templates/DuckAI/DuckAI.html:33
 msgid "Quack! I'm DuckAI, your study companion. Ask me about quizzes, physics, concepts, or anything from your notes!"
@@ -155,7 +155,7 @@ msgstr "Новый чат"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:3
 msgid "EduDuck - Flashcard Generator"
-msgstr "ЭдуДак - Генератор карточек"
+msgstr "EduDuck - Генератор карточек"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:21
 #: ⁨templates/Note Enhancer/noteEnhancer.html⁩:22
@@ -189,7 +189,7 @@ msgstr "Импортировать карточки"
 
 #: ⁨templates/Flashcard Generator/flashcards.html⁩:3
 msgid "EduDuck - Flashcards"
-msgstr "ЭдуДак - Карточки"
+msgstr "EduDuck - Карточки"
 
 #: ⁨templates/Flashcard Generator/flashcards.html⁩:17
 msgid "Loading..."
@@ -201,7 +201,7 @@ msgstr "Экспортировать карточки"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:3
 msgid "EduDuck - Note Analysis Results"
-msgstr "ЭдуДак - Результаты анализа заметок"
+msgstr "EduDuck - Результаты анализа заметок"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:20
 msgid "Note Analysis Results"

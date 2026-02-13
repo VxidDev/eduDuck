@@ -72,7 +72,7 @@
                 </form>
                 {% if not current_user.is_authenticated %}
                     <div class="auth-links flex items-center gap-3">
-                        <a class="header-link button button-ghost button-sm" href="/login">{{ _('Login') }}</a>
+                        <a class="header-link header-link-primary button button-ghost button-sm" href="/login">{{ _('Login') }}</a>
                         <span class="divider text-tertiary" aria-hidden="true">•</span>
                         <a class="header-link header-link-primary button button-primary button-sm" href="/register">{{ _('Register') }}</a>
                     </div>
