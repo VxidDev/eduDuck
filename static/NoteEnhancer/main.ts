@@ -7,9 +7,12 @@ import {
 } from "./ui.js";
 import { getFreeLimitUsage, enhanceNotes, uploadNotes, importNotes } from "./api.js";
 
+
 let FreeUsageLeft = 0;
 
+
 CustomModelListeners();
+
 
 const getMaxLines = (el: HTMLTextAreaElement): number =>
     el.classList.contains("slim")
@@ -20,13 +23,16 @@ const getMaxLines = (el: HTMLTextAreaElement): number =>
         ? 20
         : 1;
 
+
 async function handleFileUpload(file: File) {
     NoteInput.value = "Loading...";
     showSpinner();
 
+
     try {
         const data = await uploadNotes(file);
         NoteInput.value = data.notes;
+
 
         const MAXLINES = getMaxLines(NoteInput);
         const LINEHEIGHT = 20;
@@ -34,6 +40,7 @@ async function handleFileUpload(file: File) {
             NoteInput.scrollHeight,
             MAXLINES * LINEHEIGHT + 60
         )}px`;
+
 
         hideStatus();
     } catch (error) {
@@ -43,11 +50,17 @@ async function handleFileUpload(file: File) {
     }
 }
 
+LanguageSelector.addEventListener('change', () => {
+    console.log(LanguageSelector.value.trim());
+})
+
 async function handleImport(file: File) {
     showSpinner();
 
+
     try {
         const data = await importNotes(file);
+
 
         if (!data.err && data.id) {
             window.location.href = `/note-enhancer/result?id=${encodeURIComponent(data.id)}`;
@@ -60,15 +73,18 @@ async function handleImport(file: File) {
     }
 }
 
+
 document.addEventListener('DOMContentLoaded', async () => {
     FreeUsageLeft = await getFreeLimitUsage();
     if (FreeUsageLeft <= 0 && FreeUsage?.checked) {
         Submit.disabled = true;
     }
 
+
     TextInputs.forEach((ti) => {
         const MAXLINES = getMaxLines(ti);
         const LINEHEIGHT = 25;
+
 
         ti.addEventListener("input", function (this: HTMLTextAreaElement): void {
             this.style.height = "auto";
@@ -76,10 +92,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
+
     // Toggle API Key input visibility
-    if (FreeUsage && ApiKeyInputParent) { // Add null check for ApiKeyInputParent here
+    if (FreeUsage && ApiKeyInputParent) {
         FreeUsage.addEventListener('change', () => {
-            if (FreeUsage && ApiKeyInputParent) { // Add null check for ApiKeyInputParent here
+            if (FreeUsage && ApiKeyInputParent) {
                 if (FreeUsage.checked) {
                     ApiKeyInputParent.classList.add('hidden');
                 } else {
@@ -93,19 +110,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+
     Submit.addEventListener("click", async () => {
         if (FreeUsage?.checked && FreeUsageLeft <= 0) {
             showStatus("No free uses left today.");
             return;
         }
 
+
         hideStatus();
+
 
         const notes = NoteInput.value.trim();
         const apiKey = ApiKeyInput.value.trim();
         const modelVisible = !CustomModelInput.classList.contains("hidden");
         const model = modelVisible ? CustomModelInput.value.trim() : null;
         const words = notes.split(" ");
+
 
         if (!apiKey && !FreeUsage?.checked) {
             showStatus("Enter API key.");
@@ -124,7 +145,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
+
         showSpinner();
+
 
         try {
             const body = {
@@ -136,8 +159,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 isFree: FreeUsage?.checked ?? false
             };
 
+
             const data = await enhanceNotes(body);
             window.location.href = `/note-enhancer/result?id=${encodeURIComponent(data.id)}`;
+
 
             if (FreeUsageText && FreeUsage?.checked) {
                 FreeUsageLeft = await getFreeLimitUsage();
@@ -146,11 +171,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }
 
+
         } catch (error) {
             console.error("Note enhancement error:", error);
             showStatus("Error while enhancing notes.");
         }
     });
+
 
     InitFileUploads({
         onRegularFile: handleFileUpload,

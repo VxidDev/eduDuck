@@ -1,3610 +1,2706 @@
-# Ukrainian translations for PROJECT.
-# Copyright (C) 2026 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-13 15:27+0100\n"
-"PO-Revision-Date: 2026-02-11 19:40+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: uk\n"
-"Language-Team: uk <LL@li.org>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.18.0\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: EduDuck\n"
+"Language: uk\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: templates/base.html:7 templates/base.html:56
 #: templates/pages/keyAccess.html:44
 msgid "EduDuck"
-msgstr ""
+msgstr "EduDuck"
 
 #: templates/base.html:8
 msgid "EduDuck is a free AI-powered learning platform for students."
-msgstr ""
+msgstr "EduDuck — безкоштовна платформа для навчання з підтримкою штучного інтелекту для студентів."
 
 #: templates/base.html:9 templates/base.html:15
 msgid "EduDuck - Free AI Study Tools"
-msgstr ""
+msgstr "EduDuck - безкоштовні інструменти для навчання з AI"
 
 #: templates/base.html:10
-msgid ""
-"Generate quizzes, flashcards from notes instantly. Free tier with Hugging"
-" Face, Google Gemini & premium OpenAI support."
-msgstr ""
+msgid "Generate quizzes, flashcards from notes instantly. Free tier with Hugging Face, Google Gemini & premium OpenAI support."
+msgstr "Генеруйте вікторини, картки для запам'ятовування з нотаток миттєво. Безкоштовний тариф з підтримкою Hugging Face, Google Gemini та преміум OpenAI."
 
 #: templates/base.html:16
 msgid "Notes → Quizzes & Flashcards instantly. Free AI for students."
-msgstr ""
+msgstr "Нотатки → Вікторини та картки миттєво. Безкоштовний AI для студентів."
 
 #: templates/base.html:18
-msgid ""
-"AI study tools, quiz generator, flashcard maker, free learning app, OCR "
-"notes, student AI, exam prep, homework help"
-msgstr ""
+msgid "AI study tools, quiz generator, flashcard maker, free learning app, OCR notes, student AI, exam prep, homework help"
+msgstr "Інструменти для навчання з AI, генератор вікторин, створювач карток, безкоштовний додаток для навчання, OCR нотатки, студентський AI, підготовка до іспитів, допомога з домашніми завданнями"
 
 #: templates/base.html:42
 msgid "Main navigation"
-msgstr ""
+msgstr "Головна навігація"
 
 #: templates/base.html:49
 msgid "Donate"
-msgstr ""
+msgstr "Пожертвувати"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:54
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:69
 #: templates/base.html:65 templates/includes/language_selector.html:3
 msgid "English"
-msgstr ""
+msgstr "Англійська"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:55
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:70
 #: templates/base.html:66 templates/includes/language_selector.html:4
 msgid "Polish"
-msgstr ""
+msgstr "Польська"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:58
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:73
 #: templates/base.html:67 templates/includes/language_selector.html:7
 msgid "Ukrainian"
-msgstr ""
+msgstr "Українська"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:59
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:74
 #: templates/base.html:68 templates/includes/language_selector.html:8
 msgid "French"
-msgstr ""
+msgstr "Французька"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:56
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:71
 #: templates/base.html:69 templates/includes/language_selector.html:5
 msgid "Russian"
-msgstr ""
+msgstr "Російська"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:57
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:72
 #: templates/base.html:70 templates/includes/language_selector.html:6
 msgid "German"
-msgstr ""
+msgstr "Німецька"
 
 #: templates/base.html:75 templates/pages/login.html:38
 #: templates/pages/loginRequired.html:11
 msgid "Login"
-msgstr ""
+msgstr "Увійти"
 
 #: templates/base.html:77 templates/pages/register.html:73
 msgid "Register"
-msgstr ""
+msgstr "Зареєструватися"
 
 #: templates/base.html:84
 msgid "3 free uses/day"
-msgstr ""
+msgstr "3 безкоштовних використання/день"
 
 #: templates/base.html:95
 msgid "User menu"
-msgstr ""
+msgstr "Меню користувача"
 
 #: templates/base.html:100
 msgid "Profile picture"
-msgstr ""
+msgstr "Зображення профілю"
 
 #: templates/base.html:119
 msgid "uses left today"
-msgstr ""
+msgstr "залишилось використань сьогодні"
 
 #: templates/base.html:129
 msgid "Profile"
-msgstr ""
+msgstr "Профіль"
 
 #: templates/base.html:136
 msgid "Settings"
-msgstr ""
+msgstr "Налаштування"
 
 #: templates/base.html:145
 msgid "Log out"
-msgstr ""
+msgstr "Вийти"
 
 #: templates/base.html:158
 msgid "Toggle dark mode"
-msgstr ""
+msgstr "Перемкнути темний режим"
 
 #: templates/base.html:172 templates/pages/email.html:103
 #: templates/pages/resetPasswordEmail.html:116
 msgid "By"
-msgstr ""
+msgstr "від"
 
 #: templates/base.html:174 templates/pages/email.html:109
 #: templates/pages/resetPasswordEmail.html:122
 msgid "Open Source on GitHub"
-msgstr ""
+msgstr "Відкритий код на GitHub"
 
 #: templates/base.html:176 templates/pages/email.html:112
 #: templates/pages/resetPasswordEmail.html:125
 msgid "Terms of Service"
-msgstr ""
+msgstr "Умови користування"
 
 #: templates/DuckAI/DuckAI.html:3
 msgid "EduDuck - DuckAI"
-msgstr ""
+msgstr "EduDuck - DuckAI"
 
 #: templates/DuckAI/DuckAI.html:33
-msgid ""
-"Quack! I'm DuckAI, your study companion. Ask me about quizzes, physics, "
-"concepts, or anything from your notes!"
-msgstr ""
+msgid "Quack! I'm DuckAI, your study companion. Ask me about quizzes, physics, concepts, or anything from your notes!"
+msgstr "Кря! Я DuckAI, твій товариш з навчання. Запитуй мене про вікторини, фізику, концепції або щось із твоїх нотаток!"
 
 #: templates/DuckAI/DuckAI.html:42
 msgid "Ask DuckAI about kinematics, quiz help, or your notes..."
-msgstr ""
+msgstr "Запитайте DuckAI про кінематику, допомогу з вікторинами або ваші нотатки..."
 
 #: templates/DuckAI/DuckAI.html:46
 msgid "Send"
-msgstr ""
+msgstr "Надіслати"
 
 #: templates/DuckAI/DuckAI.html:47
 msgid "New Chat"
-msgstr ""
+msgstr "Новий чат"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:3
 msgid "EduDuck - Flashcard Generator"
-msgstr ""
+msgstr "EduDuck - Генератор карток"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:21
 #: ⁨templates/Note Enhancer/noteEnhancer.html⁩:22
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:21
 msgid "Notes go here :)"
-msgstr ""
+msgstr "Нотатки тут :)"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:25
 msgid "5 Flashcards"
-msgstr ""
+msgstr "5 карток"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:26
 msgid "10 Flashcards"
-msgstr ""
+msgstr "10 карток"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:27
 msgid "15 Flashcards"
-msgstr ""
+msgstr "15 карток"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:28
 msgid "20 Flashcards"
-msgstr ""
+msgstr "20 карток"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:34
 msgid "✨ Generate Flashcards"
-msgstr ""
+msgstr "✨ Створити картки"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:37
 msgid "Import Flashcards"
-msgstr ""
+msgstr "Імпорт карток"
 
 #: ⁨templates/Flashcard Generator/flashcards.html⁩:3
 msgid "EduDuck - Flashcards"
-msgstr ""
+msgstr "EduDuck - Картки"
 
 #: ⁨templates/Flashcard Generator/flashcards.html⁩:17
 msgid "Loading..."
-msgstr ""
+msgstr "Завантаження..."
 
 #: ⁨templates/Flashcard Generator/flashcards.html⁩:18
 msgid "Export Flashcards"
-msgstr ""
+msgstr "Експорт карток"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:3
 msgid "EduDuck - Note Analysis Results"
-msgstr ""
+msgstr "EduDuck - Результати аналізу нотаток"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:20
 msgid "Note Analysis Results"
-msgstr ""
+msgstr "Результати аналізу нотаток"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:26
 msgid "Overall Quality Score"
-msgstr ""
+msgstr "Загальний бал якості"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:27
 msgid "Based on"
-msgstr ""
+msgstr "На основі"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:27
 msgid "section"
-msgstr ""
+msgstr "секція"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:27
 msgid "s"
-msgstr ""
+msgstr "с"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:27
 msgid "analyzed"
-msgstr ""
+msgstr "проаналізовано"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:32
 msgid "Excellent!"
-msgstr ""
+msgstr "Відмінно!"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:32
 msgid "Your notes are comprehensive and well-structured."
-msgstr ""
+msgstr "Ваші нотатки всебічні та добре структуровані."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:36
 msgid "Good Foundation!"
-msgstr ""
+msgstr "Глибоке розуміння!"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:36
-msgid ""
-"Your notes cover the basics well. Review the suggestions below to make "
-"them even better."
-msgstr ""
+msgid "Your notes cover the basics well. Review the suggestions below to make them even better."
+msgstr "Ваші нотатки охоплюють основи добре. Перегляньте пропозиції нижче, щоб зробити їх ще кращими."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:40
 msgid "Needs Improvement."
-msgstr ""
+msgstr "Потребує покращення."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:40
-msgid ""
-"There are several areas that need attention. Focus on the suggestions "
-"below."
-msgstr ""
+msgid "There are several areas that need attention. Focus on the suggestions below."
+msgstr "Є кілька областей, які потребують уваги. зосередьтеся на пропозиціях нижче."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:44
 msgid "Significant Gaps Detected."
-msgstr ""
+msgstr "Виявлено суттєві прогалини."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:44
 msgid "Your notes need major improvements. Start with high-priority issues first."
-msgstr ""
+msgstr "Ваші нотатки потребують серйозних поліпшень. Почніть з найважливіших питань спочатку."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:51
 msgid "Analyze Another"
-msgstr ""
+msgstr "Аналізувати ще раз"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:52
 msgid "Export Analysis"
-msgstr ""
+msgstr "Експорт аналізу"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:57
 msgid "Detailed Analysis"
-msgstr ""
+msgstr "Детальний аналіз"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:64
 msgid "Confidence"
-msgstr ""
+msgstr "Впевненість"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:70
 msgid "Issues Identified"
-msgstr ""
+msgstr "Виявлені проблеми"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:81
 msgid "Why It Matters"
-msgstr ""
+msgstr "Чому це важливо"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:92
 msgid "Suggestions for Improvement"
-msgstr ""
+msgstr "Пропозиції щодо покращення"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:106
 msgid "Next Steps"
-msgstr ""
+msgstr "Наступні кроки"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:108
 msgid "Address high-priority issues first (sections with lower confidence scores)"
-msgstr ""
+msgstr "Спершу вирішуйте проблеми з високим пріоритетом (секції з нижчими балами впевненості)"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:109
 msgid "Implement 2-3 suggestions per study session to avoid overwhelm"
-msgstr ""
+msgstr "Реінтерпретувати 2-3 пропозиції за кожну сесію навчання, щоб уникнути перевантаження"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:110
 msgid "Re-analyze your notes after improvements to track progress"
-msgstr ""
+msgstr "Переаналізуйте свої нотатки після покращень, щоб відстежувати прогрес"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:111
 msgid "Use"
-msgstr ""
+msgstr "Використовувати"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:111
 #: templates/pages/index.html:70 templates/pages/keyAccess.html:57
 msgid "Note Enhancer"
-msgstr ""
+msgstr "Покращувач нотаток"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:111
 msgid "for AI-powered improvements"
-msgstr ""
+msgstr "для покращень на основі AI"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:112
 msgid "Test your understanding by generating a"
-msgstr ""
+msgstr "Підтвердіть своє розуміння, створюючи"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:112
 msgid "quiz"
-msgstr ""
+msgstr "вікторину"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:112
 msgid "from your notes"
-msgstr ""
+msgstr "з ваших нотаток"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:118
 msgid "Analyze More Notes"
-msgstr ""
+msgstr "Більше нотаток для аналізу"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:119
 msgid "Generate Quiz"
-msgstr ""
+msgstr "Створити тест"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:120
 msgid "Enhance Notes"
-msgstr ""
+msgstr "Покращити нотатки"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:127
 msgid "Analysis Not Found"
-msgstr ""
+msgstr "Аналіз не знайдено"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:128
-msgid ""
-"We couldn't find the analysis you're looking for. It may have expired or "
-"the link is incorrect."
-msgstr ""
+msgid "We couldn't find the analysis you're looking for. It may have expired or the link is incorrect."
+msgstr "Ми не можемо знайти потрібний вам аналіз. Він міг несподівано закінчитися або посилання неправильне."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:129
 msgid "Analyze New Notes"
-msgstr ""
+msgstr "Аналізувати нові нотатки"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:3
 msgid "EduDuck - Note Analyzer"
-msgstr ""
+msgstr "EduDuck - Аналізатор нотаток"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:22
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:22
 #: templates/includes/model_selector.html:5
 msgid "Use custom model"
-msgstr ""
+msgstr "Використовувати власну модель"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:29
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:29
 #: templates/includes/model_selector.html:12
 msgid "Free Daily (No API Key)"
-msgstr ""
+msgstr "Безкоштовно щодня (без API-ключа)"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:35
 msgid "Enter custom model here! (e.g., gpt-4o-mini)"
-msgstr ""
+msgstr "Введіть тут свою власну модель! (наприклад, gpt-4o-mini)"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:38
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:38
 #: templates/includes/model_selector.html:21
 msgid "Hugging Face"
-msgstr ""
+msgstr "Hugging Face"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:39
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:39
 #: templates/includes/model_selector.html:22
 msgid "Gemini"
-msgstr ""
+msgstr "Gemini"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:40
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:40
 #: templates/includes/model_selector.html:23
 msgid "OpenAI"
-msgstr ""
+msgstr "OpenAI"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:43
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:43
 msgid "Enter your Hugging Face API key here!"
-msgstr ""
+msgstr "Введіть тут ваш API-ключ Hugging Face!"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:47
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:47
 #: templates/includes/file_upload.html:3
 msgid "Upload notes file"
-msgstr ""
+msgstr "Завантажити файл нотаток"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:50
 msgid "Paste your notes here for analysis..."
-msgstr ""
+msgstr "Вставте свої нотатки тут для аналізу..."
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:52
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:67
 #: templates/includes/language_selector.html:1
 msgid "Output Language"
-msgstr ""
+msgstr "Мова виводу"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:62
 msgid "Analyze My Notes"
-msgstr ""
+msgstr "Аналізувати мої нотатки"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:66
 msgid "Import Analysis"
-msgstr ""
+msgstr "Імпорт аналізу"
 
 #: ⁨templates/Note Enhancer/enhancedNotes.html⁩:3
 msgid "EduDuck - Enhanced Notes"
-msgstr ""
+msgstr "EduDuck - Покращені нотатки"
 
 #: ⁨templates/Note Enhancer/enhancedNotes.html⁩:16
 #: ⁨templates/Study Plan Generator/StudyPlan.html⁩:16
 msgid "Nothing There :["
-msgstr ""
+msgstr "Тут нічого нема :["
 
 #: ⁨templates/Note Enhancer/noteEnhancer.html⁩:3
 msgid "EduDuck - Note Enhancer"
-msgstr ""
+msgstr "EduDuck - Покращувач нотаток"
 
 #: ⁨templates/Note Enhancer/noteEnhancer.html⁩:26
 msgid "✨ Enhance Notes"
-msgstr ""
+msgstr "✨ Покращити нотатки"
 
 #: ⁨templates/Note Enhancer/noteEnhancer.html⁩:29
 msgid "Import Enhanced Notes"
-msgstr ""
+msgstr "Імпортувати покращені нотатки"
 
 #: ⁨templates/Quiz Generator/Quiz.html⁩:3
 msgid "EduDuck - Quiz"
-msgstr ""
+msgstr "EduDuck - Тест"
 
 #: ⁨templates/Quiz Generator/Quiz.html⁩:20
 msgid "Submit Quiz →"
-msgstr ""
+msgstr "Надіслати тест →"
 
 #: ⁨templates/Quiz Generator/Quiz.html⁩:23
 msgid "Export Quiz"
-msgstr ""
+msgstr "Експортувати тест"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:3
 msgid "EduDuck - Quiz Generator"
-msgstr ""
+msgstr "EduDuck - Генератор тестів"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:26
 msgid "5 Questions"
-msgstr ""
+msgstr "5 питань"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:27
 msgid "10 Questions"
-msgstr ""
+msgstr "10 питань"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:28
 msgid "15 Questions"
-msgstr ""
+msgstr "15 питань"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:29
 msgid "20 Questions"
-msgstr ""
+msgstr "20 питань"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:34
 msgid "🟢 Easy - Quick Recall"
-msgstr ""
+msgstr "🟢 Легкий - швидке запам’ятовування"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:35
 msgid "🟡 Medium - Apply It"
-msgstr ""
+msgstr "🟡 Середній - застосування знань"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:36
 msgid "🟠 Hard - Deep Think"
-msgstr ""
+msgstr "🟠 Важкий - глибоке розуміння"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:37
 msgid "🔴 Challenging - Master Mode"
-msgstr ""
+msgstr "🔴 Випробовування - режим майстра"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:44
 msgid "🚀 Generate Quiz"
-msgstr ""
+msgstr "🚀 Генерувати тест"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:47
 msgid "Import Quiz"
-msgstr ""
+msgstr "Імпортувати тест"
 
 #: ⁨templates/Quiz Generator/QuizResult.html⁩:3
 msgid "EduDuck - Quiz Results"
-msgstr ""
+msgstr "EduDuck - Результати тесту"
 
 #: ⁨templates/Quiz Generator/QuizResult.html⁩:20
 msgid "0 questions"
-msgstr ""
+msgstr "0 питань"
 
 #: ⁨templates/Quiz Generator/QuizResult.html⁩:29
 msgid "← New Quiz"
-msgstr ""
+msgstr "← Новий тест"
 
 #: ⁨templates/Study Plan Generator/StudyPlan.html⁩:3
 msgid "EduDuck - Study Plan"
-msgstr ""
+msgstr "EduDuck - План навчання"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:3
 msgid "EduDuck - Study Plan Generator"
-msgstr ""
+msgstr "Генератор плану навчання EduDuck"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:35
 msgid "Enter custom model here! (e.g., microsoft/DialoGPT-medium)"
-msgstr ""
+msgstr "Введіть власну модель тут! (напр., microsoft/DialoGPT-medium)"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:50
 msgid "Notes go here"
-msgstr ""
+msgstr "Нотатки тут"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:53
 msgid "Start Date"
-msgstr ""
+msgstr "Дата початку"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:54
 msgid "End Date"
-msgstr ""
+msgstr "Дата завершення"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:55
 msgid "Hours per Day"
-msgstr ""
+msgstr "Годин на день"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:57
 msgid "Learning Style"
-msgstr ""
+msgstr "Стиль навчання"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:59
 msgid "Reading"
-msgstr ""
+msgstr "Читання"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:60
 msgid "Video"
-msgstr ""
+msgstr "Відео"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:61
 msgid "Exercises"
-msgstr ""
+msgstr "Вправи"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:64
 msgid "Goal"
-msgstr ""
+msgstr "Мета"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:64
 msgid "e.g., Prepare for Maths Exam"
-msgstr ""
+msgstr "наприклад, підготовка до іспиту з математики"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:77
 msgid "Generate Study Plan"
-msgstr ""
+msgstr "Генерувати план навчання"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:81
 msgid "Import Study Plan"
-msgstr ""
+msgstr "Імпортувати план навчання"
 
 #: templates/includes/model_selector.html:18
 msgid "Enter custom model here! (e.g., mistralai/Mistral-7B-Instruct)"
-msgstr ""
+msgstr "Введіть власну модель тут! (напр., mistralai/Mistral-7B-Instruct)"
 
 #: templates/includes/model_selector.html:26
 msgid "Enter your API key here!"
-msgstr ""
+msgstr "Введіть свій API-ключ тут!"
 
 #: templates/pages/checkEmail.html:4
 msgid "Check Your Email - EduDuck"
-msgstr ""
+msgstr "Перевірте вашу пошту - EduDuck"
 
 #: templates/pages/checkEmail.html:5
-msgid ""
-"Verify your EduDuck account via email. Check your inbox to activate your "
-"free AI study tools account."
-msgstr ""
+msgid "Verify your EduDuck account via email. Check your inbox to activate your free AI study tools account."
+msgstr "Підтвердіть свій обліковий запис EduDuck через електронну пошту. Перевірте вашу поштову скриньку, щоб активувати обліковий запис з безкоштовними інструментами для навчання на AI."
 
 #: templates/pages/checkEmail.html:9
 msgid "Email Verification Required"
-msgstr ""
+msgstr "Підтвердження електронної пошти обов’язкове"
 
 #: templates/pages/checkEmail.html:11
 msgid "Thanks for registering with EduDuck! 🎉"
-msgstr ""
+msgstr "Дякуємо за реєстрацію в EduDuck! 🎉"
 
 #: templates/pages/checkEmail.html:12
 msgid "We have sent a verification link to your email:"
-msgstr ""
+msgstr "Ми надіслали посилання для підтвердження на вашу пошту:"
 
 #: templates/pages/checkEmail.html:15
 msgid "Please check your inbox and click the link to activate your account."
-msgstr ""
+msgstr "Будь ласка, перевірте свою пошту та натисніть на посилання для активації акаунта."
 
 #: templates/pages/checkEmail.html:16
 msgid "If you don't see the email, check your spam/junk folder."
-msgstr ""
+msgstr "Якщо ви не отримали листа, перевірте спам/небажане"
 
 #: templates/pages/checkEmail.html:18 templates/pages/emailVerified.html:22
 msgid "Back to Home"
-msgstr ""
+msgstr "Назад до головної"
 
 #: templates/pages/dailyLimit.html:4
 msgid "EduDuck - Daily Limit Reached"
-msgstr ""
+msgstr "EduDuck - досягнуто денний ліміт"
 
 #: templates/pages/dailyLimit.html:5
-msgid ""
-"You have reached your daily limit of free uses on EduDuck. Upgrade or "
-"wait until tomorrow to continue using AI study tools."
-msgstr ""
+msgid "You have reached your daily limit of free uses on EduDuck. Upgrade or wait until tomorrow to continue using AI study tools."
+msgstr "Ви досягли вашого денного ліміту на безкоштовне використання EduDuck. Оновіть підписку або зачекайте до завтра, щоб знову користуватися інструментами штучного інтелекту."
 
 #: templates/pages/dailyLimit.html:9
 msgid "Daily Limit Reached"
-msgstr ""
+msgstr "Досягнуто денного ліміту"
 
 #: templates/pages/dailyLimit.html:10
 msgid "You have used all 3 free daily uses of EduDuck's AI study tools."
-msgstr ""
+msgstr "Ви використали всі 3 безкоштовні щоденні можливості інструментів EduDuck на базі AI."
 
 #: templates/pages/dailyLimit.html:11
-msgid ""
-"Come back tomorrow for more free uses or upgrade your API key for "
-"unlimited access."
-msgstr ""
+msgid "Come back tomorrow for more free uses or upgrade your API key for unlimited access."
+msgstr "Поверніться завтра для нових безкоштовних можливостей або оновіть свій API-ключ для необмеженого доступу."
 
 #: templates/pages/dailyLimit.html:12
 msgid "Get API key for unlimited access"
-msgstr ""
+msgstr "Отримати API-ключ для необмеженого доступу"
 
 #: templates/pages/email.html:24
 msgid "Verify your email to get started"
-msgstr ""
+msgstr "Підтвердіть вашу пошту, щоб почати"
 
 #: templates/pages/email.html:48 templates/pages/resetPasswordEmail.html:50
 msgid "Hey 👋"
-msgstr ""
+msgstr "Привіт 👋"
 
 #: templates/pages/email.html:51
-msgid ""
-"Thanks for creating an <strong>EduDuck</strong> account! Please confirm "
-"your email address to unlock your free daily uses and start generating "
-"quizzes, flashcards, and study plans."
-msgstr ""
+msgid "Thanks for creating an <strong>EduDuck</strong> account! Please confirm your email address to unlock your free daily uses and start generating quizzes, flashcards, and study plans."
+msgstr "Дякуємо за створення облікового запису <strong>EduDuck</strong>! Будь ласка, підтвердіть вашу адресу електронної пошти, щоб розблокувати щоденне використання та почати генерувати тести, карточки та плани навчання."
 
 #: templates/pages/email.html:69
 msgid "Verify Email"
-msgstr ""
+msgstr "Підтвердіть електронну пошту"
 
 #: templates/pages/email.html:75
 msgid "If the button doesn’t work, copy and paste this link into your browser:"
-msgstr ""
+msgstr "Якщо кнопка не працює, скопіюйте та вставте це посилання у ваш браузер:"
 
 #: templates/pages/email.html:83
 msgid "If you didn’t create an EduDuck account, you can safely ignore this email."
-msgstr ""
+msgstr "Якщо ви не створювали обліковий запис EduDuck, ігноруйте цей лист без ризику."
 
 #: templates/pages/emailVerified.html:4
 msgid "Email Verified - EduDuck"
-msgstr ""
+msgstr "Електронна пошта підтверджена - EduDuck"
 
 #: templates/pages/emailVerified.html:5
-msgid ""
-"Your EduDuck account has been successfully verified. Start using AI "
-"quizzes, flashcards, and study tools now."
-msgstr ""
+msgid "Your EduDuck account has been successfully verified. Start using AI quizzes, flashcards, and study tools now."
+msgstr "Ваш обліковий запис EduDuck було успішно підтверджено. Починайте використовувати AI-вікторини, флеш-картки та інструменти для навчання вже зараз."
 
 #: templates/pages/emailVerified.html:10
 msgid "Email Verified!"
-msgstr ""
+msgstr "Електронна пошта підтверджена!"
 
 #: templates/pages/emailVerified.html:12
 msgid "Your EduDuck account ("
-msgstr ""
+msgstr "Ваш обліковий запис EduDuck ("
 
 #: templates/pages/emailVerified.html:12
 msgid ") has been successfully verified."
-msgstr ""
+msgstr ") було успішно підтверджено."
 
 #: templates/pages/emailVerified.html:14
 msgid "You can now start using EduDuck!"
-msgstr ""
+msgstr "Тепер ви можете почати використовувати EduDuck!"
 
 #: templates/pages/emailVerified.html:16
 msgid "Verification Failed"
-msgstr ""
+msgstr "Помилка підтвердження"
 
 #: templates/pages/emailVerified.html:18
 msgid "The verification link is invalid or has expired."
-msgstr ""
+msgstr "Посилання для підтвердження недійсне або закінчилося його дія."
 
 #: templates/pages/emailVerified.html:20
 msgid "Please try registering again or contact support."
-msgstr ""
+msgstr "Будь ласка, спробуйте знову зареєструватися або зверніться до служби підтримки."
 
 #: templates/pages/index.html:3
 msgid "EduDuck - Free AI Quiz & Flashcard Generator for Students"
-msgstr ""
+msgstr "EduDuck - безкоштовний генератор AI-вікторин та флеш-карт для студентів"
 
 #: templates/pages/index.html:4
-msgid ""
-"EduDuck turns notes into quizzes, flashcards & study tools instantly. "
-"Free AI learning platform with OCR, DuckAI tutor, and no signup required."
-" Perfect for exams and homework."
-msgstr ""
+msgid "EduDuck turns notes into quizzes, flashcards & study tools instantly. Free AI learning platform with OCR, DuckAI tutor, and no signup required. Perfect for exams and homework."
+msgstr "EduDuck миттєво перетворює нотатки у вікторини, флеш-картки та інструменти для навчання. Безкоштовна платформа з OCR, репетитором DuckAI і без потреби реєстрації. Ідеально для іспитів та домашніх завдань."
 
 #: templates/pages/index.html:10
 msgid "AI-Powered Educational Tools"
-msgstr ""
+msgstr "Інструменти для навчання з AI"
 
 #: templates/pages/index.html:11
-msgid ""
-"Transform your study materials into interactive learning experiences "
-"using advanced AI. Convert notes to quizzes, enhance your study "
-"materials, and master subjects faster."
-msgstr ""
+msgid "Transform your study materials into interactive learning experiences using advanced AI. Convert notes to quizzes, enhance your study materials, and master subjects faster."
+msgstr "Перетворюйте свої навчальні матеріали в інтерактивний досвід з використанням передового AI. Конвертуйте нотатки у вікторини, покращуйте свої навчальні матеріали та швидше опановуйте предмети."
 
 #: templates/pages/index.html:16 templates/pages/index.html:275
 msgid "Get Started Free"
-msgstr ""
+msgstr "Розпочати безкоштовно"
 
 #: templates/pages/index.html:20
 msgid "Learn How"
-msgstr ""
+msgstr "Дізнатися як"
 
 #: templates/pages/index.html:26
 msgid "Built by a student for students – No sign-up required"
-msgstr ""
+msgstr "Зроблено студентом для студентів – без реєстрації"
 
 #: templates/pages/index.html:34
 msgid "Free Uses Daily"
-msgstr ""
+msgstr "Щоденне безкоштовне використання"
 
 #: templates/pages/index.html:38
 msgid "AI Tools"
-msgstr ""
+msgstr "Інструменти AI"
 
 #: templates/pages/index.html:42
 msgid "With Your API Key"
-msgstr ""
+msgstr "З вашим API-ключем"
 
 #: templates/pages/index.html:50
 msgid "Study Smarter, Not Harder"
-msgstr ""
+msgstr "Навчайтесь розумніше, а не важче"
 
 #: templates/pages/index.html:56 templates/pages/keyAccess.html:56
 msgid "Quiz Generator"
-msgstr ""
+msgstr "Генератор вікторин"
 
 #: templates/pages/index.html:57
-msgid ""
-"Upload your notes or paste text to instantly generate customized quizzes "
-"and practice questions with detailed explanations. Perfect for exam prep "
-"– supports OCR for scanned notes."
-msgstr ""
+msgid "Upload your notes or paste text to instantly generate customized quizzes and practice questions with detailed explanations. Perfect for exam prep – supports OCR for scanned notes."
+msgstr "Завантажте свої нотатки або вставте текст для миттєвого створення персоналізованих вікторин і тренувальних запитань з докладними поясненнями. Ідеально для підготовки до іспитів – підтримка OCR для сканованих нотаток."
 
 #: templates/pages/index.html:59 templates/pages/index.html:75
 #: templates/pages/index.html:89 templates/pages/index.html:103
 #: templates/pages/index.html:117 templates/pages/index.html:189
 msgid "OCR Support"
-msgstr ""
+msgstr "Підтримка OCR"
 
 #: templates/pages/index.html:60
 msgid "Instant"
-msgstr ""
+msgstr "Миттєво"
 
 #: templates/pages/index.html:61
 msgid "Multiple Choice"
-msgstr ""
+msgstr "Множинний вибір"
 
 #: templates/pages/index.html:62
 msgid "Explanations"
-msgstr ""
+msgstr "Пояснення"
 
 #: templates/pages/index.html:63
 msgid "Exam Prep"
-msgstr ""
+msgstr "Підготовка до іспитів"
 
 #: templates/pages/index.html:64
 msgid "PDF Upload"
-msgstr ""
+msgstr "Завантаження PDF"
 
 #: templates/pages/index.html:71
-msgid ""
-"Supercharge your notes with AI-generated summaries, key concept "
-"highlights, visual diagrams, and connections between topics. Turn messy "
-"lecture notes into organized study guides."
-msgstr ""
+msgid "Supercharge your notes with AI-generated summaries, key concept highlights, visual diagrams, and connections between topics. Turn messy lecture notes into organized study guides."
+msgstr "Посиліться свої нотатки за допомогою AI-генерованих підсумків, ключових концепцій, візуальних діаграм та зв’язків між темами. Перетворіть безладні лекційні нотатки у організовані посібники для навчання."
 
 #: templates/pages/index.html:73
 msgid "AI Summary"
-msgstr ""
+msgstr "Підсумки AI"
 
 #: templates/pages/index.html:74
 msgid "Visual"
-msgstr ""
+msgstr "Візуальні"
 
 #: templates/pages/index.html:76
 msgid "Diagrams"
-msgstr ""
+msgstr "Діаграми"
 
 #: templates/pages/index.html:77
 msgid "Key Concepts"
-msgstr ""
+msgstr "Ключові концепції"
 
 #: templates/pages/index.html:78
 msgid "Organized"
-msgstr ""
+msgstr "Організовано"
 
 #: templates/pages/index.html:84 templates/pages/keyAccess.html:58
 msgid "Flashcard Generator"
-msgstr ""
+msgstr "Генератор флеш-карток"
 
 #: templates/pages/index.html:85
-msgid ""
-"Upload your notes or paste text to instantly generate spaced repetition "
-"flashcards for perfect memorization."
-msgstr ""
+msgid "Upload your notes or paste text to instantly generate spaced repetition flashcards for perfect memorization."
+msgstr "Завантажте свої нотатки або вставте текст для миттєвого створення флеш-карток з межовою памяттю для ідеального запам'ятовування."
 
 #: templates/pages/index.html:87
 msgid "Spaced Rep"
-msgstr ""
+msgstr "Межі пам’яті"
 
 #: templates/pages/index.html:88
 msgid "Memory"
-msgstr ""
+msgstr "Пам'ять"
 
 #: templates/pages/index.html:90
 msgid "Quick Review"
-msgstr ""
+msgstr "Швидкий огляд"
 
 #: templates/pages/index.html:91
 msgid "Auto-Generate"
-msgstr ""
+msgstr "Автоматично створити"
 
 #: templates/pages/index.html:92
 msgid "Export"
-msgstr ""
+msgstr "Експорт"
 
 #: templates/pages/index.html:98 templates/pages/keyAccess.html:59
 msgid "Study Plan Generator"
-msgstr ""
+msgstr "Генератор плану навчання"
 
 #: templates/pages/index.html:99
-msgid ""
-"Create a personalized study plan in minutes. Enter your goals, subjects, "
-"and available time, and get a structured schedule to maximize learning "
-"efficiency."
-msgstr ""
+msgid "Create a personalized study plan in minutes. Enter your goals, subjects, and available time, and get a structured schedule to maximize learning efficiency."
+msgstr "Створіть персоналізований план навчання за кілька хвилин. Введіть свої цілі, предмети та доступний час, і отримайте структурований графік для максимального навчального ефекту."
 
 #: templates/pages/index.html:101
 msgid "Personalized"
-msgstr ""
+msgstr "Персоналізовано"
 
 #: templates/pages/index.html:102
 msgid "Tracking"
-msgstr ""
+msgstr "Відстеження"
 
 #: templates/pages/index.html:104
 msgid "Time Management"
-msgstr ""
+msgstr "Управління часом"
 
 #: templates/pages/index.html:105
 msgid "Goal-Oriented"
-msgstr ""
+msgstr "Цілеспрямоване"
 
 #: templates/pages/index.html:106
 msgid "Scheduling"
-msgstr ""
+msgstr "Планування"
 
 #: templates/pages/index.html:112 templates/pages/keyAccess.html:61
 msgid "Note Analyzer"
-msgstr ""
+msgstr "Аналізатор нотаток"
 
 #: templates/pages/index.html:113
-msgid ""
-"Get AI-powered feedback on your notes quality, completeness, and "
-"structure. Identifies gaps, suggests improvements, and provides "
-"actionable recommendations to make your notes exam-ready."
-msgstr ""
+msgid "Get AI-powered feedback on your notes quality, completeness, and structure. Identifies gaps, suggests improvements, and provides actionable recommendations to make your notes exam-ready."
+msgstr "Отримуйте відгуки на основі AI щодо якості, повноти та структури ваших нотаток. Виявляє прогалини, пропонує удосконалення та надає дії для підготовки до іспитів."
 
 #: templates/pages/index.html:115
 msgid "Quality Score"
-msgstr ""
+msgstr "Оцінка якості"
 
 #: templates/pages/index.html:116
 msgid "Gap Detection"
-msgstr ""
+msgstr "Виявлення прогалин"
 
 #: templates/pages/index.html:118
 msgid "Actionable Tips"
-msgstr ""
+msgstr "Дії та поради"
 
 #: templates/pages/index.html:119
 msgid "Structure Review"
-msgstr ""
+msgstr "Перевірка структури"
 
 #: templates/pages/index.html:120
 msgid "Improvement Plan"
-msgstr ""
+msgstr "План покращення"
 
 #: templates/pages/index.html:130
 msgid "How EduDuck Works"
-msgstr ""
+msgstr "Як працює EduDuck"
 
 #: templates/pages/index.html:137
 msgid "Paste or Upload"
-msgstr ""
+msgstr "Вставте або завантажте"
 
 #: templates/pages/index.html:138
 msgid "Drop in your notes, PDFs, or images with OCR-powered text extraction"
-msgstr ""
+msgstr "Перетягніть ваші нотатки, PDF-файли або зображення для автоматичного зчитування тексту за допомогою OCR"
 
 #: templates/pages/index.html:145
 msgid "Choose AI"
-msgstr ""
+msgstr "Оберіть AI"
 
 #: templates/pages/index.html:146
 msgid "Free Hugging Face/Google Gemini or premium OpenAI for advanced results"
-msgstr ""
+msgstr "Безкоштовний Hugging Face/Google Gemini або преміум OpenAI для покращених результатів"
 
 #: templates/pages/index.html:153
 msgid "Generate Instantly"
-msgstr ""
+msgstr "Генерувати миттєво"
 
 #: templates/pages/index.html:154
 msgid "Get quizzes, flashcards, or enhanced notes in seconds"
-msgstr ""
+msgstr "Отримуйте вікторини, флеш-картки або покращені нотатки за секунду"
 
 #: templates/pages/index.html:161
 msgid "Practice Smart"
-msgstr ""
+msgstr "Практикуйте розумно"
 
 #: templates/pages/index.html:162
 msgid "Track progress with DuckAI explanations and custom tips"
-msgstr ""
+msgstr "Відстежуйте прогрес за допомогою пояснень DuckAI та користувацьких порад"
 
 #: templates/pages/index.html:169
 msgid "3 free uses per day - upgrade with your own API key for unlimited access"
-msgstr ""
+msgstr "3 безкоштовних використання на день – оновлюйте з вашим власним API ключем для необмеженого доступу"
 
 #: templates/pages/index.html:176
 msgid "Meet DuckAI"
-msgstr ""
+msgstr "Зустрічайте DuckAI"
 
 #: templates/pages/index.html:177
-msgid ""
-"Mastered the quizzes and flashcards? <strong>DuckAI has your "
-"back!</strong>"
-msgstr ""
+msgid "Mastered the quizzes and flashcards? <strong>DuckAI has your back!</strong>"
+msgstr "Оволоділи вікторинами та флеш-картками? <strong>DuckAI допоможе!</strong>"
 
 #: templates/pages/index.html:178
-msgid ""
-"Ask for concept explanations, quiz clarifications, physics homework help,"
-" or custom study tips tailored to your notes!"
-msgstr ""
+msgid "Ask for concept explanations, quiz clarifications, physics homework help, or custom study tips tailored to your notes!"
+msgstr "Запитуйте пояснення концепцій, уточнення вікторин, допомогу з фізикою або індивідуальні поради для навчання, пристосовані до ваших нотаток!"
 
 #: templates/pages/index.html:183 templates/pages/keyAccess.html:60
 msgid "DuckAI"
-msgstr ""
+msgstr "DuckAI"
 
 #: templates/pages/index.html:184
-msgid ""
-"Your smart study companion - explain concepts, quiz help, remembers your "
-"notes! Supports custom prompts, dark mode, and conversation history for "
-"ongoing study sessions."
-msgstr ""
+msgid "Your smart study companion - explain concepts, quiz help, remembers your notes! Supports custom prompts, dark mode, and conversation history for ongoing study sessions."
+msgstr "Ваш розумний помічник для навчання – пояснює концепції, допомагає з вікторинами, пам’ятає ваші нотатки! Підтримує користувацькі підказки, темний режим та історію розмов для регулярних сесій навчання."
 
 #: templates/pages/index.html:186
 msgid "AI Tutor"
-msgstr ""
+msgstr "AI Репетитор"
 
 #: templates/pages/index.html:187
 msgid "Context-Aware"
-msgstr ""
+msgstr "Контекст-залежний"
 
 #: templates/pages/index.html:188
 msgid "24/7"
-msgstr ""
+msgstr "24/7"
 
 #: templates/pages/index.html:198
 msgid "Why Choose EduDuck?"
-msgstr ""
+msgstr "Чому обрати EduDuck?"
 
 #: templates/pages/index.html:204
 msgid "Free Tier"
-msgstr ""
+msgstr "Безкоштовний тариф"
 
 #: templates/pages/index.html:205
 msgid "3 daily uses with OpenAI - no credit card needed"
-msgstr ""
+msgstr "3 щоденні використання з OpenAI - без потреби у кредитній карті"
 
 #: templates/pages/index.html:210
 msgid "Fast & Private"
-msgstr ""
+msgstr "Швидко та конфіденційно"
 
 #: templates/pages/index.html:211
 msgid "Processes locally in-browser where possible, deployed on Render for speed"
-msgstr ""
+msgstr "Обробляє локально у браузері там, де можливо, розгорнуто на Render для швидкості"
 
 #: templates/pages/index.html:216
 msgid "Student-Focused"
-msgstr ""
+msgstr "Зосереджено на студентів"
 
 #: templates/pages/index.html:217
 msgid "Built for heavy workloads like math, physics, biology exams"
-msgstr ""
+msgstr "Створено для важких навантажень, таких як іспити з математики, фізики, біології"
 
 #: templates/pages/index.html:222
 msgid "Open Source"
-msgstr ""
+msgstr "Відкритий код"
 
 #: templates/pages/index.html:223
 msgid "Open-Source"
-msgstr ""
+msgstr "Відкритий код"
 
 #: templates/pages/index.html:223
 msgid "roots with enhanced private version"
-msgstr ""
+msgstr "корені з посиленою приватною версією"
 
 #: templates/pages/index.html:228
 msgid "Mobile-Friendly"
-msgstr ""
+msgstr "Мобільно-дружній"
 
 #: templates/pages/index.html:229
 msgid "Works on phone for on-the-go studying"
-msgstr ""
+msgstr "Працює на телефоні для навчання в будь-який час"
 
 #: templates/pages/index.html:234
 msgid "Secure"
-msgstr ""
+msgstr "Безпечно"
 
 #: templates/pages/index.html:235
 msgid "Your data stays private, encrypted connections"
-msgstr ""
+msgstr "Ваші дані залишаються приватні, зашифровані з'єднання"
 
 #: templates/pages/index.html:244
 msgid "What Students Say"
-msgstr ""
+msgstr "Що кажуть студенти"
 
 #: templates/pages/index.html:250
-msgid ""
-"EduDuck is really helpful especially for English, 90% passing rate, "
-"boosted up 15% with it."
-msgstr ""
+msgid "EduDuck is really helpful especially for English, 90% passing rate, boosted up 15% with it."
+msgstr "EduDuck дуже допомагає особливо для англійської, рівень здачі 90%, піднявся на 15% з ним."
 
 #: templates/pages/index.html:259
 msgid "EduDuck is the greatest thing since sliced bread."
-msgstr ""
+msgstr "EduDuck — це найкраще з моменту появи хліба."
 
 #: templates/pages/index.html:271
 msgid "Ready to Ace Your Exams?"
-msgstr ""
+msgstr "Готові тріумфально здати іспити?"
 
 #: templates/pages/index.html:272
 msgid "Get your free API key and start now - no sign-up, instant results!"
-msgstr ""
+msgstr "Отримайте свій безкоштовний API ключ і починайте прямо зараз — без реєстрації, миттєві результати!"
 
 #: templates/pages/index.html:278
 msgid "Join students already improving their grades with EduDuck"
-msgstr ""
+msgstr "Приєднуйтесь до студентів, які вже покращують свої оцінки з EduDuck"
 
 #: templates/pages/keyAccess.html:4
 msgid "EduDuck - How to get API Key?"
-msgstr ""
+msgstr "EduDuck — Як отримати API ключ?"
 
 #: templates/pages/keyAccess.html:13
 msgid "How to Get Your API Key"
-msgstr ""
+msgstr "Як отримати свій API ключ"
 
 #: templates/pages/keyAccess.html:14
-msgid ""
-"Get your free API key from <strong>Hugging Face</strong>, <strong>Google "
-"Gemini</strong>, or <strong>OpenAI</strong> to unlock AI-powered learning"
-" tools. Follow the tutorials below:"
-msgstr ""
+msgid "Get your free API key from <strong>Hugging Face</strong>, <strong>Google Gemini</strong>, or <strong>OpenAI</strong> to unlock AI-powered learning tools. Follow the tutorials below:"
+msgstr "Отримайте свій безкоштовний API ключ з <strong>Hugging Face</strong>, <strong>Google Gemini</strong> або <strong>OpenAI</strong> для доступу до навчальних інструментів із ШІ. Дотримуйтесь інструкцій нижче:"
 
 #: templates/pages/keyAccess.html:18
 msgid "Hugging Face API Key"
-msgstr ""
+msgstr "API ключ Hugging Face"
 
 #: templates/pages/keyAccess.html:20 templates/pages/keyAccess.html:31
 #: templates/pages/keyAccess.html:42
 msgid "Go to"
-msgstr ""
+msgstr "Перейдіть до"
 
 #: templates/pages/keyAccess.html:20
 msgid "Hugging Face Tokens"
-msgstr ""
+msgstr "Токени Hugging Face"
 
 #: templates/pages/keyAccess.html:21 templates/pages/keyAccess.html:32
 #: templates/pages/keyAccess.html:43
 msgid "Click"
-msgstr ""
+msgstr "Натисніть"
 
 #: templates/pages/keyAccess.html:21
 msgid "New token"
-msgstr ""
+msgstr "Новий токен"
 
 #: templates/pages/keyAccess.html:21
 msgid "Fine-grained"
-msgstr ""
+msgstr "Дрібнозернистий"
 
 #: templates/pages/keyAccess.html:22
 msgid "Check all"
-msgstr ""
+msgstr "Обрати все"
 
 #: templates/pages/keyAccess.html:22
 msgid "Inference"
-msgstr ""
+msgstr "Виведення"
 
 #: templates/pages/keyAccess.html:22
 msgid "permissions"
-msgstr ""
+msgstr "дозволи"
 
 #: templates/pages/keyAccess.html:23 templates/pages/keyAccess.html:34
 msgid "Copy"
-msgstr ""
+msgstr "Скопіюйте"
 
 #: templates/pages/keyAccess.html:23
 msgid "the token and paste it in EduDuck"
-msgstr ""
+msgstr "токен і вставте його в EduDuck"
 
 #: templates/pages/keyAccess.html:25 templates/pages/keyAccess.html:36
 msgid "Free tier:"
-msgstr ""
+msgstr "Безкоштовний тариф:"
 
 #: templates/pages/keyAccess.html:25
 msgid "1M tokens/month | Perfect for quizzes & flashcards"
-msgstr ""
+msgstr "1М токенів/місяць | Ідеально для вікторин та флеш-карт"
 
 #: templates/pages/keyAccess.html:29
 msgid "Google Gemini API Key"
-msgstr ""
+msgstr "API ключ Google Gemini"
 
 #: templates/pages/keyAccess.html:31
 msgid "Google AI Studio"
-msgstr ""
+msgstr "Google AI Studio"
 
 #: templates/pages/keyAccess.html:32
 msgid "Create API key"
-msgstr ""
+msgstr "Створити API ключ"
 
 #: templates/pages/keyAccess.html:33
 msgid "Give"
-msgstr ""
+msgstr "Дайте"
 
 #: templates/pages/keyAccess.html:33
 msgid "your API key a name"
-msgstr ""
+msgstr "вашому API ключу ім'я"
 
 #: templates/pages/keyAccess.html:34
 msgid "the key and paste it in EduDuck"
-msgstr ""
+msgstr "ключ і вставте його в EduDuck"
 
 #: templates/pages/keyAccess.html:36
 msgid "15 RPM | Great for fast responses"
-msgstr ""
+msgstr "15 RPM | Чудово для швидких відповідей"
 
 #: templates/pages/keyAccess.html:40
 msgid "OpenAI API Key"
-msgstr ""
+msgstr "API ключ OpenAI"
 
 #: templates/pages/keyAccess.html:42
 msgid "OpenAI Platform"
-msgstr ""
+msgstr "Платформа OpenAI"
 
 #: templates/pages/keyAccess.html:42
 msgid "Log in"
-msgstr ""
+msgstr "Увійти"
 
 #: templates/pages/keyAccess.html:43
 msgid "Create new secret key"
-msgstr ""
+msgstr "Створити новий секретний ключ"
 
 #: templates/pages/keyAccess.html:44
 msgid "Name it"
-msgstr ""
+msgstr "Назвіть його"
 
 #: templates/pages/keyAccess.html:44
 msgid "Copy immediately (shown once!)"
-msgstr ""
+msgstr "Скопіюйте негайно (показано один раз!)"
 
 #: templates/pages/keyAccess.html:45
 msgid "Paste in EduDuck"
-msgstr ""
+msgstr "Вставте в EduDuck"
 
 #: templates/pages/keyAccess.html:45
 msgid "Select \"OpenAI\" mode + paste key"
-msgstr ""
+msgstr "Обрати режим \"OpenAI\" та вставте ключ"
 
 #: templates/pages/keyAccess.html:47
 msgid "Cost:"
-msgstr ""
+msgstr "Вартість:"
 
 #: templates/pages/keyAccess.html:47
 msgid "~$0.001/quiz | Crispest quality (GPT-4o/GPT-5-nano)"
-msgstr ""
+msgstr "~$0.001/вікторина | Найчіткіша якість (GPT-4o/GPT-5-nano)"
 
 #: templates/pages/keyAccess.html:48
 msgid "Requires card, but $5 lasts ~5,000 quizzes!"
-msgstr ""
+msgstr "Потребує картки, але 5$ вистачає на ~5000 вікторин!"
 
 #: templates/pages/keyAccess.html:53
 msgid "Ready to Start?"
-msgstr ""
+msgstr "Готові почати?"
 
 #: templates/pages/keyAccess.html:54
 msgid "Paste your API key in any tool and start creating!"
-msgstr ""
+msgstr "Вставте свій API ключ у будь-який інструмент і починайте створювати!"
 
 #: templates/pages/login.html:3
 msgid "EduDuck - Login"
-msgstr ""
+msgstr "EduDuck — Вхід"
 
 #: templates/pages/login.html:4
-msgid ""
-"Login to EduDuck for free usage and more for quizzes, flashcards, and "
-"DuckAI. Free AI study tools for students."
-msgstr ""
+msgid "Login to EduDuck for free usage and more for quizzes, flashcards, and DuckAI. Free AI study tools for students."
+msgstr "Увійдіть до EduDuck для безкоштовного використання та більше для вікторин, флеш-карт і DuckAI. Безкоштовні інструменти навчання із ШІ для студентів."
 
 #: templates/pages/login.html:16
 msgid "Login to EduDuck"
-msgstr ""
+msgstr "Увійти до EduDuck"
 
 #: templates/pages/login.html:17
 msgid "Access your saved notes, quizzes, flashcards, and DuckAI responses."
-msgstr ""
+msgstr "Доступ до збережених нотаток, вікторин, флеш-карт та відповідей DuckAI."
 
 #: templates/pages/login.html:32 templates/pages/resetPassword.html:31
 msgid "Username or Email"
-msgstr ""
+msgstr "Ім'я користувача або електронна пошта"
 
 #: templates/pages/login.html:33 templates/pages/resetPassword.html:32
 msgid "Enter your username or email"
-msgstr ""
+msgstr "Введіть ім'я користувача або електронну пошту"
 
 #: templates/pages/login.html:35 templates/pages/register.html:39
 #: templates/pages/userSettings.html:37
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
 #: templates/pages/login.html:36 templates/pages/userSettings.html:36
 msgid "Enter your password"
-msgstr ""
+msgstr "Введіть пароль"
 
 #: templates/pages/login.html:42 templates/pages/register.html:76
 msgid "Or continue with"
-msgstr ""
+msgstr "Або продовжуйте з"
 
 #: templates/pages/login.html:46 templates/pages/register.html:80
 msgid "Sign in with Google"
-msgstr ""
+msgstr "Увійти з Google"
 
 #: templates/pages/login.html:47 templates/pages/register.html:81
 msgid "Google"
-msgstr ""
+msgstr "Google"
 
 #: templates/pages/login.html:50 templates/pages/register.html:84
 msgid "Sign in with Microsoft"
-msgstr ""
+msgstr "Увійти з Microsoft"
 
 #: templates/pages/login.html:51 templates/pages/register.html:85
 msgid "Microsoft"
-msgstr ""
+msgstr "Microsoft"
 
 #: templates/pages/login.html:54 templates/pages/register.html:88
 msgid "Sign in with GitHub"
-msgstr ""
+msgstr "Увійти з GitHub"
 
 #: templates/pages/login.html:55 templates/pages/register.html:89
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #: templates/pages/login.html:58 templates/pages/register.html:92
 msgid "Sign in with Discord"
-msgstr ""
+msgstr "Увійти з Discord"
 
 #: templates/pages/login.html:59 templates/pages/register.html:93
 msgid "Discord"
-msgstr ""
+msgstr "Discord"
 
 #: templates/pages/login.html:66
 msgid "Forgot password?"
-msgstr ""
+msgstr "Забули пароль?"
 
 #: templates/pages/login.html:66
 msgid "Reset password"
-msgstr ""
+msgstr "Скинути пароль"
 
 #: templates/pages/login.html:67 templates/pages/resetPassword.html:41
 msgid "New here?"
-msgstr ""
+msgstr "Новачок тут?"
 
 #: templates/pages/login.html:67 templates/pages/resetPassword.html:41
 msgid "Register today!"
-msgstr ""
+msgstr "Зареєструйтеся сьогодні!"
 
 #: templates/pages/loginRequired.html:4
 msgid "EduDuck - Login Required"
-msgstr ""
+msgstr "EduDuck - Вхід обов’язковий"
 
 #: templates/pages/loginRequired.html:5
-msgid ""
-"You must be logged in to use the free tier on EduDuck. Get your free API "
-"key and start learning instantly."
-msgstr ""
+msgid "You must be logged in to use the free tier on EduDuck. Get your free API key and start learning instantly."
+msgstr "Щоб використовувати безкоштовний тариф EduDuck, необхідно увійти. Отримайте свій безкоштовний API-ключ та починайте навчання миттєво."
 
 #: templates/pages/loginRequired.html:9
 msgid "Login Required"
-msgstr ""
+msgstr "Потрібна авторизація"
 
 #: templates/pages/loginRequired.html:10
 msgid "You must be logged in to use the free tier of EduDuck."
-msgstr ""
+msgstr "Щоб використовувати безкоштовний тариф EduDuck, увійдіть до облікового запису."
 
 #: templates/pages/loginRequired.html:12
 msgid "Don't have an account?"
-msgstr ""
+msgstr "Немає облікового запису?"
 
 #: templates/pages/loginRequired.html:12
 msgid "Register here"
-msgstr ""
+msgstr "Зареєструйтеся тут"
 
 #: templates/pages/loginRequired.html:12
 msgid "to get 3 free uses per day!"
-msgstr ""
+msgstr "щоб отримати 3 безкоштовних використання на день!"
 
 #: templates/pages/privacy.html:4
 msgid "EduDuck - Privacy Policy"
-msgstr ""
+msgstr "EduDuck - Політика конфіденційності"
 
 #: templates/pages/privacy.html:5
-msgid ""
-"EduDuck Privacy Policy - How we handle your data while using AI study "
-"tools."
-msgstr ""
+msgid "EduDuck Privacy Policy - How we handle your data while using AI study tools."
+msgstr "Політика конфіденційності EduDuck - Як ми обробляємо ваші дані під час використання інструментів для навчання на основі AI."
 
 #: templates/pages/privacy.html:12
 msgid "EduDuck Privacy Policy"
-msgstr ""
+msgstr "Політика конфіденційності EduDuck"
 
 #: templates/pages/privacy.html:13
-msgid ""
-"Your privacy is very important to us. This Privacy Policy explains what "
-"data we collect, how we use it, and your rights when using EduDuck AI "
-"study tools."
-msgstr ""
+msgid "Your privacy is very important to us. This Privacy Policy explains what data we collect, how we use it, and your rights when using EduDuck AI study tools."
+msgstr "Вашу приватність дуже важливо для нас. Ця Політика конфіденційності пояснює, які дані ми збираємо, як ми їх використовуємо та ваші права під час використання інструментів навчання на основі AI від EduDuck."
 
 #: templates/pages/privacy.html:15
 msgid "Information We Collect"
-msgstr ""
+msgstr "Інформація, яку ми збираємо"
 
 #: templates/pages/privacy.html:16
-msgid ""
-"Account information: Username, email address, and securely hashed "
-"passwords (Werkzeug password hashing). OAuth user IDs if you sign in via "
-"Google, GitHub, Discord, or Microsoft."
-msgstr ""
+msgid "Account information: Username, email address, and securely hashed passwords (Werkzeug password hashing). OAuth user IDs if you sign in via Google, GitHub, Discord, or Microsoft."
+msgstr "Інформація облікового запису: Ім’я користувача, електронна адреса та безпечне хешування паролів (Werkzeug). ID користувачів OAuth, якщо ви входите через Google, GitHub, Discord або Microsoft."
 
 #: templates/pages/privacy.html:17
-msgid ""
-"Uploaded content: Notes, PDFs, or images temporarily processed using "
-"Tesseract OCR and PIL for generating quizzes, flashcards, study plans, "
-"and enhanced notes."
-msgstr ""
+msgid "Uploaded content: Notes, PDFs, or images temporarily processed using Tesseract OCR and PIL for generating quizzes, flashcards, study plans, and enhanced notes."
+msgstr "Завантажений контент: Нотатки, PDF або зображення, тимчасово обробляються за допомогою Tesseract OCR та PIL для створення тестів, флешкарт, планів навчання та розширених нотаток."
 
 #: templates/pages/privacy.html:18
-msgid ""
-"Generated content: Quizzes, flashcards, study plans, enhanced notes, and "
-"note analyses stored in MongoDB with unique identifiers."
-msgstr ""
+msgid "Generated content: Quizzes, flashcards, study plans, enhanced notes, and note analyses stored in MongoDB with unique identifiers."
+msgstr "Згенерований контент: Тести, флешкарти, навчальні плани, розширені нотатки та аналіз нотаток, які зберігаються в MongoDB з унікальними ідентифікаторами."
 
 #: templates/pages/privacy.html:19
-msgid ""
-"Usage data: Daily usage counters (reset at midnight UTC), user IDs, and "
-"timestamps to enforce the 3 free uses per day limit."
-msgstr ""
+msgid "Usage data: Daily usage counters (reset at midnight UTC), user IDs, and timestamps to enforce the 3 free uses per day limit."
+msgstr "Дані використання: Щоденні лічильники використання (скидаються опівночі за UTC), ID користувачів та часові позначки для забезпечення ліміту 3 безкоштовних використань на день."
 
 #: templates/pages/privacy.html:20
-msgid ""
-"Cookies and browser storage: Session cookies (Flask-Login), CSRF tokens, "
-"theme preferences, and temporary session data for guest users."
-msgstr ""
+msgid "Cookies and browser storage: Session cookies (Flask-Login), CSRF tokens, theme preferences, and temporary session data for guest users."
+msgstr "Cookies та зберігання у браузері: Сесійні cookies (Flask-Login), CSRF-токени, налаштування теми та тимчасові дані сесії для гостів."
 
 #: templates/pages/privacy.html:21
-msgid ""
-"Email verification tokens: Temporary tokens with 24-hour expiration sent "
-"via MailGun for account verification."
-msgstr ""
+msgid "Email verification tokens: Temporary tokens with 24-hour expiration sent via MailGun for account verification."
+msgstr "Токени підтвердження електронної пошти: Тимчасові токени з 24-годинним терміном дії, що надсилаються через MailGun для підтвердження облікового запису."
 
 #: templates/pages/privacy.html:23
 msgid "How We Use Your Data"
-msgstr ""
+msgstr "Як ми використовуємо ваші дані"
 
 #: templates/pages/privacy.html:24
-msgid ""
-"To provide AI study services via Hugging Face, Google Gemini, and OpenAI "
-"APIs."
-msgstr ""
+msgid "To provide AI study services via Hugging Face, Google Gemini, and OpenAI APIs."
+msgstr "Для надання інструментів навчання на основі AI через API Hugging Face, Google Gemini та OpenAI."
 
 #: templates/pages/privacy.html:25
-msgid ""
-"To authenticate users via session-based auth (Flask-Login) or OAuth "
-"(Authlib)."
-msgstr ""
+msgid "To authenticate users via session-based auth (Flask-Login) or OAuth (Authlib)."
+msgstr "Для автентифікації користувачів через сесійну авторизацію (Flask-Login) або OAuth (Authlib)."
 
 #: templates/pages/privacy.html:26
 msgid "To track and enforce daily free-tier usage limits (3 uses per day)."
-msgstr ""
+msgstr "Для відстеження та забезпечення дотримання щоденних лімітів використання (3 використання на день)."
 
 #: templates/pages/privacy.html:27
 msgid "To send verification emails via MailGun for password-based accounts."
-msgstr ""
+msgstr "Для надсилання підтверджувальних листів через MailGun для облікових записів на основі пароля."
 
 #: templates/pages/privacy.html:28
-msgid ""
-"To store and retrieve user-generated content (quizzes, flashcards, study "
-"plans, note analyses, duckai conversations , enhanced-notes) in MongoDB."
-msgstr ""
+msgid "To store and retrieve user-generated content (quizzes, flashcards, study plans, note analyses, duckai conversations , enhanced-notes) in MongoDB."
+msgstr "Для зберігання та отримання контенту, створеного користувачами (тести, флешкарти, навчальні плани, аналіз нотаток, розмови duckai, розширені нотатки) у MongoDB."
 
 #: templates/pages/privacy.html:29
 msgid "To improve and maintain the security and functionality of our site."
-msgstr ""
+msgstr "Для покращення та підтримки безпеки і функціональності нашого сайту."
 
 #: templates/pages/privacy.html:31
 msgid "Legal Basis for Processing"
-msgstr ""
+msgstr "Юридична підстава обробки"
 
 #: templates/pages/privacy.html:32
-msgid ""
-"For users in the EU and other regions with data protection laws, we "
-"process your data under the following bases:"
-msgstr ""
+msgid "For users in the EU and other regions with data protection laws, we process your data under the following bases:"
+msgstr "Для користувачів з ЄС та інших регіонів із законами про захист даних ми обробляємо ваші дані за наступними підставами:"
 
 #: templates/pages/privacy.html:33
 msgid "To fulfill our contract with you (providing AI study services)."
-msgstr ""
+msgstr "Для виконання нашого контракту з вами (надання інструментів навчання на основі AI)."
 
 #: templates/pages/privacy.html:34
-msgid ""
-"Under our legitimate interest to manage usage limits, prevent abuse, and "
-"maintain site functionality."
-msgstr ""
+msgid "Under our legitimate interest to manage usage limits, prevent abuse, and maintain site functionality."
+msgstr "На підставі нашого легітимного інтересу керувати лімітами використання, запобігати зловживанням та підтримувати функціональність сайту."
 
 #: templates/pages/privacy.html:35
 msgid "With your consent for optional account features and OAuth authentication."
-msgstr ""
+msgstr "За вашою згодою для додаткових функцій облікового запису та OAuth-автентифікації."
 
 #: templates/pages/privacy.html:37
 msgid "Data Storage and Retention"
-msgstr ""
+msgstr "Зберігання та збереження даних"
 
 #: templates/pages/privacy.html:38
-msgid ""
-"Database: User data and generated content are stored in MongoDB Atlas "
-"with secure connections (certifi SSL verification)."
-msgstr ""
+msgid "Database: User data and generated content are stored in MongoDB Atlas with secure connections (certifi SSL verification)."
+msgstr "База даних: Дані користувачів та згенерований контент зберігаються в MongoDB Atlas із захищеними з'єднаннями (SSL із сертифікатом)."
 
 #: templates/pages/privacy.html:39
-msgid ""
-"Uploaded files: PDFs and images are processed temporarily (usually within"
-" seconds) using pypdf and PIL, then discarded immediately after AI "
-"processing."
-msgstr ""
+msgid "Uploaded files: PDFs and images are processed temporarily (usually within seconds) using pypdf and PIL, then discarded immediately after AI processing."
+msgstr "Завантажені файли: PDF та зображення обробляються тимчасово (зазвичай за кілька секунд) за допомогою pypdf та PIL, потім одразу видаляються після обробки AI."
 
 #: templates/pages/privacy.html:40
-msgid ""
-"Generated content: Stored indefinitely for logged-in users until manually"
-" deleted. Guest users' content is stored temporarily in session storage."
-msgstr ""
+msgid "Generated content: Stored indefinitely for logged-in users until manually deleted. Guest users' content is stored temporarily in session storage."
+msgstr "Згенерований контент: зберігається безстроково для авторизованих користувачів, доки їх не видалять вручну. Контент гостів зберігається тимчасово у сесії."
 
 #: templates/pages/privacy.html:41
-msgid ""
-"Account deletion: Accounts marked for deletion are recoverable for 30 "
-"days. After 30 days, all associated data is permanently deleted from "
-"MongoDB."
-msgstr ""
+msgid "Account deletion: Accounts marked for deletion are recoverable for 30 days. After 30 days, all associated data is permanently deleted from MongoDB."
+msgstr "Видалення облікового запису: Облікові записи, позначені для видалення, можна відновити протягом 30 днів. Після цього всі пов’язані дані видаляються назавжди з MongoDB."
 
 #: templates/pages/privacy.html:42
 msgid "Email verification tokens: Automatically expire after 24 hours."
-msgstr ""
+msgstr "Токени підтвердження електронної пошти: автоматично вичерпуються через 24 години."
 
 #: templates/pages/privacy.html:44
 msgid "Cookies & Tracking"
-msgstr ""
+msgstr "Cookies та відстеження"
 
 #: templates/pages/privacy.html:45
 msgid "EduDuck uses minimal cookies and browser storage:"
-msgstr ""
+msgstr "EduDuck використовує мінімальні cookies і сховище браузера:"
 
 #: templates/pages/privacy.html:46
 msgid "Session cookies:"
-msgstr ""
+msgstr "Сесійні cookies:"
 
 #: templates/pages/privacy.html:46
 msgid "Required for login authentication (Flask-Login) and CSRF protection."
-msgstr ""
+msgstr "Обов’язкові для автентифікації входу (Flask-Login) та захисту CSRF."
 
 #: templates/pages/privacy.html:47
 msgid "Theme preference cookies:"
-msgstr ""
+msgstr "Cookies налаштувань теми:"
 
 #: templates/pages/privacy.html:47
 msgid "To remember your light/dark mode choice."
-msgstr ""
+msgstr "Щоб запам'ятати ваш вибір світлого/темного режиму."
 
 #: templates/pages/privacy.html:48
 msgid "Session storage:"
-msgstr ""
+msgstr "Зберігання сесії:"
 
 #: templates/pages/privacy.html:48
-msgid ""
-"Temporary storage of generated content for guest users (cleared when "
-"browser closes)."
-msgstr ""
+msgid "Temporary storage of generated content for guest users (cleared when browser closes)."
+msgstr "Тимчасове зберігання створеного контенту для гостьових користувачів (очищується при закритті браузера)."
 
 #: templates/pages/privacy.html:49
-msgid ""
-"No analytics or advertising tracking is performed. You can manage cookies"
-" through your browser settings."
-msgstr ""
+msgid "No analytics or advertising tracking is performed. You can manage cookies through your browser settings."
+msgstr "Не використовується аналітика або рекламістика. Ви можете керувати cookies у налаштуваннях браузера."
 
 #: templates/pages/privacy.html:51
 msgid "Third-Party Services"
-msgstr ""
+msgstr "Сервіси сторонніх розробників"
 
 #: templates/pages/privacy.html:52
 msgid "EduDuck uses the following third-party services:"
-msgstr ""
+msgstr "EduDuck використовує наступні сторонні сервіси:"
 
 #: templates/pages/privacy.html:53
 msgid "AI Processing:"
-msgstr ""
+msgstr "Обробка AI:"
 
 #: templates/pages/privacy.html:53
-msgid ""
-"Hugging Face Inference API, OpenAI API, and Google Gemini (2.5 Flash) "
-"process your uploaded content to generate study materials. Your data is "
-"sent temporarily via httpx (HTTP/2) and is not stored permanently by "
-"these services."
-msgstr ""
+msgid "Hugging Face Inference API, OpenAI API, and Google Gemini (2.5 Flash) process your uploaded content to generate study materials. Your data is sent temporarily via httpx (HTTP/2) and is not stored permanently by these services."
+msgstr "Hugging Face Inference API, OpenAI API та Google Gemini (2.5 Flash) обробляють ваш завантажений контент для створення навчальних матеріалів. Ваші дані передаються тимчасово через httpx (HTTP/2) і не зберігаються назавжди цими сервісами."
 
 #: templates/pages/privacy.html:54
 msgid "OAuth Authentication:"
-msgstr ""
+msgstr "OAuth автентифікація:"
 
 #: templates/pages/privacy.html:54
-msgid ""
-"Authlib integrates with Google, GitHub, Discord, and Microsoft for secure"
-" sign-in. OAuth tokens are used only for authentication and not stored "
-"permanently."
-msgstr ""
+msgid "Authlib integrates with Google, GitHub, Discord, and Microsoft for secure sign-in. OAuth tokens are used only for authentication and not stored permanently."
+msgstr "Authlib інтегрується з Google, GitHub, Discord та Microsoft для безпечного входу. Токени OAuth використовуються лише для автентифікації і не зберігаються безпосередньо."
 
 #: templates/pages/privacy.html:55
 msgid "Email Services:"
-msgstr ""
+msgstr "Сервіси електронної пошти:"
 
 #: templates/pages/privacy.html:55
 msgid "MailGun sends verification emails for password-based accounts."
-msgstr ""
+msgstr "MailGun надсилає підтверджувальні листи для облікових записів на основі пароля."
 
 #: templates/pages/privacy.html:56
 msgid "Database Hosting:"
-msgstr ""
+msgstr "Хостинг баз даних:"
 
 #: templates/pages/privacy.html:56
-msgid ""
-"MongoDB Atlas (with certifi SSL) stores user accounts and generated "
-"content."
-msgstr ""
+msgid "MongoDB Atlas (with certifi SSL) stores user accounts and generated content."
+msgstr "MongoDB Atlas (з сертифікатом SSL через certifi) зберігає облікові записи користувачів та згенерований контент."
 
 #: templates/pages/privacy.html:57
 msgid "Please review their privacy policies:"
-msgstr ""
+msgstr "Будь ласка, ознайомтеся з їхніми політиками конфіденційності:"
 
 #: templates/pages/privacy.html:58
 msgid "Hugging Face Privacy Policy"
-msgstr ""
+msgstr "Політика конфіденційності Hugging Face"
 
 #: templates/pages/privacy.html:59
 msgid "OpenAI Privacy Policy"
-msgstr ""
+msgstr "Політика конфіденційності OpenAI"
 
 #: templates/pages/privacy.html:60
 msgid "Google Privacy Policy"
-msgstr ""
+msgstr "Політика конфіденційності Google"
 
 #: templates/pages/privacy.html:61
 msgid "MailGun Privacy Policy"
-msgstr ""
+msgstr "Політика конфіденційності MailGun"
 
 #: templates/pages/privacy.html:62
 msgid "MongoDB Privacy Policy"
-msgstr ""
+msgstr "Політика конфіденційності MongoDB"
 
 #: templates/pages/privacy.html:64
 msgid "Your Rights"
-msgstr ""
+msgstr "Ваші права"
 
 #: templates/pages/privacy.html:65
 msgid "If you are in the EU, UK, or California, you have the following rights:"
-msgstr ""
+msgstr "Якщо ви перебуваєте в ЄС, Великій Британії або Каліфорнії, ви маєте наступні права:"
 
 #: templates/pages/privacy.html:66
 msgid "Access your personal data stored in MongoDB."
-msgstr ""
+msgstr "Доступ до ваших персональних даних, збережених у MongoDB."
 
 #: templates/pages/privacy.html:67
 msgid "Request correction of inaccurate data."
-msgstr ""
+msgstr "Запит про виправлення неточних даних."
 
 #: templates/pages/privacy.html:68
-msgid ""
-"Request deletion of your account and all associated content (recoverable "
-"for 30 days)."
-msgstr ""
+msgid "Request deletion of your account and all associated content (recoverable for 30 days)."
+msgstr "Запит про видалення вашого облікового запису та всього пов’язаного контенту (можливо відновити протягом 30 днів)."
 
 #: templates/pages/privacy.html:69
-msgid ""
-"Export your generated content (quizzes, flashcards, study plans, note "
-"analyses, duckai conversations) in JSON or text format."
-msgstr ""
+msgid "Export your generated content (quizzes, flashcards, study plans, note analyses, duckai conversations) in JSON or text format."
+msgstr "Експорт вашого згенерованого контенту (тести, флешкарти, навчальні плани, аналіз нотаток, розмови duckai) у форматі JSON або тексту."
 
 #: templates/pages/privacy.html:70
 msgid "Withdraw consent to data processing at any time."
-msgstr ""
+msgstr "Відвідставляти згоду на обробку даних у будь-який час."
 
 #: templates/pages/privacy.html:71
-msgid ""
-"Complain to a supervisory authority if you believe your data is "
-"mishandled."
-msgstr ""
+msgid "Complain to a supervisory authority if you believe your data is mishandled."
+msgstr "Поскаржитися контролюючому органу, якщо вважаєте, що ваші дані обробляються неправильно."
 
 #: templates/pages/privacy.html:72
 msgid "To exercise these rights, contact us at"
-msgstr ""
+msgstr "Щоб скористатися цими правами, зв’яжіться з нами за адресою"
 
 #: templates/pages/privacy.html:72 templates/pages/privacy.html:89
 msgid "team.eduduck@gmail.com"
-msgstr ""
+msgstr "team.eduduck@gmail.com"
 
 #: templates/pages/privacy.html:74
 msgid "Security"
-msgstr ""
+msgstr "Безпека"
 
 #: templates/pages/privacy.html:75
-msgid ""
-"We take reasonable technical and organizational measures to protect your "
-"data:"
-msgstr ""
+msgid "We take reasonable technical and organizational measures to protect your data:"
+msgstr "Ми вживаємо розумні технічні та організаційні заходи для захисту ваших даних:"
 
 #: templates/pages/privacy.html:76
 msgid "Passwords are hashed using Werkzeug's secure password hashing."
-msgstr ""
+msgstr "Паролі зберігаються у вигляді хешу за допомогою захищеного хешування Werkzeug."
 
 #: templates/pages/privacy.html:77
 msgid "MongoDB connections use SSL/TLS (certifi) for secure data transmission."
-msgstr ""
+msgstr "З'єднання з MongoDB використовують SSL/TLS (certifi) для безпечної передачі даних."
 
 #: templates/pages/privacy.html:78
 msgid "CSRF protection on all forms."
-msgstr ""
+msgstr "Захист від CSRF на всіх формах."
 
 #: templates/pages/privacy.html:79
 msgid "HTTP/2 connections (httpx) for improved security and performance."
-msgstr ""
+msgstr "З'єднання HTTP/2 (httpx) для покращеної безпеки та продуктивності."
 
 #: templates/pages/privacy.html:80
-msgid ""
-"However, no system is completely secure, and we cannot guarantee absolute"
-" protection."
-msgstr ""
+msgid "However, no system is completely secure, and we cannot guarantee absolute protection."
+msgstr "Однак жодна система цілком не є захищеною, і ми не можемо гарантувати абсолютний захист."
 
 #: templates/pages/privacy.html:82
 msgid "International Data Transfers"
-msgstr ""
+msgstr "Міжнародна передача даних"
 
 #: templates/pages/privacy.html:83
-msgid ""
-"EduDuck is hosted on Render, and data may be processed in various "
-"regions. We ensure adequate safeguards are in place when transferring "
-"data internationally."
-msgstr ""
+msgid "EduDuck is hosted on Render, and data may be processed in various regions. We ensure adequate safeguards are in place when transferring data internationally."
+msgstr "EduDuck розміщено на Render, і дані можуть оброблятися у різних регіонах. Ми забезпечуємо належні заходи безпеки при міжнародній передачі даних."
 
 #: templates/pages/privacy.html:85
 msgid "Changes to This Policy"
-msgstr ""
+msgstr "Зміни до цієї політики"
 
 #: templates/pages/privacy.html:86
-msgid ""
-"We may update this privacy policy from time to time. The latest version "
-"will always be available at"
-msgstr ""
+msgid "We may update this privacy policy from time to time. The latest version will always be available at"
+msgstr "Ми можемо час від часу оновлювати цю політику конфіденційності. Остання версія завжди буде доступна за адресою"
 
 #: templates/pages/privacy.html:86
 msgid "/privacy"
-msgstr ""
+msgstr "/privacy"
 
 #: templates/pages/privacy.html:88
 msgid "Contact Us"
-msgstr ""
+msgstr "Зв'яжіться з нами"
 
 #: templates/pages/privacy.html:89
 msgid "If you have questions about your data or privacy, contact us at"
-msgstr ""
+msgstr "Якщо у вас є питання щодо ваших даних або конфіденційності, зв'язуйтеся з нами за адресою"
 
 #: templates/pages/privacy.html:91
-msgid ""
-"By using EduDuck, you agree to the practices described in this Privacy "
-"Policy."
-msgstr ""
+msgid "By using EduDuck, you agree to the practices described in this Privacy Policy."
+msgstr "Використовуючи EduDuck, ви погоджуєтесь із політикою конфіденційності, описаною у цій політиці."
 
 #: templates/pages/profile.html:3
 msgid "EduDuck - Profile"
-msgstr ""
+msgstr "EduDuck - Профіль"
 
 #: templates/pages/profile.html:12
 msgid "Your Profile"
-msgstr ""
+msgstr "Ваш профіль"
 
 #: templates/pages/profile.html:13
-msgid ""
-"View and reopen your saved quizzes, flashcards, study plans, notes, note "
-"analyses, and DuckAI conversations."
-msgstr ""
+msgid "View and reopen your saved quizzes, flashcards, study plans, notes, note analyses, and DuckAI conversations."
+msgstr "Переглядайте та повторно відкривайте збережені тести, картки, навчальні плани, нотатки, аналізи нотаток та діалоги DuckAI."
 
 #: templates/pages/profile.html:17
 msgid "What should I do next?"
-msgstr ""
+msgstr "Що мені робити далі?"
 
 #: templates/pages/profile.html:24
 msgid "Generate Now"
-msgstr ""
+msgstr "Генерувати зараз"
 
 #: templates/pages/profile.html:25
 msgid "Close"
-msgstr ""
+msgstr "Закрити"
 
 #: templates/pages/profile.html:31
 msgid "Study Activity"
-msgstr ""
+msgstr "Навчальна активність"
 
 #: templates/pages/profile.html:35
 msgid "day streak"
-msgstr ""
+msgstr "серія днів"
 
 #: templates/pages/profile.html:39
 msgid "longest streak"
-msgstr ""
+msgstr "найдовша серія"
 
 #: templates/pages/profile.html:43
 msgid "total days"
-msgstr ""
+msgstr "загальна кількість днів"
 
 #: templates/pages/profile.html:47
 msgid "activities"
-msgstr ""
+msgstr "активності"
 
 #: templates/pages/profile.html:54
 msgid "Custom Color"
-msgstr ""
+msgstr "Користувацький колір"
 
 #: templates/pages/profile.html:58
 msgid "Presets"
-msgstr ""
+msgstr "Попередні налаштування"
 
 #: templates/pages/profile.html:59
 msgid "Green (default)"
-msgstr ""
+msgstr "Зелений (за замовчуванням)"
 
 #: templates/pages/profile.html:60
 msgid "Blue"
-msgstr ""
+msgstr "Синій"
 
 #: templates/pages/profile.html:61
 msgid "Purple"
-msgstr ""
+msgstr "Фіолетовий"
 
 #: templates/pages/profile.html:62
 msgid "Orange"
-msgstr ""
+msgstr "Помаранчевий"
 
 #: templates/pages/profile.html:63
 msgid "Red"
-msgstr ""
+msgstr "Червоний"
 
 #: templates/pages/profile.html:64
 msgid "Pink"
-msgstr ""
+msgstr "Рожевий"
 
 #: templates/pages/profile.html:70
 msgid "Mon"
-msgstr ""
+msgstr "Пон"
 
 #: templates/pages/profile.html:71
 msgid "Wed"
-msgstr ""
+msgstr "Середа"
 
 #: templates/pages/profile.html:72
 msgid "Fri"
-msgstr ""
+msgstr "Пт"
 
 #: templates/pages/profile.html:78
 msgid "Less"
-msgstr ""
+msgstr "Менше"
 
 #: templates/pages/profile.html:86
 msgid "More"
-msgstr ""
+msgstr "Більше"
 
 #: templates/pages/profile.html:98
 msgid "Update Profile Picture"
-msgstr ""
+msgstr "Оновити зображення профілю"
 
 #: templates/pages/profile.html:101
 msgid "Upload"
-msgstr ""
+msgstr "Завантажити"
 
 #: templates/pages/profile.html:103
 msgid "Upload profile picture by clicking button above"
-msgstr ""
+msgstr "Завантажте зображення профілю, натиснувши кнопку вище"
 
 #: templates/pages/profile.html:108
 msgid "Quizzes"
-msgstr ""
+msgstr "Тести"
 
 #: templates/pages/profile.html:112
 msgid "Quiz"
-msgstr ""
+msgstr "Тест"
 
 #: templates/pages/profile.html:116
 msgid "No quizzes yet."
-msgstr ""
+msgstr "Ще немає тестів."
 
 #: templates/pages/profile.html:121 templates/pages/profile.html:125
 msgid "Flashcards"
-msgstr ""
+msgstr "Картки"
 
 #: templates/pages/profile.html:129
 msgid "No flashcards yet."
-msgstr ""
+msgstr "Ще немає карток."
 
 #: templates/pages/profile.html:134
 msgid "Study Plans"
-msgstr ""
+msgstr "Навчальні плани"
 
 #: templates/pages/profile.html:138
 msgid "Study plan"
-msgstr ""
+msgstr "Навчальний план"
 
 #: templates/pages/profile.html:142
 msgid "No study plans yet."
-msgstr ""
+msgstr "Ще немає навчальних планів."
 
 #: templates/pages/profile.html:147
 msgid "Note Analyses"
-msgstr ""
+msgstr "Аналіз нотаток"
 
 #: templates/pages/profile.html:151
 msgid "Analysis"
-msgstr ""
+msgstr "Аналіз"
 
 #: templates/pages/profile.html:155
 msgid "No note analyses yet."
-msgstr ""
+msgstr "Ще немає аналізів нотаток."
 
 #: templates/pages/profile.html:160
 msgid "Enhanced Notes"
-msgstr ""
+msgstr "Покращені нотатки"
 
 #: templates/pages/profile.html:164
 msgid "Notes"
-msgstr ""
+msgstr "Нотатки"
 
 #: templates/pages/profile.html:168
 msgid "No enhanced notes yet."
-msgstr ""
+msgstr "Ще немає покращених нотаток."
 
 #: templates/pages/profile.html:173
 msgid "DuckAI Conversations"
-msgstr ""
+msgstr "Діалоги DuckAI"
 
 #: templates/pages/profile.html:177
 msgid "Chat"
-msgstr ""
+msgstr "Чат"
 
 #: templates/pages/profile.html:177
 msgid "last edited"
-msgstr ""
+msgstr "останнє редагування"
 
 #: templates/pages/profile.html:181
 msgid "No DuckAI chats yet."
-msgstr ""
+msgstr "Ще немає чатів DuckAI."
 
 #: templates/pages/register.html:4
 msgid "EduDuck - Register"
-msgstr ""
+msgstr "EduDuck - Реєстрація"
 
 #: templates/pages/register.html:5
-msgid ""
-"Register for EduDuck to save your notes, quizzes, flashcards, and DuckAI "
-"responses. Free AI study tools for students."
-msgstr ""
+msgid "Register for EduDuck to save your notes, quizzes, flashcards, and DuckAI responses. Free AI study tools for students."
+msgstr "Зареєструйтеся в EduDuck, щоб зберігати нотатки, тести, картки та відповіді DuckAI. Безкоштовні інструменти для навчання з штучним інтелектом для студентів."
 
 #: templates/pages/register.html:17
 msgid "Create Your EduDuck Account"
-msgstr ""
+msgstr "Створіть ваш обліковий запис EduDuck"
 
 #: templates/pages/register.html:18
-msgid ""
-"Register to save notes, quizzes, flashcards, and DuckAI responses. Free "
-"AI study tools for students."
-msgstr ""
+msgid "Register to save notes, quizzes, flashcards, and DuckAI responses. Free AI study tools for students."
+msgstr "Зареєструйтеся, щоб зберігати нотатки, тести, картки та відповіді DuckAI. Безкоштовні інструменти для навчання з штучним інтелектом для студентів."
 
 #: templates/pages/register.html:33
 msgid "Username"
-msgstr ""
+msgstr "Ім'я користувача"
 
 #: templates/pages/register.html:34
 msgid "Choose a username"
-msgstr ""
+msgstr "Обрати ім'я користувача"
 
 #: templates/pages/register.html:36
 msgid "Email"
-msgstr ""
+msgstr "Електронна пошта"
 
 #: templates/pages/register.html:37
 msgid "Enter your email"
-msgstr ""
+msgstr "Введіть вашу електронну пошту"
 
 #: templates/pages/register.html:40
 msgid "Choose a password"
-msgstr ""
+msgstr "Обрати пароль"
 
 #: templates/pages/register.html:45
 #: templates/pages/resetPasswordConfirm.html:26
 #: templates/pages/setupPassword.html:25
 msgid "8+ characters"
-msgstr ""
+msgstr "8+ символів"
 
 #: templates/pages/register.html:49
 #: templates/pages/resetPasswordConfirm.html:30
 #: templates/pages/setupPassword.html:29
 msgid "Contains letters"
-msgstr ""
+msgstr "Містить літери"
 
 #: templates/pages/register.html:53
 #: templates/pages/resetPasswordConfirm.html:34
 #: templates/pages/setupPassword.html:33
 msgid "Contains numbers"
-msgstr ""
+msgstr "Містить цифри"
 
 #: templates/pages/register.html:57
 #: templates/pages/resetPasswordConfirm.html:38
 #: templates/pages/setupPassword.html:37
 msgid "Special char"
-msgstr ""
+msgstr "Спеціальні символи"
 
 #: templates/pages/register.html:61
 #: templates/pages/resetPasswordConfirm.html:42
 #: templates/pages/setupPassword.html:41
 msgid "No spaces"
-msgstr ""
+msgstr "Без пробілів"
 
 #: templates/pages/register.html:65
 #: templates/pages/resetPasswordConfirm.html:46
 #: templates/pages/setupPassword.html:45
 msgid "Confirm Password"
-msgstr ""
+msgstr "Підтвердити пароль"
 
 #: templates/pages/register.html:66
 msgid "Repeat your password"
-msgstr ""
+msgstr "Повторіть ваш пароль"
 
 #: templates/pages/register.html:70
 #: templates/pages/resetPasswordConfirm.html:51
 #: templates/pages/setupPassword.html:50
 msgid "Passwords match"
-msgstr ""
+msgstr "Паролі співпадають"
 
 #: templates/pages/register.html:100
 msgid "Already have an account?"
-msgstr ""
+msgstr "Вже маєте акаунт?"
 
 #: templates/pages/register.html:100 templates/pages/resetPassword.html:40
 msgid "Login here"
-msgstr ""
+msgstr "Увійдіть тут"
 
 #: templates/pages/resetPassword.html:4
 msgid "EduDuck - Reset Password"
-msgstr ""
+msgstr "EduDuck - Скинути пароль"
 
 #: templates/pages/resetPassword.html:5
-msgid ""
-"Reset your EduDuck password to regain access to your account. Free AI "
-"study tools for students."
-msgstr ""
+msgid "Reset your EduDuck password to regain access to your account. Free AI study tools for students."
+msgstr "Скиньте пароль EduDuck, щоб відновити доступ до свого акаунту. Безкоштовні AI-інструменти для навчання студентів."
 
 #: templates/pages/resetPassword.html:15
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Скинути ваш пароль"
 
 #: templates/pages/resetPassword.html:16
-msgid ""
-"Enter your username or email address, and we'll send you a link to reset "
-"your password."
-msgstr ""
+msgid "Enter your username or email address, and we'll send you a link to reset your password."
+msgstr "Введіть ім'я користувача або адресу електронної пошти, і ми надішлемо вам посилання для скиду пароля."
 
 #: templates/pages/resetPassword.html:34
 msgid "Send Reset Link"
-msgstr ""
+msgstr "Надіслати посилання для скиду"
 
 #: templates/pages/resetPassword.html:40
 msgid "Remember your password?"
-msgstr ""
+msgstr "Пам’ятаєте пароль?"
 
 #: templates/pages/resetPasswordConfirm.html:4
 msgid "EduDuck - Set New Password"
-msgstr ""
+msgstr "EduDuck - Встановити новий пароль"
 
 #: templates/pages/resetPasswordConfirm.html:14
 msgid "Set New Password"
-msgstr ""
+msgstr "Встановіть новий пароль"
 
 #: templates/pages/resetPasswordConfirm.html:15
 msgid "Enter your new password below."
-msgstr ""
+msgstr "Введіть свій новий пароль нижче."
 
 #: templates/pages/resetPasswordConfirm.html:20
 msgid "New Password"
-msgstr ""
+msgstr "Новий пароль"
 
 #: templates/pages/resetPasswordConfirm.html:21
 msgid "Enter new password"
-msgstr ""
+msgstr "Введіть новий пароль"
 
 #: templates/pages/resetPasswordConfirm.html:47
 msgid "Confirm new password"
-msgstr ""
+msgstr "Підтвердіть новий пароль"
 
 #: templates/pages/resetPasswordConfirm.html:54
 #: templates/pages/resetPasswordEmail.html:71
 msgid "Reset Password"
-msgstr ""
+msgstr "Скинути пароль"
 
 #: templates/pages/resetPasswordConfirm.html:60
 msgid "Invalid or Expired Link"
-msgstr ""
+msgstr "Недійсне або протермінове посилання"
 
 #: templates/pages/resetPasswordConfirm.html:61
-msgid ""
-"This password reset link is invalid or has expired. Please request a new "
-"one."
-msgstr ""
+msgid "This password reset link is invalid or has expired. Please request a new one."
+msgstr "Це посилання для скиду пароля недійсне або закінчилося. Будь ласка, запитайте нове."
 
 #: templates/pages/resetPasswordConfirm.html:62
 msgid "Request New Link"
-msgstr ""
+msgstr "Замовити нове посилання"
 
 #: templates/pages/resetPasswordConfirm.html:65
 msgid "Back to Login"
-msgstr ""
+msgstr "Повернутися до входу"
 
 #: templates/pages/resetPasswordEmail.html:25
 msgid "Reset your password"
-msgstr ""
+msgstr "Скинути ваш пароль"
 
 #: templates/pages/resetPasswordEmail.html:53
-msgid ""
-"We received a request to reset your <strong>EduDuck</strong> account "
-"password. Click the button below to create a new password and regain "
-"access to your quizzes, flashcards, and study plans."
-msgstr ""
+msgid "We received a request to reset your <strong>EduDuck</strong> account password. Click the button below to create a new password and regain access to your quizzes, flashcards, and study plans."
+msgstr "Ми отримали запит на скидання пароля вашого акаунту <strong>EduDuck</strong>. Натисніть кнопку нижче, щоб створити новий пароль і знову отримати доступ до ваших тестів, карток і планів навчання."
 
 #: templates/pages/resetPasswordEmail.html:77
 msgid "If the button doesn't work, copy and paste this link into your browser:"
-msgstr ""
+msgstr "Якщо кнопка не працює, скопіюйте та вставте це посилання у браузер:"
 
 #: templates/pages/resetPasswordEmail.html:92
 msgid "Important:"
-msgstr ""
+msgstr "Важливо:"
 
 #: templates/pages/resetPasswordEmail.html:92
 msgid "This link will expire in 1 hour for security reasons."
-msgstr ""
+msgstr "Це посилання закінчиться через 1 годину з міркувань безпеки."
 
 #: templates/pages/resetPasswordEmail.html:96
-msgid ""
-"If you didn't request this password reset, you can safely ignore this "
-"email. Your password will remain unchanged."
-msgstr ""
+msgid "If you didn't request this password reset, you can safely ignore this email. Your password will remain unchanged."
+msgstr "Якщо ви не запитували цей скидання пароля, ігноруйте цей лист. Ваш пароль залишиться незмінним."
 
 #: templates/pages/setupPassword.html:4
 msgid "EduDuck - Setup Password"
-msgstr ""
+msgstr "EduDuck - Встановлення пароля"
 
 #: templates/pages/setupPassword.html:13
 msgid "Secure Your Account"
-msgstr ""
+msgstr "Забезпечте безпеку вашого акаунту"
 
 #: templates/pages/setupPassword.html:15
-msgid ""
-"You signed up with OAuth. Add a password to enable password-based login "
-"as an alternative to"
-msgstr ""
+msgid "You signed up with OAuth. Add a password to enable password-based login as an alternative to"
+msgstr "Ви зареєстровані за допомогою OAuth. Додайте пароль, щоб увімкнути вход за паролем як альтернативу"
 
 #: templates/pages/setupPassword.html:15
 msgid "OAuth"
-msgstr ""
+msgstr "OAuth"
 
 #: templates/pages/setupPassword.html:19
 msgid "Create Password"
-msgstr ""
+msgstr "Створити пароль"
 
 #: templates/pages/setupPassword.html:20
 msgid "Enter password"
-msgstr ""
+msgstr "Введіть пароль"
 
 #: templates/pages/setupPassword.html:46
 msgid "Confirm password"
-msgstr ""
+msgstr "Підтвердьте пароль"
 
 #: templates/pages/setupPassword.html:53
 msgid "Setup Password"
-msgstr ""
+msgstr "Налаштувати пароль"
 
 #: templates/pages/setupPassword.html:60
-msgid ""
-"You can skip this step and continue using OAuth. You can always add a "
-"password later in your account settings."
-msgstr ""
+msgid "You can skip this step and continue using OAuth. You can always add a password later in your account settings."
+msgstr "Ви можете пропустити цей крок і продовжити використовувати OAuth. Завжди можна додати пароль пізніше у налаштуваннях облікового запису."
 
 #: templates/pages/setupPassword.html:63
 msgid "Skip for now"
-msgstr ""
+msgstr "Пропустити наразі"
 
 #: templates/pages/terms.html:4
 msgid "EduDuck - Terms of Service"
-msgstr ""
+msgstr "EduDuck - Условия користування"
 
 #: templates/pages/terms.html:5
-msgid ""
-"EduDuck Terms of Service - Rules and guidelines for using EduDuck AI "
-"study tools."
-msgstr ""
+msgid "EduDuck Terms of Service - Rules and guidelines for using EduDuck AI study tools."
+msgstr "Умови користування EduDuck - Правила та інструкції щодо використання інтелектуальних інструментів EduDuck AI."
 
 #: templates/pages/terms.html:12
 msgid "EduDuck Terms of Service"
-msgstr ""
+msgstr "Умови користування EduDuck"
 
 #: templates/pages/terms.html:13
-msgid ""
-"Welcome to EduDuck! By using our platform, you agree to the following "
-"terms and guidelines:"
-msgstr ""
+msgid "Welcome to EduDuck! By using our platform, you agree to the following terms and guidelines:"
+msgstr "Ласкаво просимо до EduDuck! Використовуючи нашу платформу, ви погоджуєтесь з наступними умовами та інструкціями:"
 
 #: templates/pages/terms.html:15
 msgid "Use of the Service"
-msgstr ""
+msgstr "Використання сервісу"
 
 #: templates/pages/terms.html:16
-msgid ""
-"EduDuck provides AI-powered study tools including quiz generation, "
-"flashcard creation, note enhancement, note analysis, study plan "
-"generation, and DuckAI chat assistance. You agree to use the platform for"
-" educational purposes only."
-msgstr ""
+msgid "EduDuck provides AI-powered study tools including quiz generation, flashcard creation, note enhancement, note analysis, study plan generation, and DuckAI chat assistance. You agree to use the platform for educational purposes only."
+msgstr "EduDuck надає AI-підтримувані інструменти для навчання, включаючи генерацію тестів, створення карток, покращення нотаток, аналіз нотаток, створення планів навчання та допомогу через чат DuckAI. Ви погоджуєтесь використовувати платформу лише для освітніх цілей."
 
 #: templates/pages/terms.html:17
-msgid ""
-"Users must not misuse the service, attempt to disrupt it, or exceed free-"
-"tier limits in ways that affect other users."
-msgstr ""
+msgid "Users must not misuse the service, attempt to disrupt it, or exceed free-tier limits in ways that affect other users."
+msgstr "Користувачам заборонено неправомірно використовувати сервіс, намагатися його порушити або перевищувати ліміти безкоштовного тарифу у спосіб, що впливає на інших користувачів."
 
 #: templates/pages/terms.html:19
 msgid "Accounts and Authentication"
-msgstr ""
+msgstr "Облікові записи та автентифікація"
 
 #: templates/pages/terms.html:20
-msgid ""
-"Some features require an account. You can register with email/password or"
-" sign in using OAuth providers (Google, GitHub, Discord, or Microsoft)."
-msgstr ""
+msgid "Some features require an account. You can register with email/password or sign in using OAuth providers (Google, GitHub, Discord, or Microsoft)."
+msgstr "Деякі функції вимагають облікового запису. Ви можете зареєструватися за допомогою електронної пошти та пароля або увійти через провайдерів OAuth (Google, GitHub, Discord або Microsoft)."
 
 #: templates/pages/terms.html:21
 msgid "Email verification is required for password-based accounts via MailGun."
-msgstr ""
+msgstr "Перевірка електронної пошти необхідна для облікових записів на паролі через MailGun."
 
 #: templates/pages/terms.html:22
-msgid ""
-"You are responsible for maintaining the confidentiality of your "
-"credentials and all activity on your account."
-msgstr ""
+msgid "You are responsible for maintaining the confidentiality of your credentials and all activity on your account."
+msgstr "Ви відповідаєте за збереження конфіденційності своїх облікових даних та за всі дії у вашому обліковому записі."
 
 #: templates/pages/terms.html:23
-msgid ""
-"You must notify EduDuck immediately of any unauthorized use of your "
-"account."
-msgstr ""
+msgid "You must notify EduDuck immediately of any unauthorized use of your account."
+msgstr "Ви повинні негайно повідомити EduDuck про будь-яке несанкціоноване використання вашого облікового запису."
 
 #: templates/pages/terms.html:24
-msgid ""
-"Deleted accounts can be recovered within 30 days by contacting support. "
-"After 30 days, deletion is permanent."
-msgstr ""
+msgid "Deleted accounts can be recovered within 30 days by contacting support. After 30 days, deletion is permanent."
+msgstr "Видалені облікові записи можна відновити протягом 30 днів, звернувшись у підтримку. Після 30 днів видалення є безповоротним."
 
 #: templates/pages/terms.html:26
 msgid "Content and Data"
-msgstr ""
+msgstr "Зміст та дані"
 
 #: templates/pages/terms.html:27
 msgid "You retain ownership of the notes, PDFs, images, and materials you upload."
-msgstr ""
+msgstr "Ви зберігаєте право власності на нотатки, PDF-файли, зображення та матеріали, які ви завантажуєте."
 
 #: templates/pages/terms.html:28
-msgid ""
-"By using EduDuck, you grant a temporary license to process your uploaded "
-"content for AI-generated results. EduDuck does not claim ownership of "
-"your content."
-msgstr ""
+msgid "By using EduDuck, you grant a temporary license to process your uploaded content for AI-generated results. EduDuck does not claim ownership of your content."
+msgstr "Використовуючи EduDuck, ви надаєте тимчасову ліцензію на обробку вашого завантаженого контенту для отримання AI-генерованих результатів. EduDuck не претендує на право власності на ваш контент."
 
 #: templates/pages/terms.html:29
-msgid ""
-"Do not upload illegal, offensive, or copyrighted content that you do not "
-"own or have permission to use. Violations may result in suspension or "
-"termination of your account."
-msgstr ""
+msgid "Do not upload illegal, offensive, or copyrighted content that you do not own or have permission to use. Violations may result in suspension or termination of your account."
+msgstr "Не завантажуйте нелегальний, образливий або авторсько захищений контент, яким ви не володієте або на який не маєте дозволу. Порушення можуть призвести до блокування або видалення вашого облікового запису."
 
 #: templates/pages/terms.html:30
-msgid ""
-"Generated content (quizzes, flashcards, study plans, enhanced notes, note"
-" analyses) is stored in MongoDB. For logged-in users, content persists; "
-"for guest users, content is stored temporarily in session storage."
-msgstr ""
+msgid "Generated content (quizzes, flashcards, study plans, enhanced notes, note analyses) is stored in MongoDB. For logged-in users, content persists; for guest users, content is stored temporarily in session storage."
+msgstr "Згенерований контент (тести, картки, плани навчання, покращені нотатки, аналіз нотаток) зберігається у MongoDB. Для авторизованих користувачів контент зберігається; для гостей – тимчасово у сесії."
 
 #: templates/pages/terms.html:32
 msgid "Free Usage and API Keys"
-msgstr ""
+msgstr "Безкоштовне використання та API-ключі"
 
 #: templates/pages/terms.html:33
-msgid ""
-"The free tier provides 3 daily uses of EduDuck AI features per registered"
-" account, tracked daily and reset at midnight UTC."
-msgstr ""
+msgid "The free tier provides 3 daily uses of EduDuck AI features per registered account, tracked daily and reset at midnight UTC."
+msgstr "Безкоштовний тарифний план надає 3 використання AI-функцій EduDuck на день для кожного зареєстрованого облікового запису, які обчислюються щодня й скидаються о 00:00 за UTC."
 
 #: templates/pages/terms.html:34
-msgid ""
-"Additional usage requires your own API key from Hugging Face, OpenAI, or "
-"Google Gemini."
-msgstr ""
+msgid "Additional usage requires your own API key from Hugging Face, OpenAI, or Google Gemini."
+msgstr "Додаткове використання потребує вашого власного API-ключа від Hugging Face, OpenAI або Google Gemini."
 
 #: templates/pages/terms.html:35
-msgid ""
-"EduDuck reserves the right to limit or suspend access to ensure fair "
-"usage among all users."
-msgstr ""
+msgid "EduDuck reserves the right to limit or suspend access to ensure fair usage among all users."
+msgstr "EduDuck залишає за собою право обмежувати або призупиняти доступ для забезпечення чесного використання серед усіх користувачів."
 
 #: templates/pages/terms.html:36
-msgid ""
-"API keys you provide are not stored permanently and are used only for "
-"your current session."
-msgstr ""
+msgid "API keys you provide are not stored permanently and are used only for your current session."
+msgstr "API-ключі, які ви надаєте, не зберігаються довгостроково і використовуються лише під час вашої поточної сесії."
 
 #: templates/pages/terms.html:38
 msgid "Privacy and Data Storage"
-msgstr ""
+msgstr "Конфіденційність та зберігання даних"
 
 #: templates/pages/terms.html:39
-msgid ""
-"Your data is stored in MongoDB (hosted by MongoDB Atlas) and may be "
-"processed temporarily for generating results and tracking usage."
-msgstr ""
+msgid "Your data is stored in MongoDB (hosted by MongoDB Atlas) and may be processed temporarily for generating results and tracking usage."
+msgstr "Ваші дані зберігаються у MongoDB (хостинг від MongoDB Atlas) і можуть використовуватися тимчасово для створення результатів і відстеження використання."
 
 #: templates/pages/terms.html:40
-msgid ""
-"Uploaded files (PDFs, images) are processed using Tesseract OCR and PIL "
-"for image preprocessing, then discarded after processing."
-msgstr ""
+msgid "Uploaded files (PDFs, images) are processed using Tesseract OCR and PIL for image preprocessing, then discarded after processing."
+msgstr "Завантажені файли (PDF, зображення) обробляються за допомогою Tesseract OCR і PIL для обробки зображень, після чого видаляються."
 
 #: templates/pages/terms.html:41
-msgid ""
-"EduDuck does not sell your data. For more details on data handling, see "
-"our"
-msgstr ""
+msgid "EduDuck does not sell your data. For more details on data handling, see our"
+msgstr "EduDuck не продає ваші дані. Детальніше про обробку даних у нашій"
 
 #: templates/pages/terms.html:41
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Політиці конфіденційності"
 
 #: templates/pages/terms.html:43
 msgid "Third-Party AI Services"
-msgstr ""
+msgstr "Послуги сторонніх AI-сервісів"
 
 #: templates/pages/terms.html:44
-msgid ""
-"EduDuck integrates with Hugging Face Inference API, Google Gemini (2.5 "
-"Flash), and OpenAI APIs for AI-powered features."
-msgstr ""
+msgid "EduDuck integrates with Hugging Face Inference API, Google Gemini (2.5 Flash), and OpenAI APIs for AI-powered features."
+msgstr "EduDuck інтегрується з Hugging Face Inference API, Google Gemini (2.5 Flash) та API OpenAI для AI-інструментів."
 
 #: templates/pages/terms.html:45
-msgid ""
-"Your uploaded content is sent to these services for processing. Review "
-"their respective terms of service and privacy policies."
-msgstr ""
+msgid "Your uploaded content is sent to these services for processing. Review their respective terms of service and privacy policies."
+msgstr "Ваш завантажений контент надсилається цим сервісам для обробки. Ознайомтеся з їхніми умовами та політиками конфіденційності."
 
 #: templates/pages/terms.html:46
-msgid ""
-"EduDuck is not responsible for the accuracy, availability, or responses "
-"generated by third-party AI models."
-msgstr ""
+msgid "EduDuck is not responsible for the accuracy, availability, or responses generated by third-party AI models."
+msgstr "EduDuck не несе відповідальності за точність, доступність або відповіді, отримані від сторонніх моделей AI."
 
 #: templates/pages/terms.html:48
 msgid "Updates and Termination"
-msgstr ""
+msgstr "Оновлення та припинення"
 
 #: templates/pages/terms.html:49
-msgid ""
-"EduDuck may update, suspend, or terminate services at any time without "
-"prior notice."
-msgstr ""
+msgid "EduDuck may update, suspend, or terminate services at any time without prior notice."
+msgstr "EduDuck може оновлювати, призупиняти або припиняти послуги будь-коли без попереднього повідомлення."
 
 #: templates/pages/terms.html:50
-msgid ""
-"Users can export their generated content (quizzes, flashcards, study "
-"plans, notes, note analyses) in JSON or text formats before deletion."
-msgstr ""
+msgid "Users can export their generated content (quizzes, flashcards, study plans, notes, note analyses) in JSON or text formats before deletion."
+msgstr "Користувачі можуть експортувати згенерований контент (тести, картки, плани навчання, нотатки, аналіз нотаток) у форматі JSON або текстовому форматі перед видаленням."
 
 #: templates/pages/terms.html:51
-msgid ""
-"These Terms of Service may be updated periodically. Continued use of "
-"EduDuck constitutes acceptance of the updated terms."
-msgstr ""
+msgid "These Terms of Service may be updated periodically. Continued use of EduDuck constitutes acceptance of the updated terms."
+msgstr "Ці Умови користування можуть періодично оновлюватися. Подальше використання EduDuck означає прийняття оновлених умов."
 
 #: templates/pages/terms.html:53
 msgid "Limitation of Liability"
-msgstr ""
+msgstr "Обмеження відповідальності"
 
 #: templates/pages/terms.html:54
-msgid ""
-"EduDuck is provided \"as is\" without warranties. We are not responsible "
-"for errors, downtime, or inaccuracies in AI-generated results."
-msgstr ""
+msgid "EduDuck is provided \"as is\" without warranties. We are not responsible for errors, downtime, or inaccuracies in AI-generated results."
+msgstr "EduDuck надається \"як є\" без гарантій. Ми не несемо відповідальності за помилки, простій або неточності у результати, згенеровані AI."
 
 #: templates/pages/terms.html:55
-msgid ""
-"EduDuck and its developers are not liable for any direct, indirect, "
-"incidental, or consequential damages arising from the use of the "
-"platform."
-msgstr ""
+msgid "EduDuck and its developers are not liable for any direct, indirect, incidental, or consequential damages arising from the use of the platform."
+msgstr "EduDuck та його розробники не несуть відповідальності за будь-які прямі, опосередковані, випадкові або наслідкові збитки, що виникають із використання платформи."
 
 #: templates/pages/terms.html:56
-msgid ""
-"Generated quizzes, flashcards, study plans, and note analyses are for "
-"educational assistance only and should be reviewed for accuracy."
-msgstr ""
+msgid "Generated quizzes, flashcards, study plans, and note analyses are for educational assistance only and should be reviewed for accuracy."
+msgstr "Згенеровані тести, картки для запам'ятовування, плани вивчення та аналіз нотаток є лише для освітньої допомоги і мають бути перевірені на точність."
 
 #: templates/pages/terms.html:58
 msgid "Governing Law"
-msgstr ""
+msgstr "Законодавство"
 
 #: templates/pages/terms.html:59
-msgid ""
-"These terms are governed by the laws of Poland. Any disputes arising "
-"under these terms shall be resolved in the courts of Poland."
-msgstr ""
+msgid "These terms are governed by the laws of Poland. Any disputes arising under these terms shall be resolved in the courts of Poland."
+msgstr "Ці умови регулюються законами Польщі. Спори, що виникають відповідно до цих умов, вирішуються судами Польщі."
 
 #: templates/pages/terms.html:61
 msgid "Children's Use"
-msgstr ""
+msgstr "Використання дітьми"
 
 #: templates/pages/terms.html:62
-msgid ""
-"EduDuck is not intended for children under 13 years of age. We do not "
-"knowingly collect personal information from children."
-msgstr ""
+msgid "EduDuck is not intended for children under 13 years of age. We do not knowingly collect personal information from children."
+msgstr "EduDuck не призначений для дітей віком до 13 років. Ми навмисне не збираємо особисту інформацію від дітей."
 
 #: templates/pages/terms.html:64
 msgid "Contact"
-msgstr ""
+msgstr "Контакт"
 
 #: templates/pages/terms.html:65
 msgid "If you have questions about these terms, please contact us at"
-msgstr ""
+msgstr "Якщо у вас є питання щодо цих умов, будь ласка, зв'яжіться з нами за адресою"
 
 #: templates/pages/terms.html:67
-msgid ""
-"By using EduDuck, you acknowledge that you have read and agree to these "
-"Terms of Service."
-msgstr ""
+msgid "By using EduDuck, you acknowledge that you have read and agree to these Terms of Service."
+msgstr "Використовуючи EduDuck, ви погоджуєтесь з тим, що ознайомились з цими Умовами обслуговування та погоджуєтесь із ними."
 
 #: templates/pages/userSettings.html:4
 msgid "EduDuck - Settings"
-msgstr ""
+msgstr "EduDuck - Налаштування"
 
 #: templates/pages/userSettings.html:5
 msgid "Manage your EduDuck account settings"
-msgstr ""
+msgstr "Керуйте налаштуваннями вашого облікового запису EduDuck"
 
 #: templates/pages/userSettings.html:16
 msgid "Account Settings"
-msgstr ""
+msgstr "Налаштування облікового запису"
 
 #: templates/pages/userSettings.html:17
 msgid "Manage your EduDuck account preferences and security settings."
-msgstr ""
+msgstr "Керуйте перевагами та налаштуваннями безпеки вашого облікового запису EduDuck."
 
 #: templates/pages/userSettings.html:21
 msgid "Danger Zone"
-msgstr ""
+msgstr "Зона небезпеки"
 
 #: templates/pages/userSettings.html:22
-msgid ""
-"Permanently delete your account and all associated data. This action "
-"cannot be undone."
-msgstr ""
+msgid "Permanently delete your account and all associated data. This action cannot be undone."
+msgstr "Назавжди видалити ваш обліковий запис та всі пов’язані дані. Цю дію не можна скасувати."
 
 #: templates/pages/userSettings.html:25 templates/pages/userSettings.html:32
 msgid "Delete Account"
-msgstr ""
+msgstr "Видалити обліковий запис"
 
 #: templates/pages/userSettings.html:33
-msgid ""
-"This will permanently delete your account and all data including quizzes,"
-" flashcards, notes, and study plans."
-msgstr ""
+msgid "This will permanently delete your account and all data including quizzes, flashcards, notes, and study plans."
+msgstr "Це назавжди видалить ваш обліковий запис та всі дані, включаючи тести, картки, нотатки та плани навчання."
 
 #: templates/pages/userSettings.html:42
 msgid "I understand this action is irreversible"
-msgstr ""
+msgstr "Я розумію, що ця дія є незворотною"
 
 #: templates/pages/userSettings.html:46
 msgid "Type <strong>DELETE</strong> to confirm"
-msgstr ""
+msgstr "Введіть <strong>DELETE</strong> для підтвердження"
 
 #: templates/pages/userSettings.html:47
 msgid "DELETE"
-msgstr ""
+msgstr "ВИДАЛИТИ"
 
 #: templates/pages/userSettings.html:53
 msgid "Cancel"
-msgstr ""
+msgstr "Скасувати"
 
 #: templates/pages/userSettings.html:55
 msgid "Delete Forever"
-msgstr ""
+msgstr "Видалити назавжди"
 
 #: templates/pages/userSettings.html:62
 msgid "Back To Home"
-msgstr ""
+msgstr "Назад до головної"
 
 #: venv/lib/python3.14/site-packages/click/_termui_impl.py:613
-#, python-brace-format
 msgid "{editor}: Editing failed"
-msgstr ""
+msgstr "{editor}: Помилка редагування"
 
 #: venv/lib/python3.14/site-packages/click/_termui_impl.py:617
-#, python-brace-format
 msgid "{editor}: Editing failed: {e}"
-msgstr ""
+msgstr "{editor}: Помилка редагування: {e}"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1114
 #: venv/lib/python3.14/site-packages/click/core.py:1151
-#, python-brace-format
 msgid "{text} {deprecated_message}"
-msgstr ""
+msgstr "{text} {deprecated_message}"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1170
 msgid "Options"
-msgstr ""
+msgstr "Опції"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1245
-#, python-brace-format
 msgid "Got unexpected extra argument ({args})"
 msgid_plural "Got unexpected extra arguments ({args})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Виявлено несподіваний додатковий аргумент ({args})"
+msgstr[1] "Має несподівані додаткові аргументи ({args})"
+msgstr[2] "Отримано несподівані додаткові аргументи ({args})"
+msgstr[3] "Отримано несподівані додаткові аргументи ({args})"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1264
-#, python-brace-format
 msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
-msgstr ""
+msgstr "Попередження про застарілість: команда {name!r} застаріла.{extra_message}"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1448
 msgid "Aborted!"
-msgstr ""
+msgstr "Зупинено!"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1822
 msgid "Commands"
-msgstr ""
+msgstr "Команди"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1853
 msgid "Missing command."
-msgstr ""
+msgstr "Відсутня команда."
 
 #: venv/lib/python3.14/site-packages/click/core.py:1931
-#, python-brace-format
 msgid "No such command {name!r}."
-msgstr ""
+msgstr "Такої команди {name!r} не існує."
 
 #: venv/lib/python3.14/site-packages/click/core.py:2355
 msgid "Value must be an iterable."
-msgstr ""
+msgstr "Значення має бути ітерованим."
 
 #: venv/lib/python3.14/site-packages/click/core.py:2378
-#, python-brace-format
 msgid "Takes {nargs} values but 1 was given."
 msgid_plural "Takes {nargs} values but {len} were given."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Приймає {nargs} значень, але було надано 1."
+msgstr[1] "Потребує {nargs} значень, але було передано {len}"
+msgstr[2] "Потребує {nargs} значень, але було дано {len}."
+msgstr[3] "Потребує {nargs} значень, але було передано {len}."
 
 #: venv/lib/python3.14/site-packages/click/core.py:2567
-#, python-brace-format
-msgid ""
-"DeprecationWarning: The {param_type} {name!r} is "
-"deprecated.{extra_message}"
-msgstr ""
+msgid "DeprecationWarning: The {param_type} {name!r} is deprecated.{extra_message}"
+msgstr "Попередження про застарілість: {param_type} {name!r} застарілий.{extra_message}"
 
 #: venv/lib/python3.14/site-packages/click/core.py:3015
-#, python-brace-format
 msgid "env var: {var}"
-msgstr ""
+msgstr "змінна середовища: {var}"
 
 #: venv/lib/python3.14/site-packages/click/core.py:3018
-#, python-brace-format
 msgid "default: {default}"
-msgstr ""
+msgstr "за замовчуванням: {default}"
 
 #: venv/lib/python3.14/site-packages/click/core.py:3022
 msgid "required"
-msgstr ""
+msgstr "необхідно"
 
 #: venv/lib/python3.14/site-packages/click/core.py:3082
 msgid "(dynamic)"
-msgstr ""
+msgstr "(динамічно)"
 
 #: venv/lib/python3.14/site-packages/click/decorators.py:465
-#, python-format
 msgid "%(prog)s, version %(version)s"
-msgstr ""
+msgstr "%(prog)s, версія %(version)s"
 
 #: venv/lib/python3.14/site-packages/click/decorators.py:522
 msgid "Show the version and exit."
-msgstr ""
+msgstr "Показати версію та вийти."
 
 #: venv/lib/python3.14/site-packages/click/decorators.py:548
 msgid "Show this message and exit."
-msgstr ""
+msgstr "Показати це повідомлення та вийти."
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:50
 #: venv/lib/python3.14/site-packages/click/exceptions.py:89
-#, python-brace-format
 msgid "Error: {message}"
-msgstr ""
+msgstr "Помилка: {message}"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:81
-#, python-brace-format
 msgid "Try '{command} {option}' for help."
-msgstr ""
+msgstr "Спробуйте '{command} {option}' для допомоги."
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:130
-#, python-brace-format
 msgid "Invalid value: {message}"
-msgstr ""
+msgstr "Некоректне значення: {message}"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:132
-#, python-brace-format
 msgid "Invalid value for {param_hint}: {message}"
-msgstr ""
+msgstr "Некоректне значення для {param_hint}: {message}"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:190
 msgid "Missing argument"
-msgstr ""
+msgstr "Відсутній аргумент"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:192
 msgid "Missing option"
-msgstr ""
+msgstr "Відсутня опція"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:194
 msgid "Missing parameter"
-msgstr ""
+msgstr "Відсутній параметр"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:196
-#, python-brace-format
 msgid "Missing {param_type}"
-msgstr ""
+msgstr "Відсутній {param_type}"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:203
-#, python-brace-format
 msgid "Missing parameter: {param_name}"
-msgstr ""
+msgstr "Відсутній параметр: {param_name}"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:223
-#, python-brace-format
 msgid "No such option: {name}"
-msgstr ""
+msgstr "Такої опції {name} не існує."
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:235
-#, python-brace-format
 msgid "Did you mean {possibility}?"
 msgid_plural "(Possible options: {possibilities})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Мав на увазі {possibility}?"
+msgstr[1] "(Можливі опції: {possibilities})"
+msgstr[2] "(Можливі опції: {possibilities})"
+msgstr[3] "(Можливі варіанти: {possibilities})"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:282
 msgid "unknown error"
-msgstr ""
+msgstr "невідома помилка"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:289
-#, python-brace-format
 msgid "Could not open file {filename!r}: {message}"
-msgstr ""
+msgstr "Не вдалося відкрити файл {filename!r}: {message}"
 
 #: venv/lib/python3.14/site-packages/click/formatting.py:156
 msgid "Usage:"
-msgstr ""
+msgstr "Використання:"
 
 #: venv/lib/python3.14/site-packages/click/parser.py:199
-#, python-brace-format
 msgid "Argument {name!r} takes {nargs} values."
-msgstr ""
+msgstr "Аргумент {name!r} приймає {nargs} значень."
 
 #: venv/lib/python3.14/site-packages/click/parser.py:381
-#, python-brace-format
 msgid "Option {name!r} does not take a value."
-msgstr ""
+msgstr "Опція {name!r} не приймає значення."
 
 #: venv/lib/python3.14/site-packages/click/parser.py:444
-#, python-brace-format
 msgid "Option {name!r} requires an argument."
 msgid_plural "Option {name!r} requires {nargs} arguments."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Опція {name!r} вимагає аргумент."
+msgstr[1] "Опція {name!r} вимагає {nargs} аргументів."
+msgstr[2] "Опція {name!r} потребує {nargs} аргументів."
+msgstr[3] "Опція {name!r} вимагає {nargs} аргументів."
 
 #: venv/lib/python3.14/site-packages/click/shell_completion.py:332
 msgid "Shell completion is not supported for Bash versions older than 4.4."
-msgstr ""
+msgstr "Обробка командного рядка Bash версії старше 4.4 не підтримується."
 
 #: venv/lib/python3.14/site-packages/click/shell_completion.py:339
 msgid "Couldn't detect Bash version, shell completion is not supported."
-msgstr ""
+msgstr "Не вдалося визначити версію Bash, обробка завершена."
 
 #: venv/lib/python3.14/site-packages/click/termui.py:165
 msgid "Repeat for confirmation"
-msgstr ""
+msgstr "Повторіть для підтвердження"
 
 #: venv/lib/python3.14/site-packages/click/termui.py:181
 msgid "Error: The value you entered was invalid."
-msgstr ""
+msgstr "Помилка: введене значення недійсне."
 
 #: venv/lib/python3.14/site-packages/click/termui.py:183
-#, python-brace-format
 msgid "Error: {e.message}"
-msgstr ""
+msgstr "Помилка: {e.message}"
 
 #: venv/lib/python3.14/site-packages/click/termui.py:194
 msgid "Error: The two entered values do not match."
-msgstr ""
+msgstr "Помилка: введені значення не співпадають."
 
 #: venv/lib/python3.14/site-packages/click/termui.py:253
 msgid "Error: invalid input"
-msgstr ""
+msgstr "Помилка: некоректне введення"
 
 #: venv/lib/python3.14/site-packages/click/termui.py:872
 msgid "Press any key to continue..."
-msgstr ""
+msgstr "Натисніть будь-яку клавішу для продовження..."
 
 #: venv/lib/python3.14/site-packages/click/types.py:332
-#, python-brace-format
-msgid ""
-"Choose from:\n"
+msgid "Choose from:\n"
 "\t{choices}"
-msgstr ""
+msgstr "Обрати з:\n"
+"\t{choices}"
 
 #: venv/lib/python3.14/site-packages/click/types.py:369
-#, python-brace-format
 msgid "{value!r} is not {choice}."
 msgid_plural "{value!r} is not one of {choices}."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{value!r} не є {choice}."
+msgstr[1] "{value!r} не є одним з {choices}."
+msgstr[2] "{value!r} не є одним із {choices}."
+msgstr[3] "{value!r} не є одним з {choices}."
 
 #: venv/lib/python3.14/site-packages/click/types.py:460
-#, python-brace-format
 msgid "{value!r} does not match the format {format}."
 msgid_plural "{value!r} does not match the formats {formats}."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{value!r} не відповідає формату {format}."
+msgstr[1] "{value!r} не відповідає форматам {formats}."
+msgstr[2] "{value!r} не відповідає форматам {formats}."
+msgstr[3] "{value!r} не відповідає форматам {formats}."
 
 #: venv/lib/python3.14/site-packages/click/types.py:482
-#, python-brace-format
 msgid "{value!r} is not a valid {number_type}."
-msgstr ""
+msgstr "{value!r} не є дійсним {number_type}."
 
 #: venv/lib/python3.14/site-packages/click/types.py:538
-#, python-brace-format
 msgid "{value} is not in the range {range}."
-msgstr ""
+msgstr "{value} не входить до діапазону {range}."
 
 #: venv/lib/python3.14/site-packages/click/types.py:719
-#, python-brace-format
 msgid "{value!r} is not a valid boolean. Recognized values: {states}"
-msgstr ""
+msgstr "{value!r} не є дійсним булевим значенням. Визначені значення: {states}"
 
 #: venv/lib/python3.14/site-packages/click/types.py:747
-#, python-brace-format
 msgid "{value!r} is not a valid UUID."
-msgstr ""
+msgstr "{value!r} не є дійсним UUID."
 
 #: venv/lib/python3.14/site-packages/click/types.py:937
 msgid "file"
-msgstr ""
+msgstr "файл"
 
 #: venv/lib/python3.14/site-packages/click/types.py:939
 msgid "directory"
-msgstr ""
+msgstr "каталог"
 
 #: venv/lib/python3.14/site-packages/click/types.py:941
 msgid "path"
-msgstr ""
+msgstr "шлях"
 
 #: venv/lib/python3.14/site-packages/click/types.py:988
-#, python-brace-format
 msgid "{name} {filename!r} does not exist."
-msgstr ""
+msgstr "{name} {filename!r} не існує."
 
 #: venv/lib/python3.14/site-packages/click/types.py:997
-#, python-brace-format
 msgid "{name} {filename!r} is a file."
-msgstr ""
+msgstr "{name} {filename!r} є файлом."
 
 #: venv/lib/python3.14/site-packages/click/types.py:1005
-#, python-brace-format
 msgid "{name} {filename!r} is a directory."
-msgstr ""
+msgstr "{name} {filename!r} є каталогом."
 
 #: venv/lib/python3.14/site-packages/click/types.py:1014
-#, python-brace-format
 msgid "{name} {filename!r} is not readable."
-msgstr ""
+msgstr "{name} {filename!r} не має прав на читання."
 
 #: venv/lib/python3.14/site-packages/click/types.py:1023
-#, python-brace-format
 msgid "{name} {filename!r} is not writable."
-msgstr ""
+msgstr "{name} {filename!r} не має прав на запис."
 
 #: venv/lib/python3.14/site-packages/click/types.py:1032
-#, python-brace-format
 msgid "{name} {filename!r} is not executable."
-msgstr ""
+msgstr "{name} {filename!r} не є виконуваним."
 
 #: venv/lib/python3.14/site-packages/click/types.py:1099
-#, python-brace-format
 msgid "{len_type} values are required, but {len_value} was given."
 msgid_plural "{len_type} values are required, but {len_value} were given."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Потрібно вказати {len_type}, але отримано {len_value}."
+msgstr[1] "Потрібно {len_type} значень, але було передано {len_value}."
+msgstr[2] "Потрібні значення типу {len_type}, але було дано {len_value}."
+msgstr[3] "Потрібно {len_type} значень, але було передано {len_value}."
 
 #: venv/lib/python3.14/site-packages/flask_wtf/file.py:55
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:293
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:323
 msgid "This field is required."
-msgstr ""
+msgstr "Це поле обов’язкове."
 
 #: venv/lib/python3.14/site-packages/flask_wtf/file.py:94
-#, python-brace-format
 msgid "File does not have an approved extension: {extensions}"
-msgstr ""
+msgstr "Файл не має схваленого розширення: {extensions}"
 
 #: venv/lib/python3.14/site-packages/flask_wtf/file.py:101
 msgid "File does not have an approved extension."
-msgstr ""
+msgstr "Файл не має схваленого розширення."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:86
-#, python-format
 msgid "Invalid field name '%s'."
-msgstr ""
+msgstr "Недопустиме ім'я поля '%s'."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:99
-#, python-format
 msgid "Field must be equal to %(other_name)s."
-msgstr ""
+msgstr "Поле має бути рівне %(other_name)s."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:146
-#, python-format
 msgid "Field must be at least %(min)d character long."
 msgid_plural "Field must be at least %(min)d characters long."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Поле має бути не менше %(min)d символів."
+msgstr[1] "Поле має бути не менше ніж %(min)d символів."
+msgstr[2] "Поле має бути не меншим за %(min)d символів."
+msgstr[3] "Поле повинне бути не менше %(min)d символів."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:152
-#, python-format
 msgid "Field cannot be longer than %(max)d character."
 msgid_plural "Field cannot be longer than %(max)d characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Поле не може бути довше ніж %(max)d символів."
+msgstr[1] "Поле не може бути довшим ніж %(max)d символів."
+msgstr[2] "Поле не може бути довшим за %(max)d символів."
+msgstr[3] "Поле не може перевищувати %(max)d символів."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:158
-#, python-format
 msgid "Field must be exactly %(max)d character long."
 msgid_plural "Field must be exactly %(max)d characters long."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Поле має бути точно %(max)d символів."
+msgstr[1] "Поле має бути точно %(max)d символів довжиною."
+msgstr[2] "Поле має бути точно %(max)d символів довжиною."
+msgstr[3] "Поле має бути точно %(max)d символів."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:164
-#, python-format
 msgid "Field must be between %(min)d and %(max)d characters long."
-msgstr ""
+msgstr "Поле має бути довжиною від %(min)d до %(max)d символів."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:216
-#, python-format
 msgid "Number must be at least %(min)s."
-msgstr ""
+msgstr "Число має бути не менше %(min)s."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:219
-#, python-format
 msgid "Number must be at most %(max)s."
-msgstr ""
+msgstr "Число має бути не більше %(max)s."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:222
-#, python-format
 msgid "Number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "Число має бути між %(min)s і %(max)s."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:358
 msgid "Invalid input."
-msgstr ""
+msgstr "Недопустимий ввод."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:422
 msgid "Invalid email address."
-msgstr ""
+msgstr "Недійсна електронна адреса."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:460
 msgid "Invalid IP address."
-msgstr ""
+msgstr "Недійсна IP-адреса."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:503
 msgid "Invalid Mac address."
-msgstr ""
+msgstr "Недійсний Mac-адрес."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:540
 msgid "Invalid URL."
-msgstr ""
+msgstr "Недійсне URL."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:561
 msgid "Invalid UUID."
-msgstr ""
+msgstr "Недійсний UUID."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:595
-#, python-format
 msgid "Invalid value, must be one of: %(values)s."
-msgstr ""
+msgstr "Недійсне значення, має бути одним із: %(values)s."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:631
-#, python-format
 msgid "Invalid value, can't be any of: %(values)s."
-msgstr ""
+msgstr "Недійсне значення, не може бути одним із: %(values)s."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:700
 msgid "This field cannot be edited."
-msgstr ""
+msgstr "Це поле не можна редагувати."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:716
 msgid "This field is disabled and cannot have a value."
-msgstr ""
+msgstr "Це поле відключене і не може мати значення."
 
 #: venv/lib/python3.14/site-packages/wtforms/csrf/core.py:96
 msgid "Invalid CSRF Token."
-msgstr ""
+msgstr "Недійсний CSRF токен."
 
 #: venv/lib/python3.14/site-packages/wtforms/csrf/session.py:64
 msgid "CSRF token missing."
-msgstr ""
+msgstr "Відсутній CSRF токен."
 
 #: venv/lib/python3.14/site-packages/wtforms/csrf/session.py:72
 msgid "CSRF failed."
-msgstr ""
+msgstr "Не вдалося перевірити CSRF."
 
 #: venv/lib/python3.14/site-packages/wtforms/csrf/session.py:77
 msgid "CSRF token expired."
-msgstr ""
+msgstr "CSRF токен закінчився сроком дії."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/choices.py:142
 msgid "Invalid Choice: could not coerce."
-msgstr ""
+msgstr "Недопустиме Вибір: не вдалося перетворити."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/choices.py:149
 #: venv/lib/python3.14/site-packages/wtforms/fields/choices.py:203
 msgid "Choices cannot be None."
-msgstr ""
+msgstr "Вибори не можуть бути None."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/choices.py:155
 msgid "Not a valid choice."
-msgstr ""
+msgstr "Недопустимий вибір."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/choices.py:194
 msgid "Invalid choice(s): one or more data inputs could not be coerced."
-msgstr ""
+msgstr "Недопустимі вибори: один або декілька ввідних даних не вдалося перетворити."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/choices.py:212
-#, python-format
 msgid "'%(value)s' is not a valid choice for this field."
 msgid_plural "'%(value)s' are not valid choices for this field."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "'%(value)s' не є допустимим вибором для цього поля."
+msgstr[1] "'%(value)s' не є досконалими варіантами для цього поля."
+msgstr[2] "'%(value)s' не допустимі варінти для цього поля."
+msgstr[3] "'{value}s' не є допустимим вибором для цього поля."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/datetime.py:52
 msgid "Not a valid datetime value."
-msgstr ""
+msgstr "Недійсне значення дати і часу."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/datetime.py:78
 msgid "Not a valid date value."
-msgstr ""
+msgstr "Недійсне значення дати."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/datetime.py:104
 msgid "Not a valid time value."
-msgstr ""
+msgstr "Недійсне значення часу."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/datetime.py:149
 msgid "Not a valid week value."
-msgstr ""
+msgstr "Недійсне значення тижня."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/numeric.py:82
 #: venv/lib/python3.14/site-packages/wtforms/fields/numeric.py:92
 msgid "Not a valid integer value."
-msgstr ""
+msgstr "Недійсне ціле число."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/numeric.py:168
 msgid "Not a valid decimal value."
-msgstr ""
+msgstr "Недійсне десяткове число."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/numeric.py:197
 msgid "Not a valid float value."
-msgstr ""
-
-#~ msgid "AI-Powered Educational Tools"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Transform your study materials into "
-#~ "interactive learning experiences using "
-#~ "advanced AI. Convert notes to quizzes,"
-#~ " enhance your study materials, and "
-#~ "master subjects faster."
-#~ msgstr ""
-
-#~ msgid "Get Started Free"
-#~ msgstr ""
-
-#~ msgid "Learn How"
-#~ msgstr ""
-
-#~ msgid "Built by a student for students – No sign-up required"
-#~ msgstr ""
-
-#~ msgid "Free Uses Daily"
-#~ msgstr ""
-
-#~ msgid "AI Tools"
-#~ msgstr ""
-
-#~ msgid "With Your API Key"
-#~ msgstr ""
-
-#~ msgid "Study Smarter, Not Harder"
-#~ msgstr ""
-
-#~ msgid "Quiz Generator"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Upload your notes or paste text to"
-#~ " instantly generate customized quizzes and"
-#~ " practice questions with detailed "
-#~ "explanations. Perfect for exam prep –"
-#~ " supports OCR for scanned notes."
-#~ msgstr ""
-
-#~ msgid "OCR Support"
-#~ msgstr ""
-
-#~ msgid "Instant"
-#~ msgstr ""
-
-#~ msgid "Multiple Choice"
-#~ msgstr ""
-
-#~ msgid "Explanations"
-#~ msgstr ""
-
-#~ msgid "Exam Prep"
-#~ msgstr ""
-
-#~ msgid "PDF Upload"
-#~ msgstr ""
-
-#~ msgid "Note Enhancer"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Supercharge your notes with AI-generated"
-#~ " summaries, key concept highlights, visual"
-#~ " diagrams, and connections between topics."
-#~ " Turn messy lecture notes into "
-#~ "organized study guides."
-#~ msgstr ""
-
-#~ msgid "AI Summary"
-#~ msgstr ""
-
-#~ msgid "Visual"
-#~ msgstr ""
-
-#~ msgid "Diagrams"
-#~ msgstr ""
-
-#~ msgid "Key Concepts"
-#~ msgstr ""
-
-#~ msgid "Organized"
-#~ msgstr ""
-
-#~ msgid "Flashcard Generator"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Upload your notes or paste text to"
-#~ " instantly generate spaced repetition "
-#~ "flashcards for perfect memorization."
-#~ msgstr ""
-
-#~ msgid "Spaced Rep"
-#~ msgstr ""
-
-#~ msgid "Memory"
-#~ msgstr ""
-
-#~ msgid "Quick Review"
-#~ msgstr ""
-
-#~ msgid "Auto-Generate"
-#~ msgstr ""
-
-#~ msgid "Export"
-#~ msgstr ""
-
-#~ msgid "Study Plan Generator"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Create a personalized study plan in "
-#~ "minutes. Enter your goals, subjects, and"
-#~ " available time, and get a structured"
-#~ " schedule to maximize learning efficiency."
-#~ msgstr ""
-
-#~ msgid "Personalized"
-#~ msgstr ""
-
-#~ msgid "Tracking"
-#~ msgstr ""
-
-#~ msgid "Time Management"
-#~ msgstr ""
-
-#~ msgid "Goal-Oriented"
-#~ msgstr ""
-
-#~ msgid "Scheduling"
-#~ msgstr ""
-
-#~ msgid "Note Analyzer"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Get AI-powered feedback on your "
-#~ "notes quality, completeness, and structure."
-#~ " Identifies gaps, suggests improvements, "
-#~ "and provides actionable recommendations to "
-#~ "make your notes exam-ready."
-#~ msgstr ""
-
-#~ msgid "Quality Score"
-#~ msgstr ""
-
-#~ msgid "Gap Detection"
-#~ msgstr ""
-
-#~ msgid "Actionable Tips"
-#~ msgstr ""
-
-#~ msgid "Structure Review"
-#~ msgstr ""
-
-#~ msgid "Improvement Plan"
-#~ msgstr ""
-
-#~ msgid "How EduDuck Works"
-#~ msgstr ""
-
-#~ msgid "Paste or Upload"
-#~ msgstr ""
-
-#~ msgid "Drop in your notes, PDFs, or images with OCR-powered text extraction"
-#~ msgstr ""
-
-#~ msgid "Choose AI"
-#~ msgstr ""
-
-#~ msgid "Free Hugging Face/Google Gemini or premium OpenAI for advanced results"
-#~ msgstr ""
-
-#~ msgid "Generate Instantly"
-#~ msgstr ""
-
-#~ msgid "Get quizzes, flashcards, or enhanced notes in seconds"
-#~ msgstr ""
-
-#~ msgid "Practice Smart"
-#~ msgstr ""
-
-#~ msgid "Track progress with DuckAI explanations and custom tips"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "3 free uses per day - upgrade "
-#~ "with your own API key for "
-#~ "unlimited access"
-#~ msgstr ""
-
-#~ msgid "Meet DuckAI"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Mastered the quizzes and flashcards? "
-#~ "<strong>DuckAI has your back!</strong>"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Ask for concept explanations, quiz "
-#~ "clarifications, physics homework help, or "
-#~ "custom study tips tailored to your "
-#~ "notes!"
-#~ msgstr ""
-
-#~ msgid "DuckAI"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Your smart study companion - explain "
-#~ "concepts, quiz help, remembers your "
-#~ "notes! Supports custom prompts, dark "
-#~ "mode, and conversation history for "
-#~ "ongoing study sessions."
-#~ msgstr ""
-
-#~ msgid "AI Tutor"
-#~ msgstr ""
-
-#~ msgid "Context-Aware"
-#~ msgstr ""
-
-#~ msgid "24/7"
-#~ msgstr ""
-
-#~ msgid "Why Choose EduDuck?"
-#~ msgstr ""
-
-#~ msgid "Free Tier"
-#~ msgstr ""
-
-#~ msgid "3 daily uses with OpenAI - no credit card needed"
-#~ msgstr ""
-
-#~ msgid "Fast & Private"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Processes locally in-browser where "
-#~ "possible, deployed on Render for speed"
-#~ msgstr ""
-
-#~ msgid "Student-Focused"
-#~ msgstr ""
-
-#~ msgid "Built for heavy workloads like math, physics, biology exams"
-#~ msgstr ""
-
-#~ msgid "Open Source"
-#~ msgstr ""
-
-#~ msgid "Open-Source"
-#~ msgstr ""
-
-#~ msgid "roots with enhanced private version"
-#~ msgstr ""
-
-#~ msgid "Mobile-Friendly"
-#~ msgstr ""
-
-#~ msgid "Works on phone for on-the-go studying"
-#~ msgstr ""
-
-#~ msgid "Secure"
-#~ msgstr ""
-
-#~ msgid "Your data stays private, encrypted connections"
-#~ msgstr ""
-
-#~ msgid "What Students Say"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "EduDuck is really helpful especially for"
-#~ " English, 90% passing rate, boosted "
-#~ "up 15% with it."
-#~ msgstr ""
-
-#~ msgid "EduDuck is the greatest thing since sliced bread."
-#~ msgstr ""
-
-#~ msgid "Ready to Ace Your Exams?"
-#~ msgstr ""
-
-#~ msgid "Get your free API key and start now - no sign-up, instant results!"
-#~ msgstr ""
-
-#~ msgid "Join students already improving their grades with EduDuck"
-#~ msgstr ""
-
-#~ msgid "{editor}: Editing failed"
-#~ msgstr ""
-
-#~ msgid "{editor}: Editing failed: {e}"
-#~ msgstr ""
-
-#~ msgid "{text} {deprecated_message}"
-#~ msgstr ""
-
-#~ msgid "Options"
-#~ msgstr ""
-
-#~ msgid "Got unexpected extra argument ({args})"
-#~ msgid_plural "Got unexpected extra arguments ({args})"
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-#~ msgstr[2] ""
-
-#~ msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
-#~ msgstr ""
-
-#~ msgid "Aborted!"
-#~ msgstr ""
-
-#~ msgid "Commands"
-#~ msgstr ""
-
-#~ msgid "Missing command."
-#~ msgstr ""
-
-#~ msgid "No such command {name!r}."
-#~ msgstr ""
-
-#~ msgid "Value must be an iterable."
-#~ msgstr ""
-
-#~ msgid "Takes {nargs} values but 1 was given."
-#~ msgid_plural "Takes {nargs} values but {len} were given."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-#~ msgstr[2] ""
-
-#~ msgid ""
-#~ "DeprecationWarning: The {param_type} {name!r} "
-#~ "is deprecated.{extra_message}"
-#~ msgstr ""
-
-#~ msgid "env var: {var}"
-#~ msgstr ""
-
-#~ msgid "default: {default}"
-#~ msgstr ""
-
-#~ msgid "required"
-#~ msgstr ""
-
-#~ msgid "(dynamic)"
-#~ msgstr ""
-
-#~ msgid "%(prog)s, version %(version)s"
-#~ msgstr ""
-
-#~ msgid "Show the version and exit."
-#~ msgstr ""
-
-#~ msgid "Show this message and exit."
-#~ msgstr ""
-
-#~ msgid "Error: {message}"
-#~ msgstr ""
-
-#~ msgid "Try '{command} {option}' for help."
-#~ msgstr ""
-
-#~ msgid "Invalid value: {message}"
-#~ msgstr ""
-
-#~ msgid "Invalid value for {param_hint}: {message}"
-#~ msgstr ""
-
-#~ msgid "Missing argument"
-#~ msgstr ""
-
-#~ msgid "Missing option"
-#~ msgstr ""
-
-#~ msgid "Missing parameter"
-#~ msgstr ""
-
-#~ msgid "Missing {param_type}"
-#~ msgstr ""
-
-#~ msgid "Missing parameter: {param_name}"
-#~ msgstr ""
-
-#~ msgid "No such option: {name}"
-#~ msgstr ""
-
-#~ msgid "Did you mean {possibility}?"
-#~ msgid_plural "(Possible options: {possibilities})"
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-#~ msgstr[2] ""
-
-#~ msgid "unknown error"
-#~ msgstr ""
-
-#~ msgid "Could not open file {filename!r}: {message}"
-#~ msgstr ""
-
-#~ msgid "Usage:"
-#~ msgstr ""
-
-#~ msgid "Argument {name!r} takes {nargs} values."
-#~ msgstr ""
-
-#~ msgid "Option {name!r} does not take a value."
-#~ msgstr ""
-
-#~ msgid "Option {name!r} requires an argument."
-#~ msgid_plural "Option {name!r} requires {nargs} arguments."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-#~ msgstr[2] ""
-
-#~ msgid "Shell completion is not supported for Bash versions older than 4.4."
-#~ msgstr ""
-
-#~ msgid "Couldn't detect Bash version, shell completion is not supported."
-#~ msgstr ""
-
-#~ msgid "Repeat for confirmation"
-#~ msgstr ""
-
-#~ msgid "Error: The value you entered was invalid."
-#~ msgstr ""
-
-#~ msgid "Error: {e.message}"
-#~ msgstr ""
-
-#~ msgid "Error: The two entered values do not match."
-#~ msgstr ""
-
-#~ msgid "Error: invalid input"
-#~ msgstr ""
-
-#~ msgid "Press any key to continue..."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Choose from:\n"
-#~ "\t{choices}"
-#~ msgstr ""
-
-#~ msgid "{value!r} is not {choice}."
-#~ msgid_plural "{value!r} is not one of {choices}."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-#~ msgstr[2] ""
-
-#~ msgid "{value!r} does not match the format {format}."
-#~ msgid_plural "{value!r} does not match the formats {formats}."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-#~ msgstr[2] ""
-
-#~ msgid "{value!r} is not a valid {number_type}."
-#~ msgstr ""
-
-#~ msgid "{value} is not in the range {range}."
-#~ msgstr ""
-
-#~ msgid "{value!r} is not a valid boolean. Recognized values: {states}"
-#~ msgstr ""
-
-#~ msgid "{value!r} is not a valid UUID."
-#~ msgstr ""
-
-#~ msgid "file"
-#~ msgstr ""
-
-#~ msgid "directory"
-#~ msgstr ""
-
-#~ msgid "path"
-#~ msgstr ""
-
-#~ msgid "{name} {filename!r} does not exist."
-#~ msgstr ""
-
-#~ msgid "{name} {filename!r} is a file."
-#~ msgstr ""
-
-#~ msgid "{name} {filename!r} is a directory."
-#~ msgstr ""
-
-#~ msgid "{name} {filename!r} is not readable."
-#~ msgstr ""
-
-#~ msgid "{name} {filename!r} is not writable."
-#~ msgstr ""
-
-#~ msgid "{name} {filename!r} is not executable."
-#~ msgstr ""
-
-#~ msgid "{len_type} values are required, but {len_value} was given."
-#~ msgid_plural "{len_type} values are required, but {len_value} were given."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-#~ msgstr[2] ""
-
-#~ msgid "This field is required."
-#~ msgstr ""
-
-#~ msgid "File does not have an approved extension: {extensions}"
-#~ msgstr ""
-
-#~ msgid "File does not have an approved extension."
-#~ msgstr ""
-
-#~ msgid "Invalid field name '%s'."
-#~ msgstr ""
-
-#~ msgid "Field must be equal to %(other_name)s."
-#~ msgstr ""
-
-#~ msgid "Field must be at least %(min)d character long."
-#~ msgid_plural "Field must be at least %(min)d characters long."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-#~ msgstr[2] ""
-
-#~ msgid "Field cannot be longer than %(max)d character."
-#~ msgid_plural "Field cannot be longer than %(max)d characters."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-#~ msgstr[2] ""
-
-#~ msgid "Field must be exactly %(max)d character long."
-#~ msgid_plural "Field must be exactly %(max)d characters long."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-#~ msgstr[2] ""
-
-#~ msgid "Field must be between %(min)d and %(max)d characters long."
-#~ msgstr ""
-
-#~ msgid "Number must be at least %(min)s."
-#~ msgstr ""
-
-#~ msgid "Number must be at most %(max)s."
-#~ msgstr ""
-
-#~ msgid "Number must be between %(min)s and %(max)s."
-#~ msgstr ""
-
-#~ msgid "Invalid input."
-#~ msgstr ""
-
-#~ msgid "Invalid email address."
-#~ msgstr ""
-
-#~ msgid "Invalid IP address."
-#~ msgstr ""
-
-#~ msgid "Invalid Mac address."
-#~ msgstr ""
-
-#~ msgid "Invalid URL."
-#~ msgstr ""
-
-#~ msgid "Invalid UUID."
-#~ msgstr ""
-
-#~ msgid "Invalid value, must be one of: %(values)s."
-#~ msgstr ""
-
-#~ msgid "Invalid value, can't be any of: %(values)s."
-#~ msgstr ""
-
-#~ msgid "This field cannot be edited."
-#~ msgstr ""
-
-#~ msgid "This field is disabled and cannot have a value."
-#~ msgstr ""
-
-#~ msgid "Invalid CSRF Token."
-#~ msgstr ""
-
-#~ msgid "CSRF token missing."
-#~ msgstr ""
-
-#~ msgid "CSRF failed."
-#~ msgstr ""
-
-#~ msgid "CSRF token expired."
-#~ msgstr ""
-
-#~ msgid "Invalid Choice: could not coerce."
-#~ msgstr ""
-
-#~ msgid "Choices cannot be None."
-#~ msgstr ""
-
-#~ msgid "Not a valid choice."
-#~ msgstr ""
-
-#~ msgid "Invalid choice(s): one or more data inputs could not be coerced."
-#~ msgstr ""
-
-#~ msgid "'%(value)s' is not a valid choice for this field."
-#~ msgid_plural "'%(value)s' are not valid choices for this field."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-#~ msgstr[2] ""
-
-#~ msgid "Not a valid datetime value."
-#~ msgstr ""
-
-#~ msgid "Not a valid date value."
-#~ msgstr ""
-
-#~ msgid "Not a valid time value."
-#~ msgstr ""
-
-#~ msgid "Not a valid week value."
-#~ msgstr ""
-
-#~ msgid "Not a valid integer value."
-#~ msgstr ""
-
-#~ msgid "Not a valid decimal value."
-#~ msgstr ""
-
-#~ msgid "Not a valid float value."
-#~ msgstr ""
+msgstr "Недійсне значення з плаваючою точкою."
 

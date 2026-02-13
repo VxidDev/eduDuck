@@ -29,7 +29,8 @@ export async function generate(
     apiKey: string | null,
     model: string | null,
     apiMode: string,
-    isFree: boolean
+    isFree: boolean,
+    language: string
 ): Promise<string> {
     const res = await fetch("/duck-ai/generate", {
         method: "POST",
@@ -39,7 +40,8 @@ export async function generate(
             apiKey,
             model,
             apiMode,
-            isFree
+            isFree,
+            language
         })
     });
 

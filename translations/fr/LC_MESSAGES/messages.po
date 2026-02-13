@@ -1,2791 +1,2529 @@
-# French translations for PROJECT.
-# Copyright (C) 2026 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: PROJECT VERSION\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-13 15:27+0100\n"
-"PO-Revision-Date: 2026-02-11 19:40+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: fr\n"
-"Language-Team: fr <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.18.0\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: EduDuck\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: templates/base.html:7 templates/base.html:56
 #: templates/pages/keyAccess.html:44
 msgid "EduDuck"
-msgstr ""
+msgstr "EduDuck"
 
 #: templates/base.html:8
 msgid "EduDuck is a free AI-powered learning platform for students."
-msgstr ""
+msgstr "EduDuck est une plateforme d'apprentissage gratuite alimentée par l'IA pour les étudiants."
 
 #: templates/base.html:9 templates/base.html:15
 msgid "EduDuck - Free AI Study Tools"
-msgstr ""
+msgstr "EduDuck - Outils d'étude gratuits alimentés par l'IA"
 
 #: templates/base.html:10
-msgid ""
-"Generate quizzes, flashcards from notes instantly. Free tier with Hugging"
-" Face, Google Gemini & premium OpenAI support."
-msgstr ""
+msgid "Generate quizzes, flashcards from notes instantly. Free tier with Hugging Face, Google Gemini & premium OpenAI support."
+msgstr "Générez des quiz, cartes mémoire à partir de notes instantanément. Niveau gratuit avec Hugging Face, Google Gemini et support premium OpenAI."
 
 #: templates/base.html:16
 msgid "Notes → Quizzes & Flashcards instantly. Free AI for students."
-msgstr ""
+msgstr "Notes → Quiz & Cartes mémoire instantanément. IA gratuite pour les étudiants."
 
 #: templates/base.html:18
-msgid ""
-"AI study tools, quiz generator, flashcard maker, free learning app, OCR "
-"notes, student AI, exam prep, homework help"
-msgstr ""
+msgid "AI study tools, quiz generator, flashcard maker, free learning app, OCR notes, student AI, exam prep, homework help"
+msgstr "Outils d'étude IA, générateur de quiz, créateur de cartes, application d'apprentissage gratuite, notes OCR, AI pour étudiants, préparation aux examens, aide aux devoirs"
 
 #: templates/base.html:42
 msgid "Main navigation"
-msgstr ""
+msgstr "Navigation principale"
 
 #: templates/base.html:49
 msgid "Donate"
-msgstr ""
+msgstr "Faire un don"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:54
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:69
 #: templates/base.html:65 templates/includes/language_selector.html:3
 msgid "English"
-msgstr ""
+msgstr "Anglais"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:55
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:70
 #: templates/base.html:66 templates/includes/language_selector.html:4
 msgid "Polish"
-msgstr ""
+msgstr "Polonais"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:58
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:73
 #: templates/base.html:67 templates/includes/language_selector.html:7
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukrainien"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:59
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:74
 #: templates/base.html:68 templates/includes/language_selector.html:8
 msgid "French"
-msgstr ""
+msgstr "Français"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:56
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:71
 #: templates/base.html:69 templates/includes/language_selector.html:5
 msgid "Russian"
-msgstr ""
+msgstr "Russe"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:57
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:72
 #: templates/base.html:70 templates/includes/language_selector.html:6
 msgid "German"
-msgstr ""
+msgstr "Allemand"
 
 #: templates/base.html:75 templates/pages/login.html:38
 #: templates/pages/loginRequired.html:11
 msgid "Login"
-msgstr ""
+msgstr "Se connecter"
 
 #: templates/base.html:77 templates/pages/register.html:73
 msgid "Register"
-msgstr ""
+msgstr "S'inscrire"
 
 #: templates/base.html:84
 msgid "3 free uses/day"
-msgstr ""
+msgstr "3 utilisations gratuites/jour"
 
 #: templates/base.html:95
 msgid "User menu"
-msgstr ""
+msgstr "Menu utilisateur"
 
 #: templates/base.html:100
 msgid "Profile picture"
-msgstr ""
+msgstr "Photo de profil"
 
 #: templates/base.html:119
 msgid "uses left today"
-msgstr ""
+msgstr "utilisations restantes aujourd'hui"
 
 #: templates/base.html:129
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: templates/base.html:136
 msgid "Settings"
-msgstr ""
+msgstr "Paramètres"
 
 #: templates/base.html:145
 msgid "Log out"
-msgstr ""
+msgstr "Déconnexion"
 
 #: templates/base.html:158
 msgid "Toggle dark mode"
-msgstr ""
+msgstr "Basculer le mode sombre"
 
 #: templates/base.html:172 templates/pages/email.html:103
 #: templates/pages/resetPasswordEmail.html:116
 msgid "By"
-msgstr ""
+msgstr "Par"
 
 #: templates/base.html:174 templates/pages/email.html:109
 #: templates/pages/resetPasswordEmail.html:122
 msgid "Open Source on GitHub"
-msgstr ""
+msgstr "Code source sur GitHub"
 
 #: templates/base.html:176 templates/pages/email.html:112
 #: templates/pages/resetPasswordEmail.html:125
 msgid "Terms of Service"
-msgstr ""
+msgstr "Conditions d'utilisation"
 
 #: templates/DuckAI/DuckAI.html:3
 msgid "EduDuck - DuckAI"
-msgstr ""
+msgstr "EduDuck - DuckAI"
 
 #: templates/DuckAI/DuckAI.html:33
-msgid ""
-"Quack! I'm DuckAI, your study companion. Ask me about quizzes, physics, "
-"concepts, or anything from your notes!"
-msgstr ""
+msgid "Quack! I'm DuckAI, your study companion. Ask me about quizzes, physics, concepts, or anything from your notes!"
+msgstr "Coin coin ! Je suis DuckAI, votre compagnon d'étude. Demandez-moi des quiz, de la physique, des concepts ou tout ce que vous avez dans vos notes !"
 
 #: templates/DuckAI/DuckAI.html:42
 msgid "Ask DuckAI about kinematics, quiz help, or your notes..."
-msgstr ""
+msgstr "Demandez à DuckAI la cinématique, l'aide aux quiz ou vos notes..."
 
 #: templates/DuckAI/DuckAI.html:46
 msgid "Send"
-msgstr ""
+msgstr "Envoyer"
 
 #: templates/DuckAI/DuckAI.html:47
 msgid "New Chat"
-msgstr ""
+msgstr "Nouvelle discussion"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:3
 msgid "EduDuck - Flashcard Generator"
-msgstr ""
+msgstr "EduDuck - Générateur de cartes mémoire"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:21
 #: ⁨templates/Note Enhancer/noteEnhancer.html⁩:22
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:21
 msgid "Notes go here :)"
-msgstr ""
+msgstr "Les notes vont ici :)"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:25
 msgid "5 Flashcards"
-msgstr ""
+msgstr "5 cartes mémoire"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:26
 msgid "10 Flashcards"
-msgstr ""
+msgstr "10 cartes mémoire"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:27
 msgid "15 Flashcards"
-msgstr ""
+msgstr "15 cartes mémoire"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:28
 msgid "20 Flashcards"
-msgstr ""
+msgstr "20 cartes mémoire"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:34
 msgid "✨ Generate Flashcards"
-msgstr ""
+msgstr "✨ Générer des cartes mémoire"
 
 #: ⁨templates/Flashcard Generator/flashCardGenerator.html⁩:37
 msgid "Import Flashcards"
-msgstr ""
+msgstr "Importer des cartes mémoire"
 
 #: ⁨templates/Flashcard Generator/flashcards.html⁩:3
 msgid "EduDuck - Flashcards"
-msgstr ""
+msgstr "EduDuck - Cartes mémoire"
 
 #: ⁨templates/Flashcard Generator/flashcards.html⁩:17
 msgid "Loading..."
-msgstr ""
+msgstr "Chargement..."
 
 #: ⁨templates/Flashcard Generator/flashcards.html⁩:18
 msgid "Export Flashcards"
-msgstr ""
+msgstr "Exporter les cartes mémoire"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:3
 msgid "EduDuck - Note Analysis Results"
-msgstr ""
+msgstr "EduDuck - Résultats d'analyse des notes"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:20
 msgid "Note Analysis Results"
-msgstr ""
+msgstr "Résultats d'analyse des notes"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:26
 msgid "Overall Quality Score"
-msgstr ""
+msgstr "Score global de qualité"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:27
 msgid "Based on"
-msgstr ""
+msgstr "Basé sur"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:27
 msgid "section"
-msgstr ""
+msgstr "section"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:27
 msgid "s"
-msgstr ""
+msgstr "s"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:27
 msgid "analyzed"
-msgstr ""
+msgstr "analysé"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:32
 msgid "Excellent!"
-msgstr ""
+msgstr "Excellent !"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:32
 msgid "Your notes are comprehensive and well-structured."
-msgstr ""
+msgstr "Vos notes sont complètes et bien structurées."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:36
 msgid "Good Foundation!"
-msgstr ""
+msgstr "Bonne base !"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:36
-msgid ""
-"Your notes cover the basics well. Review the suggestions below to make "
-"them even better."
-msgstr ""
+msgid "Your notes cover the basics well. Review the suggestions below to make them even better."
+msgstr "Vos notes couvrent bien les bases. Revoyez les suggestions ci-dessous pour les améliorer encore."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:40
 msgid "Needs Improvement."
-msgstr ""
+msgstr "Besoin d'amélioration."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:40
-msgid ""
-"There are several areas that need attention. Focus on the suggestions "
-"below."
-msgstr ""
+msgid "There are several areas that need attention. Focus on the suggestions below."
+msgstr "Plusieurs domaines nécessitent une attention particulière. Concentrez-vous sur les suggestions ci-dessous."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:44
 msgid "Significant Gaps Detected."
-msgstr ""
+msgstr "Défauts importants détectés."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:44
 msgid "Your notes need major improvements. Start with high-priority issues first."
-msgstr ""
+msgstr "Vos notes nécessitent de grandes améliorations. Commencez par les problèmes prioritaires."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:51
 msgid "Analyze Another"
-msgstr ""
+msgstr "Analyser un autre"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:52
 msgid "Export Analysis"
-msgstr ""
+msgstr "Exporter l'analyse"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:57
 msgid "Detailed Analysis"
-msgstr ""
+msgstr "Analyse détaillée"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:64
 msgid "Confidence"
-msgstr ""
+msgstr "Confiance"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:70
 msgid "Issues Identified"
-msgstr ""
+msgstr "Problèmes identifiés"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:81
 msgid "Why It Matters"
-msgstr ""
+msgstr "Pourquoi c'est important"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:92
 msgid "Suggestions for Improvement"
-msgstr ""
+msgstr "Suggestions d'amélioration"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:106
 msgid "Next Steps"
-msgstr ""
+msgstr "Prochaines étapes"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:108
 msgid "Address high-priority issues first (sections with lower confidence scores)"
-msgstr ""
+msgstr "Traitez en priorité les problèmes importants (sections avec des scores de confiance plus faibles)"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:109
 msgid "Implement 2-3 suggestions per study session to avoid overwhelm"
-msgstr ""
+msgstr "Implémentez 2-3 suggestions par séance d'étude pour éviter la surcharge"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:110
 msgid "Re-analyze your notes after improvements to track progress"
-msgstr ""
+msgstr "Reanalyzez vos notes après améliorations pour suivre votre progrès"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:111
 msgid "Use"
-msgstr ""
+msgstr "Utiliser"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:111
 #: templates/pages/index.html:70 templates/pages/keyAccess.html:57
 msgid "Note Enhancer"
-msgstr ""
+msgstr "Améliorateur de notes"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:111
 msgid "for AI-powered improvements"
-msgstr ""
+msgstr "pour les améliorations alimentées par IA"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:112
 msgid "Test your understanding by generating a"
-msgstr ""
+msgstr "Testez votre compréhension en générant un"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:112
 msgid "quiz"
-msgstr ""
+msgstr "quiz"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:112
 msgid "from your notes"
-msgstr ""
+msgstr "à partir de vos notes"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:118
 msgid "Analyze More Notes"
-msgstr ""
+msgstr "Analyser Plus de Notes"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:119
 msgid "Generate Quiz"
-msgstr ""
+msgstr "Générer un Quiz"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:120
 msgid "Enhance Notes"
-msgstr ""
+msgstr "Améliorer les Notes"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:127
 msgid "Analysis Not Found"
-msgstr ""
+msgstr "Analyse Non Trouvée"
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:128
-msgid ""
-"We couldn't find the analysis you're looking for. It may have expired or "
-"the link is incorrect."
-msgstr ""
+msgid "We couldn't find the analysis you're looking for. It may have expired or the link is incorrect."
+msgstr "Nous n'avons pas pu trouver l'analyse que vous recherchez. Elle a peut-être expiré ou le lien est incorrect."
 
 #: ⁨templates/Note Analyzer/noteAnalysisResult.html⁩:129
 msgid "Analyze New Notes"
-msgstr ""
+msgstr "Analyser de Nouvelles Notes"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:3
 msgid "EduDuck - Note Analyzer"
-msgstr ""
+msgstr "EduDuck - Analyseur de Notes"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:22
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:22
 #: templates/includes/model_selector.html:5
 msgid "Use custom model"
-msgstr ""
+msgstr "Utiliser un modèle personnalisé"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:29
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:29
 #: templates/includes/model_selector.html:12
 msgid "Free Daily (No API Key)"
-msgstr ""
+msgstr "Gratuit Quotidien (Pas de Clé API)"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:35
 msgid "Enter custom model here! (e.g., gpt-4o-mini)"
-msgstr ""
+msgstr "Entrez ici votre modèle personnalisé ! (par ex., gpt-4o-mini)"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:38
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:38
 #: templates/includes/model_selector.html:21
 msgid "Hugging Face"
-msgstr ""
+msgstr "Hugging Face"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:39
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:39
 #: templates/includes/model_selector.html:22
 msgid "Gemini"
-msgstr ""
+msgstr "Gemini"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:40
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:40
 #: templates/includes/model_selector.html:23
 msgid "OpenAI"
-msgstr ""
+msgstr "OpenAI"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:43
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:43
 msgid "Enter your Hugging Face API key here!"
-msgstr ""
+msgstr "Entrez votre clé API Hugging Face ici !"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:47
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:47
 #: templates/includes/file_upload.html:3
 msgid "Upload notes file"
-msgstr ""
+msgstr "Télécharger le fichier de notes"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:50
 msgid "Paste your notes here for analysis..."
-msgstr ""
+msgstr "Collez vos notes ici pour analyse..."
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:52
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:67
 #: templates/includes/language_selector.html:1
 msgid "Output Language"
-msgstr ""
+msgstr "Langue de Sortie"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:62
 msgid "Analyze My Notes"
-msgstr ""
+msgstr "Analyser Mes Notes"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:66
 msgid "Import Analysis"
-msgstr ""
+msgstr "Importer l'Analyse"
 
 #: ⁨templates/Note Enhancer/enhancedNotes.html⁩:3
 msgid "EduDuck - Enhanced Notes"
-msgstr ""
+msgstr "EduDuck - Notes Améliorées"
 
 #: ⁨templates/Note Enhancer/enhancedNotes.html⁩:16
 #: ⁨templates/Study Plan Generator/StudyPlan.html⁩:16
 msgid "Nothing There :["
-msgstr ""
+msgstr "Rien ici :["
 
 #: ⁨templates/Note Enhancer/noteEnhancer.html⁩:3
 msgid "EduDuck - Note Enhancer"
-msgstr ""
+msgstr "EduDuck - Améliorateur de Notes"
 
 #: ⁨templates/Note Enhancer/noteEnhancer.html⁩:26
 msgid "✨ Enhance Notes"
-msgstr ""
+msgstr "✨ Améliorer les Notes"
 
 #: ⁨templates/Note Enhancer/noteEnhancer.html⁩:29
 msgid "Import Enhanced Notes"
-msgstr ""
+msgstr "Importer des Notes Améliorées"
 
 #: ⁨templates/Quiz Generator/Quiz.html⁩:3
 msgid "EduDuck - Quiz"
-msgstr ""
+msgstr "EduDuck - Quiz"
 
 #: ⁨templates/Quiz Generator/Quiz.html⁩:20
 msgid "Submit Quiz →"
-msgstr ""
+msgstr "Soumettre le Quiz →"
 
 #: ⁨templates/Quiz Generator/Quiz.html⁩:23
 msgid "Export Quiz"
-msgstr ""
+msgstr "Exporter le Quiz"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:3
 msgid "EduDuck - Quiz Generator"
-msgstr ""
+msgstr "Générateur de Quiz EduDuck"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:26
 msgid "5 Questions"
-msgstr ""
+msgstr "5 Questions"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:27
 msgid "10 Questions"
-msgstr ""
+msgstr "10 Questions"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:28
 msgid "15 Questions"
-msgstr ""
+msgstr "15 Questions"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:29
 msgid "20 Questions"
-msgstr ""
+msgstr "20 Questions"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:34
 msgid "🟢 Easy - Quick Recall"
-msgstr ""
+msgstr "🟢 Facile - Rappel Rapide"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:35
 msgid "🟡 Medium - Apply It"
-msgstr ""
+msgstr "🟡 Moyen - Appliquer"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:36
 msgid "🟠 Hard - Deep Think"
-msgstr ""
+msgstr "🟠 Difficile - Réflexion Profonde"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:37
 msgid "🔴 Challenging - Master Mode"
-msgstr ""
+msgstr "🔴 Défi - Mode Maîtrise"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:44
 msgid "🚀 Generate Quiz"
-msgstr ""
+msgstr "🚀 Générer un Quiz"
 
 #: ⁨templates/Quiz Generator/QuizGenerator.html⁩:47
 msgid "Import Quiz"
-msgstr ""
+msgstr "Importer un Quiz"
 
 #: ⁨templates/Quiz Generator/QuizResult.html⁩:3
 msgid "EduDuck - Quiz Results"
-msgstr ""
+msgstr "EduDuck - Résultats du Quiz"
 
 #: ⁨templates/Quiz Generator/QuizResult.html⁩:20
 msgid "0 questions"
-msgstr ""
+msgstr "0 questions"
 
 #: ⁨templates/Quiz Generator/QuizResult.html⁩:29
 msgid "← New Quiz"
-msgstr ""
+msgstr "← Nouveau Quiz"
 
 #: ⁨templates/Study Plan Generator/StudyPlan.html⁩:3
 msgid "EduDuck - Study Plan"
-msgstr ""
+msgstr "EduDuck - Plan d’Études"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:3
 msgid "EduDuck - Study Plan Generator"
-msgstr ""
+msgstr "Générateur de Plan d’Études EduDuck"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:35
 msgid "Enter custom model here! (e.g., microsoft/DialoGPT-medium)"
-msgstr ""
+msgstr "Entrez ici votre modèle personnalisé ! (par ex., microsoft/DialoGPT-medium)"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:50
 msgid "Notes go here"
-msgstr ""
+msgstr "Les notes sont ici"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:53
 msgid "Start Date"
-msgstr ""
+msgstr "Date de Début"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:54
 msgid "End Date"
-msgstr ""
+msgstr "Date de Fin"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:55
 msgid "Hours per Day"
-msgstr ""
+msgstr "Heures par Jour"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:57
 msgid "Learning Style"
-msgstr ""
+msgstr "Style d'Apprentissage"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:59
 msgid "Reading"
-msgstr ""
+msgstr "Lecture"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:60
 msgid "Video"
-msgstr ""
+msgstr "Vidéo"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:61
 msgid "Exercises"
-msgstr ""
+msgstr "Exercices"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:64
 msgid "Goal"
-msgstr ""
+msgstr "Objectif"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:64
 msgid "e.g., Prepare for Maths Exam"
-msgstr ""
+msgstr "par ex., Préparer l'Examen de Mathématiques"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:77
 msgid "Generate Study Plan"
-msgstr ""
+msgstr "Générer le Plan d’Études"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:81
 msgid "Import Study Plan"
-msgstr ""
+msgstr "Importer le Plan d’Études"
 
 #: templates/includes/model_selector.html:18
 msgid "Enter custom model here! (e.g., mistralai/Mistral-7B-Instruct)"
-msgstr ""
+msgstr "Entrez ici votre modèle personnalisé ! (par ex., mistralai/Mistral-7B-Instruct)"
 
 #: templates/includes/model_selector.html:26
 msgid "Enter your API key here!"
-msgstr ""
+msgstr "Entrez votre clé API ici !"
 
 #: templates/pages/checkEmail.html:4
 msgid "Check Your Email - EduDuck"
-msgstr ""
+msgstr "Vérifiez votre Email - EduDuck"
 
 #: templates/pages/checkEmail.html:5
-msgid ""
-"Verify your EduDuck account via email. Check your inbox to activate your "
-"free AI study tools account."
-msgstr ""
+msgid "Verify your EduDuck account via email. Check your inbox to activate your free AI study tools account."
+msgstr "Vérifiez votre compte EduDuck par email. Consultez votre boîte de réception pour activer votre compte d’outils d’étude IA gratuits."
 
 #: templates/pages/checkEmail.html:9
 msgid "Email Verification Required"
-msgstr ""
+msgstr "Vérification par Email Requise"
 
 #: templates/pages/checkEmail.html:11
 msgid "Thanks for registering with EduDuck! 🎉"
-msgstr ""
+msgstr "Merci pour votre inscription sur EduDuck ! 🎉"
 
 #: templates/pages/checkEmail.html:12
 msgid "We have sent a verification link to your email:"
-msgstr ""
+msgstr "Un lien de vérification a été envoyé à votre email :"
 
 #: templates/pages/checkEmail.html:15
 msgid "Please check your inbox and click the link to activate your account."
-msgstr ""
+msgstr "Veuillez vérifier votre boîte de réception et cliquer sur le lien pour activer votre compte."
 
 #: templates/pages/checkEmail.html:16
 msgid "If you don't see the email, check your spam/junk folder."
-msgstr ""
+msgstr "Si vous ne voyez pas l’email, vérifiez votre dossier spam/courrier indésirable."
 
 #: templates/pages/checkEmail.html:18 templates/pages/emailVerified.html:22
 msgid "Back to Home"
-msgstr ""
+msgstr "Retour à l'accueil"
 
 #: templates/pages/dailyLimit.html:4
 msgid "EduDuck - Daily Limit Reached"
-msgstr ""
+msgstr "EduDuck - Limite Quotidienne Atteinte"
 
 #: templates/pages/dailyLimit.html:5
-msgid ""
-"You have reached your daily limit of free uses on EduDuck. Upgrade or "
-"wait until tomorrow to continue using AI study tools."
-msgstr ""
+msgid "You have reached your daily limit of free uses on EduDuck. Upgrade or wait until tomorrow to continue using AI study tools."
+msgstr "Vous avez atteint votre limite quotidienne d’utilisations gratuites sur EduDuck. Mettez à jour ou attendez demain pour continuer à utiliser les outils d’étude IA."
 
 #: templates/pages/dailyLimit.html:9
 msgid "Daily Limit Reached"
-msgstr ""
+msgstr "Limite Quotidienne Atteinte"
 
 #: templates/pages/dailyLimit.html:10
 msgid "You have used all 3 free daily uses of EduDuck's AI study tools."
-msgstr ""
+msgstr "Vous avez utilisé les 3 utilisations gratuites quotidiennes des outils d’étude IA d’EduDuck."
 
 #: templates/pages/dailyLimit.html:11
-msgid ""
-"Come back tomorrow for more free uses or upgrade your API key for "
-"unlimited access."
-msgstr ""
+msgid "Come back tomorrow for more free uses or upgrade your API key for unlimited access."
+msgstr "Revenez demain pour plus d’utilisations gratuites ou mettez à jour votre clé API pour un accès illimité."
 
 #: templates/pages/dailyLimit.html:12
 msgid "Get API key for unlimited access"
-msgstr ""
+msgstr "Obtenir une clé API pour un accès illimité"
 
 #: templates/pages/email.html:24
 msgid "Verify your email to get started"
-msgstr ""
+msgstr "Vérifiez votre email pour commencer"
 
 #: templates/pages/email.html:48 templates/pages/resetPasswordEmail.html:50
 msgid "Hey 👋"
-msgstr ""
+msgstr "Salut 👋"
 
 #: templates/pages/email.html:51
-msgid ""
-"Thanks for creating an <strong>EduDuck</strong> account! Please confirm "
-"your email address to unlock your free daily uses and start generating "
-"quizzes, flashcards, and study plans."
-msgstr ""
+msgid "Thanks for creating an <strong>EduDuck</strong> account! Please confirm your email address to unlock your free daily uses and start generating quizzes, flashcards, and study plans."
+msgstr "Merci d’avoir créé un compte <strong>EduDuck</strong> ! Veuillez confirmer votre adresse email pour débloquer vos utilisations quotidiennes gratuites et commencer à générer des quiz, flashcards, et plans d’études."
 
 #: templates/pages/email.html:69
 msgid "Verify Email"
-msgstr ""
+msgstr "Vérifier l'e-mail"
 
 #: templates/pages/email.html:75
 msgid "If the button doesn’t work, copy and paste this link into your browser:"
-msgstr ""
+msgstr "Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :"
 
 #: templates/pages/email.html:83
 msgid "If you didn’t create an EduDuck account, you can safely ignore this email."
-msgstr ""
+msgstr "Si vous n'avez pas créé de compte EduDuck, vous pouvez ignorer cet e-mail en toute sécurité."
 
 #: templates/pages/emailVerified.html:4
 msgid "Email Verified - EduDuck"
-msgstr ""
+msgstr "E-mail Vérifié - EduDuck"
 
 #: templates/pages/emailVerified.html:5
-msgid ""
-"Your EduDuck account has been successfully verified. Start using AI "
-"quizzes, flashcards, and study tools now."
-msgstr ""
+msgid "Your EduDuck account has been successfully verified. Start using AI quizzes, flashcards, and study tools now."
+msgstr "Votre compte EduDuck a été vérifié avec succès. Commencez à utiliser des quiz AI, des flashcards et des outils d’étude dès maintenant."
 
 #: templates/pages/emailVerified.html:10
 msgid "Email Verified!"
-msgstr ""
+msgstr "E-mail Vérifié!"
 
 #: templates/pages/emailVerified.html:12
 msgid "Your EduDuck account ("
-msgstr ""
+msgstr "Votre compte EduDuck ("
 
 #: templates/pages/emailVerified.html:12
 msgid ") has been successfully verified."
-msgstr ""
+msgstr ") a été vérifié avec succès."
 
 #: templates/pages/emailVerified.html:14
 msgid "You can now start using EduDuck!"
-msgstr ""
+msgstr "Vous pouvez maintenant commencer à utiliser EduDuck !"
 
 #: templates/pages/emailVerified.html:16
 msgid "Verification Failed"
-msgstr ""
+msgstr "Échec de la vérification"
 
 #: templates/pages/emailVerified.html:18
 msgid "The verification link is invalid or has expired."
-msgstr ""
+msgstr "Le lien de vérification est invalide ou a expiré."
 
 #: templates/pages/emailVerified.html:20
 msgid "Please try registering again or contact support."
-msgstr ""
+msgstr "Veuillez essayer de vous inscrire à nouveau ou contacter le support."
 
 #: templates/pages/index.html:3
 msgid "EduDuck - Free AI Quiz & Flashcard Generator for Students"
-msgstr ""
+msgstr "EduDuck - Générateur gratuit de quiz et flashcards AI pour étudiants"
 
 #: templates/pages/index.html:4
-msgid ""
-"EduDuck turns notes into quizzes, flashcards & study tools instantly. "
-"Free AI learning platform with OCR, DuckAI tutor, and no signup required."
-" Perfect for exams and homework."
-msgstr ""
+msgid "EduDuck turns notes into quizzes, flashcards & study tools instantly. Free AI learning platform with OCR, DuckAI tutor, and no signup required. Perfect for exams and homework."
+msgstr "EduDuck transforme instantanément vos notes en quiz, flashcards et outils d’étude. Plateforme d’apprentissage AI gratuite avec OCR, tuteur DuckAI, et sans inscription requise. Parfait pour les examens et devoirs."
 
 #: templates/pages/index.html:10
 msgid "AI-Powered Educational Tools"
-msgstr ""
+msgstr "Outils éducatifs alimentés par l'IA"
 
 #: templates/pages/index.html:11
-msgid ""
-"Transform your study materials into interactive learning experiences "
-"using advanced AI. Convert notes to quizzes, enhance your study "
-"materials, and master subjects faster."
-msgstr ""
+msgid "Transform your study materials into interactive learning experiences using advanced AI. Convert notes to quizzes, enhance your study materials, and master subjects faster."
+msgstr "Transformez vos matériaux d’étude en expériences d'apprentissage interactives grâce à une IA avancée. Convertissez des notes en quiz, améliorez vos supports d’étude, et maîtrisez les sujets plus rapidement."
 
 #: templates/pages/index.html:16 templates/pages/index.html:275
 msgid "Get Started Free"
-msgstr ""
+msgstr "Commencer Gratuitement"
 
 #: templates/pages/index.html:20
 msgid "Learn How"
-msgstr ""
+msgstr "Apprenez Comment"
 
 #: templates/pages/index.html:26
 msgid "Built by a student for students – No sign-up required"
-msgstr ""
+msgstr "Conçu par un étudiant pour les étudiants – Sans inscription requise"
 
 #: templates/pages/index.html:34
 msgid "Free Uses Daily"
-msgstr ""
+msgstr "Utilisations quotidiennes gratuites"
 
 #: templates/pages/index.html:38
 msgid "AI Tools"
-msgstr ""
+msgstr "Outils AI"
 
 #: templates/pages/index.html:42
 msgid "With Your API Key"
-msgstr ""
+msgstr "Avec votre clé API"
 
 #: templates/pages/index.html:50
 msgid "Study Smarter, Not Harder"
-msgstr ""
+msgstr "Étudiez plus intelligemment, pas plus difficilement"
 
 #: templates/pages/index.html:56 templates/pages/keyAccess.html:56
 msgid "Quiz Generator"
-msgstr ""
+msgstr "Générateur de quiz"
 
 #: templates/pages/index.html:57
-msgid ""
-"Upload your notes or paste text to instantly generate customized quizzes "
-"and practice questions with detailed explanations. Perfect for exam prep "
-"– supports OCR for scanned notes."
-msgstr ""
+msgid "Upload your notes or paste text to instantly generate customized quizzes and practice questions with detailed explanations. Perfect for exam prep – supports OCR for scanned notes."
+msgstr "Téléchargez vos notes ou collez du texte pour générer instantanément des quiz personnalisés et des questions d’entraînement avec explications détaillées. Parfait pour la préparation aux examens – supporte OCR pour notes scannées."
 
 #: templates/pages/index.html:59 templates/pages/index.html:75
 #: templates/pages/index.html:89 templates/pages/index.html:103
 #: templates/pages/index.html:117 templates/pages/index.html:189
 msgid "OCR Support"
-msgstr ""
+msgstr "Support OCR"
 
 #: templates/pages/index.html:60
 msgid "Instant"
-msgstr ""
+msgstr "Instantané"
 
 #: templates/pages/index.html:61
 msgid "Multiple Choice"
-msgstr ""
+msgstr "QCM"
 
 #: templates/pages/index.html:62
 msgid "Explanations"
-msgstr ""
+msgstr "Explications"
 
 #: templates/pages/index.html:63
 msgid "Exam Prep"
-msgstr ""
+msgstr "Préparation à l’examen"
 
 #: templates/pages/index.html:64
 msgid "PDF Upload"
-msgstr ""
+msgstr "Téléchargement PDF"
 
 #: templates/pages/index.html:71
-msgid ""
-"Supercharge your notes with AI-generated summaries, key concept "
-"highlights, visual diagrams, and connections between topics. Turn messy "
-"lecture notes into organized study guides."
-msgstr ""
+msgid "Supercharge your notes with AI-generated summaries, key concept highlights, visual diagrams, and connections between topics. Turn messy lecture notes into organized study guides."
+msgstr "Boostez vos notes avec des résumés générés par IA, des points clés, des diagrammes visuels, et des connexions entre sujets. Transformez des notes de cours désordonnées en guides d’étude organisés."
 
 #: templates/pages/index.html:73
 msgid "AI Summary"
-msgstr ""
+msgstr "Résumé par IA"
 
 #: templates/pages/index.html:74
 msgid "Visual"
-msgstr ""
+msgstr "Visuel"
 
 #: templates/pages/index.html:76
 msgid "Diagrams"
-msgstr ""
+msgstr "Diagrammes"
 
 #: templates/pages/index.html:77
 msgid "Key Concepts"
-msgstr ""
+msgstr "Concepts Clés"
 
 #: templates/pages/index.html:78
 msgid "Organized"
-msgstr ""
+msgstr "Organisé"
 
 #: templates/pages/index.html:84 templates/pages/keyAccess.html:58
 msgid "Flashcard Generator"
-msgstr ""
+msgstr "Générateur de flashcards"
 
 #: templates/pages/index.html:85
-msgid ""
-"Upload your notes or paste text to instantly generate spaced repetition "
-"flashcards for perfect memorization."
-msgstr ""
+msgid "Upload your notes or paste text to instantly generate spaced repetition flashcards for perfect memorization."
+msgstr "Téléchargez vos notes ou collez du texte pour générer instantanément des flashcards espacées pour une mémorisation parfaite."
 
 #: templates/pages/index.html:87
 msgid "Spaced Rep"
-msgstr ""
+msgstr "Répetition espacée"
 
 #: templates/pages/index.html:88
 msgid "Memory"
-msgstr ""
+msgstr "Mémoire"
 
 #: templates/pages/index.html:90
 msgid "Quick Review"
-msgstr ""
+msgstr "Révision Rapide"
 
 #: templates/pages/index.html:91
 msgid "Auto-Generate"
-msgstr ""
+msgstr "Générer Automatiquement"
 
 #: templates/pages/index.html:92
 msgid "Export"
-msgstr ""
+msgstr "Exporter"
 
 #: templates/pages/index.html:98 templates/pages/keyAccess.html:59
 msgid "Study Plan Generator"
-msgstr ""
+msgstr "Générateur de plan d’étude"
 
 #: templates/pages/index.html:99
-msgid ""
-"Create a personalized study plan in minutes. Enter your goals, subjects, "
-"and available time, and get a structured schedule to maximize learning "
-"efficiency."
-msgstr ""
+msgid "Create a personalized study plan in minutes. Enter your goals, subjects, and available time, and get a structured schedule to maximize learning efficiency."
+msgstr "Créez un plan d’étude personnalisé en quelques minutes. Entrez vos objectifs, sujets, et temps disponible, et obtenez un emploi du temps structuré pour maximiser votre apprentissage."
 
 #: templates/pages/index.html:101
 msgid "Personalized"
-msgstr ""
+msgstr "Personnalisé"
 
 #: templates/pages/index.html:102
 msgid "Tracking"
-msgstr ""
+msgstr "Suivi"
 
 #: templates/pages/index.html:104
 msgid "Time Management"
-msgstr ""
+msgstr "Gestion du Temps"
 
 #: templates/pages/index.html:105
 msgid "Goal-Oriented"
-msgstr ""
+msgstr "Orienté Objectifs"
 
 #: templates/pages/index.html:106
 msgid "Scheduling"
-msgstr ""
+msgstr "Planification"
 
 #: templates/pages/index.html:112 templates/pages/keyAccess.html:61
 msgid "Note Analyzer"
-msgstr ""
+msgstr "Analyser Notes"
 
 #: templates/pages/index.html:113
-msgid ""
-"Get AI-powered feedback on your notes quality, completeness, and "
-"structure. Identifies gaps, suggests improvements, and provides "
-"actionable recommendations to make your notes exam-ready."
-msgstr ""
+msgid "Get AI-powered feedback on your notes quality, completeness, and structure. Identifies gaps, suggests improvements, and provides actionable recommendations to make your notes exam-ready."
+msgstr "Obtenez des retours alimentés par AI sur la qualité, la complétude et la structure de vos notes. Identifie les lacunes, suggère des améliorations, et fournit des recommandations concrètes pour préparer vos notes à l’examen."
 
 #: templates/pages/index.html:115
 msgid "Quality Score"
-msgstr ""
+msgstr "Score de Qualité"
 
 #: templates/pages/index.html:116
 msgid "Gap Detection"
-msgstr ""
+msgstr "Détection de Lacunes"
 
 #: templates/pages/index.html:118
 msgid "Actionable Tips"
-msgstr ""
+msgstr "Conseils Actions"
 
 #: templates/pages/index.html:119
 msgid "Structure Review"
-msgstr ""
+msgstr "Révision de Structure"
 
 #: templates/pages/index.html:120
 msgid "Improvement Plan"
-msgstr ""
+msgstr "Plan d’Amélioration"
 
 #: templates/pages/index.html:130
 msgid "How EduDuck Works"
-msgstr ""
+msgstr "Comment Fonctionne EduDuck"
 
 #: templates/pages/index.html:137
 msgid "Paste or Upload"
-msgstr ""
+msgstr "Coller ou Télécharger"
 
 #: templates/pages/index.html:138
 msgid "Drop in your notes, PDFs, or images with OCR-powered text extraction"
-msgstr ""
+msgstr "Déposez vos notes, PDFs ou images avec extraction de texte par OCR"
 
 #: templates/pages/index.html:145
 msgid "Choose AI"
-msgstr ""
+msgstr "Choisissez AI"
 
 #: templates/pages/index.html:146
 msgid "Free Hugging Face/Google Gemini or premium OpenAI for advanced results"
-msgstr ""
+msgstr "Hugging Face/Google Gemini gratuit ou OpenAI premium pour des résultats avancés"
 
 #: templates/pages/index.html:153
 msgid "Generate Instantly"
-msgstr ""
+msgstr "Générer Instantanément"
 
 #: templates/pages/index.html:154
 msgid "Get quizzes, flashcards, or enhanced notes in seconds"
-msgstr ""
+msgstr "Obtenez quiz, flashcards ou notes améliorées en quelques secondes"
 
 #: templates/pages/index.html:161
 msgid "Practice Smart"
-msgstr ""
+msgstr "Pratiquez Intelligemment"
 
 #: templates/pages/index.html:162
 msgid "Track progress with DuckAI explanations and custom tips"
-msgstr ""
+msgstr "Suivez votre progression avec les explications DuckAI et des conseils personnalisés"
 
 #: templates/pages/index.html:169
 msgid "3 free uses per day - upgrade with your own API key for unlimited access"
-msgstr ""
+msgstr "3 utilisations gratuites par jour - passez à la version payante avec votre propre clé API pour un accès illimité"
 
 #: templates/pages/index.html:176
 msgid "Meet DuckAI"
-msgstr ""
+msgstr "Rencontrez DuckAI"
 
 #: templates/pages/index.html:177
-msgid ""
-"Mastered the quizzes and flashcards? <strong>DuckAI has your "
-"back!</strong>"
-msgstr ""
+msgid "Mastered the quizzes and flashcards? <strong>DuckAI has your back!</strong>"
+msgstr "Maîtrisez les quiz et flashcards ? <strong>DuckAI est là pour vous !</strong>"
 
 #: templates/pages/index.html:178
-msgid ""
-"Ask for concept explanations, quiz clarifications, physics homework help,"
-" or custom study tips tailored to your notes!"
-msgstr ""
+msgid "Ask for concept explanations, quiz clarifications, physics homework help, or custom study tips tailored to your notes!"
+msgstr "Demandez des explications de concepts, des clarifications de quiz, de l’aide pour les devoirs de physique, ou des conseils d’étude personnalisés adaptés à vos notes !"
 
 #: templates/pages/index.html:183 templates/pages/keyAccess.html:60
 msgid "DuckAI"
-msgstr ""
+msgstr "DuckAI"
 
 #: templates/pages/index.html:184
-msgid ""
-"Your smart study companion - explain concepts, quiz help, remembers your "
-"notes! Supports custom prompts, dark mode, and conversation history for "
-"ongoing study sessions."
-msgstr ""
+msgid "Your smart study companion - explain concepts, quiz help, remembers your notes! Supports custom prompts, dark mode, and conversation history for ongoing study sessions."
+msgstr "Votre compagnon d’étude intelligent - expliquez des concepts, aidez avec des quiz, se souvient de vos notes ! Supporte les prompts personnalisés, le mode sombre, et l’historique de conversation pour des sessions d’étude continues."
 
 #: templates/pages/index.html:186
 msgid "AI Tutor"
-msgstr ""
+msgstr "Tuteur IA"
 
 #: templates/pages/index.html:187
 msgid "Context-Aware"
-msgstr ""
+msgstr "Contexte Intelligent"
 
 #: templates/pages/index.html:188
 msgid "24/7"
-msgstr ""
+msgstr "24/7"
 
 #: templates/pages/index.html:198
 msgid "Why Choose EduDuck?"
-msgstr ""
+msgstr "Pourquoi choisir EduDuck ?"
 
 #: templates/pages/index.html:204
 msgid "Free Tier"
-msgstr ""
+msgstr "Offre gratuite"
 
 #: templates/pages/index.html:205
 msgid "3 daily uses with OpenAI - no credit card needed"
-msgstr ""
+msgstr "3 utilisations quotidiennes avec OpenAI - pas besoin de carte de crédit"
 
 #: templates/pages/index.html:210
 msgid "Fast & Private"
-msgstr ""
+msgstr "Rapide & Privé"
 
 #: templates/pages/index.html:211
 msgid "Processes locally in-browser where possible, deployed on Render for speed"
-msgstr ""
+msgstr "Traite localement dans le navigateur lorsque c'est possible, déployé sur Render pour la rapidité"
 
 #: templates/pages/index.html:216
 msgid "Student-Focused"
-msgstr ""
+msgstr "Axé sur les étudiants"
 
 #: templates/pages/index.html:217
 msgid "Built for heavy workloads like math, physics, biology exams"
-msgstr ""
+msgstr "Conçu pour les charges de travail intensives comme les examens de mathématiques, physique, biologie"
 
 #: templates/pages/index.html:222
 msgid "Open Source"
-msgstr ""
+msgstr "Open Source"
 
 #: templates/pages/index.html:223
 msgid "Open-Source"
-msgstr ""
+msgstr "Open-Source"
 
 #: templates/pages/index.html:223
 msgid "roots with enhanced private version"
-msgstr ""
+msgstr "racines avec version privée améliorée"
 
 #: templates/pages/index.html:228
 msgid "Mobile-Friendly"
-msgstr ""
+msgstr "Compatible mobile"
 
 #: templates/pages/index.html:229
 msgid "Works on phone for on-the-go studying"
-msgstr ""
+msgstr "Fonctionne sur téléphone pour étudier en déplacement"
 
 #: templates/pages/index.html:234
 msgid "Secure"
-msgstr ""
+msgstr "Sûr"
 
 #: templates/pages/index.html:235
 msgid "Your data stays private, encrypted connections"
-msgstr ""
+msgstr "Vos données restent privées, connexions chiffrées"
 
 #: templates/pages/index.html:244
 msgid "What Students Say"
-msgstr ""
+msgstr "Ce que disent les étudiants"
 
 #: templates/pages/index.html:250
-msgid ""
-"EduDuck is really helpful especially for English, 90% passing rate, "
-"boosted up 15% with it."
-msgstr ""
+msgid "EduDuck is really helpful especially for English, 90% passing rate, boosted up 15% with it."
+msgstr "EduDuck est vraiment utile surtout pour l'anglais, taux de réussite de 90 %, amélioré de 15 % avec lui."
 
 #: templates/pages/index.html:259
 msgid "EduDuck is the greatest thing since sliced bread."
-msgstr ""
+msgstr "EduDuck est la meilleure chose après le pain tranché."
 
 #: templates/pages/index.html:271
 msgid "Ready to Ace Your Exams?"
-msgstr ""
+msgstr "Prêt à réussir vos examens ?"
 
 #: templates/pages/index.html:272
 msgid "Get your free API key and start now - no sign-up, instant results!"
-msgstr ""
+msgstr "Obtenez votre clé API gratuite et commencez maintenant - pas d'inscription, résultats instantanés !"
 
 #: templates/pages/index.html:278
 msgid "Join students already improving their grades with EduDuck"
-msgstr ""
+msgstr "Rejoignez des étudiants qui améliorent déjà leurs notes avec EduDuck"
 
 #: templates/pages/keyAccess.html:4
 msgid "EduDuck - How to get API Key?"
-msgstr ""
+msgstr "EduDuck - Comment obtenir une clé API ?"
 
 #: templates/pages/keyAccess.html:13
 msgid "How to Get Your API Key"
-msgstr ""
+msgstr "Comment obtenir votre clé API"
 
 #: templates/pages/keyAccess.html:14
-msgid ""
-"Get your free API key from <strong>Hugging Face</strong>, <strong>Google "
-"Gemini</strong>, or <strong>OpenAI</strong> to unlock AI-powered learning"
-" tools. Follow the tutorials below:"
-msgstr ""
+msgid "Get your free API key from <strong>Hugging Face</strong>, <strong>Google Gemini</strong>, or <strong>OpenAI</strong> to unlock AI-powered learning tools. Follow the tutorials below:"
+msgstr "Obtenez votre clé API gratuite de <strong>Hugging Face</strong>, <strong>Google Gemini</strong>, ou <strong>OpenAI</strong> pour déverrouiller des outils d'apprentissage alimentés par l'IA. Suivez les tutoriels ci-dessous :"
 
 #: templates/pages/keyAccess.html:18
 msgid "Hugging Face API Key"
-msgstr ""
+msgstr "Clé API Hugging Face"
 
 #: templates/pages/keyAccess.html:20 templates/pages/keyAccess.html:31
 #: templates/pages/keyAccess.html:42
 msgid "Go to"
-msgstr ""
+msgstr "aller à"
 
 #: templates/pages/keyAccess.html:20
 msgid "Hugging Face Tokens"
-msgstr ""
+msgstr "Jetons Hugging Face"
 
 #: templates/pages/keyAccess.html:21 templates/pages/keyAccess.html:32
 #: templates/pages/keyAccess.html:43
 msgid "Click"
-msgstr ""
+msgstr "Cliquer"
 
 #: templates/pages/keyAccess.html:21
 msgid "New token"
-msgstr ""
+msgstr "Nouveau jeton"
 
 #: templates/pages/keyAccess.html:21
 msgid "Fine-grained"
-msgstr ""
+msgstr "En pointillé précis"
 
 #: templates/pages/keyAccess.html:22
 msgid "Check all"
-msgstr ""
+msgstr "Tout sélectionner"
 
 #: templates/pages/keyAccess.html:22
 msgid "Inference"
-msgstr ""
+msgstr "Inference"
 
 #: templates/pages/keyAccess.html:22
 msgid "permissions"
-msgstr ""
+msgstr "permissions"
 
 #: templates/pages/keyAccess.html:23 templates/pages/keyAccess.html:34
 msgid "Copy"
-msgstr ""
+msgstr "Copier"
 
 #: templates/pages/keyAccess.html:23
 msgid "the token and paste it in EduDuck"
-msgstr ""
+msgstr "le jeton et le coller dans EduDuck"
 
 #: templates/pages/keyAccess.html:25 templates/pages/keyAccess.html:36
 msgid "Free tier:"
-msgstr ""
+msgstr "Offre gratuite :"
 
 #: templates/pages/keyAccess.html:25
 msgid "1M tokens/month | Perfect for quizzes & flashcards"
-msgstr ""
+msgstr "1M de jetons/mois | Parfait pour les quiz & fiches de révision"
 
 #: templates/pages/keyAccess.html:29
 msgid "Google Gemini API Key"
-msgstr ""
+msgstr "Clé API Google Gemini"
 
 #: templates/pages/keyAccess.html:31
 msgid "Google AI Studio"
-msgstr ""
+msgstr "Google AI Studio"
 
 #: templates/pages/keyAccess.html:32
 msgid "Create API key"
-msgstr ""
+msgstr "Créer une clé API"
 
 #: templates/pages/keyAccess.html:33
 msgid "Give"
-msgstr ""
+msgstr "Donner"
 
 #: templates/pages/keyAccess.html:33
 msgid "your API key a name"
-msgstr ""
+msgstr "un nom à votre clé API"
 
 #: templates/pages/keyAccess.html:34
 msgid "the key and paste it in EduDuck"
-msgstr ""
+msgstr "la clé et la coller dans EduDuck"
 
 #: templates/pages/keyAccess.html:36
 msgid "15 RPM | Great for fast responses"
-msgstr ""
+msgstr "15 RPM | Excellent pour des réponses rapides"
 
 #: templates/pages/keyAccess.html:40
 msgid "OpenAI API Key"
-msgstr ""
+msgstr "Clé API OpenAI"
 
 #: templates/pages/keyAccess.html:42
 msgid "OpenAI Platform"
-msgstr ""
+msgstr "Plateforme OpenAI"
 
 #: templates/pages/keyAccess.html:42
 msgid "Log in"
-msgstr ""
+msgstr "Se connecter"
 
 #: templates/pages/keyAccess.html:43
 msgid "Create new secret key"
-msgstr ""
+msgstr "Créer une nouvelle clé secrète"
 
 #: templates/pages/keyAccess.html:44
 msgid "Name it"
-msgstr ""
+msgstr "Nommer"
 
 #: templates/pages/keyAccess.html:44
 msgid "Copy immediately (shown once!)"
-msgstr ""
+msgstr "Copier immédiatement (affiché une seule fois !)"
 
 #: templates/pages/keyAccess.html:45
 msgid "Paste in EduDuck"
-msgstr ""
+msgstr "Coller dans EduDuck"
 
 #: templates/pages/keyAccess.html:45
 msgid "Select \"OpenAI\" mode + paste key"
-msgstr ""
+msgstr "Sélectionner le mode \"OpenAI\" + coller la clé"
 
 #: templates/pages/keyAccess.html:47
 msgid "Cost:"
-msgstr ""
+msgstr "Coût :"
 
 #: templates/pages/keyAccess.html:47
 msgid "~$0.001/quiz | Crispest quality (GPT-4o/GPT-5-nano)"
-msgstr ""
+msgstr "~$0.001/quiz | Qualité la plus nette (GPT-4o / GPT-5-nano)"
 
 #: templates/pages/keyAccess.html:48
 msgid "Requires card, but $5 lasts ~5,000 quizzes!"
-msgstr ""
+msgstr "Nécessite une carte, mais 5 $ durent environ 5 000 quiz !"
 
 #: templates/pages/keyAccess.html:53
 msgid "Ready to Start?"
-msgstr ""
+msgstr "Prêt à commencer ?"
 
 #: templates/pages/keyAccess.html:54
 msgid "Paste your API key in any tool and start creating!"
-msgstr ""
+msgstr "Collez votre clé API dans n'importe quel outil et commencez à créer !"
 
 #: templates/pages/login.html:3
 msgid "EduDuck - Login"
-msgstr ""
+msgstr "EduDuck - Connexion"
 
 #: templates/pages/login.html:4
-msgid ""
-"Login to EduDuck for free usage and more for quizzes, flashcards, and "
-"DuckAI. Free AI study tools for students."
-msgstr ""
+msgid "Login to EduDuck for free usage and more for quizzes, flashcards, and DuckAI. Free AI study tools for students."
+msgstr "Connectez-vous à EduDuck pour une utilisation gratuite et plus pour les quiz, fiches de révision et DuckAI. Outils d'étude IA gratuits pour les étudiants."
 
 #: templates/pages/login.html:16
 msgid "Login to EduDuck"
-msgstr ""
+msgstr "Connexion à EduDuck"
 
 #: templates/pages/login.html:17
 msgid "Access your saved notes, quizzes, flashcards, and DuckAI responses."
-msgstr ""
+msgstr "Accédez à vos notes enregistrées, quiz, fiches de révision et réponses DuckAI."
 
 #: templates/pages/login.html:32 templates/pages/resetPassword.html:31
 msgid "Username or Email"
-msgstr ""
+msgstr "Nom d'utilisateur ou Email"
 
 #: templates/pages/login.html:33 templates/pages/resetPassword.html:32
 msgid "Enter your username or email"
-msgstr ""
+msgstr "Entrez votre nom d'utilisateur ou email"
 
 #: templates/pages/login.html:35 templates/pages/register.html:39
 #: templates/pages/userSettings.html:37
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: templates/pages/login.html:36 templates/pages/userSettings.html:36
 msgid "Enter your password"
-msgstr ""
+msgstr "Entrez votre mot de passe"
 
 #: templates/pages/login.html:42 templates/pages/register.html:76
 msgid "Or continue with"
-msgstr ""
+msgstr "Ou continuez avec"
 
 #: templates/pages/login.html:46 templates/pages/register.html:80
 msgid "Sign in with Google"
-msgstr ""
+msgstr "Se connecter avec Google"
 
 #: templates/pages/login.html:47 templates/pages/register.html:81
 msgid "Google"
-msgstr ""
+msgstr "Google"
 
 #: templates/pages/login.html:50 templates/pages/register.html:84
 msgid "Sign in with Microsoft"
-msgstr ""
+msgstr "Se connecter avec Microsoft"
 
 #: templates/pages/login.html:51 templates/pages/register.html:85
 msgid "Microsoft"
-msgstr ""
+msgstr "Microsoft"
 
 #: templates/pages/login.html:54 templates/pages/register.html:88
 msgid "Sign in with GitHub"
-msgstr ""
+msgstr "Se connecter avec GitHub"
 
 #: templates/pages/login.html:55 templates/pages/register.html:89
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #: templates/pages/login.html:58 templates/pages/register.html:92
 msgid "Sign in with Discord"
-msgstr ""
+msgstr "Se connecter avec Discord"
 
 #: templates/pages/login.html:59 templates/pages/register.html:93
 msgid "Discord"
-msgstr ""
+msgstr "Discord"
 
 #: templates/pages/login.html:66
 msgid "Forgot password?"
-msgstr ""
+msgstr "Mot de passe oublié?"
 
 #: templates/pages/login.html:66
 msgid "Reset password"
-msgstr ""
+msgstr "Réinitialiser le mot de passe"
 
 #: templates/pages/login.html:67 templates/pages/resetPassword.html:41
 msgid "New here?"
-msgstr ""
+msgstr "Nouveau ici ?"
 
 #: templates/pages/login.html:67 templates/pages/resetPassword.html:41
 msgid "Register today!"
-msgstr ""
+msgstr "Inscrivez-vous aujourd'hui !"
 
 #: templates/pages/loginRequired.html:4
 msgid "EduDuck - Login Required"
-msgstr ""
+msgstr "EduDuck - Connexion requise"
 
 #: templates/pages/loginRequired.html:5
-msgid ""
-"You must be logged in to use the free tier on EduDuck. Get your free API "
-"key and start learning instantly."
-msgstr ""
+msgid "You must be logged in to use the free tier on EduDuck. Get your free API key and start learning instantly."
+msgstr "Vous devez être connecté pour utiliser le niveau gratuit sur EduDuck. Obtenez votre clé API gratuite et commencez à apprendre instantanément."
 
 #: templates/pages/loginRequired.html:9
 msgid "Login Required"
-msgstr ""
+msgstr "Connexion requise"
 
 #: templates/pages/loginRequired.html:10
 msgid "You must be logged in to use the free tier of EduDuck."
-msgstr ""
+msgstr "Vous devez être connecté pour utiliser le niveau gratuit d'EduDuck."
 
 #: templates/pages/loginRequired.html:12
 msgid "Don't have an account?"
-msgstr ""
+msgstr "Vous n'avez pas de compte ?"
 
 #: templates/pages/loginRequired.html:12
 msgid "Register here"
-msgstr ""
+msgstr "Inscrivez-vous ici"
 
 #: templates/pages/loginRequired.html:12
 msgid "to get 3 free uses per day!"
-msgstr ""
+msgstr "pour obtenir 3 utilisations gratuites par jour !"
 
 #: templates/pages/privacy.html:4
 msgid "EduDuck - Privacy Policy"
-msgstr ""
+msgstr "EduDuck - Politique de Confidentialité"
 
 #: templates/pages/privacy.html:5
-msgid ""
-"EduDuck Privacy Policy - How we handle your data while using AI study "
-"tools."
-msgstr ""
+msgid "EduDuck Privacy Policy - How we handle your data while using AI study tools."
+msgstr "Politique de Confidentialité d'EduDuck - Comment nous gérons vos données lors de l'utilisation des outils d'étude IA."
 
 #: templates/pages/privacy.html:12
 msgid "EduDuck Privacy Policy"
-msgstr ""
+msgstr "Politique de Confidentialité d'EduDuck"
 
 #: templates/pages/privacy.html:13
-msgid ""
-"Your privacy is very important to us. This Privacy Policy explains what "
-"data we collect, how we use it, and your rights when using EduDuck AI "
-"study tools."
-msgstr ""
+msgid "Your privacy is very important to us. This Privacy Policy explains what data we collect, how we use it, and your rights when using EduDuck AI study tools."
+msgstr "Votre vie privée est très importante pour nous. Cette politique de confidentialité explique quelles données nous collectons, comment nous les utilisons, et vos droits lors de l'utilisation des outils d'étude IA d'EduDuck."
 
 #: templates/pages/privacy.html:15
 msgid "Information We Collect"
-msgstr ""
+msgstr "Informations que nous collectons"
 
 #: templates/pages/privacy.html:16
-msgid ""
-"Account information: Username, email address, and securely hashed "
-"passwords (Werkzeug password hashing). OAuth user IDs if you sign in via "
-"Google, GitHub, Discord, or Microsoft."
-msgstr ""
+msgid "Account information: Username, email address, and securely hashed passwords (Werkzeug password hashing). OAuth user IDs if you sign in via Google, GitHub, Discord, or Microsoft."
+msgstr "Informations du compte : nom d'utilisateur, adresse email, et mots de passe hachés de manière sécurisée (hachage de mot de passe Werkzeug). Identifiants utilisateur OAuth si vous vous connectez via Google, GitHub, Discord, ou Microsoft."
 
 #: templates/pages/privacy.html:17
-msgid ""
-"Uploaded content: Notes, PDFs, or images temporarily processed using "
-"Tesseract OCR and PIL for generating quizzes, flashcards, study plans, "
-"and enhanced notes."
-msgstr ""
+msgid "Uploaded content: Notes, PDFs, or images temporarily processed using Tesseract OCR and PIL for generating quizzes, flashcards, study plans, and enhanced notes."
+msgstr "Contenu téléchargé : notes, PDFs, ou images traités temporairement avec Tesseract OCR et PIL pour générer des quiz, flashcards, plans d'étude, et notes améliorées."
 
 #: templates/pages/privacy.html:18
-msgid ""
-"Generated content: Quizzes, flashcards, study plans, enhanced notes, and "
-"note analyses stored in MongoDB with unique identifiers."
-msgstr ""
+msgid "Generated content: Quizzes, flashcards, study plans, enhanced notes, and note analyses stored in MongoDB with unique identifiers."
+msgstr "Contenu généré : quiz, flashcards, plans d'étude, notes améliorées, et analyses de notes stockés dans MongoDB avec des identifiants uniques."
 
 #: templates/pages/privacy.html:19
-msgid ""
-"Usage data: Daily usage counters (reset at midnight UTC), user IDs, and "
-"timestamps to enforce the 3 free uses per day limit."
-msgstr ""
+msgid "Usage data: Daily usage counters (reset at midnight UTC), user IDs, and timestamps to enforce the 3 free uses per day limit."
+msgstr "Données d'utilisation : compteurs d'utilisation quotidiens (réinitialisés à minuit UTC), identifiants utilisateur, et horodatages pour faire respecter la limite de 3 utilisations gratuites par jour."
 
 #: templates/pages/privacy.html:20
-msgid ""
-"Cookies and browser storage: Session cookies (Flask-Login), CSRF tokens, "
-"theme preferences, and temporary session data for guest users."
-msgstr ""
+msgid "Cookies and browser storage: Session cookies (Flask-Login), CSRF tokens, theme preferences, and temporary session data for guest users."
+msgstr "Cookies et stockage dans le navigateur : cookies de session (Flask-Login), jetons CSRF, préférences de thème, et données de session temporaires pour les utilisateurs invités."
 
 #: templates/pages/privacy.html:21
-msgid ""
-"Email verification tokens: Temporary tokens with 24-hour expiration sent "
-"via MailGun for account verification."
-msgstr ""
+msgid "Email verification tokens: Temporary tokens with 24-hour expiration sent via MailGun for account verification."
+msgstr "Jetons de vérification de l'email : jetons temporaires avec expiration de 24 heures envoyés via MailGun pour la vérification du compte."
 
 #: templates/pages/privacy.html:23
 msgid "How We Use Your Data"
-msgstr ""
+msgstr "Comment nous utilisons vos données"
 
 #: templates/pages/privacy.html:24
-msgid ""
-"To provide AI study services via Hugging Face, Google Gemini, and OpenAI "
-"APIs."
-msgstr ""
+msgid "To provide AI study services via Hugging Face, Google Gemini, and OpenAI APIs."
+msgstr "Pour fournir des services d'étude IA via Hugging Face, Google Gemini, et OpenAI APIs."
 
 #: templates/pages/privacy.html:25
-msgid ""
-"To authenticate users via session-based auth (Flask-Login) or OAuth "
-"(Authlib)."
-msgstr ""
+msgid "To authenticate users via session-based auth (Flask-Login) or OAuth (Authlib)."
+msgstr "Pour authentifier les utilisateurs via une authentification basée sur la session (Flask-Login) ou OAuth (Authlib)."
 
 #: templates/pages/privacy.html:26
 msgid "To track and enforce daily free-tier usage limits (3 uses per day)."
-msgstr ""
+msgstr "Pour suivre et appliquer les limites d'utilisation quotidiennes du niveau gratuit (3 utilisations par jour)."
 
 #: templates/pages/privacy.html:27
 msgid "To send verification emails via MailGun for password-based accounts."
-msgstr ""
+msgstr "Pour envoyer des emails de vérification via MailGun pour les comptes par mot de passe."
 
 #: templates/pages/privacy.html:28
-msgid ""
-"To store and retrieve user-generated content (quizzes, flashcards, study "
-"plans, note analyses, duckai conversations , enhanced-notes) in MongoDB."
-msgstr ""
+msgid "To store and retrieve user-generated content (quizzes, flashcards, study plans, note analyses, duckai conversations , enhanced-notes) in MongoDB."
+msgstr "Pour stocker et récupérer le contenu généré par l'utilisateur (quiz, flashcards, plans d'étude, analyses de notes, conversations duckai, notes améliorées) dans MongoDB."
 
 #: templates/pages/privacy.html:29
 msgid "To improve and maintain the security and functionality of our site."
-msgstr ""
+msgstr "Pour améliorer et maintenir la sécurité et la fonctionnalité de notre site."
 
 #: templates/pages/privacy.html:31
 msgid "Legal Basis for Processing"
-msgstr ""
+msgstr "Base légale du traitement"
 
 #: templates/pages/privacy.html:32
-msgid ""
-"For users in the EU and other regions with data protection laws, we "
-"process your data under the following bases:"
-msgstr ""
+msgid "For users in the EU and other regions with data protection laws, we process your data under the following bases:"
+msgstr "Pour les utilisateurs dans l'UE et d'autres régions avec des lois de protection des données, nous traitons vos données selon les bases suivantes :"
 
 #: templates/pages/privacy.html:33
 msgid "To fulfill our contract with you (providing AI study services)."
-msgstr ""
+msgstr "Pour remplir notre contrat avec vous (fournir des services d'étude IA)."
 
 #: templates/pages/privacy.html:34
-msgid ""
-"Under our legitimate interest to manage usage limits, prevent abuse, and "
-"maintain site functionality."
-msgstr ""
+msgid "Under our legitimate interest to manage usage limits, prevent abuse, and maintain site functionality."
+msgstr "Dans notre intérêt légitime de gérer les limites d'utilisation, prévenir les abus, et maintenir la fonctionnalité du site."
 
 #: templates/pages/privacy.html:35
 msgid "With your consent for optional account features and OAuth authentication."
-msgstr ""
+msgstr "Avec votre consentement pour les fonctionnalités facultatives du compte et l'authentification OAuth."
 
 #: templates/pages/privacy.html:37
 msgid "Data Storage and Retention"
-msgstr ""
+msgstr "Stockage et conservation des données"
 
 #: templates/pages/privacy.html:38
-msgid ""
-"Database: User data and generated content are stored in MongoDB Atlas "
-"with secure connections (certifi SSL verification)."
-msgstr ""
+msgid "Database: User data and generated content are stored in MongoDB Atlas with secure connections (certifi SSL verification)."
+msgstr "Base de données : Les données utilisateur et le contenu généré sont stockés dans MongoDB Atlas avec des connexions sécurisées (certifi SSL)."
 
 #: templates/pages/privacy.html:39
-msgid ""
-"Uploaded files: PDFs and images are processed temporarily (usually within"
-" seconds) using pypdf and PIL, then discarded immediately after AI "
-"processing."
-msgstr ""
+msgid "Uploaded files: PDFs and images are processed temporarily (usually within seconds) using pypdf and PIL, then discarded immediately after AI processing."
+msgstr "Fichiers téléchargés : PDFs et images sont traités temporairement (généralement en quelques secondes) en utilisant pypdf et PIL, puis immédiatement supprimés après le traitement AI."
 
 #: templates/pages/privacy.html:40
-msgid ""
-"Generated content: Stored indefinitely for logged-in users until manually"
-" deleted. Guest users' content is stored temporarily in session storage."
-msgstr ""
+msgid "Generated content: Stored indefinitely for logged-in users until manually deleted. Guest users' content is stored temporarily in session storage."
+msgstr "Contenu généré : stocké indéfiniment pour les utilisateurs connectés jusqu'à suppression manuelle. Le contenu des utilisateurs invités est stocké temporairement dans le stockage de session."
 
 #: templates/pages/privacy.html:41
-msgid ""
-"Account deletion: Accounts marked for deletion are recoverable for 30 "
-"days. After 30 days, all associated data is permanently deleted from "
-"MongoDB."
-msgstr ""
+msgid "Account deletion: Accounts marked for deletion are recoverable for 30 days. After 30 days, all associated data is permanently deleted from MongoDB."
+msgstr "Suppression de compte : les comptes marqués pour suppression peuvent être récupérés pendant 30 jours. Après 30 jours, toutes les données associées sont définitivement supprimées de MongoDB."
 
 #: templates/pages/privacy.html:42
 msgid "Email verification tokens: Automatically expire after 24 hours."
-msgstr ""
+msgstr "Jetons de vérification d'email : expirent automatiquement après 24 heures."
 
 #: templates/pages/privacy.html:44
 msgid "Cookies & Tracking"
-msgstr ""
+msgstr "Cookies & suivi"
 
 #: templates/pages/privacy.html:45
 msgid "EduDuck uses minimal cookies and browser storage:"
-msgstr ""
+msgstr "EduDuck utilise un minimum de cookies et de stockage dans le navigateur :"
 
 #: templates/pages/privacy.html:46
 msgid "Session cookies:"
-msgstr ""
+msgstr "Cookies de session :"
 
 #: templates/pages/privacy.html:46
 msgid "Required for login authentication (Flask-Login) and CSRF protection."
-msgstr ""
+msgstr "Obligatoires pour l'authentification de connexion (Flask-Login) et la protection CSRF."
 
 #: templates/pages/privacy.html:47
 msgid "Theme preference cookies:"
-msgstr ""
+msgstr "Cookies de préférence de thème :"
 
 #: templates/pages/privacy.html:47
 msgid "To remember your light/dark mode choice."
-msgstr ""
+msgstr "Pour mémoriser votre choix de mode clair/sombre."
 
 #: templates/pages/privacy.html:48
 msgid "Session storage:"
-msgstr ""
+msgstr "Stockage de session :"
 
 #: templates/pages/privacy.html:48
-msgid ""
-"Temporary storage of generated content for guest users (cleared when "
-"browser closes)."
-msgstr ""
+msgid "Temporary storage of generated content for guest users (cleared when browser closes)."
+msgstr "Stockage temporaire du contenu généré pour les utilisateurs invités (effacé lorsque le navigateur se ferme)."
 
 #: templates/pages/privacy.html:49
-msgid ""
-"No analytics or advertising tracking is performed. You can manage cookies"
-" through your browser settings."
-msgstr ""
+msgid "No analytics or advertising tracking is performed. You can manage cookies through your browser settings."
+msgstr "Aucun suivi analytique ou publicitaire n'est effectué. Vous pouvez gérer les cookies via les paramètres de votre navigateur."
 
 #: templates/pages/privacy.html:51
 msgid "Third-Party Services"
-msgstr ""
+msgstr "Services tiers"
 
 #: templates/pages/privacy.html:52
 msgid "EduDuck uses the following third-party services:"
-msgstr ""
+msgstr "EduDuck utilise les services tiers suivants :"
 
 #: templates/pages/privacy.html:53
 msgid "AI Processing:"
-msgstr ""
+msgstr "Traitement IA :"
 
 #: templates/pages/privacy.html:53
-msgid ""
-"Hugging Face Inference API, OpenAI API, and Google Gemini (2.5 Flash) "
-"process your uploaded content to generate study materials. Your data is "
-"sent temporarily via httpx (HTTP/2) and is not stored permanently by "
-"these services."
-msgstr ""
+msgid "Hugging Face Inference API, OpenAI API, and Google Gemini (2.5 Flash) process your uploaded content to generate study materials. Your data is sent temporarily via httpx (HTTP/2) and is not stored permanently by these services."
+msgstr "API d'inférence Hugging Face, API OpenAI, et Google Gemini (2.5 Flash) traitent votre contenu téléchargé pour générer des matériaux d'étude. Vos données sont envoyées temporairement via httpx (HTTP/2) et ne sont pas stockées en permanence par ces services."
 
 #: templates/pages/privacy.html:54
 msgid "OAuth Authentication:"
-msgstr ""
+msgstr "Authentification OAuth :"
 
 #: templates/pages/privacy.html:54
-msgid ""
-"Authlib integrates with Google, GitHub, Discord, and Microsoft for secure"
-" sign-in. OAuth tokens are used only for authentication and not stored "
-"permanently."
-msgstr ""
+msgid "Authlib integrates with Google, GitHub, Discord, and Microsoft for secure sign-in. OAuth tokens are used only for authentication and not stored permanently."
+msgstr "Authlib s'intègre avec Google, GitHub, Discord, et Microsoft pour une connexion sécurisée. Les jetons OAuth ne sont utilisés qu'à des fins d'authentification et ne sont pas stockés en permanence."
 
 #: templates/pages/privacy.html:55
 msgid "Email Services:"
-msgstr ""
+msgstr "Services de messagerie :"
 
 #: templates/pages/privacy.html:55
 msgid "MailGun sends verification emails for password-based accounts."
-msgstr ""
+msgstr "MailGun envoie des emails de vérification pour les comptes par mot de passe."
 
 #: templates/pages/privacy.html:56
 msgid "Database Hosting:"
-msgstr ""
+msgstr "Hébergement de base de données :"
 
 #: templates/pages/privacy.html:56
-msgid ""
-"MongoDB Atlas (with certifi SSL) stores user accounts and generated "
-"content."
-msgstr ""
+msgid "MongoDB Atlas (with certifi SSL) stores user accounts and generated content."
+msgstr "MongoDB Atlas (avec certifi SSL) stocke les comptes utilisateur et le contenu généré."
 
 #: templates/pages/privacy.html:57
 msgid "Please review their privacy policies:"
-msgstr ""
+msgstr "Veuillez consulter leurs politiques de confidentialité :"
 
 #: templates/pages/privacy.html:58
 msgid "Hugging Face Privacy Policy"
-msgstr ""
+msgstr "Politique de Confidentialité de Hugging Face"
 
 #: templates/pages/privacy.html:59
 msgid "OpenAI Privacy Policy"
-msgstr ""
+msgstr "Politique de Confidentialité d'OpenAI"
 
 #: templates/pages/privacy.html:60
 msgid "Google Privacy Policy"
-msgstr ""
+msgstr "Politique de Confidentialité de Google"
 
 #: templates/pages/privacy.html:61
 msgid "MailGun Privacy Policy"
-msgstr ""
+msgstr "Politique de Confidentialité de MailGun"
 
 #: templates/pages/privacy.html:62
 msgid "MongoDB Privacy Policy"
-msgstr ""
+msgstr "Politique de Confidentialité de MongoDB"
 
 #: templates/pages/privacy.html:64
 msgid "Your Rights"
-msgstr ""
+msgstr "Vos Droits"
 
 #: templates/pages/privacy.html:65
 msgid "If you are in the EU, UK, or California, you have the following rights:"
-msgstr ""
+msgstr "Si vous êtes dans l'UE, au Royaume-Uni ou en Californie, vous avez les droits suivants :"
 
 #: templates/pages/privacy.html:66
 msgid "Access your personal data stored in MongoDB."
-msgstr ""
+msgstr "Accéder à vos données personnelles stockées dans MongoDB."
 
 #: templates/pages/privacy.html:67
 msgid "Request correction of inaccurate data."
-msgstr ""
+msgstr "Demander la correction de données inexactes."
 
 #: templates/pages/privacy.html:68
-msgid ""
-"Request deletion of your account and all associated content (recoverable "
-"for 30 days)."
-msgstr ""
+msgid "Request deletion of your account and all associated content (recoverable for 30 days)."
+msgstr "Demander la suppression de votre compte et de tout le contenu associé (retraitible pendant 30 jours)."
 
 #: templates/pages/privacy.html:69
-msgid ""
-"Export your generated content (quizzes, flashcards, study plans, note "
-"analyses, duckai conversations) in JSON or text format."
-msgstr ""
+msgid "Export your generated content (quizzes, flashcards, study plans, note analyses, duckai conversations) in JSON or text format."
+msgstr "Exporter votre contenu généré (quiz, flashcards, plans d'étude, analyses de notes, conversations duckai) en format JSON ou texte."
 
 #: templates/pages/privacy.html:70
 msgid "Withdraw consent to data processing at any time."
-msgstr ""
+msgstr "Retirer votre consentement au traitement des données à tout moment."
 
 #: templates/pages/privacy.html:71
-msgid ""
-"Complain to a supervisory authority if you believe your data is "
-"mishandled."
-msgstr ""
+msgid "Complain to a supervisory authority if you believe your data is mishandled."
+msgstr "Se plaindre auprès d'une autorité de contrôle si vous pensez que vos données sont mal gérées."
 
 #: templates/pages/privacy.html:72
 msgid "To exercise these rights, contact us at"
-msgstr ""
+msgstr "Pour exercer ces droits, contactez-nous à"
 
 #: templates/pages/privacy.html:72 templates/pages/privacy.html:89
 msgid "team.eduduck@gmail.com"
-msgstr ""
+msgstr "team.eduduck@gmail.com"
 
 #: templates/pages/privacy.html:74
 msgid "Security"
-msgstr ""
+msgstr "Sécurité"
 
 #: templates/pages/privacy.html:75
-msgid ""
-"We take reasonable technical and organizational measures to protect your "
-"data:"
-msgstr ""
+msgid "We take reasonable technical and organizational measures to protect your data:"
+msgstr "Nous prenons des mesures techniques et organisationnelles raisonnables pour protéger vos données :"
 
 #: templates/pages/privacy.html:76
 msgid "Passwords are hashed using Werkzeug's secure password hashing."
-msgstr ""
+msgstr "Les mots de passe sont hachés en utilisant le hachage sécurisé des mots de passe de Werkzeug."
 
 #: templates/pages/privacy.html:77
 msgid "MongoDB connections use SSL/TLS (certifi) for secure data transmission."
-msgstr ""
+msgstr "Les connexions MongoDB utilisent SSL/TLS (certifi) pour une transmission sécurisée des données."
 
 #: templates/pages/privacy.html:78
 msgid "CSRF protection on all forms."
-msgstr ""
+msgstr "Protection CSRF sur tous les formulaires."
 
 #: templates/pages/privacy.html:79
 msgid "HTTP/2 connections (httpx) for improved security and performance."
-msgstr ""
+msgstr "Connexions HTTP/2 (httpx) pour une sécurité et des performances améliorées."
 
 #: templates/pages/privacy.html:80
-msgid ""
-"However, no system is completely secure, and we cannot guarantee absolute"
-" protection."
-msgstr ""
+msgid "However, no system is completely secure, and we cannot guarantee absolute protection."
+msgstr "Cependant, aucun système n'est totalement sécurisé, et nous ne pouvons garantir une protection absolue."
 
 #: templates/pages/privacy.html:82
 msgid "International Data Transfers"
-msgstr ""
+msgstr "Transferts de données internationaux"
 
 #: templates/pages/privacy.html:83
-msgid ""
-"EduDuck is hosted on Render, and data may be processed in various "
-"regions. We ensure adequate safeguards are in place when transferring "
-"data internationally."
-msgstr ""
+msgid "EduDuck is hosted on Render, and data may be processed in various regions. We ensure adequate safeguards are in place when transferring data internationally."
+msgstr "EduDuck est hébergé sur Render, et les données peuvent être traitées dans diverses régions. Nous veillons à mettre en place des garanties adéquates lors du transfert de données à l'international."
 
 #: templates/pages/privacy.html:85
 msgid "Changes to This Policy"
-msgstr ""
+msgstr "Modifications de cette politique"
 
 #: templates/pages/privacy.html:86
-msgid ""
-"We may update this privacy policy from time to time. The latest version "
-"will always be available at"
-msgstr ""
+msgid "We may update this privacy policy from time to time. The latest version will always be available at"
+msgstr "Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. La dernière version sera toujours disponible à"
 
 #: templates/pages/privacy.html:86
 msgid "/privacy"
-msgstr ""
+msgstr "/privacy"
 
 #: templates/pages/privacy.html:88
 msgid "Contact Us"
-msgstr ""
+msgstr "Contactez-nous"
 
 #: templates/pages/privacy.html:89
 msgid "If you have questions about your data or privacy, contact us at"
-msgstr ""
+msgstr "Si vous avez des questions concernant vos données ou votre vie privée, contactez-nous à"
 
 #: templates/pages/privacy.html:91
-msgid ""
-"By using EduDuck, you agree to the practices described in this Privacy "
-"Policy."
-msgstr ""
+msgid "By using EduDuck, you agree to the practices described in this Privacy Policy."
+msgstr "En utilisant EduDuck, vous acceptez les pratiques décrites dans cette Politique de Confidentialité."
 
 #: templates/pages/profile.html:3
 msgid "EduDuck - Profile"
-msgstr ""
+msgstr "EduDuck - Profil"
 
 #: templates/pages/profile.html:12
 msgid "Your Profile"
-msgstr ""
+msgstr "Votre profil"
 
 #: templates/pages/profile.html:13
-msgid ""
-"View and reopen your saved quizzes, flashcards, study plans, notes, note "
-"analyses, and DuckAI conversations."
-msgstr ""
+msgid "View and reopen your saved quizzes, flashcards, study plans, notes, note analyses, and DuckAI conversations."
+msgstr "Voir et rouvrir vos quiz, cartes flash, plans d'études, notes, analyses de notes et conversations DuckAI sauvegardés."
 
 #: templates/pages/profile.html:17
 msgid "What should I do next?"
-msgstr ""
+msgstr "Que dois-je faire ensuite ?"
 
 #: templates/pages/profile.html:24
 msgid "Generate Now"
-msgstr ""
+msgstr "Générer maintenant"
 
 #: templates/pages/profile.html:25
 msgid "Close"
-msgstr ""
+msgstr "Fermer"
 
 #: templates/pages/profile.html:31
 msgid "Study Activity"
-msgstr ""
+msgstr "Activité d'étude"
 
 #: templates/pages/profile.html:35
 msgid "day streak"
-msgstr ""
+msgstr "journée consécutive"
 
 #: templates/pages/profile.html:39
 msgid "longest streak"
-msgstr ""
+msgstr "plus longue série"
 
 #: templates/pages/profile.html:43
 msgid "total days"
-msgstr ""
+msgstr "total de jours"
 
 #: templates/pages/profile.html:47
 msgid "activities"
-msgstr ""
+msgstr "activités"
 
 #: templates/pages/profile.html:54
 msgid "Custom Color"
-msgstr ""
+msgstr "Couleur personnalisée"
 
 #: templates/pages/profile.html:58
 msgid "Presets"
-msgstr ""
+msgstr "Préréglages"
 
 #: templates/pages/profile.html:59
 msgid "Green (default)"
-msgstr ""
+msgstr "Vert (par défaut)"
 
 #: templates/pages/profile.html:60
 msgid "Blue"
-msgstr ""
+msgstr "Bleu"
 
 #: templates/pages/profile.html:61
 msgid "Purple"
-msgstr ""
+msgstr "Violet"
 
 #: templates/pages/profile.html:62
 msgid "Orange"
-msgstr ""
+msgstr "Orange"
 
 #: templates/pages/profile.html:63
 msgid "Red"
-msgstr ""
+msgstr "Rouge"
 
 #: templates/pages/profile.html:64
 msgid "Pink"
-msgstr ""
+msgstr "Rose"
 
 #: templates/pages/profile.html:70
 msgid "Mon"
-msgstr ""
+msgstr "Lun"
 
 #: templates/pages/profile.html:71
 msgid "Wed"
-msgstr ""
+msgstr "Mer"
 
 #: templates/pages/profile.html:72
 msgid "Fri"
-msgstr ""
+msgstr "Ven"
 
 #: templates/pages/profile.html:78
 msgid "Less"
-msgstr ""
+msgstr "Moins"
 
 #: templates/pages/profile.html:86
 msgid "More"
-msgstr ""
+msgstr "Plus"
 
 #: templates/pages/profile.html:98
 msgid "Update Profile Picture"
-msgstr ""
+msgstr "Mettre à jour la photo de profil"
 
 #: templates/pages/profile.html:101
 msgid "Upload"
-msgstr ""
+msgstr "Télécharger"
 
 #: templates/pages/profile.html:103
 msgid "Upload profile picture by clicking button above"
-msgstr ""
+msgstr "Téléchargez la photo de profil en cliquant sur le bouton ci-dessus"
 
 #: templates/pages/profile.html:108
 msgid "Quizzes"
-msgstr ""
+msgstr "Quiz"
 
 #: templates/pages/profile.html:112
 msgid "Quiz"
-msgstr ""
+msgstr "Quiz"
 
 #: templates/pages/profile.html:116
 msgid "No quizzes yet."
-msgstr ""
+msgstr "Pas encore de quiz."
 
 #: templates/pages/profile.html:121 templates/pages/profile.html:125
 msgid "Flashcards"
-msgstr ""
+msgstr "Cartes flash"
 
 #: templates/pages/profile.html:129
 msgid "No flashcards yet."
-msgstr ""
+msgstr "Pas encore de cartes flash."
 
 #: templates/pages/profile.html:134
 msgid "Study Plans"
-msgstr ""
+msgstr "Plans d'étude"
 
 #: templates/pages/profile.html:138
 msgid "Study plan"
-msgstr ""
+msgstr "Plan d'étude"
 
 #: templates/pages/profile.html:142
 msgid "No study plans yet."
-msgstr ""
+msgstr "Pas encore de plans d'étude."
 
 #: templates/pages/profile.html:147
 msgid "Note Analyses"
-msgstr ""
+msgstr "Analyses de notes"
 
 #: templates/pages/profile.html:151
 msgid "Analysis"
-msgstr ""
+msgstr "Analyse"
 
 #: templates/pages/profile.html:155
 msgid "No note analyses yet."
-msgstr ""
+msgstr "Pas encore d'analyses de notes."
 
 #: templates/pages/profile.html:160
 msgid "Enhanced Notes"
-msgstr ""
+msgstr "Notes améliorées"
 
 #: templates/pages/profile.html:164
 msgid "Notes"
-msgstr ""
+msgstr "Notes"
 
 #: templates/pages/profile.html:168
 msgid "No enhanced notes yet."
-msgstr ""
+msgstr "Pas encore de notes améliorées."
 
 #: templates/pages/profile.html:173
 msgid "DuckAI Conversations"
-msgstr ""
+msgstr "Conversations DuckAI"
 
 #: templates/pages/profile.html:177
 msgid "Chat"
-msgstr ""
+msgstr "Chat"
 
 #: templates/pages/profile.html:177
 msgid "last edited"
-msgstr ""
+msgstr "dernière modification"
 
 #: templates/pages/profile.html:181
 msgid "No DuckAI chats yet."
-msgstr ""
+msgstr "Pas encore de conversations DuckAI."
 
 #: templates/pages/register.html:4
 msgid "EduDuck - Register"
-msgstr ""
+msgstr "EduDuck - Inscription"
 
 #: templates/pages/register.html:5
-msgid ""
-"Register for EduDuck to save your notes, quizzes, flashcards, and DuckAI "
-"responses. Free AI study tools for students."
-msgstr ""
+msgid "Register for EduDuck to save your notes, quizzes, flashcards, and DuckAI responses. Free AI study tools for students."
+msgstr "Inscrivez-vous sur EduDuck pour sauvegarder vos notes, quiz, cartes flash et réponses DuckAI. Outils d'étude IA gratuits pour les étudiants."
 
 #: templates/pages/register.html:17
 msgid "Create Your EduDuck Account"
-msgstr ""
+msgstr "Créez votre compte EduDuck"
 
 #: templates/pages/register.html:18
-msgid ""
-"Register to save notes, quizzes, flashcards, and DuckAI responses. Free "
-"AI study tools for students."
-msgstr ""
+msgid "Register to save notes, quizzes, flashcards, and DuckAI responses. Free AI study tools for students."
+msgstr "Inscrivez-vous pour sauvegarder des notes, quiz, cartes flash et réponses DuckAI. Outils d'étude IA gratuits pour les étudiants."
 
 #: templates/pages/register.html:33
 msgid "Username"
-msgstr ""
+msgstr "Nom d'utilisateur"
 
 #: templates/pages/register.html:34
 msgid "Choose a username"
-msgstr ""
+msgstr "Choisissez un nom d'utilisateur"
 
 #: templates/pages/register.html:36
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: templates/pages/register.html:37
 msgid "Enter your email"
-msgstr ""
+msgstr "Entrez votre email"
 
 #: templates/pages/register.html:40
 msgid "Choose a password"
-msgstr ""
+msgstr "Choisissez un mot de passe"
 
 #: templates/pages/register.html:45
 #: templates/pages/resetPasswordConfirm.html:26
 #: templates/pages/setupPassword.html:25
 msgid "8+ characters"
-msgstr ""
+msgstr "8 caractères ou plus"
 
 #: templates/pages/register.html:49
 #: templates/pages/resetPasswordConfirm.html:30
 #: templates/pages/setupPassword.html:29
 msgid "Contains letters"
-msgstr ""
+msgstr "Contient des lettres"
 
 #: templates/pages/register.html:53
 #: templates/pages/resetPasswordConfirm.html:34
 #: templates/pages/setupPassword.html:33
 msgid "Contains numbers"
-msgstr ""
+msgstr "Contient des chiffres"
 
 #: templates/pages/register.html:57
 #: templates/pages/resetPasswordConfirm.html:38
 #: templates/pages/setupPassword.html:37
 msgid "Special char"
-msgstr ""
+msgstr "Caractère spécial"
 
 #: templates/pages/register.html:61
 #: templates/pages/resetPasswordConfirm.html:42
 #: templates/pages/setupPassword.html:41
 msgid "No spaces"
-msgstr ""
+msgstr "Pas d'espaces"
 
 #: templates/pages/register.html:65
 #: templates/pages/resetPasswordConfirm.html:46
 #: templates/pages/setupPassword.html:45
 msgid "Confirm Password"
-msgstr ""
+msgstr "Confirmer le mot de passe"
 
 #: templates/pages/register.html:66
 msgid "Repeat your password"
-msgstr ""
+msgstr "Répétez votre mot de passe"
 
 #: templates/pages/register.html:70
 #: templates/pages/resetPasswordConfirm.html:51
 #: templates/pages/setupPassword.html:50
 msgid "Passwords match"
-msgstr ""
+msgstr "Les mots de passe correspondent"
 
 #: templates/pages/register.html:100
 msgid "Already have an account?"
-msgstr ""
+msgstr "Vous avez déjà un compte ?"
 
 #: templates/pages/register.html:100 templates/pages/resetPassword.html:40
 msgid "Login here"
-msgstr ""
+msgstr "Connectez-vous ici"
 
 #: templates/pages/resetPassword.html:4
 msgid "EduDuck - Reset Password"
-msgstr ""
+msgstr "EduDuck - Réinitialiser le mot de passe"
 
 #: templates/pages/resetPassword.html:5
-msgid ""
-"Reset your EduDuck password to regain access to your account. Free AI "
-"study tools for students."
-msgstr ""
+msgid "Reset your EduDuck password to regain access to your account. Free AI study tools for students."
+msgstr "Réinitialisez votre mot de passe EduDuck pour retrouver l'accès à votre compte. Outils d'étude IA gratuits pour les étudiants."
 
 #: templates/pages/resetPassword.html:15
 msgid "Reset Your Password"
-msgstr ""
+msgstr "Réinitialiser votre mot de passe"
 
 #: templates/pages/resetPassword.html:16
-msgid ""
-"Enter your username or email address, and we'll send you a link to reset "
-"your password."
-msgstr ""
+msgid "Enter your username or email address, and we'll send you a link to reset your password."
+msgstr "Entrez votre nom d'utilisateur ou votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe."
 
 #: templates/pages/resetPassword.html:34
 msgid "Send Reset Link"
-msgstr ""
+msgstr "Envoyer le lien de réinitialisation"
 
 #: templates/pages/resetPassword.html:40
 msgid "Remember your password?"
-msgstr ""
+msgstr "Vous vous souvenez de votre mot de passe ?"
 
 #: templates/pages/resetPasswordConfirm.html:4
 msgid "EduDuck - Set New Password"
-msgstr ""
+msgstr "EduDuck - Définir un nouveau mot de passe"
 
 #: templates/pages/resetPasswordConfirm.html:14
 msgid "Set New Password"
-msgstr ""
+msgstr "Définir un nouveau mot de passe"
 
 #: templates/pages/resetPasswordConfirm.html:15
 msgid "Enter your new password below."
-msgstr ""
+msgstr "Entrez votre nouveau mot de passe ci-dessous."
 
 #: templates/pages/resetPasswordConfirm.html:20
 msgid "New Password"
-msgstr ""
+msgstr "Nouveau mot de passe"
 
 #: templates/pages/resetPasswordConfirm.html:21
 msgid "Enter new password"
-msgstr ""
+msgstr "Entrez un nouveau mot de passe"
 
 #: templates/pages/resetPasswordConfirm.html:47
 msgid "Confirm new password"
-msgstr ""
+msgstr "Confirmer le nouveau mot de passe"
 
 #: templates/pages/resetPasswordConfirm.html:54
 #: templates/pages/resetPasswordEmail.html:71
 msgid "Reset Password"
-msgstr ""
+msgstr "Réinitialiser le mot de passe"
 
 #: templates/pages/resetPasswordConfirm.html:60
 msgid "Invalid or Expired Link"
-msgstr ""
+msgstr "Lien invalide ou expiré"
 
 #: templates/pages/resetPasswordConfirm.html:61
-msgid ""
-"This password reset link is invalid or has expired. Please request a new "
-"one."
-msgstr ""
+msgid "This password reset link is invalid or has expired. Please request a new one."
+msgstr "Ce lien de réinitialisation du mot de passe est invalide ou a expiré. Veuillez en demander un nouveau."
 
 #: templates/pages/resetPasswordConfirm.html:62
 msgid "Request New Link"
-msgstr ""
+msgstr "Demander un nouveau lien"
 
 #: templates/pages/resetPasswordConfirm.html:65
 msgid "Back to Login"
-msgstr ""
+msgstr "Retour à la connexion"
 
 #: templates/pages/resetPasswordEmail.html:25
 msgid "Reset your password"
-msgstr ""
+msgstr "Réinitialisez votre mot de passe"
 
 #: templates/pages/resetPasswordEmail.html:53
-msgid ""
-"We received a request to reset your <strong>EduDuck</strong> account "
-"password. Click the button below to create a new password and regain "
-"access to your quizzes, flashcards, and study plans."
-msgstr ""
+msgid "We received a request to reset your <strong>EduDuck</strong> account password. Click the button below to create a new password and regain access to your quizzes, flashcards, and study plans."
+msgstr "Nous avons reçu une demande de réinitialisation du mot de passe de votre compte <strong>EduDuck</strong>. Cliquez sur le bouton ci-dessous pour créer un nouveau mot de passe et reprendre l'accès à vos quiz, votre cartes mémoire et vos plans d'étude."
 
 #: templates/pages/resetPasswordEmail.html:77
 msgid "If the button doesn't work, copy and paste this link into your browser:"
-msgstr ""
+msgstr "Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :"
 
 #: templates/pages/resetPasswordEmail.html:92
 msgid "Important:"
-msgstr ""
+msgstr "Important :"
 
 #: templates/pages/resetPasswordEmail.html:92
 msgid "This link will expire in 1 hour for security reasons."
-msgstr ""
+msgstr "Ce lien expirera dans 1 heure pour des raisons de sécurité."
 
 #: templates/pages/resetPasswordEmail.html:96
-msgid ""
-"If you didn't request this password reset, you can safely ignore this "
-"email. Your password will remain unchanged."
-msgstr ""
+msgid "If you didn't request this password reset, you can safely ignore this email. Your password will remain unchanged."
+msgstr "Si vous n'avez pas demandé cette réinitialisation de mot de passe, vous pouvez ignorer cet e-mail en toute sécurité. Votre mot de passe restera inchangé."
 
 #: templates/pages/setupPassword.html:4
 msgid "EduDuck - Setup Password"
-msgstr ""
+msgstr "EduDuck - Configuration du mot de passe"
 
 #: templates/pages/setupPassword.html:13
 msgid "Secure Your Account"
-msgstr ""
+msgstr "Sécurisez votre compte"
 
 #: templates/pages/setupPassword.html:15
-msgid ""
-"You signed up with OAuth. Add a password to enable password-based login "
-"as an alternative to"
-msgstr ""
+msgid "You signed up with OAuth. Add a password to enable password-based login as an alternative to"
+msgstr "Vous vous êtes inscrit via OAuth. Ajoutez un mot de passe pour permettre la connexion par mot de passe en tant qu'alternative à"
 
 #: templates/pages/setupPassword.html:15
 msgid "OAuth"
-msgstr ""
+msgstr "OAuth"
 
 #: templates/pages/setupPassword.html:19
 msgid "Create Password"
-msgstr ""
+msgstr "Créer un mot de passe"
 
 #: templates/pages/setupPassword.html:20
 msgid "Enter password"
-msgstr ""
+msgstr "Entrez le mot de passe"
 
 #: templates/pages/setupPassword.html:46
 msgid "Confirm password"
-msgstr ""
+msgstr "Confirmer le mot de passe"
 
 #: templates/pages/setupPassword.html:53
 msgid "Setup Password"
-msgstr ""
+msgstr "Configurer le mot de passe"
 
 #: templates/pages/setupPassword.html:60
-msgid ""
-"You can skip this step and continue using OAuth. You can always add a "
-"password later in your account settings."
-msgstr ""
+msgid "You can skip this step and continue using OAuth. You can always add a password later in your account settings."
+msgstr "Vous pouvez sauter cette étape et continuer à utiliser OAuth. Vous pouvez toujours ajouter un mot de passe plus tard dans les paramètres de votre compte."
 
 #: templates/pages/setupPassword.html:63
 msgid "Skip for now"
-msgstr ""
+msgstr "Passer pour l'instant"
 
 #: templates/pages/terms.html:4
 msgid "EduDuck - Terms of Service"
-msgstr ""
+msgstr "EduDuck - Conditions d'utilisation"
 
 #: templates/pages/terms.html:5
-msgid ""
-"EduDuck Terms of Service - Rules and guidelines for using EduDuck AI "
-"study tools."
-msgstr ""
+msgid "EduDuck Terms of Service - Rules and guidelines for using EduDuck AI study tools."
+msgstr "Conditions d'utilisation d'EduDuck - Règles et lignes directrices pour l'utilisation des outils d'étude IA d'EduDuck."
 
 #: templates/pages/terms.html:12
 msgid "EduDuck Terms of Service"
-msgstr ""
+msgstr "Conditions d'utilisation d'EduDuck"
 
 #: templates/pages/terms.html:13
-msgid ""
-"Welcome to EduDuck! By using our platform, you agree to the following "
-"terms and guidelines:"
-msgstr ""
+msgid "Welcome to EduDuck! By using our platform, you agree to the following terms and guidelines:"
+msgstr "Bienvenue sur EduDuck ! En utilisant notre plateforme, vous acceptez les termes et conditions suivants :"
 
 #: templates/pages/terms.html:15
 msgid "Use of the Service"
-msgstr ""
+msgstr "Utilisation du service"
 
 #: templates/pages/terms.html:16
-msgid ""
-"EduDuck provides AI-powered study tools including quiz generation, "
-"flashcard creation, note enhancement, note analysis, study plan "
-"generation, and DuckAI chat assistance. You agree to use the platform for"
-" educational purposes only."
-msgstr ""
+msgid "EduDuck provides AI-powered study tools including quiz generation, flashcard creation, note enhancement, note analysis, study plan generation, and DuckAI chat assistance. You agree to use the platform for educational purposes only."
+msgstr "EduDuck fournit des outils d'étude alimentés par IA, notamment la génération de quiz, la création de flashcards, l'amélioration de notes, l'analyse de notes, la génération de plans d'étude et l'assistance chat DuckAI. Vous acceptez d'utiliser la plateforme à des fins éducatives uniquement."
 
 #: templates/pages/terms.html:17
-msgid ""
-"Users must not misuse the service, attempt to disrupt it, or exceed free-"
-"tier limits in ways that affect other users."
-msgstr ""
+msgid "Users must not misuse the service, attempt to disrupt it, or exceed free-tier limits in ways that affect other users."
+msgstr "Les utilisateurs ne doivent pas abuser du service, tenter de le perturber ou dépasser les limites du niveau gratuit de manière à affecter d’autres utilisateurs."
 
 #: templates/pages/terms.html:19
 msgid "Accounts and Authentication"
-msgstr ""
+msgstr "Comptes et authentification"
 
 #: templates/pages/terms.html:20
-msgid ""
-"Some features require an account. You can register with email/password or"
-" sign in using OAuth providers (Google, GitHub, Discord, or Microsoft)."
-msgstr ""
+msgid "Some features require an account. You can register with email/password or sign in using OAuth providers (Google, GitHub, Discord, or Microsoft)."
+msgstr "Certaines fonctionnalités nécessitent un compte. Vous pouvez vous enregistrer avec email/mot de passe ou vous connecter via des fournisseurs OAuth (Google, GitHub, Discord ou Microsoft)."
 
 #: templates/pages/terms.html:21
 msgid "Email verification is required for password-based accounts via MailGun."
-msgstr ""
+msgstr "La vérification de l'email est requise pour les comptes basés sur un mot de passe via MailGun."
 
 #: templates/pages/terms.html:22
-msgid ""
-"You are responsible for maintaining the confidentiality of your "
-"credentials and all activity on your account."
-msgstr ""
+msgid "You are responsible for maintaining the confidentiality of your credentials and all activity on your account."
+msgstr "Vous êtes responsable de la confidentialité de vos identifiants et de toutes les activités sur votre compte."
 
 #: templates/pages/terms.html:23
-msgid ""
-"You must notify EduDuck immediately of any unauthorized use of your "
-"account."
-msgstr ""
+msgid "You must notify EduDuck immediately of any unauthorized use of your account."
+msgstr "Vous devez notifier EduDuck immédiatement en cas d'utilisation non autorisée de votre compte."
 
 #: templates/pages/terms.html:24
-msgid ""
-"Deleted accounts can be recovered within 30 days by contacting support. "
-"After 30 days, deletion is permanent."
-msgstr ""
+msgid "Deleted accounts can be recovered within 30 days by contacting support. After 30 days, deletion is permanent."
+msgstr "Les comptes supprimés peuvent être récupérés dans les 30 jours en contactant le support. Après 30 jours, la suppression est définitive."
 
 #: templates/pages/terms.html:26
 msgid "Content and Data"
-msgstr ""
+msgstr "Contenu et données"
 
 #: templates/pages/terms.html:27
 msgid "You retain ownership of the notes, PDFs, images, and materials you upload."
-msgstr ""
+msgstr "Vous conservez la propriété des notes, PDF, images et matériaux que vous téléchargez."
 
 #: templates/pages/terms.html:28
-msgid ""
-"By using EduDuck, you grant a temporary license to process your uploaded "
-"content for AI-generated results. EduDuck does not claim ownership of "
-"your content."
-msgstr ""
+msgid "By using EduDuck, you grant a temporary license to process your uploaded content for AI-generated results. EduDuck does not claim ownership of your content."
+msgstr "En utilisant EduDuck, vous accordez une licence temporaire pour traiter votre contenu téléchargé afin de générer des résultats IA. EduDuck ne revendique aucune propriété sur votre contenu."
 
 #: templates/pages/terms.html:29
-msgid ""
-"Do not upload illegal, offensive, or copyrighted content that you do not "
-"own or have permission to use. Violations may result in suspension or "
-"termination of your account."
-msgstr ""
+msgid "Do not upload illegal, offensive, or copyrighted content that you do not own or have permission to use. Violations may result in suspension or termination of your account."
+msgstr "Ne téléchargez pas de contenu illégal, offensant ou protégé par des droits d'auteur que vous ne possédez pas ou pour lequel vous n'avez pas la permission d'utiliser. Les violations peuvent entraîner la suspension ou la suppression de votre compte."
 
 #: templates/pages/terms.html:30
-msgid ""
-"Generated content (quizzes, flashcards, study plans, enhanced notes, note"
-" analyses) is stored in MongoDB. For logged-in users, content persists; "
-"for guest users, content is stored temporarily in session storage."
-msgstr ""
+msgid "Generated content (quizzes, flashcards, study plans, enhanced notes, note analyses) is stored in MongoDB. For logged-in users, content persists; for guest users, content is stored temporarily in session storage."
+msgstr "Le contenu généré (quiz, flashcards, plans d'étude, notes améliorées, analyses de notes) est stocké dans MongoDB. Pour les utilisateurs connectés, le contenu persiste ; pour les invités, le contenu est stocké temporairement dans la session."
 
 #: templates/pages/terms.html:32
 msgid "Free Usage and API Keys"
-msgstr ""
+msgstr "Utilisation gratuite et clés API"
 
 #: templates/pages/terms.html:33
-msgid ""
-"The free tier provides 3 daily uses of EduDuck AI features per registered"
-" account, tracked daily and reset at midnight UTC."
-msgstr ""
+msgid "The free tier provides 3 daily uses of EduDuck AI features per registered account, tracked daily and reset at midnight UTC."
+msgstr "Le niveau gratuit offre 3 utilisations quotidiennes des fonctionnalités EduDuck IA par compte enregistré, suivies quotidiennement et réinitialisées à minuit UTC."
 
 #: templates/pages/terms.html:34
-msgid ""
-"Additional usage requires your own API key from Hugging Face, OpenAI, or "
-"Google Gemini."
-msgstr ""
+msgid "Additional usage requires your own API key from Hugging Face, OpenAI, or Google Gemini."
+msgstr "Une utilisation supplémentaire nécessite votre propre clé API de Hugging Face, OpenAI ou Google Gemini."
 
 #: templates/pages/terms.html:35
-msgid ""
-"EduDuck reserves the right to limit or suspend access to ensure fair "
-"usage among all users."
-msgstr ""
+msgid "EduDuck reserves the right to limit or suspend access to ensure fair usage among all users."
+msgstr "EduDuck se réserve le droit de limiter ou suspendre l'accès pour garantir une utilisation équitable pour tous les utilisateurs."
 
 #: templates/pages/terms.html:36
-msgid ""
-"API keys you provide are not stored permanently and are used only for "
-"your current session."
-msgstr ""
+msgid "API keys you provide are not stored permanently and are used only for your current session."
+msgstr "Les clés API que vous fournissez ne sont pas stockées de façon permanente et ne sont utilisées que pour votre session en cours."
 
 #: templates/pages/terms.html:38
 msgid "Privacy and Data Storage"
-msgstr ""
+msgstr "Confidentialité et stockage des données"
 
 #: templates/pages/terms.html:39
-msgid ""
-"Your data is stored in MongoDB (hosted by MongoDB Atlas) and may be "
-"processed temporarily for generating results and tracking usage."
-msgstr ""
+msgid "Your data is stored in MongoDB (hosted by MongoDB Atlas) and may be processed temporarily for generating results and tracking usage."
+msgstr "Vos données sont stockées dans MongoDB (hébergé par MongoDB Atlas) et peuvent être traitées temporairement pour générer des résultats et suivre l'utilisation."
 
 #: templates/pages/terms.html:40
-msgid ""
-"Uploaded files (PDFs, images) are processed using Tesseract OCR and PIL "
-"for image preprocessing, then discarded after processing."
-msgstr ""
+msgid "Uploaded files (PDFs, images) are processed using Tesseract OCR and PIL for image preprocessing, then discarded after processing."
+msgstr "Les fichiers téléchargés (PDF, images) sont traités à l'aide de Tesseract OCR et PIL pour la prétraitement des images, puis supprimés après traitement."
 
 #: templates/pages/terms.html:41
-msgid ""
-"EduDuck does not sell your data. For more details on data handling, see "
-"our"
-msgstr ""
+msgid "EduDuck does not sell your data. For more details on data handling, see our"
+msgstr "EduDuck ne vend pas vos données. Pour plus de détails sur la gestion des données, consultez notre"
 
 #: templates/pages/terms.html:41
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Politique de confidentialité"
 
 #: templates/pages/terms.html:43
 msgid "Third-Party AI Services"
-msgstr ""
+msgstr "Services IA tiers"
 
 #: templates/pages/terms.html:44
-msgid ""
-"EduDuck integrates with Hugging Face Inference API, Google Gemini (2.5 "
-"Flash), and OpenAI APIs for AI-powered features."
-msgstr ""
+msgid "EduDuck integrates with Hugging Face Inference API, Google Gemini (2.5 Flash), and OpenAI APIs for AI-powered features."
+msgstr "EduDuck s'intègre avec l'API d'inférence Hugging Face, Google Gemini (2.5 Flash) et OpenAI pour des fonctionnalités IA."
 
 #: templates/pages/terms.html:45
-msgid ""
-"Your uploaded content is sent to these services for processing. Review "
-"their respective terms of service and privacy policies."
-msgstr ""
+msgid "Your uploaded content is sent to these services for processing. Review their respective terms of service and privacy policies."
+msgstr "Le contenu que vous téléchargez est envoyé à ces services pour traitement. Veuillez consulter leurs conditions d'utilisation et leurs politiques de confidentialité respectives."
 
 #: templates/pages/terms.html:46
-msgid ""
-"EduDuck is not responsible for the accuracy, availability, or responses "
-"generated by third-party AI models."
-msgstr ""
+msgid "EduDuck is not responsible for the accuracy, availability, or responses generated by third-party AI models."
+msgstr "EduDuck n'est pas responsable de l'exactitude, de la disponibilité ou des réponses générées par des modèles IA tiers."
 
 #: templates/pages/terms.html:48
 msgid "Updates and Termination"
-msgstr ""
+msgstr "Mises à jour et résiliation"
 
 #: templates/pages/terms.html:49
-msgid ""
-"EduDuck may update, suspend, or terminate services at any time without "
-"prior notice."
-msgstr ""
+msgid "EduDuck may update, suspend, or terminate services at any time without prior notice."
+msgstr "EduDuck peut mettre à jour, suspendre ou résilier ses services à tout moment sans préavis."
 
 #: templates/pages/terms.html:50
-msgid ""
-"Users can export their generated content (quizzes, flashcards, study "
-"plans, notes, note analyses) in JSON or text formats before deletion."
-msgstr ""
+msgid "Users can export their generated content (quizzes, flashcards, study plans, notes, note analyses) in JSON or text formats before deletion."
+msgstr "Les utilisateurs peuvent exporter leur contenu généré (quiz, flashcards, plans d'étude, notes, analyses de notes) en formats JSON ou texte avant la suppression."
 
 #: templates/pages/terms.html:51
-msgid ""
-"These Terms of Service may be updated periodically. Continued use of "
-"EduDuck constitutes acceptance of the updated terms."
-msgstr ""
+msgid "These Terms of Service may be updated periodically. Continued use of EduDuck constitutes acceptance of the updated terms."
+msgstr "Ces Conditions d'utilisation peuvent être mises à jour périodiquement. Leur utilisation continue après mise à jour constitue l'acceptation des termes modifiés."
 
 #: templates/pages/terms.html:53
 msgid "Limitation of Liability"
-msgstr ""
+msgstr "Limitation de responsabilité"
 
 #: templates/pages/terms.html:54
-msgid ""
-"EduDuck is provided \"as is\" without warranties. We are not responsible "
-"for errors, downtime, or inaccuracies in AI-generated results."
-msgstr ""
+msgid "EduDuck is provided \"as is\" without warranties. We are not responsible for errors, downtime, or inaccuracies in AI-generated results."
+msgstr "EduDuck est fourni \"tel quel\" sans garanties. Nous ne sommes pas responsables des erreurs, indisponibilités ou inexactitudes dans les résultats générés par l'IA."
 
 #: templates/pages/terms.html:55
-msgid ""
-"EduDuck and its developers are not liable for any direct, indirect, "
-"incidental, or consequential damages arising from the use of the "
-"platform."
-msgstr ""
+msgid "EduDuck and its developers are not liable for any direct, indirect, incidental, or consequential damages arising from the use of the platform."
+msgstr "EduDuck et ses développeurs ne sont pas responsables des dommages directs, indirects, accessoires ou consécutifs résultant de l'utilisation de la plateforme."
 
 #: templates/pages/terms.html:56
-msgid ""
-"Generated quizzes, flashcards, study plans, and note analyses are for "
-"educational assistance only and should be reviewed for accuracy."
-msgstr ""
+msgid "Generated quizzes, flashcards, study plans, and note analyses are for educational assistance only and should be reviewed for accuracy."
+msgstr "Les quiz générés, les flashcards, les plans d'étude et les analyses de notes sont uniquement destinés à l'aide pédagogique et doivent être vérifiés pour leur exactitude."
 
 #: templates/pages/terms.html:58
 msgid "Governing Law"
-msgstr ""
+msgstr "Loi applicable"
 
 #: templates/pages/terms.html:59
-msgid ""
-"These terms are governed by the laws of Poland. Any disputes arising "
-"under these terms shall be resolved in the courts of Poland."
-msgstr ""
+msgid "These terms are governed by the laws of Poland. Any disputes arising under these terms shall be resolved in the courts of Poland."
+msgstr "Ces conditions sont régies par les lois de la Pologne. Tout litige relatif à ces conditions sera résolu devant les tribunaux de Pologne."
 
 #: templates/pages/terms.html:61
 msgid "Children's Use"
-msgstr ""
+msgstr "Utilisation par les enfants"
 
 #: templates/pages/terms.html:62
-msgid ""
-"EduDuck is not intended for children under 13 years of age. We do not "
-"knowingly collect personal information from children."
-msgstr ""
+msgid "EduDuck is not intended for children under 13 years of age. We do not knowingly collect personal information from children."
+msgstr "EduDuck n'est pas destiné aux enfants de moins de 13 ans. Nous ne collectons pas intentionnellement d'informations personnelles auprès des enfants."
 
 #: templates/pages/terms.html:64
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #: templates/pages/terms.html:65
 msgid "If you have questions about these terms, please contact us at"
-msgstr ""
+msgstr "Si vous avez des questions concernant ces conditions, veuillez nous contacter à"
 
 #: templates/pages/terms.html:67
-msgid ""
-"By using EduDuck, you acknowledge that you have read and agree to these "
-"Terms of Service."
-msgstr ""
+msgid "By using EduDuck, you acknowledge that you have read and agree to these Terms of Service."
+msgstr "En utilisant EduDuck, vous reconnaissez avoir lu et accepté ces Conditions d'utilisation."
 
 #: templates/pages/userSettings.html:4
 msgid "EduDuck - Settings"
-msgstr ""
+msgstr "Paramètres EduDuck"
 
 #: templates/pages/userSettings.html:5
 msgid "Manage your EduDuck account settings"
-msgstr ""
+msgstr "Gérez les paramètres de votre compte EduDuck"
 
 #: templates/pages/userSettings.html:16
 msgid "Account Settings"
-msgstr ""
+msgstr "Paramètres du compte"
 
 #: templates/pages/userSettings.html:17
 msgid "Manage your EduDuck account preferences and security settings."
-msgstr ""
+msgstr "Gérez vos préférences de compte EduDuck et vos paramètres de sécurité."
 
 #: templates/pages/userSettings.html:21
 msgid "Danger Zone"
-msgstr ""
+msgstr "Zone de danger"
 
 #: templates/pages/userSettings.html:22
-msgid ""
-"Permanently delete your account and all associated data. This action "
-"cannot be undone."
-msgstr ""
+msgid "Permanently delete your account and all associated data. This action cannot be undone."
+msgstr "Supprimez définitivement votre compte et toutes les données associées. Cette action ne peut pas être annulée."
 
 #: templates/pages/userSettings.html:25 templates/pages/userSettings.html:32
 msgid "Delete Account"
-msgstr ""
+msgstr "Supprimer le compte"
 
 #: templates/pages/userSettings.html:33
-msgid ""
-"This will permanently delete your account and all data including quizzes,"
-" flashcards, notes, and study plans."
-msgstr ""
+msgid "This will permanently delete your account and all data including quizzes, flashcards, notes, and study plans."
+msgstr "Cela supprimera définitivement votre compte et toutes les données, y compris les quiz, les flashcards, les notes et les plans d'étude."
 
 #: templates/pages/userSettings.html:42
 msgid "I understand this action is irreversible"
-msgstr ""
+msgstr "Je comprends que cette action est irréversible"
 
 #: templates/pages/userSettings.html:46
 msgid "Type <strong>DELETE</strong> to confirm"
-msgstr ""
+msgstr "Tapez <strong>SUPPRIMER</strong> pour confirmer"
 
 #: templates/pages/userSettings.html:47
 msgid "DELETE"
-msgstr ""
+msgstr "SUPPRIMER"
 
 #: templates/pages/userSettings.html:53
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #: templates/pages/userSettings.html:55
 msgid "Delete Forever"
-msgstr ""
+msgstr "Supprimer définitivement"
 
 #: templates/pages/userSettings.html:62
 msgid "Back To Home"
-msgstr ""
+msgstr "Retour à l'accueil"
 
 #: venv/lib/python3.14/site-packages/click/_termui_impl.py:613
-#, python-brace-format
 msgid "{editor}: Editing failed"
-msgstr ""
+msgstr "{editor} : Échec de la modification"
 
 #: venv/lib/python3.14/site-packages/click/_termui_impl.py:617
-#, python-brace-format
 msgid "{editor}: Editing failed: {e}"
-msgstr ""
+msgstr "{editor} : Échec de la modification : {e}"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1114
 #: venv/lib/python3.14/site-packages/click/core.py:1151
-#, python-brace-format
 msgid "{text} {deprecated_message}"
-msgstr ""
+msgstr "{text} {deprecated_message}"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1170
 msgid "Options"
-msgstr ""
+msgstr "Options"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1245
-#, python-brace-format
 msgid "Got unexpected extra argument ({args})"
 msgid_plural "Got unexpected extra arguments ({args})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Argument supplémentaire inattendu ({args}) détecté"
+msgstr[1] "Arguments inattendus supplémentaires ({args})"
+msgstr[2] "Arguments supplémentaires inattendus ({args})"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1264
-#, python-brace-format
 msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
-msgstr ""
+msgstr "Avertissement de dépréciation : La commande {name!r} est obsolète. {extra_message}"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1448
 msgid "Aborted!"
-msgstr ""
+msgstr "Annulé !"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1822
 msgid "Commands"
-msgstr ""
+msgstr "Commandes"
 
 #: venv/lib/python3.14/site-packages/click/core.py:1853
 msgid "Missing command."
-msgstr ""
+msgstr "Commande manquante."
 
 #: venv/lib/python3.14/site-packages/click/core.py:1931
-#, python-brace-format
 msgid "No such command {name!r}."
-msgstr ""
+msgstr "Aucune telle commande {name!r}."
 
 #: venv/lib/python3.14/site-packages/click/core.py:2355
 msgid "Value must be an iterable."
-msgstr ""
+msgstr "La valeur doit être un itérable."
 
 #: venv/lib/python3.14/site-packages/click/core.py:2378
-#, python-brace-format
 msgid "Takes {nargs} values but 1 was given."
 msgid_plural "Takes {nargs} values but {len} were given."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Prend {nargs} valeurs mais 1 a été donné."
+msgstr[1] "Prend {nargs} valeurs mais {len} ont été données."
+msgstr[2] "Prend {nargs} valeurs mais {len} ont été données."
 
 #: venv/lib/python3.14/site-packages/click/core.py:2567
-#, python-brace-format
-msgid ""
-"DeprecationWarning: The {param_type} {name!r} is "
-"deprecated.{extra_message}"
-msgstr ""
+msgid "DeprecationWarning: The {param_type} {name!r} is deprecated.{extra_message}"
+msgstr "Avertissement de dépréciation : Le {param_type} {name!r} est obsolète. {extra_message}"
 
 #: venv/lib/python3.14/site-packages/click/core.py:3015
-#, python-brace-format
 msgid "env var: {var}"
-msgstr ""
+msgstr "variable d'environnement : {var}"
 
 #: venv/lib/python3.14/site-packages/click/core.py:3018
-#, python-brace-format
 msgid "default: {default}"
-msgstr ""
+msgstr "par défaut : {default}"
 
 #: venv/lib/python3.14/site-packages/click/core.py:3022
 msgid "required"
-msgstr ""
+msgstr "obligatoire"
 
 #: venv/lib/python3.14/site-packages/click/core.py:3082
 msgid "(dynamic)"
-msgstr ""
+msgstr "(dynamique)"
 
 #: venv/lib/python3.14/site-packages/click/decorators.py:465
-#, python-format
 msgid "%(prog)s, version %(version)s"
-msgstr ""
+msgstr "%(prog)s, version %(version)s"
 
 #: venv/lib/python3.14/site-packages/click/decorators.py:522
 msgid "Show the version and exit."
-msgstr ""
+msgstr "Afficher la version et quitter."
 
 #: venv/lib/python3.14/site-packages/click/decorators.py:548
 msgid "Show this message and exit."
-msgstr ""
+msgstr "Afficher ce message et quitter."
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:50
 #: venv/lib/python3.14/site-packages/click/exceptions.py:89
-#, python-brace-format
 msgid "Error: {message}"
-msgstr ""
+msgstr "Erreur : {message}"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:81
-#, python-brace-format
 msgid "Try '{command} {option}' for help."
-msgstr ""
+msgstr "Essayez '{command} {option}' pour l'aide."
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:130
-#, python-brace-format
 msgid "Invalid value: {message}"
-msgstr ""
+msgstr "Valeur invalide : {message}"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:132
-#, python-brace-format
 msgid "Invalid value for {param_hint}: {message}"
-msgstr ""
+msgstr "Valeur invalide pour {param_hint} : {message}"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:190
 msgid "Missing argument"
-msgstr ""
+msgstr "Argument manquant"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:192
 msgid "Missing option"
-msgstr ""
+msgstr "Option manquante"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:194
 msgid "Missing parameter"
-msgstr ""
+msgstr "Paramètre manquant"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:196
-#, python-brace-format
 msgid "Missing {param_type}"
-msgstr ""
+msgstr "Manque {param_type}"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:203
-#, python-brace-format
 msgid "Missing parameter: {param_name}"
-msgstr ""
+msgstr "Paramètre manquant : {param_name}"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:223
-#, python-brace-format
 msgid "No such option: {name}"
-msgstr ""
+msgstr "Aucune option de ce type : {name}"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:235
-#, python-brace-format
 msgid "Did you mean {possibility}?"
 msgid_plural "(Possible options: {possibilities})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Voulez-vous dire {possibility} ?"
+msgstr[1] "(Options possibles : {possibilités})"
+msgstr[2] "(Options possibles : {possibilities})"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:282
 msgid "unknown error"
-msgstr ""
+msgstr "erreur inconnue"
 
 #: venv/lib/python3.14/site-packages/click/exceptions.py:289
-#, python-brace-format
 msgid "Could not open file {filename!r}: {message}"
-msgstr ""
+msgstr "Impossible d'ouvrir le fichier {filename!r} : {message}"
 
 #: venv/lib/python3.14/site-packages/click/formatting.py:156
 msgid "Usage:"
-msgstr ""
+msgstr "Utilisation :"
 
 #: venv/lib/python3.14/site-packages/click/parser.py:199
-#, python-brace-format
 msgid "Argument {name!r} takes {nargs} values."
-msgstr ""
+msgstr "L'argument {name!r} prend {nargs} valeurs."
 
 #: venv/lib/python3.14/site-packages/click/parser.py:381
-#, python-brace-format
 msgid "Option {name!r} does not take a value."
-msgstr ""
+msgstr "L'option {name!r} ne prend pas de valeur."
 
 #: venv/lib/python3.14/site-packages/click/parser.py:444
-#, python-brace-format
 msgid "Option {name!r} requires an argument."
 msgid_plural "Option {name!r} requires {nargs} arguments."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "L'option {name!r} nécessite un argument."
+msgstr[1] "L'option {name!r} requiert {nargs} arguments."
+msgstr[2] "L'option {name!r} requiert {nargs} arguments."
 
 #: venv/lib/python3.14/site-packages/click/shell_completion.py:332
 msgid "Shell completion is not supported for Bash versions older than 4.4."
-msgstr ""
+msgstr "La complétion du shell n'est pas supportée pour les versions de Bash antérieures à 4.4."
 
 #: venv/lib/python3.14/site-packages/click/shell_completion.py:339
 msgid "Couldn't detect Bash version, shell completion is not supported."
-msgstr ""
+msgstr "Impossible de détecter la version de Bash, la complétion du shell n'est pas supportée."
 
 #: venv/lib/python3.14/site-packages/click/termui.py:165
 msgid "Repeat for confirmation"
-msgstr ""
+msgstr "Répétez pour confirmer"
 
 #: venv/lib/python3.14/site-packages/click/termui.py:181
 msgid "Error: The value you entered was invalid."
-msgstr ""
+msgstr "Erreur : La valeur que vous avez entrée est invalide."
 
 #: venv/lib/python3.14/site-packages/click/termui.py:183
-#, python-brace-format
 msgid "Error: {e.message}"
-msgstr ""
+msgstr "Erreur : {e.message}"
 
 #: venv/lib/python3.14/site-packages/click/termui.py:194
 msgid "Error: The two entered values do not match."
-msgstr ""
+msgstr "Erreur : Les deux valeurs entrées ne correspondent pas."
 
 #: venv/lib/python3.14/site-packages/click/termui.py:253
 msgid "Error: invalid input"
-msgstr ""
+msgstr "Erreur : entrée invalide"
 
 #: venv/lib/python3.14/site-packages/click/termui.py:872
 msgid "Press any key to continue..."
-msgstr ""
+msgstr "Appuyez sur une touche pour continuer..."
 
 #: venv/lib/python3.14/site-packages/click/types.py:332
-#, python-brace-format
-msgid ""
-"Choose from:\n"
+msgid "Choose from:\n"
 "\t{choices}"
-msgstr ""
+msgstr "Choisissez parmi :\n"
+"\t{choices}"
 
 #: venv/lib/python3.14/site-packages/click/types.py:369
-#, python-brace-format
 msgid "{value!r} is not {choice}."
 msgid_plural "{value!r} is not one of {choices}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{value!r} n'est pas {choice}."
+msgstr[1] "{value!r} n'est pas parmi {choices}."
+msgstr[2] "{value!r} n'est pas parmi {choices}."
 
 #: venv/lib/python3.14/site-packages/click/types.py:460
-#, python-brace-format
 msgid "{value!r} does not match the format {format}."
 msgid_plural "{value!r} does not match the formats {formats}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{value!r} ne correspond pas au format {format}."
+msgstr[1] "{value!r} ne correspond pas aux formats {formats}."
+msgstr[2] "{value!r} ne correspond pas aux formats {formats}."
 
 #: venv/lib/python3.14/site-packages/click/types.py:482
-#, python-brace-format
 msgid "{value!r} is not a valid {number_type}."
-msgstr ""
+msgstr "{value!r} n'est pas un {number_type} valide."
 
 #: venv/lib/python3.14/site-packages/click/types.py:538
-#, python-brace-format
 msgid "{value} is not in the range {range}."
-msgstr ""
+msgstr "{value} n'est pas dans la plage {range}."
 
 #: venv/lib/python3.14/site-packages/click/types.py:719
-#, python-brace-format
 msgid "{value!r} is not a valid boolean. Recognized values: {states}"
-msgstr ""
+msgstr "{value!r} n'est pas un booléen valide. Valeurs reconnues : {states}"
 
 #: venv/lib/python3.14/site-packages/click/types.py:747
-#, python-brace-format
 msgid "{value!r} is not a valid UUID."
-msgstr ""
+msgstr "{value!r} n'est pas un UUID valide."
 
 #: venv/lib/python3.14/site-packages/click/types.py:937
 msgid "file"
-msgstr ""
+msgstr "fichier"
 
 #: venv/lib/python3.14/site-packages/click/types.py:939
 msgid "directory"
-msgstr ""
+msgstr "annuaire"
 
 #: venv/lib/python3.14/site-packages/click/types.py:941
 msgid "path"
-msgstr ""
+msgstr "chemin"
 
 #: venv/lib/python3.14/site-packages/click/types.py:988
-#, python-brace-format
 msgid "{name} {filename!r} does not exist."
-msgstr ""
+msgstr "{name} {filename!r} n'existe pas."
 
 #: venv/lib/python3.14/site-packages/click/types.py:997
-#, python-brace-format
 msgid "{name} {filename!r} is a file."
-msgstr ""
+msgstr "{name} {filename!r} est un fichier."
 
 #: venv/lib/python3.14/site-packages/click/types.py:1005
-#, python-brace-format
 msgid "{name} {filename!r} is a directory."
-msgstr ""
+msgstr "{name} {filename!r} est un répertoire."
 
 #: venv/lib/python3.14/site-packages/click/types.py:1014
-#, python-brace-format
 msgid "{name} {filename!r} is not readable."
-msgstr ""
+msgstr "{name} {filename!r} n'est pas lisible."
 
 #: venv/lib/python3.14/site-packages/click/types.py:1023
-#, python-brace-format
 msgid "{name} {filename!r} is not writable."
-msgstr ""
+msgstr "{name} {filename!r} n'est pas inscriptible."
 
 #: venv/lib/python3.14/site-packages/click/types.py:1032
-#, python-brace-format
 msgid "{name} {filename!r} is not executable."
-msgstr ""
+msgstr "{name} {filename!r} n'est pas exécutable."
 
 #: venv/lib/python3.14/site-packages/click/types.py:1099
-#, python-brace-format
 msgid "{len_type} values are required, but {len_value} was given."
 msgid_plural "{len_type} values are required, but {len_value} were given."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Une valeur de {len_type} est requise, mais {len_value} a été donnée."
+msgstr[1] "Des valeurs de type {len_type} sont requises, mais {len_value} ont été données."
+msgstr[2] "Des valeurs de type {len_type} sont requises, mais {len_value} ont été données."
 
 #: venv/lib/python3.14/site-packages/flask_wtf/file.py:55
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:293
@@ -2794,62 +2532,55 @@ msgid "This field is required."
 msgstr ""
 
 #: venv/lib/python3.14/site-packages/flask_wtf/file.py:94
-#, python-brace-format
 msgid "File does not have an approved extension: {extensions}"
 msgstr ""
 
 #: venv/lib/python3.14/site-packages/flask_wtf/file.py:101
 msgid "File does not have an approved extension."
-msgstr ""
+msgstr "Le fichier n'a pas une extension autorisée."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:86
-#, python-format
 msgid "Invalid field name '%s'."
-msgstr ""
+msgstr "Nom de champ invalide '%s'."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:99
-#, python-format
 msgid "Field must be equal to %(other_name)s."
-msgstr ""
+msgstr "Le champ doit être égal à %(other_name)s."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:146
-#, python-format
 msgid "Field must be at least %(min)d character long."
 msgid_plural "Field must be at least %(min)d characters long."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Le champ doit contenir au moins %(min)d caractère(s)."
+msgstr[1] "Le champ doit comporter au moins %(min)d caractères."
+msgstr[2] "Le(s) champ(s) doit(vent) comporter au moins %(min)d caractères."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:152
-#, python-format
 msgid "Field cannot be longer than %(max)d character."
 msgid_plural "Field cannot be longer than %(max)d characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Le champ ne peut pas dépasser %(max)d caractère(s)."
+msgstr[1] "Le champ ne peut pas dépasser %(max)d caractères."
+msgstr[2] "Le(s) champ(s) ne peut(puivent) pas dépasser %(max)d caractères."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:158
-#, python-format
 msgid "Field must be exactly %(max)d character long."
 msgid_plural "Field must be exactly %(max)d characters long."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Le champ doit contenir exactement %(max)d caractère(s)."
+msgstr[1] "Le champ doit comporter exactement %(max)d caractères."
+msgstr[2] "Le(s) champ(s) doit(vent) comporter exactement %(max)d caractères."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:164
-#, python-format
 msgid "Field must be between %(min)d and %(max)d characters long."
-msgstr ""
+msgstr "Le champ doit contenir entre %(min)d et %(max)d caractères."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:216
-#, python-format
 msgid "Number must be at least %(min)s."
-msgstr ""
+msgstr "Le nombre doit être au moins %(min)s."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:219
-#, python-format
 msgid "Number must be at most %(max)s."
-msgstr ""
+msgstr "Le nombre doit être au plus %(max)s."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:222
-#, python-format
 msgid "Number must be between %(min)s and %(max)s."
 msgstr ""
 
@@ -2859,31 +2590,29 @@ msgstr ""
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:422
 msgid "Invalid email address."
-msgstr ""
+msgstr "Adresse e-mail invalide."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:460
 msgid "Invalid IP address."
-msgstr ""
+msgstr "Adresse IP invalide."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:503
 msgid "Invalid Mac address."
-msgstr ""
+msgstr "Adresse Mac invalide."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:540
 msgid "Invalid URL."
-msgstr ""
+msgstr "URL invalide."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:561
 msgid "Invalid UUID."
-msgstr ""
+msgstr "UUID invalide."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:595
-#, python-format
 msgid "Invalid value, must be one of: %(values)s."
-msgstr ""
+msgstr "Valeur invalide, doit être l'une des suivantes : %(values)s."
 
 #: venv/lib/python3.14/site-packages/wtforms/validators.py:631
-#, python-format
 msgid "Invalid value, can't be any of: %(values)s."
 msgstr ""
 
@@ -2929,11 +2658,11 @@ msgid "Invalid choice(s): one or more data inputs could not be coerced."
 msgstr ""
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/choices.py:212
-#, python-format
 msgid "'%(value)s' is not a valid choice for this field."
 msgid_plural "'%(value)s' are not valid choices for this field."
 msgstr[0] ""
-msgstr[1] ""
+msgstr[1] "'{value}s' ne sont pas des choix valides pour ce champ."
+msgstr[2] "'%(value)s' ne sont pas des choix valides pour ce(s) champ(s)."
 
 #: venv/lib/python3.14/site-packages/wtforms/fields/datetime.py:52
 msgid "Not a valid datetime value."
@@ -2963,625 +2692,4 @@ msgstr ""
 #: venv/lib/python3.14/site-packages/wtforms/fields/numeric.py:197
 msgid "Not a valid float value."
 msgstr ""
-
-#~ msgid "AI-Powered Educational Tools"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Transform your study materials into "
-#~ "interactive learning experiences using "
-#~ "advanced AI. Convert notes to quizzes,"
-#~ " enhance your study materials, and "
-#~ "master subjects faster."
-#~ msgstr ""
-
-#~ msgid "Get Started Free"
-#~ msgstr ""
-
-#~ msgid "Learn How"
-#~ msgstr ""
-
-#~ msgid "Built by a student for students – No sign-up required"
-#~ msgstr ""
-
-#~ msgid "Free Uses Daily"
-#~ msgstr ""
-
-#~ msgid "AI Tools"
-#~ msgstr ""
-
-#~ msgid "With Your API Key"
-#~ msgstr ""
-
-#~ msgid "Study Smarter, Not Harder"
-#~ msgstr ""
-
-#~ msgid "Quiz Generator"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Upload your notes or paste text to"
-#~ " instantly generate customized quizzes and"
-#~ " practice questions with detailed "
-#~ "explanations. Perfect for exam prep –"
-#~ " supports OCR for scanned notes."
-#~ msgstr ""
-
-#~ msgid "OCR Support"
-#~ msgstr ""
-
-#~ msgid "Instant"
-#~ msgstr ""
-
-#~ msgid "Multiple Choice"
-#~ msgstr ""
-
-#~ msgid "Explanations"
-#~ msgstr ""
-
-#~ msgid "Exam Prep"
-#~ msgstr ""
-
-#~ msgid "PDF Upload"
-#~ msgstr ""
-
-#~ msgid "Note Enhancer"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Supercharge your notes with AI-generated"
-#~ " summaries, key concept highlights, visual"
-#~ " diagrams, and connections between topics."
-#~ " Turn messy lecture notes into "
-#~ "organized study guides."
-#~ msgstr ""
-
-#~ msgid "AI Summary"
-#~ msgstr ""
-
-#~ msgid "Visual"
-#~ msgstr ""
-
-#~ msgid "Diagrams"
-#~ msgstr ""
-
-#~ msgid "Key Concepts"
-#~ msgstr ""
-
-#~ msgid "Organized"
-#~ msgstr ""
-
-#~ msgid "Flashcard Generator"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Upload your notes or paste text to"
-#~ " instantly generate spaced repetition "
-#~ "flashcards for perfect memorization."
-#~ msgstr ""
-
-#~ msgid "Spaced Rep"
-#~ msgstr ""
-
-#~ msgid "Memory"
-#~ msgstr ""
-
-#~ msgid "Quick Review"
-#~ msgstr ""
-
-#~ msgid "Auto-Generate"
-#~ msgstr ""
-
-#~ msgid "Export"
-#~ msgstr ""
-
-#~ msgid "Study Plan Generator"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Create a personalized study plan in "
-#~ "minutes. Enter your goals, subjects, and"
-#~ " available time, and get a structured"
-#~ " schedule to maximize learning efficiency."
-#~ msgstr ""
-
-#~ msgid "Personalized"
-#~ msgstr ""
-
-#~ msgid "Tracking"
-#~ msgstr ""
-
-#~ msgid "Time Management"
-#~ msgstr ""
-
-#~ msgid "Goal-Oriented"
-#~ msgstr ""
-
-#~ msgid "Scheduling"
-#~ msgstr ""
-
-#~ msgid "Note Analyzer"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Get AI-powered feedback on your "
-#~ "notes quality, completeness, and structure."
-#~ " Identifies gaps, suggests improvements, "
-#~ "and provides actionable recommendations to "
-#~ "make your notes exam-ready."
-#~ msgstr ""
-
-#~ msgid "Quality Score"
-#~ msgstr ""
-
-#~ msgid "Gap Detection"
-#~ msgstr ""
-
-#~ msgid "Actionable Tips"
-#~ msgstr ""
-
-#~ msgid "Structure Review"
-#~ msgstr ""
-
-#~ msgid "Improvement Plan"
-#~ msgstr ""
-
-#~ msgid "How EduDuck Works"
-#~ msgstr ""
-
-#~ msgid "Paste or Upload"
-#~ msgstr ""
-
-#~ msgid "Drop in your notes, PDFs, or images with OCR-powered text extraction"
-#~ msgstr ""
-
-#~ msgid "Choose AI"
-#~ msgstr ""
-
-#~ msgid "Free Hugging Face/Google Gemini or premium OpenAI for advanced results"
-#~ msgstr ""
-
-#~ msgid "Generate Instantly"
-#~ msgstr ""
-
-#~ msgid "Get quizzes, flashcards, or enhanced notes in seconds"
-#~ msgstr ""
-
-#~ msgid "Practice Smart"
-#~ msgstr ""
-
-#~ msgid "Track progress with DuckAI explanations and custom tips"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "3 free uses per day - upgrade "
-#~ "with your own API key for "
-#~ "unlimited access"
-#~ msgstr ""
-
-#~ msgid "Meet DuckAI"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Mastered the quizzes and flashcards? "
-#~ "<strong>DuckAI has your back!</strong>"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Ask for concept explanations, quiz "
-#~ "clarifications, physics homework help, or "
-#~ "custom study tips tailored to your "
-#~ "notes!"
-#~ msgstr ""
-
-#~ msgid "DuckAI"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Your smart study companion - explain "
-#~ "concepts, quiz help, remembers your "
-#~ "notes! Supports custom prompts, dark "
-#~ "mode, and conversation history for "
-#~ "ongoing study sessions."
-#~ msgstr ""
-
-#~ msgid "AI Tutor"
-#~ msgstr ""
-
-#~ msgid "Context-Aware"
-#~ msgstr ""
-
-#~ msgid "24/7"
-#~ msgstr ""
-
-#~ msgid "Why Choose EduDuck?"
-#~ msgstr ""
-
-#~ msgid "Free Tier"
-#~ msgstr ""
-
-#~ msgid "3 daily uses with OpenAI - no credit card needed"
-#~ msgstr ""
-
-#~ msgid "Fast & Private"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Processes locally in-browser where "
-#~ "possible, deployed on Render for speed"
-#~ msgstr ""
-
-#~ msgid "Student-Focused"
-#~ msgstr ""
-
-#~ msgid "Built for heavy workloads like math, physics, biology exams"
-#~ msgstr ""
-
-#~ msgid "Open Source"
-#~ msgstr ""
-
-#~ msgid "Open-Source"
-#~ msgstr ""
-
-#~ msgid "roots with enhanced private version"
-#~ msgstr ""
-
-#~ msgid "Mobile-Friendly"
-#~ msgstr ""
-
-#~ msgid "Works on phone for on-the-go studying"
-#~ msgstr ""
-
-#~ msgid "Secure"
-#~ msgstr ""
-
-#~ msgid "Your data stays private, encrypted connections"
-#~ msgstr ""
-
-#~ msgid "What Students Say"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "EduDuck is really helpful especially for"
-#~ " English, 90% passing rate, boosted "
-#~ "up 15% with it."
-#~ msgstr ""
-
-#~ msgid "EduDuck is the greatest thing since sliced bread."
-#~ msgstr ""
-
-#~ msgid "Ready to Ace Your Exams?"
-#~ msgstr ""
-
-#~ msgid "Get your free API key and start now - no sign-up, instant results!"
-#~ msgstr ""
-
-#~ msgid "Join students already improving their grades with EduDuck"
-#~ msgstr ""
-
-#~ msgid "{editor}: Editing failed"
-#~ msgstr ""
-
-#~ msgid "{editor}: Editing failed: {e}"
-#~ msgstr ""
-
-#~ msgid "{text} {deprecated_message}"
-#~ msgstr ""
-
-#~ msgid "Options"
-#~ msgstr ""
-
-#~ msgid "Got unexpected extra argument ({args})"
-#~ msgid_plural "Got unexpected extra arguments ({args})"
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
-#~ msgstr ""
-
-#~ msgid "Aborted!"
-#~ msgstr ""
-
-#~ msgid "Commands"
-#~ msgstr ""
-
-#~ msgid "Missing command."
-#~ msgstr ""
-
-#~ msgid "No such command {name!r}."
-#~ msgstr ""
-
-#~ msgid "Value must be an iterable."
-#~ msgstr ""
-
-#~ msgid "Takes {nargs} values but 1 was given."
-#~ msgid_plural "Takes {nargs} values but {len} were given."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid ""
-#~ "DeprecationWarning: The {param_type} {name!r} "
-#~ "is deprecated.{extra_message}"
-#~ msgstr ""
-
-#~ msgid "env var: {var}"
-#~ msgstr ""
-
-#~ msgid "default: {default}"
-#~ msgstr ""
-
-#~ msgid "required"
-#~ msgstr ""
-
-#~ msgid "(dynamic)"
-#~ msgstr ""
-
-#~ msgid "%(prog)s, version %(version)s"
-#~ msgstr ""
-
-#~ msgid "Show the version and exit."
-#~ msgstr ""
-
-#~ msgid "Show this message and exit."
-#~ msgstr ""
-
-#~ msgid "Error: {message}"
-#~ msgstr ""
-
-#~ msgid "Try '{command} {option}' for help."
-#~ msgstr ""
-
-#~ msgid "Invalid value: {message}"
-#~ msgstr ""
-
-#~ msgid "Invalid value for {param_hint}: {message}"
-#~ msgstr ""
-
-#~ msgid "Missing argument"
-#~ msgstr ""
-
-#~ msgid "Missing option"
-#~ msgstr ""
-
-#~ msgid "Missing parameter"
-#~ msgstr ""
-
-#~ msgid "Missing {param_type}"
-#~ msgstr ""
-
-#~ msgid "Missing parameter: {param_name}"
-#~ msgstr ""
-
-#~ msgid "No such option: {name}"
-#~ msgstr ""
-
-#~ msgid "Did you mean {possibility}?"
-#~ msgid_plural "(Possible options: {possibilities})"
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "unknown error"
-#~ msgstr ""
-
-#~ msgid "Could not open file {filename!r}: {message}"
-#~ msgstr ""
-
-#~ msgid "Usage:"
-#~ msgstr ""
-
-#~ msgid "Argument {name!r} takes {nargs} values."
-#~ msgstr ""
-
-#~ msgid "Option {name!r} does not take a value."
-#~ msgstr ""
-
-#~ msgid "Option {name!r} requires an argument."
-#~ msgid_plural "Option {name!r} requires {nargs} arguments."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "Shell completion is not supported for Bash versions older than 4.4."
-#~ msgstr ""
-
-#~ msgid "Couldn't detect Bash version, shell completion is not supported."
-#~ msgstr ""
-
-#~ msgid "Repeat for confirmation"
-#~ msgstr ""
-
-#~ msgid "Error: The value you entered was invalid."
-#~ msgstr ""
-
-#~ msgid "Error: {e.message}"
-#~ msgstr ""
-
-#~ msgid "Error: The two entered values do not match."
-#~ msgstr ""
-
-#~ msgid "Error: invalid input"
-#~ msgstr ""
-
-#~ msgid "Press any key to continue..."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Choose from:\n"
-#~ "\t{choices}"
-#~ msgstr ""
-
-#~ msgid "{value!r} is not {choice}."
-#~ msgid_plural "{value!r} is not one of {choices}."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "{value!r} does not match the format {format}."
-#~ msgid_plural "{value!r} does not match the formats {formats}."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "{value!r} is not a valid {number_type}."
-#~ msgstr ""
-
-#~ msgid "{value} is not in the range {range}."
-#~ msgstr ""
-
-#~ msgid "{value!r} is not a valid boolean. Recognized values: {states}"
-#~ msgstr ""
-
-#~ msgid "{value!r} is not a valid UUID."
-#~ msgstr ""
-
-#~ msgid "file"
-#~ msgstr ""
-
-#~ msgid "directory"
-#~ msgstr ""
-
-#~ msgid "path"
-#~ msgstr ""
-
-#~ msgid "{name} {filename!r} does not exist."
-#~ msgstr ""
-
-#~ msgid "{name} {filename!r} is a file."
-#~ msgstr ""
-
-#~ msgid "{name} {filename!r} is a directory."
-#~ msgstr ""
-
-#~ msgid "{name} {filename!r} is not readable."
-#~ msgstr ""
-
-#~ msgid "{name} {filename!r} is not writable."
-#~ msgstr ""
-
-#~ msgid "{name} {filename!r} is not executable."
-#~ msgstr ""
-
-#~ msgid "{len_type} values are required, but {len_value} was given."
-#~ msgid_plural "{len_type} values are required, but {len_value} were given."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "This field is required."
-#~ msgstr ""
-
-#~ msgid "File does not have an approved extension: {extensions}"
-#~ msgstr ""
-
-#~ msgid "File does not have an approved extension."
-#~ msgstr ""
-
-#~ msgid "Invalid field name '%s'."
-#~ msgstr ""
-
-#~ msgid "Field must be equal to %(other_name)s."
-#~ msgstr ""
-
-#~ msgid "Field must be at least %(min)d character long."
-#~ msgid_plural "Field must be at least %(min)d characters long."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "Field cannot be longer than %(max)d character."
-#~ msgid_plural "Field cannot be longer than %(max)d characters."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "Field must be exactly %(max)d character long."
-#~ msgid_plural "Field must be exactly %(max)d characters long."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "Field must be between %(min)d and %(max)d characters long."
-#~ msgstr ""
-
-#~ msgid "Number must be at least %(min)s."
-#~ msgstr ""
-
-#~ msgid "Number must be at most %(max)s."
-#~ msgstr ""
-
-#~ msgid "Number must be between %(min)s and %(max)s."
-#~ msgstr ""
-
-#~ msgid "Invalid input."
-#~ msgstr ""
-
-#~ msgid "Invalid email address."
-#~ msgstr ""
-
-#~ msgid "Invalid IP address."
-#~ msgstr ""
-
-#~ msgid "Invalid Mac address."
-#~ msgstr ""
-
-#~ msgid "Invalid URL."
-#~ msgstr ""
-
-#~ msgid "Invalid UUID."
-#~ msgstr ""
-
-#~ msgid "Invalid value, must be one of: %(values)s."
-#~ msgstr ""
-
-#~ msgid "Invalid value, can't be any of: %(values)s."
-#~ msgstr ""
-
-#~ msgid "This field cannot be edited."
-#~ msgstr ""
-
-#~ msgid "This field is disabled and cannot have a value."
-#~ msgstr ""
-
-#~ msgid "Invalid CSRF Token."
-#~ msgstr ""
-
-#~ msgid "CSRF token missing."
-#~ msgstr ""
-
-#~ msgid "CSRF failed."
-#~ msgstr ""
-
-#~ msgid "CSRF token expired."
-#~ msgstr ""
-
-#~ msgid "Invalid Choice: could not coerce."
-#~ msgstr ""
-
-#~ msgid "Choices cannot be None."
-#~ msgstr ""
-
-#~ msgid "Not a valid choice."
-#~ msgstr ""
-
-#~ msgid "Invalid choice(s): one or more data inputs could not be coerced."
-#~ msgstr ""
-
-#~ msgid "'%(value)s' is not a valid choice for this field."
-#~ msgid_plural "'%(value)s' are not valid choices for this field."
-#~ msgstr[0] ""
-#~ msgstr[1] ""
-
-#~ msgid "Not a valid datetime value."
-#~ msgstr ""
-
-#~ msgid "Not a valid date value."
-#~ msgstr ""
-
-#~ msgid "Not a valid time value."
-#~ msgstr ""
-
-#~ msgid "Not a valid week value."
-#~ msgstr ""
-
-#~ msgid "Not a valid integer value."
-#~ msgstr ""
-
-#~ msgid "Not a valid decimal value."
-#~ msgstr ""
-
-#~ msgid "Not a valid float value."
-#~ msgstr ""
 

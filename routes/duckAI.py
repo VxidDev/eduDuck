@@ -23,6 +23,7 @@ def GenerateResponse(prompts: dict):
     API_MODE = data["apiMode"]
     MODEL = data.get("model" , False)
     IS_FREE = data.get("isFree" , False)
+    LANGUAGE = data.get("language" , "en")
 
     IsReasoning = False
 
@@ -76,6 +77,17 @@ def GenerateResponse(prompts: dict):
         return jsonify({'response': 'Internal Error: PROMPT NOT FOUND'})
     else:
         PROMPT = PROMPT.format(MESSAGE=MESSAGE)
+
+    languages = {
+        "en": "English",
+        "pl": "Polish",
+        "ru": "Russian",
+        "de": "German",
+        "ua": "Ukrainian",
+        "fr": "French"
+    }
+    language_name = languages.get(LANGUAGE, "English")
+    PROMPT += f"\n\nPlease respond in {language_name}."
 
     if API_MODE == "Hugging Face":
         payload = {

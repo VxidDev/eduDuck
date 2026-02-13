@@ -5,7 +5,7 @@
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='spinner.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='DuckAI/style.css') }}">
-    <script src="{{ url_for('static', filename='dist/DuckAI/main.js') }}" type="module" defer></script>
+    <script src="/dist/DuckAI/main.js" type="module" defer></script>
     <script src="{{ url_for('static', filename='dist/Components/fileDrop.js') }}" defer></script>
     <script>
         window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
@@ -18,6 +18,7 @@
     <div style="display: flex; justify-content: center; flex-direction: column; align-items: center; gap: 45px; max-width: 550px; margin: 0 auto;">
         {% include 'includes/model_selector.html' %}
         {% include 'includes/file_upload.html' %}
+        {% include 'includes/language_selector.html' %}
     </div>
 
     <div class="main-content" data-chat="{{ chat | tojson | safe }}">

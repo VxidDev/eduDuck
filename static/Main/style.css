@@ -3230,7 +3230,7 @@ body.dark #endDate::-webkit-calendar-picker-indicator:hover {
     border-color: var(--accent-primary);
     color: var(--accent-primary);
 }
-#language {
+#output-language {
     width: 100%;
     max-width: 300px;
     margin: 0 auto;

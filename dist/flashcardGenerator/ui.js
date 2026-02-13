@@ -1,0 +1,13 @@
+export const NoteInput = document.querySelector(".notes");
+export const Submit = document.querySelector(".submit");
+export const TextInputs = document.querySelectorAll(".textInput");
+export const ApiKeyInput = document.querySelector(".apiKey");
+export const ApiKeyInputParent = ApiKeyInput ? ApiKeyInput.closest('.textInput-wrapper') : null;
+export const CustomModel = document.getElementById("customModel");
+export const CustomModelInput = document.querySelector(".customModelInput");
+export const LanguageSelector = document.getElementById("output-language");
+export const APIModeSelector = document.getElementById("apiMode");
+export const AmountSelector = document.getElementById("questionCount");
+export const FreeUsage = document.getElementById("FreeUsage");
+export const FreeUsageText = document.getElementById("FreeUsageText");
+//# sourceMappingURL=ui.js.map

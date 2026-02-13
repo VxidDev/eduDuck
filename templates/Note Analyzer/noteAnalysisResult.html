@@ -48,8 +48,8 @@
 
                 <!-- Action Buttons -->
                 <div class="action-buttons">
-                    <a href="{{ url_for('note_analyzer') }}" class="button secondary">{{ _('Analyze Another') }}</a>
-                    <a href="{{ url_for('note_analyzer.export_analysis', id=request.args.get('id', '')) }}" class="button secondary">{{ _('Export Analysis') }}</a>
+                    <a href="{{ url_for('note_analyzer_page') }}" class="button secondary">{{ _('Analyze Another') }}</a>
+                    <a href="{{ url_for('note_analyzer_export', id=request.args.get('id', '')) }}" class="button secondary">{{ _('Export Analysis') }}</a>
                 </div>
 
                 <!-- Sections Analysis -->
@@ -108,16 +108,16 @@
                         <li>{{ _('Address high-priority issues first (sections with lower confidence scores)') }}</li>
                         <li>{{ _('Implement 2-3 suggestions per study session to avoid overwhelm') }}</li>
                         <li>{{ _('Re-analyze your notes after improvements to track progress') }}</li>
-                        <li>{{ _('Use') }} <a href="{{ url_for('note_enhancer') }}" class="inline-link">{{ _('Note Enhancer') }}</a> {{ _('for AI-powered improvements') }}</li>
-                        <li>{{ _('Test your understanding by generating a') }} <a href="{{ url_for('quiz_generator') }}" class="inline-link">{{ _('quiz') }}</a> {{ _('from your notes') }}</li>
+                        <li>{{ _('Use') }} <a href="{{ url_for('note_enhancer_page') }}" class="inline-link">{{ _('Note Enhancer') }}</a> {{ _('for AI-powered improvements') }}</li>
+                        <li>{{ _('Test your understanding by generating a') }} <a href="{{ url_for('quiz_generator_page') }}" class="inline-link">{{ _('quiz') }}</a> {{ _('from your notes') }}</li>
                     </ol>
                 </div>
 
                 <!-- Footer Actions -->
                 <div class="footer-actions">
-                    <a href="{{ url_for('note_analyzer') }}" class="button primary">{{ _('Analyze More Notes') }}</a>
-                    <a href="{{ url_for('quiz_generator', topic=analysis.sections[0].title if analysis.sections else '') }}" class="button secondary">{{ _('Generate Quiz') }}</a>
-                    <a href="{{ url_for('note_enhancer') }}" class="button secondary">{{ _('Enhance Notes') }}</a>
+                    <a href="{{ url_for('note_analyzer_page') }}" class="button primary">{{ _('Analyze More Notes') }}</a>
+                    <a href="{{ url_for('quiz_generator_page', topic=analysis.sections[0].title if analysis.sections else '') }}" class="button secondary">{{ _('Generate Quiz') }}</a>
+                    <a href="{{ url_for('note_enhancer_page') }}" class="button secondary">{{ _('Enhance Notes') }}</a>
                 </div>
 
             {% else %}
@@ -126,7 +126,7 @@
                     <div class="error-icon">⚠️</div>
                     <h2>{{ _('Analysis Not Found') }}</h2>
                     <p>{{ _("We couldn't find the analysis you're looking for. It may have expired or the link is incorrect.") }}</p>
-                    <a href="{{ url_for('note_analyzer') }}" class="button primary">{{ _('Analyze New Notes') }}</a>
+                    <a href="{{ url_for('note_analyzer_page') }}" class="button primary">{{ _('Analyze New Notes') }}</a>
                 </div>
             {% endif %}
         </div>

@@ -2,7 +2,7 @@ import { autoResize } from "../Components/AutoResize.js";
 import { CustomModelListeners } from "../Components/ModelSelector.js";
 import {
     CustomModel, CustomModelInput, APIModeSelector, UserInput, ApiKeyInput,
-    sendButton, NewChat, FreeUsage, showSpinner, showStatus, hideStatus, renderMessage, ApiKeyInputParent
+    sendButton, NewChat, FreeUsage, showSpinner, showStatus, hideStatus, renderMessage, ApiKeyInputParent, LanguageSelector
 } from "./ui.js";
 import { getFreeLimitUsage, generate, storeConversation, uploadFile } from "./api.js";
 import { addMessage, getHistory, parseInitialChat } from "./chat.js";
@@ -116,7 +116,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 FreeUsage?.checked ? null : apiKey,
                 FreeUsage?.checked ? null : model,
                 FreeUsage?.checked ? "OpenAI" : APIModeSelector.value.trim(),
-                FreeUsage?.checked ?? false
+                FreeUsage?.checked ?? false,
+                LanguageSelector.value.trim()
             );
 
             addMessage("assistant", botMessage);
