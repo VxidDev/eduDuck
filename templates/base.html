@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/variables.css">
     <title>{% block title %}{{ _('EduDuck') }}{% endblock %}</title>
     <meta name="description" content="{% block description %}{{ _('EduDuck is a free AI-powered learning platform for students.') }}{% endblock %}">
     <meta property="og:title" content="{% block og_title %}{{ _('EduDuck - Free AI Study Tools') }}{% endblock %}">
@@ -25,15 +24,12 @@
     <link rel="stylesheet" href="/static/Main/style.css">
 
     <link rel="stylesheet" href="/static/theme-toggle.css">
-    <link rel="stylesheet" href="/static/Main/style.css">
     <link rel="stylesheet" href="/static/profile/style.css">
-    <link rel="stylesheet" href="/disable_css_anim.css">
 
     <script src="/static/Components/csrf.js" defer></script>
     <script src="/static/Components/UserMenuPopUp.js" defer></script>
     <script src="{{ url_for('static' , filename='base.js') }}" type="module" defer></script>
     <script src="/dist/Components/background-anim.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css">
     <meta name="google-site-verification" content="AZ5cUHVKOHp9lKvThtsZ7HOlCFkWxvWi25c9ubsRV6Y"/>
     <meta name="msvalidate.01" content="2F2470319361A2FEDD539AEF5BF1803B" />
     {% block head %}{% endblock %}
@@ -54,7 +50,7 @@
                 <h1 class="header-text">
                     <a href="/">
                         <span class="brand-icon" aria-hidden="true">🦆</span>
-                        <span>{{ _('EduDuck') }}</span>
+                        <span style="align-self: center;">{{ _('EduDuck') }}</span>
                     </a>
                 </h1>
             </div>
@@ -73,9 +69,9 @@
                 </form>
                 {% if not current_user.is_authenticated %}
                     <div class="auth-links">
-                        <a class="header-link header-link-primary" href="/login">{{ _('Login') }}</a>
+                        <a class="header-link header-link-primary button" href="/login">{{ _('Login') }}</a>
                         <span class="divider" aria-hidden="true">•</span>
-                        <a class="header-link header-link-primary" href="/register">{{ _('Register') }}</a>
+                        <a class="header-link header-link-primary button" href="/register">{{ _('Register') }}</a>
                     </div>
                     <span class="free-uses" role="status">
                         <svg class="inline-block mr-1" width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -97,7 +93,6 @@
                             aria-controls="user-menu">
                             <img 
                                 id="user-pfp" 
-                                src="/profile/user-pfp/{{ current_user.id }}"
                                 alt="{{ _('Profile picture') }}" 
                                 class="user-avatar pfp">
                             <span class="menu-chevron" aria-hidden="true">▼</span>

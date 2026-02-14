@@ -126,14 +126,16 @@ body.dark .password-match {
     padding: 0 12px;
 }
 
-.oauth-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+.oauth-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
     margin-bottom: 10px;
 }
 
 .oauth-btn-compact {
+    flex: 1;
+    min-width: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,6 +147,7 @@ body.dark .password-match {
     transition: all 0.3s ease;
     cursor: pointer;
 }
+
 
 .oauth-btn-compact:hover {
     background-color: var(--bg-main-card);

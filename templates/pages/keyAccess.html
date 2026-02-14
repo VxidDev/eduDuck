@@ -4,14 +4,13 @@
 {% block title %}{{ _('EduDuck - How to get API Key?') }}{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="/static/variables.css">
     <link rel="stylesheet" href="/static/KeyAccess/KeyStyle.css">
 {% endblock %}
 
 {% block content %}
     <div class="main-content">
         <h2>{{ _('How to Get Your API Key') }}</h2>
-        <p>{{ _('Get your free API key from <strong>Hugging Face</strong>, <strong>Google Gemini</strong>, or <strong>OpenAI</strong> to unlock AI-powered learning tools. Follow the tutorials below:') }}</p>
+        <p>{{ _('Get your free API key from <strong>Hugging Face</strong>, <strong>Google Gemini</strong>, or <strong>OpenAI</strong> to unlock AI-powered learning tools. Follow the tutorials below:') | safe}}</p>
         
         <div class="features">
             <div class="feature-card">

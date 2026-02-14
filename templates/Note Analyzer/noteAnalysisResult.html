@@ -6,7 +6,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='noteAnalyzer/result-style.css') }}">
     <script>
         window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
-        window.ANALYSIS_DATA = JSON.parse('{{ analysis | tojson | safe }}');
+
+        // Jinja template variable (server-rendered)
+        window.ANALYSIS_DATA = {{ analysis | tojson | safe }};
+        
         window.ANALYSIS_ID = "{{ request.args.get('id', '') }}";
     </script>
 {% endblock %}

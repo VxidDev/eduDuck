@@ -4,7 +4,6 @@
 {% block description %}{{ _('Login to EduDuck for free usage and more for quizzes, flashcards, and DuckAI. Free AI study tools for students.') }}{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="/static/variables.css">
     <link rel="stylesheet" href="/static/login/style.css">
     <link rel="stylesheet" href="/static/flash.css">
 
@@ -42,7 +41,7 @@
                 <span>{{ _('Or continue with') }}</span>
             </div>
 
-            <div class="oauth-grid">
+            <div class="oauth-buttons">
                 <a href="{{ url_for('oauth.loginGoogle') }}" class="oauth-btn-compact" title="{{ _('Sign in with Google') }}">
                     <img src="{{ url_for('static', filename='img/google-logo.svg') }}" alt="{{ _('Google') }}" class="oauth-logo">
                 </a>

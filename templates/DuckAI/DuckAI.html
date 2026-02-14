@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='spinner.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='DuckAI/style.css') }}">
     <script src="/dist/DuckAI/main.js" type="module" defer></script>
-    <script src="{{ url_for('static', filename='dist/Components/fileDrop.js') }}" defer></script>
+    <script src="/dist/Components/fileDrop.js" defer></script>
     <script>
         window.CURRENT_USERNAME = "{{ current_user.username if current_user.is_authenticated else '' }}";
     </script>

@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const menu = document.getElementById('user-menu');
     const wrap = document.querySelector('.user-menu-wrapper');
 
+    if (!toggle || !menu || !wrap) return;
+
     function closeMenu() {
         menu.hidden = true; 
         menu.classList.remove('open');

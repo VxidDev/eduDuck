@@ -1,5 +1,7 @@
 export async function GetUserPFP() {
     try {
+        if (!document.getElementById('profile-button')) return;
+        
         const res = await fetch("/profile/user-pfp", { method: "GET" });
 
         const data = await res.json();
