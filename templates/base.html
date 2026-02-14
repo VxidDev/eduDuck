@@ -33,14 +33,15 @@
     <script src="/static/Components/UserMenuPopUp.js" defer></script>
     <script src="{{ url_for('static' , filename='base.js') }}" type="module" defer></script>
     <script src="/dist/Components/background-anim.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css">
     <meta name="google-site-verification" content="AZ5cUHVKOHp9lKvThtsZ7HOlCFkWxvWi25c9ubsRV6Y"/>
     <meta name="msvalidate.01" content="2F2470319361A2FEDD539AEF5BF1803B" />
     {% block head %}{% endblock %}
 </head>
 <body>
-    <header class="header fixed top-0 left-0 right-0 z-fixed border-b border-primary shadow-sm">
-        <nav class="header-nav container mx-auto flex items-center justify-between py-4" aria-label="{{ _('Main navigation') }}">
-            <a class="header-redirect button button-ghost button-sm inline-flex items-center gap-2 transition-all" 
+    <header class="header">
+        <nav class="header-nav" aria-label="{{ _('Main navigation') }}">
+            <a class="header-redirect" 
                href="https://ko-fi.com/vxiddev" 
                aria-label="Support on Ko-fi">
                 <svg class="donate-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,15 +51,15 @@
             </a>
 
             <div class="header-brand">
-                <h1 class="header-text text-2xl font-bold m-0">
-                    <a href="/" class="inline-flex items-center gap-2 text-primary hover:text-primary transition-colors">
-                        <span class="brand-icon text-3xl" aria-hidden="true">🦆</span>
+                <h1 class="header-text">
+                    <a href="/">
+                        <span class="brand-icon" aria-hidden="true">🦆</span>
                         <span>{{ _('EduDuck') }}</span>
                     </a>
                 </h1>
             </div>
 
-            <div class="header-actions flex items-center gap-4">
+            <div class="header-actions">
                 <form id="language-selector-form" action="{{ url_for('set_language') }}" method="post" style="width: 150px;">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <select id="language" class="select" name="lang" onchange="this.form.submit()">
@@ -71,12 +72,12 @@
                     </select>
                 </form>
                 {% if not current_user.is_authenticated %}
-                    <div class="auth-links flex items-center gap-3">
-                        <a class="header-link header-link-primary button button-ghost button-sm" href="/login">{{ _('Login') }}</a>
-                        <span class="divider text-tertiary" aria-hidden="true">•</span>
-                        <a class="header-link header-link-primary button button-primary button-sm" href="/register">{{ _('Register') }}</a>
+                    <div class="auth-links">
+                        <a class="header-link header-link-primary" href="/login">{{ _('Login') }}</a>
+                        <span class="divider" aria-hidden="true">•</span>
+                        <a class="header-link header-link-primary" href="/register">{{ _('Register') }}</a>
                     </div>
-                    <span class="free-uses badge badge-neutral text-xs" role="status">
+                    <span class="free-uses" role="status">
                         <svg class="inline-block mr-1" width="14" height="14" viewBox="0 0 24 24" fill="none">
                             <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
                             <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -87,7 +88,7 @@
                     <!-- User menu for logged in users -->
                     <div class="user-menu-wrapper relative">
                         <button 
-                            class="user-menu-toggle button button-ghost button-sm inline-flex items-center gap-2 px-2" 
+                            class="user-menu-toggle" 
                             id="profile-button"
                             type="button"
                             aria-haspopup="menu"
@@ -98,20 +99,20 @@
                                 id="user-pfp" 
                                 src="/profile/user-pfp/{{ current_user.id }}"
                                 alt="{{ _('Profile picture') }}" 
-                                class="user-avatar pfp w-8 h-8 rounded-full border border-primary">
-                            <span class="menu-chevron text-xs transition-transform" aria-hidden="true">▼</span>
+                                class="user-avatar pfp">
+                            <span class="menu-chevron" aria-hidden="true">▼</span>
                         </button>
 
                         <!-- Dropdown menu -->
                         <div 
-                            class="user-menu dropdown-menu absolute right-0 mt-2 w-64 bg-card border border-primary rounded-lg shadow-xl opacity-0 pointer-events-none transition-all"
+                            <div class="user-menu"
                             id="user-menu" 
                             role="menu"
                             aria-labelledby="profile-button"
                             hidden>
                             <!-- Menu header with usage badge -->
-                            <div class="menu-header px-4 py-3 border-b border-primary">
-                                <span id="FreeUsageText" class="usage-badge badge badge-primary inline-flex items-center gap-2 text-sm" role="status">
+                            <div class="menu-header">
+                                <span id="FreeUsageText" class="usage-badge" role="status">
                                     <svg class="badge-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
                                         <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
                                         <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -121,14 +122,14 @@
                             </div>
 
                             <!-- Menu items -->
-                            <a href="/profile" class="dropdown-item flex items-center gap-3 px-4 py-3 text-primary hover:bg-secondary transition-colors" role="menuitem">
+                            <a href="/profile" class="dropdown-item" role="menuitem">
                                 <svg class="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
                                     <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
                                 </svg>
                                 {{ _('Profile') }}
                             </a>
-                            <a href="/settings" class="dropdown-item flex items-center gap-3 px-4 py-3 text-primary hover:bg-secondary transition-colors" role="menuitem">
+                            <a href="/settings" class="dropdown-item" role="menuitem">
                                 <svg class="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
                                     <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
                                     <path d="M12 1v6m0 6v6M23 12h-6m-6 0H1" stroke="currentColor" stroke-width="2"/>
@@ -136,9 +137,9 @@
                                 {{ _('Settings') }}
                             </a>
 
-                            <hr class="menu-divider dropdown-divider my-2" role="separator">
+                            <hr class="menu-divider dropdown-divider" role="separator">
 
-                            <a href="/logout" class="dropdown-item danger flex items-center gap-3 px-4 py-3 text-error hover:bg-error-soft transition-colors" role="menuitem">
+                            <a href="/logout" class="dropdown-item danger" role="menuitem">
                                 <svg class="menu-icon" width="18" height="18" viewBox="0 0 24 24" fill="none">
                                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                                 </svg>

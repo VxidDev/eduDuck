@@ -43,6 +43,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateSendButton();
     });
 
+    UserInput.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            if (!sendButton.disabled) {
+                sendButton.click();
+            }
+        }
+    });
+
     // Toggle API Key input visibility
     if (FreeUsage && ApiKeyInputParent) { // Add null check for ApiKeyInputParent here
         FreeUsage.addEventListener('change', () => {

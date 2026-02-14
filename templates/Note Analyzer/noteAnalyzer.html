@@ -49,15 +49,7 @@
 
             <textarea class="notes textInput large" placeholder="{{ _('Paste your notes here for analysis...') }} {{ prefill_topic or '' }}"></textarea>
 
-            <label for="language">{{ _('Output Language') }}</label>
-            <select id="language" class="select">
-                <option value="English">{{ _('English') }}</option>
-                <option value="Polish">{{ _('Polish') }}</option>
-                <option value="Russian">{{ _('Russian') }}</option>
-                <option value="German">{{ _('German') }}</option>
-                <option value="Ukrainian">{{ _('Ukrainian') }}</option>
-                <option value="French">{{ _('French') }}</option>
-            </select>
+            {% include 'includes/language_selector.html' %}
 
             <button class="button submit">{{ _('Analyze My Notes') }}</button>
 

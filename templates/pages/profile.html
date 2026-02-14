@@ -4,7 +4,7 @@
 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='profile/style.css') }}">
-    <script src="{{ url_for('static', filename='dist/profile/main.js') }}" type="module" defer></script>
+    <script src="/dist/profile/main.js" type="module" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -109,7 +109,7 @@
                 {% if quizzes %}
                     <ul>
                         {% for q in quizzes %}
-                            <li><a href="{{ url_for('quiz_generator.quiz', id=q.query_ID) }}" class="repoLink">{{ _('Quiz') }} - {{ q.created_at.strftime('%Y-%m-%d %H:%M') }}</a></li>
+                            <li><a href="{{ url_for('show_quiz', id=q.query_ID) }}" class="repoLink">{{ _('Quiz') }} - {{ q.createdAt.strftime('%Y-%m-%d %H:%M') }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
@@ -122,7 +122,7 @@
                 {% if flashcards %}
                     <ul>
                         {% for f in flashcards %}
-                            <li><a href="{{ url_for('flashcard_generator.result', id=f.query_ID) }}" class="repoLink">{{ _('Flashcards') }} - {{ f.created_at.strftime('%Y-%m-%d %H:%M') }}</a></li>
+                            <li><a href="{{ url_for('flashcard_result', id=f.query_ID) }}" class="repoLink">{{ _('Flashcards') }} - {{ f.createdAt.strftime('%Y-%m-%d %H:%M') }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
@@ -135,7 +135,7 @@
                 {% if plans %}
                     <ul>
                         {% for p in plans %}
-                            <li><a href="{{ url_for('study_plan_generator.result', id=p.query_ID) }}" class="repoLink">{{ _('Study plan') }} - {{ p.created_at.strftime('%Y-%m-%d %H:%M') }}</a></li>
+                            <li><a href="{{ url_for('study_plan_result', id=p.query_ID) }}" class="repoLink">{{ _('Study plan') }} - {{ p.createdAt.strftime('%Y-%m-%d %H:%M') }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
@@ -145,10 +145,10 @@
 
             <div class="feature-card">
                 <h3>{{ _('Note Analyses') }}</h3>
-                {% if note_analyses %}
+                {% if noteanalyses %}
                     <ul>
-                        {% for na in note_analyses %}
-                            <li><a href="{{ url_for('note_analyzer.result', id=na.query_ID) }}" class="repoLink">{{ _('Analysis') }} - {{ na.created_at.strftime('%Y-%m-%d %H:%M') }}</a></li>
+                        {% for na in noteanalyses %}
+                            <li><a href="{{ url_for('note_analyzer_result', id=na.query_ID) }}" class="repoLink">{{ _('Analysis') }} - {{ na.createdAt.strftime('%Y-%m-%d %H:%M') }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
@@ -161,7 +161,7 @@
                 {% if notes %}
                     <ul>
                         {% for n in notes %}
-                            <li><a href="{{ url_for('note_enhancer.result', id=n.query_ID) }}" class="repoLink">{{ _('Notes') }} - {{ n.created_at.strftime('%Y-%m-%d %H:%M') }}</a></li>
+                            <li><a href="{{ url_for('enhanced_notes_result', id=n.query_ID) }}" class="repoLink">{{ _('Notes') }} - {{ n.createdAt.strftime('%Y-%m-%d %H:%M') }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
@@ -174,7 +174,7 @@
                 {% if duckai %}
                     <ul>
                         {% for c in duckai %}
-                            <li><a href="{{ url_for('duck_ai', id=c.query_ID) }}" class="repoLink">{{ _('Chat') }} - {{ _('last edited') }} {{ c.last_edited_at.strftime('%Y-%m-%d %H:%M') }}</a></li>
+                            <li><a href="{{ url_for('duck_ai_page', id=c.query_ID) }}" class="repoLink">{{ _('Chat') }} - {{ _('last edited') }} {{ c.lastEditedAt.strftime('%Y-%m-%d %H:%M') }}</a></li>
                         {% endfor %}
                     </ul>
                 {% else %}
