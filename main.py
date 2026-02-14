@@ -58,6 +58,8 @@ load_dotenv()
 #
 
 app = Flask(__name__)
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
 app.config['MAX_CONTENT_LENGTH'] = 2.5 * 1024 * 1024
 app.secret_key = os.getenv("SECRET_KEY")
 

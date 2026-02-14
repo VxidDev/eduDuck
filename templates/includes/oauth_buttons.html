@@ -1,0 +1,21 @@
+<div class="oauth-divider">
+    <span>{{ _('Or continue with') }}</span>
+</div>
+
+<div class="oauth-buttons">
+    <a href="{{ url_for('oauth.loginGoogle') }}" class="oauth-btn-compact" title="{{ _('Sign in with Google') }}">
+        <img src="{{ url_for('static', filename='img/google-logo.svg') }}" alt="{{ _('Google') }}" class="oauth-logo">
+    </a>
+
+    <a href="{{ url_for('oauth.loginMicrosoft') }}" class="oauth-btn-compact" title="{{ _('Sign in with Microsoft') }}">
+        <img src="{{ url_for('static', filename='img/microsoft-logo.svg') }}" alt="{{ _('Microsoft') }}" class="oauth-logo">
+    </a>
+
+    <a href="{{ url_for('oauth.loginGithub') }}" class="oauth-btn-compact" title="{{ _('Sign in with GitHub') }}">
+        <img src="{{ url_for('static', filename='img/github-logo.svg') }}" alt="{{ _('GitHub') }}" class="oauth-logo oauth-logo-theme-dependant">
+    </a>
+
+    <a href="{{ url_for('oauth.loginDiscord') }}" class="oauth-btn-compact" title="{{ _('Sign in with Discord') }}">
+        <img src="{{ url_for('static', filename='img/discord-logo.svg') }}" alt="{{ _('Discord') }}" class="oauth-logo">
+    </a>
+</div>

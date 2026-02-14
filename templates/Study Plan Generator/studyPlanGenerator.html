@@ -15,37 +15,9 @@
 {% block content %}
     <div class="main-content">
         <div class="main">
-            <div style="display: flex; justify-content: center; gap: 25px;">
-                <div class="customModelSelector checkbox">
-                    <label for="customModel" id="customModelLabel">
-                        <input type="checkbox" id="customModel">
-                        {{ _('Use custom model') }}
-                    </label>
-                </div>
-                {% if current_user.is_authenticated %}
-                <div class="FreeUsage checkbox">
-                    <label for="FreeUsage" id="FreeUsageLabel">
-                        <input type="checkbox" id="FreeUsage">
-                        {{ _('Free Daily (No API Key)') }}
-                    </label>
-                </div>
-                {% endif %}
-            </div>
+            {% include 'includes/model_selector.html' %}
 
-            <textarea class="customModelInput textInput slimmest hidden" placeholder="{{ _('Enter custom model here! (e.g., microsoft/DialoGPT-medium)') }}"></textarea>
-
-            <select id="apiMode" class="select">
-                <option value="Hugging Face">{{ _('Hugging Face') }}</option>
-                <option value="Gemini">{{ _('Gemini') }}</option>
-                <option value="OpenAI">{{ _('OpenAI') }}</option>
-            </select>
-
-            <textarea class="apiKey textInput slimmest" placeholder="{{ _('Enter your Hugging Face API key here!') }}"></textarea>
-
-            <div class="file-upload-wrapper">
-                <input type="file" id="fileInput" class="file-input" accept=".pdf,.txt,.md,.csv,.json,.log,.py,.js,.html,.css,.xml,.yml,.yaml,.ini,.cfg,.tex,.png,.jpg,.jpeg,.gif,.bmp,.tiff,.tif,.webp,.ppm,.pbm,.pgm,.jp2,.j2k">
-                <label for="fileInput" class="button fileButton">{{ _('Upload notes file') }}</label>
-            </div>
+            {% include 'includes/file_upload.html' %}
 
             <textarea class="notes textInput standard" placeholder="{{ _('Notes go here') }} {{ prefill_topic or '' }}"></textarea>
 

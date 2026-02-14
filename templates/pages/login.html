@@ -15,17 +15,7 @@
         <h2>{{ _('Login to EduDuck') }}</h2>
         <p style="text-align:center; max-width:600px;">{{ _('Access your saved notes, quizzes, flashcards, and DuckAI responses.') }}</p>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="flash-messages">
-                    {% for category, message in messages %}
-                        <div class="flash-message flash-{{ category }}">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
-        {% endwith %}
+        {% include 'includes/flashed_messages.html' %}
 
         <div id="login-form" class="auth-form" style="display: flex; flex-direction: column; gap: 15px; margin-top: 30px; width: 450px; max-width: 90vw;">
             <label for="username">{{ _('Username or Email') }}</label>
@@ -36,28 +26,7 @@
 
             <button id="login-button" class="button" style="padding: 10px; font-size: 1.1em; cursor:pointer;">{{ _('Login') }}</button>
 
-            <!-- Compact OAuth section -->
-            <div class="oauth-divider">
-                <span>{{ _('Or continue with') }}</span>
-            </div>
-
-            <div class="oauth-buttons">
-                <a href="{{ url_for('oauth.loginGoogle') }}" class="oauth-btn-compact" title="{{ _('Sign in with Google') }}">
-                    <img src="{{ url_for('static', filename='img/google-logo.svg') }}" alt="{{ _('Google') }}" class="oauth-logo">
-                </a>
-
-                <a href="{{ url_for('oauth.loginMicrosoft') }}" class="oauth-btn-compact" title="{{ _('Sign in with Microsoft') }}">
-                    <img src="{{ url_for('static', filename='img/microsoft-logo.svg') }}" alt="{{ _('Microsoft') }}" class="oauth-logo">
-                </a>
-
-                <a href="{{ url_for('oauth.loginGithub') }}" class="oauth-btn-compact" title="{{ _('Sign in with GitHub') }}">
-                    <img src="{{ url_for('static', filename='img/github-logo.svg') }}" alt="{{ _('GitHub') }}" class="oauth-logo oauth-logo-theme-dependant">
-                </a>
-
-                <a href="{{ url_for('oauth.loginDiscord') }}" class="oauth-btn-compact" title="{{ _('Sign in with Discord') }}">
-                    <img src="{{ url_for('static', filename='img/discord-logo.svg') }}" alt="{{ _('Discord') }}" class="oauth-logo">
-                </a>
-            </div>
+            {% include 'includes/oauth_buttons.html' %}
 
             <p id="login-error" style="color:red; margin-top:10px; display:none;"></p>
         </div>
