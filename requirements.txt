@@ -57,3 +57,4 @@ URLObject==3.0.0
 Werkzeug==3.1.5
 wrapt==2.1.1
 WTForms==3.2.1
+minify-html

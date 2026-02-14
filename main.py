@@ -24,6 +24,7 @@ from flask_babel import gettext as _
 from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
+from minify_html import minify
 
 # Local application imports
 from routes.utils import (
@@ -60,6 +61,17 @@ load_dotenv()
 app = Flask(__name__)
 app.jinja_env.trim_blocks = True
 app.jinja_env.lstrip_blocks = True
+
+@app.after_request
+def minify_response(response):
+    if response.content_type == u'text/html; charset=utf-8':
+        response.set_data(
+            minify(response.get_data(as_text=True),
+                   minify_js=True,
+                   minify_css=True)
+        )
+        return response
+    return response
 app.config['MAX_CONTENT_LENGTH'] = 2.5 * 1024 * 1024
 app.secret_key = os.getenv("SECRET_KEY")
 
