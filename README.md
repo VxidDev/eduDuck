@@ -155,12 +155,12 @@ Accounts help:
 ## 🛠️ Tech Stack
 
 - **Frontend**: HTML5, CSS3 (CSS Variables), Vanilla JavaScript, TypeScript, markdown-it
-- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB (PyMongo), MailGun (email verification), Authlib (OAuth client)
+- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB (PyMongo), MailGun (email verification), Authlib (OAuth client), PyBabel(internationalization)
 - **OAuth Providers**: Google, GitHub, Discord, Microsoft
 - **Auth & Security**: Werkzeug password hashing, session-based auth, Flask-Login, usage limits, email verification tokens
 - **Data Layer**: JSON serialization, msgspec, BSON (MongoDB), in-memory caching, UUID generation
 - **AI APIs**: Hugging Face Inference API, Google Gemini (2.5 Flash), OpenAI (GPT models)
-- **OCR**: Tesseract + PIL image preprocessing
+- **OCR**: OpenAI + PIL image preprocessing
 - **PDF Processing**: pypdf (PdfReader)
 - **HTTP Client**: httpx (HTTP/2 support, connection pooling), requests
 - **Rust Extensions**: PyO3 (Python bindings), custom parsers for quiz & study plans
@@ -201,49 +201,7 @@ R2_BUCKET_NAME= ...
 # Production-style run with 4 workers on port 5000
 gunicorn -w 4 -b 0.0.0.0:5000 main:app
 ```
-
-## 🔑 Setting Up Google OAuth
-
-1. Go to Google Cloud Console
-
-2. Create a new OAuth 2.0 Client ID (type: Web application)
-
-3. Add http://127.0.0.1:5000/authorize/google to Authorized redirect URIs
-
-4. Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in your .env
-
-5. Run and click Login with Google on /login endpoint.
-
 ---
-
-## 🚀 EduDuck – Deployment & Hosting Services
-
-EduDuck is fully open-source under the Apache 2.0 License, but running it yourself can be tricky — it requires MongoDB, Mailgun, Cloudflare R2, Google OAuth, and other setup steps.
-
-If you want to skip the hassle and get EduDuck up and running quickly, I offer a deployment + hosting service.
-### What’s included:
-- ✅ Full deployment of EduDuck on a server of your choice (or mine)
-- ✅ MongoDB database setup for storing quizzes, study plans, and user data
-- ✅ Cloud storage integration with Cloudflare R2
-- ✅ Email verification & notifications via Mailgun
-- ✅ Google OAuth login for easy account creation and authentication
-- ✅ SSL, backups, and updates handled automatically
-- ✅ Optional customization (branding, study plan defaults, etc.)
-
-
-### EduDuck Deployment & Hosting Pricing
-
-| Plan                  | Description                                      | Price / Month |
-|-----------------------|-------------------------------------------------|---------------|
-| Personal / Small      | Single instance, minimal traffic                | $10–$15       |
-| School / Class        | Multiple users or classes, priority support    | $25–$50       |
-| Business / Premium    | Dedicated instance, custom features, full support | $75+        |
-
-### How to get started
-Open an issue on this repo or contact me at team.eduduck@gmail.com / stas050595@gmail.com or on discord: `trainervoid`
-
-Choose your plan and provide your hosting/server details
-I handle deployment, setup, and configuration - you start using EduDuck immediately
 
 ## 🎯 Roadmap
 
@@ -280,7 +238,8 @@ I handle deployment, setup, and configuration - you start using EduDuck immediat
 | ✅ Done | Study progress tracking |
 | ✅ Done | Add note analyzer |
 | ✅ Done | Simplify UI |
-| 🔄 In Progress | Add multi-language pages. |
+| ✅ Done | Add multi-language pages. |
+| 🔄 In Progress | Bug fixes and polishing. |
 | ⏳ Planned | ??? |
 
 ---
@@ -316,7 +275,7 @@ None :D
 
 Apache License 2.0 - see LICENSE for details.
 
-Made with ❤️ by **VxidDev** — self-taught since June 2025
+Made with ❤️ by **VoidDev** — self-taught since June 2025
 
 <div align="center">
   <img src="https://img.shields.io/badge/version-2.0-blue?style=for-the-badge&logo=eduDuck&logoColor=white" alt="Version">
