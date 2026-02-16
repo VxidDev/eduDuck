@@ -366,7 +366,7 @@ msgstr "Użyj własnego modelu"
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:29
 #: templates/includes/model_selector.html:12
 msgid "Free Daily (No API Key)"
-msgstr "Darmowy Codziennie (Bez Klucza API)"
+msgstr "Darmowe Uzycie (Bez Klucza API)"
 
 #: ⁨templates/Note Analyzer/noteAnalyzer.html⁩:35
 msgid "Enter custom model here! (e.g., gpt-4o-mini)"
