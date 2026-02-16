@@ -702,11 +702,11 @@ section { padding: var(--section-padding) !important; }
 @media (max-width: 768px) { .step-arrow { transform: rotate(var(--rotate-arrow-mobile)); padding: 1rem; } .step-card { padding: var(--chatbot-input-padding); } }
 .header {
   position: sticky; top: 0; width: 100%; z-index: 1100;
-  background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-bottom: 2px solid rgba(0,0,0,0.05); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); transition: all 0.3s ease;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); 
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); transition: all 0.3s ease;
 }
 [data-theme="dark"] .header, body.dark .header {
-  background: rgba(10, 10, 10, 0.85); border-bottom-color: rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 .header.scrolled { box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12); backdrop-filter: blur(30px); }
 .header-nav {
@@ -3998,18 +3998,15 @@ body.dark #endDate::-webkit-calendar-picker-indicator:hover {
   top: 0;
   width: 100%;
   z-index: var(--z-sticky, 1100);
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 2px solid var(--border-primary);
+  background-image: url("/static/img/duck.jpg");
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   transition: all var(--transition-base);
 }
 
 [data-theme="dark"] .header,
 body.dark .header {
-  background: rgba(10, 10, 10, 0.85);
-  border-bottom-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
