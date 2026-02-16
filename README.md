@@ -125,6 +125,10 @@ Accounts help:
 
 ---
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=VxidDev/eduduck&type=date&legend=top-left)](https://www.star-history.com/#VxidDev/eduduck&type=date&legend=top-left)
+
 ## 🚀 Quick Start
 
 ### 1. Get a Free API Key  
