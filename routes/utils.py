@@ -95,7 +95,7 @@ def IncrementUsage():
 
 def GetUsage():
     if not current_user.is_authenticated:
-        return jsonify({"timesUsed": 0, "remaining": 3})
+        return jsonify({"timesUsed": 3, "remaining": 0})
     
     users = GetMongoClient()["EduDuck"]["users"]
     user = users.find_one({"_id": ObjectId(current_user.id), "deleted": {"$ne": True}})
@@ -135,7 +135,7 @@ def LoadUser(userID=None, googleId=None, githubId=None, discordId=None, microsof
     return userDoc
 
 def LoadUserByUsername(username: str):
-    pattern = re.compile(f"^{re.escape(username)}", re.IGNORECASE)
+    pattern = re.compile(f"^{re.escape(username)}$", re.IGNORECASE)
     return GetMongoClient()["EduDuck"]["users"].find_one({
         "username": pattern,
         "deleted": {"$ne": True}
@@ -231,7 +231,7 @@ def RegisterUser():
 
         result = usersCollection.insert_one(userDoc)
 
-        verification_link = url_for("verifyEmail", token=userDoc["verification_token"], _external=True)
+        verification_link = url_for("verify_email", token=userDoc["verification_token"], _external=True)
 
         msg = (
             "Verify Your Email", # subject
@@ -555,7 +555,7 @@ def CheckPasswordSetup(func):
                 "deleted": {"$ne": True}
             })
             if user and user.get("needs_password_setup") and not request.args.get("IGNORE"):
-                return redirect(f"{url_for('setupPassword')}?skip={request.path}")
+                return redirect(f"{url_for('setup_password')}?skip={request.path}")
         return func(*args, **kwargs)
     return wrapper
 
@@ -800,27 +800,31 @@ def extract_topic(query_data, qtype):
     
     return 'General'
 
-def GetNextAction():
+def GetNextAction(_user_history=None):
+    if _user_history is None:
+        _user_history = {}
+    
     if not current_user.is_authenticated:
         raise ValueError("Unauthorized")
     
     today_str = date.today().isoformat()
     user_id = current_user.id
     
-    # Memory:// avoid repeats
+    # Avoid repeats from history
     last_rec = _user_history.get(user_id)
     avoid_action = last_rec['action_type'] if last_rec else None
     avoid_topic = last_rec['topic'] if last_rec else None
     
-    # Fetch active queries only
+    # Collections mapping
     collections = {
         "quizzes": "quiz",
-        "enhanced-notes": "notes",
+        "enhanced-notes": "notes", 
         "flashcards": "flashcards",
-        "study-plans": "studyplan",
+        "study-plans": "studyPlan",
         "duck-ai": "chat",
         "note-analysis": "analysis"
     }
+    
     all_queries = []
     db = GetMongoClient()['EduDuck']
     
@@ -832,155 +836,145 @@ def GetNextAction():
                 {'deletedAt': None}
             ]
         }
-        for doc in db[coll_name].find(query_filter).sort('createdAt', -1).limit(50):
-            # Robust date parsing
-            created_at_raw = doc.get('createdAt')
-            if isinstance(created_at_raw, dict) and '$date' in created_at_raw:
-                created_at = datetime.fromisoformat(created_at_raw['$date'].replace('Z', '+00:00'))
-            elif isinstance(created_at_raw, str):
-                created_at = datetime.fromisoformat(created_at_raw.replace('Z', '+00:00'))
-            else:
-                created_at = doc.get('lastEditedAt') or datetime.utcnow()
+        cursor = db[coll_name].find(query_filter).sort([('createdAt', -1)]).limit(50)
+        
+        for doc in cursor:
+            # Robust date parsing with fallback
+            created_at = None
+            created_at_raw = doc.get('createdAt') or doc.get('lastEditedAt')
+            
+            try:
+                if isinstance(created_at_raw, dict) and '$date' in created_at_raw:
+                    created_at = datetime.fromisoformat(created_at_raw['$date'].replace('Z', '+00:00'))
+                elif isinstance(created_at_raw, str):
+                    created_at = datetime.fromisoformat(created_at_raw.replace('Z', '+00:00'))
+            except (ValueError, TypeError):
+                created_at = datetime.utcnow()
             
             q_date = created_at.date().isoformat()
-            topic = extract_topic(doc.get('query'), qtype)
+            topic = extract_topic(doc.get('query'), qtype) or 'General'
             
-            # Chat refinement
+            # Chat topic extraction
             if qtype == 'chat' and 'queries' in doc:
                 for msg in doc['queries']:
                     if msg.get('role') == 'user' and msg.get('content'):
                         content = msg['content'].strip()
                         if len(content) > 10:
                             words = re.findall(r'\b[a-zA-Z]{3,}\b', content.lower())
-                            words = [w.capitalize() for w in words[:3] if w not in {'How', 'What', 'Why', 'When'}]
+                            words = [w.capitalize() for w in words[:3] 
+                                   if w not in {'How', 'What', 'Why', 'When'}]
                             if words:
                                 topic = ' '.join(words)
-                        break
+                                break
             
             all_queries.append({'date': q_date, 'type': qtype, 'topic': topic})
     
     today_queries = [q for q in all_queries if q['date'] == today_str]
     
-    def get_recommendation(all_queries, today_queries, avoid_action=None, avoid_topic=None):
-        # Rule 1: Fresh start - balanced types
+    def get_recommendation(all_queries, today_queries, avoid_action, avoid_topic):
+        # Rule 1: No activity today - Balanced starters
         if len(today_queries) == 0:
             starters = [
                 ("flashcards", "Quick Review", "5 flashcards to kickstart studying.", 3),
                 ("notes", "Today's Focus", "Notes for today's main topic.", 5),
                 ("quiz", "Warmup Quiz", "Short 5-question warmup.", 4),
                 ("chat", "Ask DuckAI", "Chat with DuckAI about your study plan.", 2),
-                ("study_plan", "Daily Plan", "Create a study plan for today.", 4),
-                ("flashcards", "Core Ideas", "Flashcards for key concepts.", 2),
-                ("notes", "Session Notes", "Capture what to study today.", 4),
-                ("quiz", "Quick Check", "Fast knowledge test.", 3),
-                ("chat", "Study Tips", "Get study tips from DuckAI.", 3),
-                ("study_plan", "Weekly Goals", "Plan your week ahead.", 5),
-                ("analysis", "Analyze Notes", "Get insights on your study notes.", 4),
+                ("study plan", "Daily Plan", "Create a study plan for today.", 4),
             ]
             filtered = [(a,t,r,m) for a,t,r,m in starters 
-                    if (a != avoid_action or t != avoid_topic)]
-            if not filtered: filtered = starters
+                       if a != avoid_action and t != avoid_topic]
+            if not filtered: 
+                filtered = starters
             act, top, reason, time = random.choice(filtered)
-            return {
-                "action_type": act,
-                "topic": top,
-                "reason": reason,
-                "estimated_time_minutes": time
-            }
+            return {"action_type": act, "topic": top, "reason": reason, "estimated_time_minutes": time}
         
-        # Topic coverage
+        # Track coverage per topic
         topic_data = defaultdict(lambda: {
-            "notes": False,
-            "quiz": False,
-            "flashcards": False,
-            "studyplan": False,
-            "chat": False,
-            "analysis": False
+            "notes": False, "quiz": False, "flashcards": False,
+            "studyplan": False, "chat": False, "analysis": False
         })
         
         for q in all_queries:
             norm_topic = q['topic'] if len(q['topic']) > 3 else 'General'
             topic_data[norm_topic][q['type']] = True
         
-        # Rule 2: Notes → Quiz progression
+        # Rule 2: Notes done - Suggest quiz
         for topic, data in topic_data.items():
             if topic != avoid_topic and data['notes'] and not data['quiz']:
                 return {
-                    "action_type": "quiz",
-                    "topic": topic,
-                    "reason": f"Quiz '{topic}' from your notes.",
-                    "estimated_time_minutes": 5
+                    "action_type": "quiz", "topic": topic,
+                    "reason": f"Quiz '{topic}' from your notes.", "estimated_time_minutes": 5
                 }
         
-        # Rule 3: Quiz → Flashcards  
+        # Rule 3: Quiz done - Flashcards
         for topic, data in topic_data.items():
             if topic != avoid_topic and data['quiz'] and not data['flashcards']:
                 return {
-                    "action_type": "flashcards",
-                    "topic": topic,
-                    "reason": f"Flashcards for '{topic}'.",
-                    "estimated_time_minutes": 3
+                    "action_type": "flashcards", "topic": topic,
+                    "reason": f"Flashcards for '{topic}'.", "estimated_time_minutes": 3
                 }
         
-        # NEW Rule 3.5: Quiz → Chat (explain quiz)
+        # Rule 4: Quiz - Chat discussion
         for topic, data in topic_data.items():
             if topic != avoid_topic and data['quiz'] and not data['chat']:
                 return {
-                    "action_type": "chat",
-                    "topic": topic,
-                    "reason": f"Chat about '{topic}' quiz.",
-                    "estimated_time_minutes": 2
+                    "action_type": "chat", "topic": topic,
+                    "reason": f"Chat about '{topic}' quiz.", "estimated_time_minutes": 2
                 }
         
-        # NEW Rule 4: Any content → Study Plan
+        # Rule 5: Content exists - Study plan
         for topic, data in topic_data.items():
-            if topic != avoid_topic and (data['notes'] or data['quiz'] or data['flashcards']) and not data['study_plan']:
+            if (topic != avoid_topic and 
+                (data['notes'] or data['quiz'] or data['flashcards']) and 
+                not data['study plan']):
                 return {
-                    "action_type": "study_plan",
-                    "topic": topic,
-                    "reason": f"Study plan for '{topic}'.",
-                    "estimated_time_minutes": 4
+                    "action_type": "study plan", "topic": topic,
+                    "reason": f"Study plan for '{topic}'.", "estimated_time_minutes": 4
                 }
         
-        # Rule 5: Review old (any type)
-        old_queries = [q for q in all_queries if (date.today() - date.fromisoformat(q['date'])).days > 2]
+        # Rule 6: Review old topics (>2 days)
+        old_queries = [q for q in all_queries 
+                      if (date.today() - date.fromisoformat(q['date'])).days > 2]
         recent_topics = Counter(q['topic'] for q in old_queries[:10] if len(q['topic']) > 3)
         candidates = [(t, c) for t, c in recent_topics.items() if t != avoid_topic]
         if candidates:
             old_topic = candidates[0][0]
-            types = random.choice(['quiz', 'flashcards', 'chat'])  # Vary review type
+            types = random.choice(['quiz', 'flashcards', 'chat'])
             reasons = {
                 'quiz': f"Review '{old_topic}' with quiz.",
-                'flashcards': f"Flashcard review for '{old_topic}'.", 
+                'flashcards': f"Flashcard review for '{old_topic}'.",
                 'chat': f"Discuss '{old_topic}' with DuckAI."
             }
             return {
-                "action_type": types,
-                "topic": old_topic,
+                "action_type": types, "topic": old_topic,
                 "reason": reasons[types],
                 "estimated_time_minutes": 4 if types != 'chat' else 3
             }
         
-        # Rule 6: Balanced fallback (all types)
-        recent_topic = Counter(q['topic'] for q in all_queries[:20] if len(q['topic']) > 3).most_common(1)[0][0]
+        # Rule 7: Fallback to recent/general
+        recent_topic = 'General'
+        if all_queries:
+            counts = Counter(q['topic'] for q in all_queries[:20] if len(q['topic']) > 3)
+            if counts:
+                recent_topic = counts.most_common(1)[0][0]
+        
         fallbacks = [
             ("chat", f"DuckAI {recent_topic}", f"Ask DuckAI about {recent_topic}.", 2),
-            ("study_plan", f"Plan {recent_topic}", f"Study plan for {recent_topic}.", 4),
+            ("study plan", f"Plan {recent_topic}", f"Study plan for {recent_topic}.", 4),
             ("flashcards", recent_topic, f"More {recent_topic} flashcards.", 3),
             ("notes", f"Deep Dive {recent_topic}", f"Deep notes on {recent_topic}.", 5),
-            ("analysis", f"Analyze {recenttopic}", f"Deep analysis of {recenttopic} notes.", 4),
+            ("analysis", f"Analyze {recent_topic}", f"Deep analysis of {recent_topic} notes.", 4),
         ]
         filtered_fallbacks = [(a,t,r,m) for a,t,r,m in fallbacks if a != avoid_action]
-        if not filtered_fallbacks: filtered_fallbacks = fallbacks
+        if not filtered_fallbacks:
+            filtered_fallbacks = fallbacks
         act, top, reason, time = random.choice(filtered_fallbacks)
+        
         return {
-            "action_type": act,
-            "topic": top,
-            "reason": reason,
-            "estimated_time_minutes": time
+            "action_type": act, "topic": top,
+            "reason": reason, "estimated_time_minutes": time
         }
-
+    
     result = get_recommendation(all_queries, today_queries, avoid_action, avoid_topic)
-    _user_history[current_user.id] = result
-
+    _user_history[user_id] = result
     return result

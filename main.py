@@ -278,11 +278,11 @@ def register():
             msg, email = result
             try:
                 SendEmail(
-                    to_email=msg[1],
+                    toEmail=msg[1],
                     subject=msg[0],
-                    verification_link=msg[2],
-                    from_email="EduDuck Verification <no-reply@mg.eduduck.app>",
-                    html_content=render_template("pages/email.html", VERIFY_URL=msg[2])
+                    body=msg[2],
+                    email="EduDuck Verification <no-reply@mg.eduduck.app>",
+                    html=render_template("pages/email.html", VERIFY_URL=msg[2])
                 )
                 return jsonify({
                     "success": True,
