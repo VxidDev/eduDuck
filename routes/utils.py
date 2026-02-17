@@ -84,14 +84,25 @@ def IncrementUsage():
     
     today = date.today().isoformat()
     users = GetMongoClient()["EduDuck"]["users"]
+    
+    users.update_one(
+        {"_id": ObjectId(current_user.id), 
+         "deleted": {"$ne": True}, 
+         "daily_usage.date": {"$ne": today}},  
+        {"$set": {"daily_usage": {"date": today, "timesUsed": 0}}}
+    )
+    
     result = users.find_one_and_update(
         {"_id": ObjectId(current_user.id), "deleted": {"$ne": True}},
-        {"$set": {"daily_usage.date": today},
-         "$inc": {"daily_usage.timesUsed": 1}},
-        return_document=True
+        {"$inc": {"daily_usage.timesUsed": 1}}, 
+        return_document=ReturnDocument.AFTER
     )
+    
+    if not result:
+        return jsonify({"error": "User not found"}), 404
+    
     timesUsed = result["daily_usage"]["timesUsed"]
-    return jsonify({"timesUsed": timesUsed})
+    return jsonify({"timesUsed": timesUsed, "remaining": max(3-timesUsed, 0)})
 
 def GetUsage():
     if not current_user.is_authenticated:
