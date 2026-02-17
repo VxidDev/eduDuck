@@ -2,7 +2,7 @@ import re
 from flask import render_template , request , jsonify , send_file , url_for , current_app
 from flask_login import current_user
 from quiz_parser import parse_quiz # Rust Function
-from routes.utils import AiReq , IncrementUsage , StoreTempQuery, StoreQuery , GetQueryFromDB , Log , GetMongoClient
+from routes.utils import AiReq , IncrementUsage , StoreTempQuery, StoreQuery , GetQueryFromDB , Log , GetMongoClient , GetUsage
 from json import load , JSONDecodeError , dumps
 from uuid import uuid4
 from io import BytesIO
@@ -86,13 +86,9 @@ def QuizGen(prompts: dict , quizzes: dict):
                 Log("User not logined in." , "error")
                 return render_template("pages/loginRequired.html")
 
-            userData = GetMongoClient()["EduDuck"]["users"].find_one({"_id": ObjectId(current_user.id)})
-            if not userData:
-                Log("User account not found." , "error")
-                return render_template("pages/loginRequired.html")
-
-            times_used = userData.get("daily_usage", {}).get("timesUsed", 0)
-            if times_used >= 3:
+            usage = GetUsage()
+            convertedResp = usage.get_json()
+            if convertedResp["timesUsed"] >= 3:
                 Log("Daily limit reached." , "error")
                 return render_template("pages/dailyLimit.html", remaining=0)
 

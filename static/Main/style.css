@@ -1819,7 +1819,8 @@ input[type="url"],
 input[type="search"],
 input#username,
 input#username-email,
-input#studyGoal, 
+input#studyGoal,
+input#delete-confirm-text, 
 textarea {
   width: 100%;
   padding: var(--space-4, 1rem);
