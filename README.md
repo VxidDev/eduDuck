@@ -252,6 +252,7 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 
 - **Art**: [netkv](https://github.com/netkv) ❤️  
 - **Code & Testing**: [VxidDev](https://github.com/VxidDev)
+- **Help with Russian translation and minor clean-up**: [abdussamad567](https://github.com/abdussamad567)
 
 **Sponsors**
 ---
