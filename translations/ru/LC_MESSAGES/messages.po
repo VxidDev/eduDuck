@@ -522,7 +522,7 @@ msgstr "Введите пользовательскую модель здесь!
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:50
 msgid "Notes go here"
-msgstr "Заметки расположены здесь"
+msgstr "Введите заметки здесь"
 
 #: ⁨templates/Study Plan Generator/studyPlanGenerator.html⁩:53
 msgid "Start Date"
@@ -776,11 +776,11 @@ msgstr "Усильте ваши заметки с помощью AI-сгенер
 
 #: templates/pages/index.html:73
 msgid "AI Summary"
-msgstr "Обзор AI"
+msgstr "Сводка ИИ"
 
 #: templates/pages/index.html:74
 msgid "Visual"
-msgstr "Визуальные"
+msgstr "Визуально"
 
 #: templates/pages/index.html:76
 msgid "Diagrams"
@@ -992,7 +992,7 @@ msgstr "корни с улучшенной приватной версией"
 
 #: templates/pages/index.html:228
 msgid "Mobile-Friendly"
-msgstr "Мобильный дизайн"
+msgstr "Адаптировано для мобильных устройств"
 
 #: templates/pages/index.html:229
 msgid "Works on phone for on-the-go studying"
@@ -1000,7 +1000,7 @@ msgstr "Работает на телефоне для обучения в пут
 
 #: templates/pages/index.html:234
 msgid "Secure"
-msgstr "Безопасно"
+msgstr "Безопасность"
 
 #: templates/pages/index.html:235
 msgid "Your data stays private, encrypted connections"
@@ -1511,7 +1511,7 @@ msgstr "Ваши права"
 
 #: templates/pages/privacy.html:65
 msgid "If you are in the EU, UK, or California, you have the following rights:"
-msgstr "Если вы находитесь в ЕС, Великобритании илиКалифорнии, у вас есть следующие права:"
+msgstr "Если вы находитесь в ЕС, Великобритании или Калифорнии, у вас есть следующие права:"
 
 #: templates/pages/privacy.html:66
 msgid "Access your personal data stored in MongoDB."
