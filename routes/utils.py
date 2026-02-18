@@ -188,7 +188,7 @@ def LoginUser(UserClass, data=None):
     if not check_password_hash(userDoc["password"], password):
         return jsonify({"error": "Invalid username or password"}), 401
 
-    if not userDoc.get("verified", False):
+    if not userDoc.get("verified", False) and userDoc.get("verified") != None:
         return jsonify({"error": "Email not verified. Check your inbox."}), 403
 
     if userDoc.get("deletedAt") is not None:
@@ -207,11 +207,17 @@ def RegisterUser():
         email: str = data.get("email")
         confirm = data.get("confirm")
 
+
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+
         if not username or not password or not email or not confirm:
             return jsonify({"error": "All fields are required"}), 400
 
         if password != confirm:
             return jsonify({"error": "Passwords do not match"}), 400
+
+        if not bool(re.fullmatch(pattern, email)):
+            return jsonify({"error": "Invalid email address."}), 400
 
         existingUser = LoadUserByUsername(username)
         if existingUser:

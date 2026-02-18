@@ -367,6 +367,7 @@ def reset_password():
         user = LoadUserByMail(username_or_email) if is_email_input else LoadUserByUsername(username_or_email)
 
         if not user:
+            Log("User not found.", "warn")
             return jsonify({"message": "If an account exists, a reset link has been sent."}), 200
 
         reset_token = secrets.token_urlsafe(32)
@@ -431,7 +432,11 @@ def reset_password_confirm(token):
             {"_id": user["_id"]},
             {
                 "$set": {"password": hashed_password},
-                "$unset": {"reset_token": "", "reset_token_expires": ""}
+                "$unset": {
+                    "reset_token": "",
+                    "reset_token_expires": "",
+                    "needs_password_setup": ""
+                }
             }
         )
 
