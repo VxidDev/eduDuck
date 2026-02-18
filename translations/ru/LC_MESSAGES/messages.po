@@ -734,7 +734,7 @@ msgstr "С вашим API-ключом"
 
 #: templates/pages/index.html:50
 msgid "Study Smarter, Not Harder"
-msgstr "Учитесь умнее, а не усерднее работать"
+msgstr "Учитесь умнее, а не усерднее"
 
 #: templates/pages/index.html:56 templates/pages/keyAccess.html:56
 msgid "Quiz Generator"
