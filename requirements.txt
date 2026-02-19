@@ -60,3 +60,6 @@ WTForms==3.2.1
 minify-html
 python-magic
 defusedxml
+pytest
+pytest-flask
+pytest-mock

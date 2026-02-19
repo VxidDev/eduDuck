@@ -8,3 +8,5 @@ node_modules
 dist
 package.json
 package-lock.json
+*.lock
+.pytest_cache

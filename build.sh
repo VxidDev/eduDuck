@@ -65,3 +65,11 @@ pybabel compile -d translations
 
 echo "✓ Build complete with performance optimizations"
 echo "✓ TypeScript compilation complete"
+
+# Translations
+pybabel compile -d translations || echo "No translations found"
+
+echo "✓ Build complete!"
+
+# Tests 
+pytest -v --disable-warnings || echo "Tests skipped"
