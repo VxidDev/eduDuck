@@ -25,6 +25,8 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
 from minify_html import minify
+import magic 
+import defusedxml.ElementTree as ET
 
 # Local application imports
 from routes.utils import (
@@ -73,6 +75,11 @@ def minify_response(response):
         return response
     return response
 app.config['MAX_CONTENT_LENGTH'] = 2.5 * 1024 * 1024
+
+@app.errorhandler(413)
+def request_entity_too_large(e):
+    return jsonify({"error": "File too large, max 2.5 MB"}), 413
+
 app.secret_key = os.getenv("SECRET_KEY")
 
 if not app.secret_key or len(app.secret_key) < 32:
@@ -232,6 +239,56 @@ def api_login_required(func):
             return jsonify(error="Unauthorized"), 401
         return func(*args, **kwargs)
     return wrapper
+
+def is_safe_image(file) -> bool:
+    file.seek(0)
+    header = file.read(2048)
+    file.seek(0)
+    mime = magic.from_buffer(header, mime=True)
+    return mime in {"image/png", "image/jpeg", "image/gif", "image/webp"}
+
+# Dangerous SVG attributes (event handlers + JS protocols)
+DANGEROUS_ATTRS = {
+    "onload", "onerror", "onclick", "onmouseover", "onfocus",
+    "onblur", "onchange", "onsubmit", "onkeydown", "onkeyup",
+    "onkeypress", "onmouseenter", "onmouseleave", "onanimationstart",
+    "onbegin", 
+}
+
+DANGEROUS_TAGS = {
+    "script", "foreignobject", "use", "image", 
+    "iframe", "object", "embed", "handler",
+}
+
+def contains_svg_payload(file) -> bool:
+    file.seek(0)
+    raw = file.read(65536)  # read first 64 KB
+    file.seek(0)
+
+    decoded = raw.decode("utf-8", errors="ignore").lower()
+    if "<svg" in decoded or "<!entity" in decoded:
+        return True
+    if any(f"on{ev}" in decoded for ev in ["load", "error", "click"]):
+        return True
+    if "javascript:" in decoded or "data:text/html" in decoded:
+        return True
+
+    try:
+        tree = ET.fromstring(raw)
+        for elem in tree.iter():
+            tag = elem.tag.split("}")[-1].lower() 
+            if tag in DANGEROUS_TAGS:
+                return True
+            for attr in elem.attrib:
+                attr_local = attr.split("}")[-1].lower()
+                if attr_local in DANGEROUS_ATTRS:
+                    return True
+                if "javascript:" in str(elem.attrib[attr]).lower():
+                    return True
+    except Exception:
+        pass 
+
+    return False
 
 #
 # Core Routes
@@ -472,18 +529,38 @@ def upload_profile_picture():
     if file.filename == '':
         return jsonify({"error": "No selected file"}), 400
 
-    if not allowed_profile_pic_extensions(file.filename):
-        return jsonify({"error": "File type not allowed"}), 400
-
     file.seek(0, 2)
     size = file.tell()
     file.seek(0)
     if size > 2.5 * 1024 * 1024:  # 2.5 MB
         return jsonify({"error": "File too large, max 2.5 MB"}), 400
 
+    if not allowed_profile_pic_extensions(file.filename):
+        return jsonify({"error": "File type not allowed"}), 400
+
+    # magic byte check
+    if not is_safe_image(file):
+        return jsonify({"error": "Invalid image type"}), 400
+
+    # SVG/XML payload scan
+    if contains_svg_payload(file):
+        return jsonify({"error": "File contains unsafe content"}), 400
+
     user_id = current_user.id
     filename = f"{uuid4().hex}_{secure_filename(file.filename)}"
     key = f"users/{user_id}/{filename}"
+
+    MIME_MAP = {
+    "image/png": "image/png",
+    "image/jpeg": "image/jpeg",
+    "image/gif": "image/gif",
+    "image/webp": "image/webp",
+    }
+
+    file.seek(0)
+    detected_mime = magic.from_buffer(file.read(2048), mime=True)
+    file.seek(0)
+    mime = MIME_MAP.get(detected_mime, "application/octet-stream")
 
     try:
         user = GetMongoClient()["EduDuck"]["users"].find_one({"_id": ObjectId(user_id)})
@@ -498,7 +575,7 @@ def upload_profile_picture():
             Fileobj=file,
             Bucket=R2_BUCKET_NAME,
             Key=key,
-            ExtraArgs={'ContentType': file.content_type or 'application/octet-stream', 'ACL': 'public-read'}
+            ExtraArgs={'ContentType': mime or 'application/octet-stream', 'ACL': 'public-read'}
         )
     except Exception as e:
         Log(f"Failed to upload profile picture to R2 -> {str(e)}", "error")
@@ -596,7 +673,7 @@ def set_language():
         return response
     return redirect(request.referrer or url_for("root"))
 
-@app.route("/store-query", endpoint="store_query")
+@app.route("/store-query", endpoint="store_query" , methods=['POST'])
 @limiter.limit("100 per hour")
 @api_login_required
 def store_query():

@@ -170,7 +170,6 @@ def LoginUser(UserClass, data=None):
     if not username_or_email or not password:
         return jsonify({"error": "Missing credentials"}), 400
 
-    import re
     email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     is_email = re.fullmatch(email_pattern, username_or_email.strip()) is not None
 
@@ -188,7 +187,7 @@ def LoginUser(UserClass, data=None):
     if not check_password_hash(userDoc["password"], password):
         return jsonify({"error": "Invalid username or password"}), 401
 
-    if not userDoc.get("verified", False) and userDoc.get("verified") != None:
+    if userDoc.get("verified") is not True:
         return jsonify({"error": "Email not verified. Check your inbox."}), 403
 
     if userDoc.get("deletedAt") is not None:
@@ -856,34 +855,42 @@ def GetNextAction(_user_history=None):
         cursor = db[coll_name].find(query_filter).sort([('createdAt', -1)]).limit(50)
         
         for doc in cursor:
-            # Robust date parsing with fallback
             created_at = None
             created_at_raw = doc.get('createdAt') or doc.get('lastEditedAt')
-            
+
             try:
                 if isinstance(created_at_raw, dict) and '$date' in created_at_raw:
-                    created_at = datetime.fromisoformat(created_at_raw['$date'].replace('Z', '+00:00'))
+                    created_at = datetime.fromisoformat(
+                        created_at_raw['$date'].replace('Z', '+00:00')
+                    )
                 elif isinstance(created_at_raw, str):
                     created_at = datetime.fromisoformat(created_at_raw.replace('Z', '+00:00'))
+                elif isinstance(created_at_raw, datetime):
+                    created_at = created_at_raw
             except (ValueError, TypeError):
+                pass
+
+            if created_at is None:
                 created_at = datetime.utcnow()
-            
+
             q_date = created_at.date().isoformat()
+
             topic = extract_topic(doc.get('query'), qtype) or 'General'
-            
-            # Chat topic extraction
+
             if qtype == 'chat' and 'queries' in doc:
                 for msg in doc['queries']:
                     if msg.get('role') == 'user' and msg.get('content'):
                         content = msg['content'].strip()
                         if len(content) > 10:
                             words = re.findall(r'\b[a-zA-Z]{3,}\b', content.lower())
-                            words = [w.capitalize() for w in words[:3] 
-                                   if w not in {'How', 'What', 'Why', 'When'}]
+                            words = [
+                                w.capitalize() for w in words[:3]
+                                if w not in {'how', 'what', 'why', 'when'}
+                            ]
                             if words:
                                 topic = ' '.join(words)
                                 break
-            
+
             all_queries.append({'date': q_date, 'type': qtype, 'topic': topic})
     
     today_queries = [q for q in all_queries if q['date'] == today_str]

@@ -987,8 +987,8 @@ msgid "Open-Source"
 msgstr "Open-Source"
 
 #: templates/pages/index.html:223
-msgid "roots with enhanced private version"
-msgstr "racines avec version privée améliorée"
+msgid "The project is completely open source on GitHub."
+msgstr "Le projet est entièrement open source sur GitHub."
 
 #: templates/pages/index.html:228
 msgid "Mobile-Friendly"
