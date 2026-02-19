@@ -35,9 +35,16 @@ export function hideStatus(): void {
 }
 
 export function renderMessage(role: string, content: string): void {
-    ChatMessages.innerHTML += `
-        <div class="message ${role === "assistant" ? "ai" : "user"}-message">
-            <div class="message-bubble">${content}</div>
-        </div>`;
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${role === "assistant" ? "ai" : "user"}-message`;
+    
+    const bubble = document.createElement('div');
+    bubble.className = 'message-bubble';
+    bubble.textContent = content; 
+    
+    messageDiv.appendChild(bubble);
+    ChatMessages.appendChild(messageDiv);
+    
     ChatMessages.scrollTop = ChatMessages.scrollHeight;
 }
+
