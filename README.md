@@ -158,18 +158,34 @@ Accounts help:
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: HTML5, CSS3 (CSS Variables), Vanilla JavaScript, TypeScript, markdown-it
-- **Backend**: Python Flask, Flask-Login, Werkzeug, Render, MongoDB (PyMongo), MailGun (email verification), Authlib (OAuth client), PyBabel(internationalization)
-- **OAuth Providers**: Google, GitHub, Discord, Microsoft
-- **Auth & Security**: Werkzeug password hashing, session-based auth, Flask-Login, usage limits, email verification tokens
-- **Data Layer**: JSON serialization, msgspec, BSON (MongoDB), in-memory caching, UUID generation
-- **AI APIs**: Hugging Face Inference API, Google Gemini (2.5 Flash), OpenAI (GPT models)
-- **OCR**: OpenAI + PIL image preprocessing
-- **PDF Processing**: pypdf (PdfReader)
-- **HTTP Client**: httpx (HTTP/2 support, connection pooling), requests
-- **Rust Extensions**: PyO3 (Python bindings), custom parsers for quiz & study plans
-- **Logging**: Rich console
-- **Utilities**: python-dotenv, JWT decode, certifi, functools decorators
+**Frontend:**
+    - Languages/Frameworks: HTML5, CSS3 (CSS  Variables), Vanilla JavaScript, TypeScript
+
+    - Libraries: markdown-it
+
+**Backend**:
+    - Core Framework: Python Flask
+Authentication & Authorization: Flask-Login, Authlib (Google, GitHub, Discord, Microsoft OAuth), Werkzeug (password hashing, security), secrets, jwt
+    - Data Management: PyMongo (MongoDB), BSON, certifi
+    - AI Integration: httpx (HTTP/2, pooling for AI APIs), requests (Mailgun), boto3 (Cloudflare R2), botocore
+    - File Processing: pypdf (PDF), PIL (image preproc), magic (file types), defusedxml (SVG), io.BytesIO, base64
+    - Utilities: python-dotenv, uuid, re, functools, msgspec (fast JSON), json, os, atexit, datetime, collections, math, random
+    - Security: Flask-WTF (CSRF), Flask-Limiter, Werkzeug, defusedxml, magic
+    - Logging: rich
+    - Internationalization: Flask-Babel
+
+**AI APIs**:
+   - Hugging Face Inference API
+   - Google Gemini (2.5 Flash)
+   - OpenAI (GPT models)
+
+**Email Service**:
+   - Mailgun
+
+**Rust Extensions (via PyO3)**:
+   - quiz_parser
+   - study_plan_parser
+   - submit_quiz
 ---
 
 ## 🛠️ Local Development
@@ -280,7 +296,7 @@ None :D
 
 Apache License 2.0 - see LICENSE for details.
 
-Made with ❤️ by **VoidDev** — self-taught since June 2025
+Made with ❤️ by **VoidDev** - self-taught since June 2025
 
 <div align="center">
   <img src="https://img.shields.io/badge/version-2.0-blue?style=for-the-badge&logo=eduDuck&logoColor=white" alt="Version">
