@@ -158,22 +158,27 @@ Accounts help:
 
 ## 🛠️ Tech Stack
 
-**Frontend:**
----
+## **Frontend**:
     - Languages/Frameworks: HTML5, CSS3 (CSS  Variables), Vanilla JavaScript, TypeScript
 
     - Libraries: markdown-it
 
-**Backend**:
----
+## **Backend**:
     - Core Framework: Python Flask
 Authentication & Authorization: Flask-Login, Authlib (Google, GitHub, Discord, Microsoft OAuth), Werkzeug (password hashing, security), secrets, jwt
+
     - Data Management: PyMongo (MongoDB), BSON, certifi
+
     - AI Integration: httpx (HTTP/2, pooling for AI APIs), requests (Mailgun), boto3 (Cloudflare R2), botocore
+
     - File Processing: pypdf (PDF), PIL (image preproc), magic (file types), defusedxml (SVG), io.BytesIO, base64
+
     - Utilities: python-dotenv, uuid, re, functools, msgspec (fast JSON), json, os, atexit, datetime, collections, math, random
+
     - Security: Flask-WTF (CSRF), Flask-Limiter, Werkzeug, defusedxml, magic
+
     - Logging: rich
+
     - Internationalization: Flask-Babel
 
 **AI APIs**:
