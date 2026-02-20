@@ -159,11 +159,13 @@ Accounts help:
 ## 🛠️ Tech Stack
 
 **Frontend:**
+---
     - Languages/Frameworks: HTML5, CSS3 (CSS  Variables), Vanilla JavaScript, TypeScript
 
     - Libraries: markdown-it
 
 **Backend**:
+---
     - Core Framework: Python Flask
 Authentication & Authorization: Flask-Login, Authlib (Google, GitHub, Discord, Microsoft OAuth), Werkzeug (password hashing, security), secrets, jwt
     - Data Management: PyMongo (MongoDB), BSON, certifi
@@ -175,14 +177,17 @@ Authentication & Authorization: Flask-Login, Authlib (Google, GitHub, Discord, M
     - Internationalization: Flask-Babel
 
 **AI APIs**:
+---
    - Hugging Face Inference API
    - Google Gemini (2.5 Flash)
    - OpenAI (GPT models)
 
 **Email Service**:
+---
    - Mailgun
 
 **Rust Extensions (via PyO3)**:
+---
    - quiz_parser
    - study_plan_parser
    - submit_quiz
