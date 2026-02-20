@@ -158,45 +158,34 @@ Accounts help:
 
 ## 🛠️ Tech Stack
 
-## **Frontend**:
-    - Languages/Frameworks: HTML5, CSS3 (CSS  Variables), Vanilla JavaScript, TypeScript
+### Frontend
+- Languages: HTML5, CSS3 (CSS variables), JavaScript, TypeScript
+- Libraries: markdown-it
 
-    - Libraries: markdown-it
+### Backend (Flask / Python)
+- Framework: Flask
+- Auth: Flask-Login, Authlib (Google/GitHub/Discord/Microsoft OAuth), Werkzeug (security + password hashing), secrets, JWT
+- Data: MongoDB (PyMongo), BSON, certifi
+- AI + HTTP: httpx (HTTP/2, connection pooling), OpenAI/Gemini/Hugging Face integrations, requests (Mailgun)
+- Storage: Cloudflare R2 via boto3/botocore
+- File processing: pypdf, Pillow (PIL), python-magic (file type detection), defusedxml (SVG/XML safety), io.BytesIO, base64
+- Utilities: python-dotenv, uuid, re, functools, msgspec (fast JSON), json, os, atexit, datetime, collections, math, random
+- Security & rate limiting: Flask-WTF (CSRF), Flask-Limiter, Werkzeug, defusedxml, python-magic
+- Logging: rich
+- i18n: Flask-Babel
 
-## **Backend**:
-    - Core Framework: Python Flask
-Authentication & Authorization: Flask-Login, Authlib (Google, GitHub, Discord, Microsoft OAuth), Werkzeug (password hashing, security), secrets, jwt
+### AI APIs
+- Hugging Face Inference API
+- Google Gemini (2.5 Flash)
+- OpenAI (GPT models)
 
-    - Data Management: PyMongo (MongoDB), BSON, certifi
+### Email
+- Mailgun
 
-    - AI Integration: httpx (HTTP/2, pooling for AI APIs), requests (Mailgun), boto3 (Cloudflare R2), botocore
-
-    - File Processing: pypdf (PDF), PIL (image preproc), magic (file types), defusedxml (SVG), io.BytesIO, base64
-
-    - Utilities: python-dotenv, uuid, re, functools, msgspec (fast JSON), json, os, atexit, datetime, collections, math, random
-
-    - Security: Flask-WTF (CSRF), Flask-Limiter, Werkzeug, defusedxml, magic
-
-    - Logging: rich
-
-    - Internationalization: Flask-Babel
-
-**AI APIs**:
----
-   - Hugging Face Inference API
-   - Google Gemini (2.5 Flash)
-   - OpenAI (GPT models)
-
-**Email Service**:
----
-   - Mailgun
-
-**Rust Extensions (via PyO3)**:
----
-   - quiz_parser
-   - study_plan_parser
-   - submit_quiz
----
+### Rust extensions (PyO3)
+- quiz_parser
+- study_plan_parser
+- submit_quiz
 
 ## 🛠️ Local Development
 
