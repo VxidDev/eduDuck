@@ -370,7 +370,7 @@ def uploadNotes():
                         "role": "user",
                         "content": [
                             {"type": "input_image", "image_url": f"data:image/png;base64,{img_str}"},
-                            {"type": "input_text", "text": "Please extract all text from this image."}
+                            {"type": "input_text", "text": "Extract only the visible text from this image. Output each line exactly as it appears, preserving original spelling, capitalization, punctuation, and formatting. Do not add descriptions, interpretations, summaries, or any content not directly printed in the image. If no text is present, output: [NO TEXT]."}
                         ]
                     }
                 ]
