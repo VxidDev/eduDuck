@@ -5,6 +5,16 @@
         const passwordInput = document.getElementById("password") as HTMLInputElement;
         const errorMsg = document.getElementById("login-error") as HTMLElement;
 
+        // Allow Enter key to submit login form
+        [usernameInput, passwordInput].forEach((input) => {
+            input.addEventListener("keydown", (e: KeyboardEvent) => {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    loginButton.click();
+                }
+            });
+        });
+
         loginButton.addEventListener("click", async (e: MouseEvent): Promise<void> => {
             e.preventDefault();
             errorMsg.style.display = "none";
