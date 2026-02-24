@@ -12,6 +12,16 @@
             const username = usernameInput.value.trim();
             const password = passwordInput.value;
 
+            // Allow Enter key to submit login form
+[usernameInput, passwordInput].forEach((input) => {
+    input.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            loginButton.click();
+        }
+    });
+});
+
             if (!username || !password) {
                 errorMsg.textContent = "Please enter both username and password.";
                 errorMsg.style.display = "block";
