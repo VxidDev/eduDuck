@@ -28,19 +28,6 @@
 
 **AI-powered study companion** that transforms your notes into interactive quizzes, flashcards, and enhanced study materials.
 
-## 🔧 Tasks & Feature Ideas
-
-**High priority**
-- Migrate parsers or other heavy functions to C/C++/Rust
-- Improve OCR preprocessing for handwritten notes
-
-**Medium priority**
-- Optimize note upload and code speed
-- Add automated tests for AI features
-
-**Low priority / future**
-- none for now
-
 ---
 
 ## 📚 Table of Contents
