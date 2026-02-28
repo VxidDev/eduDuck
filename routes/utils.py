@@ -532,6 +532,10 @@ def UserProfile():
     notes = list(db["enhanced-notes"].find(filter).sort("createdAt", -1))
     duckai = list(db["duck-ai"].find(filter).sort("lastEditedAt", -1))
     noteanalyses = list(db["note-analysis"].find(filter).sort("createdAt", -1))  
+
+    user = db["users"].find_one({"_id": ObjectId(userid)})
+    username = user["username"] if user else None
+    email = user["email"] if user else None
     
     return render_template(
         "pages/profile.html",
@@ -541,7 +545,9 @@ def UserProfile():
         notes=notes,
         duckai=duckai,
         streakdata=streakdata,
-        noteanalyses=noteanalyses  
+        noteanalyses=noteanalyses,
+        username=username,
+        email=email  
     )
 
 
