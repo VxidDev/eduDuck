@@ -1,5 +1,6 @@
 .env
 *.mo
+*.env
 venv
 .github
 __pycache__

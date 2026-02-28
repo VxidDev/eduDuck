@@ -14,6 +14,15 @@
         const reqNoSpace = document.getElementById("req-no-space") as HTMLElement;
         const passwordMatch = document.getElementById("password-match") as HTMLElement;
 
+        [emailInput, usernameInput, passwordInput, confirmInput].forEach((input) => {
+            input.addEventListener("keydown", (e: KeyboardEvent) => {
+                if (e.key === "Enter") {
+                    e.preventDefault();
+                    button.click();
+                }
+            });
+        });
+
         const checkPasswordMatch = (): void => {
             const password = passwordInput.value;
             const confirm = confirmInput.value;
