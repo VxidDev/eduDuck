@@ -229,7 +229,7 @@ gunicorn -w 4 -b 0.0.0.0:5000 main:app
 | ✅ Done | User accounts & quiz history |
 | ✅ Done | Improve OCR |
 | ✅ Done | Add User PFP support |
-| ✅ Done | Migrate quiz parser to C , C++ or Rust. |
+| ✅ Done | Migrate quiz parser to C, C++ or Rust. |
 | ✅ Done | Improve AiReq |
 | ✅ Done | Add attaching files to DuckAI. |
 | ✅ Done | Fix file uploading if edited notes.textContent |
