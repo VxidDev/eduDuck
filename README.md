@@ -24,9 +24,7 @@
   <img src="https://img.shields.io/badge/Gunicorn-20.1.0-red?style=for-the-badge&logo=gunicorn&logoColor=white" alt="Gunicorn">
 </div>
 
----
-
-**AI-powered study companion** that transforms your notes into interactive quizzes, flashcards, and enhanced study materials.
+### EduDuck - Turn messy notes into clear explanations, quizzes, and flashcards with AI, so you can study less and remember more. 
 
 ---
 
